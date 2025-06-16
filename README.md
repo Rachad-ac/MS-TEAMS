@@ -1,4 +1,4 @@
-# Frontend Talent Management
+# Projet Groupe 3 ANGULAR
 
 
 
@@ -15,14 +15,14 @@ Already a pro? Just edit this README.md and make it your own. Want to make it ea
 
 ```
 cd existing_repo
-git remote add origin https://gitlab.com/babacardiop1998/frontend-talent-management.git
+git remote add origin https://gitlab.com/babacardiop1998/projet-groupe-3-angular.git
 git branch -M main
 git push -uf origin main
 ```
 
 ## Integrate with your tools
 
-- [ ] [Set up project integrations](https://gitlab.com/babacardiop1998/frontend-talent-management/-/settings/integrations)
+- [ ] [Set up project integrations](https://gitlab.com/babacardiop1998/projet-groupe-3-angular/-/settings/integrations)
 
 ## Collaborate with your team
 
