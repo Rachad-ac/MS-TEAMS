@@ -1,15 +1,6 @@
 import { MenuItem } from './menu.model';
 
 export const MENU: MenuItem[] = [
-  {
-    label: 'Agents',
-    isTitle: true
-  },
-  {
-    label: 'Agent',
-    icon: 'user',
-    link: '/admin/agent'
-  },
   // gestion recrutement
   {
     label: 'Gestion Recrutement',
@@ -20,9 +11,15 @@ export const MENU: MenuItem[] = [
     icon: 'package',
     link: '/admin/gestion-recrutement/offre-emploi'
   },
+
+  // gestion recrutement
+  {
+    label: 'Gestion Formation',
+    isTitle: true
+  },
   {
     label: 'Session Formation',
     icon: 'book-open',
-    link: '/admin/gestion-recrutement/session-recrutement'
+    link: '/admin/gestion-formation/session-formation'
   },
 ];
