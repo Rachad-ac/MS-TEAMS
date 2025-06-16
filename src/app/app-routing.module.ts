@@ -17,8 +17,8 @@ const routes: Routes = [
         loadChildren: () => import('./views/pages/gestion-recrutements/gestion-recrutements.module').then(m => m.GestionRecrutementsModule)
       },
       {
-        path: 'agent',
-        loadChildren: () => import('./views/pages/agent/agent.module').then(m => m.AgentModule)
+        path: 'gestion-formation',
+        loadChildren: () => import('./views/pages/gestion-formation/gestion-formation.module').then(m => m.GestionFormationModule)
       },
     ]
   },
