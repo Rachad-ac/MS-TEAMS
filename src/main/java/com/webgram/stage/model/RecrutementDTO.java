@@ -9,6 +9,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Builder
 @NoArgsConstructor
@@ -27,7 +28,6 @@ public class RecrutementDTO implements Serializable {
 
     private String description;
 
-    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDate dateLimite;
 
     private String lieu;
@@ -40,4 +40,7 @@ public class RecrutementDTO implements Serializable {
     private String domaine;
 
     private Boolean publier;
+
+    private Set<CompetenceDTO> competences;
+    private Set<Long> idCompetences;
 }
