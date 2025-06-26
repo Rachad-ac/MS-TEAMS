@@ -7,9 +7,9 @@ export const MENU: MenuItem[] = [
     isTitle: true
   },
   {
-    label: 'Offre D\'emploie',
+    label: 'Recrutement',
     icon: 'package',
-    link: '/admin/gestion-recrutement/offre-emploi'
+    link: '/admin/gestion-recrutement/recrutement'
   },
 
   // gestion recrutement
