@@ -1,10 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ListOffreDEmploiComponent} from "./offreEmploi/list-offre-d-emploi/list-offre-d-emploi.component";
+import {ListRecrutementComponent} from "./recrutement/list-recrutement/list-recrutement.component";
+import {DetaillesRecrutementComponent} from "./recrutement/detailles-recrutement/detailles-recrutement.component";
 
 const routes: Routes = [
-  {path: '', component: ListOffreDEmploiComponent},
-  {path: 'offre-emploi', component: ListOffreDEmploiComponent},
+  {path: '', component: ListRecrutementComponent},
+  {path: 'recrutement', component: ListRecrutementComponent},
+  {path: 'recrutement/:id', component: DetaillesRecrutementComponent},
 ];
 
 @NgModule({

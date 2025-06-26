@@ -1,37 +1,40 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Alertes } from 'src/app/util/alerte';
-import {SessionFormationService} from "../../../../../services/sessionFormation/session-formation.service";
+import {Component, OnInit, TemplateRef} from '@angular/core';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {Alertes} from "../../../../../util/alerte";
+import {RecrutementService} from "../../../../../services/recrutement/recrutement.service";
 
 @Component({
-  selector: 'app-list-session-formation',
-  templateUrl: './list-session-formation.component.html',
-  styleUrls: ['./list-session-formation.component.scss']
+  selector: 'app-list-recrutement',
+  templateUrl: './list-recrutement.component.html',
+  styleUrls: ['./list-recrutement.component.scss']
 })
-export class ListSessionFormationComponent implements OnInit {
+export class ListRecrutementComponent implements OnInit {
   displayedColumns: string[] = [
+    'titre',
+    'dateLimite',
     'lieu',
-    'dateDebut',
-    'dateFin',
-    'nombrePlaces',
+    'typeContrat',
+    'publier',
+    'detailles',
     'actions'
   ];
-  sessionFormationToUpdate:any
+
+  recrutementToUpdate:any
   pageOptions: any = { paze: 0, size: 10 };
-  sessionFormations: any;
+  recrutements: any;
   dataSource: any;
   loadingIndicator = true;
 
   constructor(
     private modalService: NgbModal,
-    private sessionFormationServices : SessionFormationService
+    private recrutementServices : RecrutementService
   ) { }
 
   ngOnInit(): void {
-    this.getAllSessionFormations();
+    this.getAllRecrutements();
   }
-  getAllSessionFormations() {
-    this.sessionFormationServices.getAllSessionFormations(this.pageOptions).subscribe(
+  getAllRecrutements() {
+    this.recrutementServices.getAllRecrutements(this.pageOptions).subscribe(
       {
         next: response => {
           console.log('response',response);
@@ -53,15 +56,15 @@ export class ListSessionFormationComponent implements OnInit {
   paginate($event: any) {
     this.loadingIndicator = true;
     this.pageOptions.page = $event - 1;
-    this.getAllSessionFormations();
+    this.getAllRecrutements();
   }
 
-  openAddSessionFormation(content: TemplateRef<any>) {
+  openAddRecrutement(content: TemplateRef<any>) {
     this.openModal(content, 'lg');
   }
 
-  openEditSessionFormation(content: TemplateRef<any>, sessionFormation: any) {
-    this.sessionFormationToUpdate = sessionFormation
+  openEditRecrutement(content: TemplateRef<any>, recrutement: any) {
+    this.recrutementToUpdate = recrutement
 
     this.openModal(content, 'lg');
   }
@@ -71,12 +74,12 @@ export class ListSessionFormationComponent implements OnInit {
     }).catch((res) => {});
   }
 
-  deleteSessionFormation(sessionFormation: any) {
+  deleteRecrutement(recrutement: any) {
     Alertes.confirmAction(
       'Voulez-vous supprimé ?',
       'Cet element sera definitivement supprimé',
       () => {
-        this.sessionFormationServices.deleteSessionFormation(sessionFormation).subscribe({
+        this.recrutementServices.deleteRecrutement(recrutement).subscribe({
           next: (value) => {
             Alertes.alerteAddSuccess('Suppression reussie');
           },
@@ -84,21 +87,21 @@ export class ListSessionFormationComponent implements OnInit {
             Alertes.alerteAddDanger(value.error.message);
           },
           complete: () => {
-            this.getAllSessionFormations();
+            this.getAllRecrutements();
           },
         });
       })
   }
   close(){
     this.modalService.dismissAll();
-    this.getAllSessionFormations();
+    this.getAllRecrutements();
   }
   doSearch(data: any) {
     this.pageOptions = data;
     this.pageOptions.page = 0;
     this.pageOptions.size = 20;
     console.log("filtres ", this.pageOptions)
-    this.getAllSessionFormations();
+    this.getAllRecrutements();
     this.modalService.dismissAll();
   }
 }
