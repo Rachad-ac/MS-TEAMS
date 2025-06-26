@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -45,4 +46,12 @@ public class RecrutementEntity implements Serializable {
 
 	@Column(name = "recrutement_publier")
 	private Boolean publier;
+
+	@ManyToMany
+	@JoinTable(
+			name = "competence_recrutement",
+			joinColumns = @JoinColumn(name = "competence_id"),
+			inverseJoinColumns = @JoinColumn(name = "recrutement_id")
+	)
+	private Set<CompetenceEntity> competences;
 }
