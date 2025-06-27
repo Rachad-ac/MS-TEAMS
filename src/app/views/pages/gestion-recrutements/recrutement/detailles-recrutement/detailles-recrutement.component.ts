@@ -17,10 +17,7 @@ export class DetaillesRecrutementComponent implements OnInit {
               private recrutementService: RecrutementService) {}
 
   ngOnInit(): void {
-    const recrutementId = this.activateRoute.snapshot.paramMap.get('id');
-    if (recrutementId != null) {
-      localStorage.setItem('recrutementId', recrutementId);
-    }
+    const recrutementId = localStorage.getItem('recrutementId');
     this.recrutementService.getRecrutementId(recrutementId).subscribe({
       next:(data) =>{
         console.log(data);

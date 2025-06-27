@@ -104,4 +104,10 @@ export class ListRecrutementComponent implements OnInit {
     this.getAllRecrutements();
     this.modalService.dismissAll();
   }
+
+  saveIdRecrutement(recrutementId: any) {
+    if (recrutementId != null) {
+      localStorage.setItem('recrutementId', recrutementId);
+    }
+  }
 }
