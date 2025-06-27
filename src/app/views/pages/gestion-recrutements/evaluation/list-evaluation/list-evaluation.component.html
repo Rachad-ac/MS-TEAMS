@@ -25,7 +25,7 @@
 
         <ng-container matColumnDef="type">
           <th mat-header-cell *matHeaderCellDef class="table-head-text">Type</th>
-          <td mat-cell *matCellDef="let evaluation">{{ evaluation?.type }}</td>
+          <td mat-cell *matCellDef="let evaluation">{{ evaluation?.type.description }}</td>
         </ng-container>
 
         <ng-container matColumnDef="score">
@@ -55,7 +55,18 @@
 
         <ng-container matColumnDef="statut">
           <th mat-header-cell *matHeaderCellDef class="table-head-text text-center">Statut</th>
-          <td mat-cell *matCellDef="let evaluation" class="text-center">{{ evaluation?.statut }}</td>
+          <td mat-cell *matCellDef="let evaluation" class="text-center">{{ evaluation?.statut.description }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="detailles">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center" style="min-width:50px;">
+            Detailles
+          </th>
+          <td mat-cell *matCellDef="let evaluation" class="text-center">
+            <button class="btn btn-outline-primary pb-0 px-3 pt-1" [routerLink]="['/admin/gestion-recrutement/evaluation/', evaluation.id]">
+              <mat-icon class="m-0">assignment</mat-icon>
+            </button>
+          </td>
         </ng-container>
 
         <ng-container matColumnDef="actions" stickyEnd>
@@ -103,16 +114,34 @@
 </div>
 
 <!-- MODALE : Recherche Évaluation -->
-<ng-template #SearchEvaluationModal>
-  <app-add-evaluation (search)="doSearch($event)" [isSearch]="true" (submit)="close()"></app-add-evaluation>
+<ng-template #SearchEvaluationModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Recherche Evaluation</h5>
+    <button type="button" class="btn-close"  (click)="modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-add-evaluation (search)="doSearch($event)" [isSearch]="true" (submit)="close()"></app-add-evaluation>
+  </div>
 </ng-template>
 
 <!-- MODALE : Nouvelle Évaluation -->
-<ng-template #addEvaluationModal>
-  <app-add-evaluation [isSearch]="false" (submit)="close()"></app-add-evaluation>
+<ng-template #addEvaluationModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="addEvaluationModalModalLabel">Ajouter Evaluation</h5>
+    <button type="button" class="btn-close" (click) = "modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-add-evaluation [isSearch]="false" (submit)="close()"></app-add-evaluation>
+  </div>
 </ng-template>
 
 <!-- MODALE : Modifier Évaluation -->
-<ng-template #EditEvaluationModal>
-  <app-edit-evaluation (submit)="close()" [evaluationToUpdate]="evaluationToUpdate"></app-edit-evaluation>
+<ng-template #EditEvaluationModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="addEvaluationModalModalLabel">Modifier Evaluation</h5>
+    <button type="button" class="btn-close" (click) = "modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-edit-evaluation (submit)="close()" [evaluationToUpdate]="evaluationToUpdate"></app-edit-evaluation>
+  </div>
 </ng-template>

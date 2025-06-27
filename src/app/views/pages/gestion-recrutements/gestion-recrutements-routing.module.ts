@@ -5,6 +5,7 @@ import {DetaillesRecrutementComponent} from "./recrutement/detailles-recrutement
 import { ListEvaluationComponent } from './evaluation/list-evaluation/list-evaluation.component';
 import { AddEvaluationComponent } from './evaluation/add-evaluation/add-evaluation.component';
 import { EditEvaluationComponent } from './evaluation/edit-evaluation/edit-evaluation.component';
+import { DetaillesEvaluationComponent } from './evaluation/detailles-evaluation/detailles-evaluation/detailles-evaluation.component';
 
 const routes: Routes = [
   {path: '', component: ListRecrutementComponent},
@@ -13,6 +14,7 @@ const routes: Routes = [
   {path: 'evaluation', component: ListEvaluationComponent},
   {path: 'evaluation', component: AddEvaluationComponent},
   {path: 'evaluation', component: EditEvaluationComponent},
+  {path: 'evaluation/:id', component: DetaillesEvaluationComponent},
 ];
 
 @NgModule({

@@ -47,7 +47,7 @@ form!: FormGroup;
       score: new FormControl('', [Validators.required, Validators.min(0)]),
       noteGenerale: new FormControl('', Validators.required),
       commentaire: new FormControl('', Validators.maxLength(500)),
-      dateEvaluation: new FormControl('', Validators.required),
+      dateEvaluation : new FormControl('', Validators.required),
       recruteur: new FormControl('', Validators.required),
       statut: new FormControl('', Validators.required)
     });
@@ -80,5 +80,6 @@ form!: FormGroup;
   close(): void {
     this.modalService.dismissAll();
   }
+
 }
 

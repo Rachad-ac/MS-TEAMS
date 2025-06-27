@@ -21,7 +21,7 @@ import { FeatherIconModule } from './core/feather-icon/feather-icon.module';
 @NgModule({
   declarations: [
     AppComponent,
-    ErrorPageComponent
+    ErrorPageComponent,
   ],
   imports: [
     BrowserModule,

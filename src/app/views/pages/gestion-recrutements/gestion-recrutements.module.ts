@@ -13,6 +13,8 @@ import { AddEvaluationComponent } from './evaluation/add-evaluation/add-evaluati
 import { ListEvaluationComponent } from './evaluation/list-evaluation/list-evaluation.component';
 import { EditEvaluationComponent } from './evaluation/edit-evaluation/edit-evaluation.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { ReactiveFormsModule } from '@angular/forms';
+import { DetaillesEvaluationComponent } from './evaluation/detailles-evaluation/detailles-evaluation/detailles-evaluation.component';
 
 
 
@@ -23,6 +25,7 @@ import { NgSelectModule } from '@ng-select/ng-select';
     AddEvaluationComponent,
     ListEvaluationComponent,
     EditEvaluationComponent,
+    DetaillesEvaluationComponent,
   ],
   imports: [
     CommonModule,
@@ -34,7 +37,8 @@ import { NgSelectModule } from '@ng-select/ng-select';
     NgbPaginationModule,
     NgbNavModule,
     NgbDropdownModule,
-    NgSelectModule
+    NgSelectModule,
+    ReactiveFormsModule
   
   ]
 })

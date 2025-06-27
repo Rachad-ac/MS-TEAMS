@@ -18,6 +18,7 @@ export class ListEvaluationComponent implements OnInit {
   'dateEvaluation',
   'recruteur',
   'statut',
+  'detailles',
   'actions'
   ];
 
