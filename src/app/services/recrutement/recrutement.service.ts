@@ -21,30 +21,43 @@ export class RecrutementService {
     return this.http.get<any>(`${environment.baseUrl}recrutements/${recrutementId}`)
   }
   getAllRecrutements(req?: any): Observable<any> {
-    let parametres: HttpParams = new HttpParams()
-    if(req){
-      if(req?.lieu != undefined && req?.lieu){
-        parametres = parametres.append("lieu", req?.lieu);
+    let parametres: HttpParams = new HttpParams();
+
+    if (req) {
+      if (req?.titre != undefined && req?.titre) {
+        parametres = parametres.append('titre', req.titre);
       }
-      if(req?.dateDebut != undefined && req?.dateDebut){
-        parametres = parametres.append("dateDebut", req?.dateDebut);
+      if (req?.dateLimite != undefined && req?.dateLimite) {
+        parametres = parametres.append('dateLimite', req.dateLimite);
       }
-      if(req?.dateFin != undefined && req?.dateFin){
-        parametres = parametres.append("dateFin", req?.dateFin);
+      if (req?.lieu != undefined && req?.lieu) {
+        parametres = parametres.append('lieu', req.lieu);
       }
-      if(req?.nombrePlaces != undefined && req?.nombrePlaces){
-        parametres = parametres.append("nombrePlaces", req?.nombrePlaces);
+      if (req?.typeContrat != undefined && req?.typeContrat) {
+        parametres = parametres.append('typeContrat', req?.typeContrat);
       }
+      if (req?.salaire != undefined && req?.salaire) {
+        parametres = parametres.append('salaire', req?.salaire.toString());
+      }
+      if (req?.domaine != undefined && req?.domaine) {
+        parametres = parametres.append('domaine', req?.domaine);
+      }
+      if (req?.publier != undefined && req?.publier) {
+        parametres = parametres.append('publier', req.publier.toString());
+      }
+
+      if (req?.competence != undefined && req?.competence) {
+        parametres = parametres.append('competence', req.competence.toString());
+      }
+
       return this.http.get<any>(
-        `${environment.baseUrl}recrutements/all?page=${req?.page}&size=${req?.size}`,{
-          params: parametres
-        }
+        `${environment.baseUrl}recrutements/all?page=${req.page || 0}&size=${req.size || 10}`,
+        { params: parametres }
       );
-    }else{
+    } else {
       return this.http.get<any>(
-        `${environment.baseUrl}recrutements/all?page=${0}&size=${100000}`,{
-          params: parametres
-        }
+        `${environment.baseUrl}recrutements/all?page=0&size=100000`,
+        { params: parametres }
       );
     }
   }

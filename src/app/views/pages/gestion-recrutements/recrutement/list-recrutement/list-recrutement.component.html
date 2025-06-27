@@ -57,7 +57,7 @@
             Detailles
           </th>
           <td mat-cell *matCellDef="let recrutement" class="text-center">
-            <button class="btn btn-outline-primary pb-0 px-3 pt-1" [routerLink]="['/admin/gestion-recrutement/recrutement/', recrutement.id]">
+            <button class="btn btn-outline-secondary pb-0 px-3 pt-1" (click)="saveIdRecrutement(recrutement.id)" [routerLink]="['/admin/gestion-recrutement/detaille-recrutement']">
               <mat-icon class="m-0">assignment</mat-icon>
             </button>
           </td>
@@ -107,7 +107,7 @@
     <button type="button" class="btn-close"  (click)="modal.close('by: close icon')" aria-label="Close"></button>
   </div>
   <div class="modal-body">
-    <!--    <app-add-recrutement (search)="doSearch($event)" [isSearch]="true" (submit)="close()"></app-add-recrutement>-->
+        <app-add-recrutement (search)="doSearch($event)" [isSearch]="true" (submit)="close()"></app-add-recrutement>
   </div>
 </ng-template>
 <!-- search recrutement -->
@@ -119,7 +119,7 @@
     <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
   </div>
   <div class="modal-body">
-    <!--    <app-add-recrutement [isSearch]="false" (submit)="close()"></app-add-recrutement>-->
+        <app-add-recrutement [isSearch]="false" (submit)="close()"></app-add-recrutement>
   </div>
 </ng-template>
 <!--End Add recrutement-->
@@ -131,7 +131,7 @@
     <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
   </div>
   <div class="modal-body">
-    <!--    <app-edit-Recrutement  (submit)="close()"[RecrutementToUpdate]="RecrutementToUpdate"></app-edit-Recrutement>-->
+    <app-add-recrutement  (submit)="close()" [recrutementToUpdate]="recrutementToUpdate"></app-add-recrutement>
   </div>
 </ng-template>
 <!--End Edit recrutement-->
