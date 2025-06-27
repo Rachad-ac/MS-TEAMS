@@ -6,7 +6,7 @@ import {DetaillesRecrutementComponent} from "./recrutement/detailles-recrutement
 const routes: Routes = [
   {path: '', component: ListRecrutementComponent},
   {path: 'recrutement', component: ListRecrutementComponent},
-  {path: 'recrutement/:id', component: DetaillesRecrutementComponent},
+  {path: 'detaille-recrutement', component: DetaillesRecrutementComponent},
 ];
 
 @NgModule({

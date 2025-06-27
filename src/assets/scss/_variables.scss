@@ -9,7 +9,7 @@ $gray-200:     #e9ecef !default;
 $gray-300:     #dee2e6 !default;
 $gray-400:     #ced4da !default;
 $gray-500:     #adb5bd !default;
-$gray-600:     #7987a1 !default;
+$gray-600: #f1c900 !default;
 $gray-700:     #495057 !default;
 $gray-800:     #212a3a !default;
 $gray-900:     #060c17 !default;
@@ -33,7 +33,7 @@ $cyan:    #0dcaf0 !default;
 
 // --- Bootstrap Theme Colors --- //
 //
-$primary:         #6571ff !default;
+$primary: #010b71 !default;
 $secondary:       $gray-600 !default;
 $success:         #05a34a !default;
 $info:            #66d1d1 !default;
@@ -174,12 +174,12 @@ $font-weight-base:                 $font-weight-normal !default;
 
 
 // Heading sizes
-$h1-font-size:                     2.5rem !default;  
-$h2-font-size:                     2rem !default;   
-$h3-font-size:                     1.5rem !default;  
-$h4-font-size:                     1.25rem !default;  
-$h5-font-size:                     1rem !default;  
-$h6-font-size:                     $font-size-base !default; 
+$h1-font-size:                     2.5rem !default;
+$h2-font-size:                     2rem !default;
+$h3-font-size:                     1.5rem !default;
+$h4-font-size:                     1.25rem !default;
+$h5-font-size:                     1rem !default;
+$h6-font-size:                     $font-size-base !default;
 
 $headings-margin-bottom:      0 !default;
 $headings-font-weight:        500 !default;
