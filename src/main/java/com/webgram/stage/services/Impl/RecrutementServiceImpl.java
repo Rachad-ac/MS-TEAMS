@@ -115,8 +115,11 @@ public class RecrutementServiceImpl implements RecrutementService {
             if (searchParams.containsKey("domaine"))
                 booleanBuilder.and(qEntity.domaine.containsIgnoreCase(searchParams.get("domaine")));
 
-            if (searchParams.containsKey("typeContrat"))
-                booleanBuilder.and(qEntity.typeContrat.stringValue().lower().containsIgnoreCase(searchParams.get("typeContrat")));
+            String typeContrat = searchParams.get("typeContrat");
+            if (typeContrat != null && !typeContrat.isEmpty()) {
+                booleanBuilder.and(qEntity.typeContrat.stringValue().lower().containsIgnoreCase(typeContrat.toLowerCase()));
+            }
+
 
             if (searchParams.containsKey("salaire"))
                 booleanBuilder.and(qEntity.salaire.eq(Double.valueOf(searchParams.get("salaire"))));
@@ -135,8 +138,8 @@ public class RecrutementServiceImpl implements RecrutementService {
                 booleanBuilder.and(qEntity.dateLimite.eq(date));
             }
 
-            if (searchParams.containsKey("competences"))
-                booleanBuilder.and(qEntity.competences.any().nom.containsIgnoreCase(searchParams.get("competences")));
+            if (searchParams.containsKey("competence"))
+                booleanBuilder.and(qEntity.competences.any().nom.containsIgnoreCase(searchParams.get("competence")));
         }
     }
 }
