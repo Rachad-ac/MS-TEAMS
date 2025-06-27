@@ -14,7 +14,7 @@ import { HIGHLIGHT_OPTIONS } from 'ngx-highlightjs';
 import { SpinnerComponent } from './util/spinner/spinner.component';
 import { PipeModule } from './util/pipe/pipe.module';
 import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FeatherIconModule } from './core/feather-icon/feather-icon.module';
 
@@ -32,7 +32,8 @@ import { FeatherIconModule } from './core/feather-icon/feather-icon.module';
     ReactiveFormsModule,
     FeatherIconModule,
     HttpClientModule,
-    PipeModule
+    PipeModule,
+    FormsModule,
   ],
   providers: [
     AuthGuard,

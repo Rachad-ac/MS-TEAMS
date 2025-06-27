@@ -9,12 +9,20 @@ import {MatMenuModule} from "@angular/material/menu";
 import {MatTableModule} from "@angular/material/table";
 import {NgbDropdownModule, NgbNavModule, NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
 import { DetaillesRecrutementComponent } from './recrutement/detailles-recrutement/detailles-recrutement.component';
+import { AddEvaluationComponent } from './evaluation/add-evaluation/add-evaluation.component';
+import { ListEvaluationComponent } from './evaluation/list-evaluation/list-evaluation.component';
+import { EditEvaluationComponent } from './evaluation/edit-evaluation/edit-evaluation.component';
+import { NgSelectModule } from '@ng-select/ng-select';
+
 
 
 @NgModule({
   declarations: [
     ListRecrutementComponent,
     DetaillesRecrutementComponent,
+    AddEvaluationComponent,
+    ListEvaluationComponent,
+    EditEvaluationComponent,
   ],
   imports: [
     CommonModule,
@@ -25,7 +33,9 @@ import { DetaillesRecrutementComponent } from './recrutement/detailles-recruteme
     MatTableModule,
     NgbPaginationModule,
     NgbNavModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    NgSelectModule
+  
   ]
 })
 export class GestionRecrutementsModule { }
