@@ -5,7 +5,7 @@ import {DetaillesRecrutementComponent} from "./recrutement/detailles-recrutement
 import { ListEvaluationComponent } from './evaluation/list-evaluation/list-evaluation.component';
 import { AddEvaluationComponent } from './evaluation/add-evaluation/add-evaluation.component';
 import { EditEvaluationComponent } from './evaluation/edit-evaluation/edit-evaluation.component';
-import { DetaillesEvaluationComponent } from './evaluation/detailles-evaluation/detailles-evaluation/detailles-evaluation.component';
+import {DetaillesEvaluationComponent} from "./evaluation/detailles-evaluations/detailles-evaluation.component";
 
 const routes: Routes = [
   {path: '', component: ListRecrutementComponent},

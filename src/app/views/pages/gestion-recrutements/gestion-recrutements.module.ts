@@ -14,7 +14,7 @@ import { ListEvaluationComponent } from './evaluation/list-evaluation/list-evalu
 import { EditEvaluationComponent } from './evaluation/edit-evaluation/edit-evaluation.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ReactiveFormsModule } from '@angular/forms';
-import { DetaillesEvaluationComponent } from './evaluation/detailles-evaluation/detailles-evaluation/detailles-evaluation.component';
+import {DetaillesEvaluationComponent} from "./evaluation/detailles-evaluations/detailles-evaluation.component";
 
 
 
@@ -39,7 +39,7 @@ import { DetaillesEvaluationComponent } from './evaluation/detailles-evaluation/
     NgbDropdownModule,
     NgSelectModule,
     ReactiveFormsModule
-  
+
   ]
 })
 export class GestionRecrutementsModule { }

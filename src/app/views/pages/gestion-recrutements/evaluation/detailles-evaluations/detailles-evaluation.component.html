@@ -1,0 +1,38 @@
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/admin/gestion-recrutement/evaluation/']">Liste des evaluations</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Evaluation</li>
+  </ol>
+</nav>
+
+<ul ngbNav #fillJustifyNav="ngbNav" class="nav-tabs nav-fill" >
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>Candidat</a>
+    <ng-template ngbNavContent>
+      ....
+    </ng-template>
+  </li>
+
+  <li [ngbNavItem]="2">
+    <a ngbNavLink>Candidature</a>
+    <ng-template ngbNavContent>
+      ....
+    </ng-template>
+  </li>
+
+  <li [ngbNavItem]="3">
+    <a ngbNavLink>Postes</a>
+    <ng-template ngbNavContent>
+      ....
+    </ng-template>
+  </li>
+
+  <li [ngbNavItem]="4">
+    <a ngbNavLink>Recruteur</a>
+    <ng-template ngbNavContent>
+      ....
+    </ng-template>
+  </li>
+</ul>
+
+<div [ngbNavOutlet]="fillJustifyNav" class="border border-top-0 p-3"></div>
