@@ -2,6 +2,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CandidatureService } from '../../../../../services/candidature/candidature.service';
 import { RecrutementService } from '../../../../../services/recrutement/recrutement.service';
+import { Alertes } from '../../../../../util/alerte';
 
 @Component({
   selector: 'app-add-edit-candidature',
@@ -35,8 +36,8 @@ export class AddEditCandidatureComponent implements OnInit {
     private fb: FormBuilder,
     private candidatureService: CandidatureService,
     private recrutementService: RecrutementService
-    // private candidatService: CandidatService // À décommenter quand disponible
-  ) {
+  ) // private candidatService: CandidatService // À décommenter quand disponible
+  {
     // Initialisation du formulaire avec validation
     this.candidatureForm = this.fb.group({
       dateCandidature: [null, Validators.required],
@@ -48,7 +49,7 @@ export class AddEditCandidatureComponent implements OnInit {
 
   ngOnInit(): void {
     // Charger la liste des recrutements pour le select
-    this.recrutementService.getAllRecrutements().subscribe(data => {
+    this.recrutementService.getAllRecrutements().subscribe((data) => {
       this.recrutements = data.payload || data; // adapte selon la structure de la réponse
     });
     // Charger la liste des candidats quand le service sera prêt
@@ -75,13 +76,31 @@ export class AddEditCandidatureComponent implements OnInit {
       this.candidatureService
         .updateCandidature(this.candidatureToUpdate.idCandidature, candidature)
         .subscribe({
-          next: () => this.submit.emit(),
+          next: () => {
+            Alertes.alerteAddSuccess('Modification réussie');
+            this.submit.emit();
+          },
+          error: (err) => {
+            Alertes.alerteAddDanger(
+              err.error?.message || 'Erreur lors de la modification'
+            );
+            this.loading = false;
+          },
           complete: () => (this.loading = false),
         });
     } else {
       // Ajout
       this.candidatureService.createCandidature(candidature).subscribe({
-        next: () => this.submit.emit(),
+        next: () => {
+          Alertes.alerteAddSuccess('Ajout réussi');
+          this.submit.emit();
+        },
+        error: (err) => {
+          Alertes.alerteAddDanger(
+            err.error?.message || "Erreur lors de l'ajout"
+          );
+          this.loading = false;
+        },
         complete: () => (this.loading = false),
       });
     }
