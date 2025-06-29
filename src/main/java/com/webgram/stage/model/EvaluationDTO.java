@@ -35,9 +35,11 @@ public class EvaluationDTO implements Serializable {
     private PosteDTO poste;
     private CandidatureDTO candidature;
     private CandidatDTO candidat;
+    private RecruteurDTO recruteur;
 
     private Long posteId;
     private Long candidatId;
     private Long candidatureId;
+    private Long recruteurId;
      */
 }
