@@ -15,11 +15,14 @@ import {
   NgbPaginationModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { DetaillesRecrutementComponent } from './recrutement/detailles-recrutement/detailles-recrutement.component';
+import {AddRecrutementComponent} from "./recrutement/add-recrutement/add-recrutement.component";
+import {NgSelectModule} from "@ng-select/ng-select";
 
 
 @NgModule({
   // Déclaration de tous les composants utilisés dans ce module
   declarations: [
+    AddRecrutementComponent,
     ListRecrutementComponent,
     DetaillesRecrutementComponent,
   ],
@@ -33,7 +36,9 @@ import { DetaillesRecrutementComponent } from './recrutement/detailles-recruteme
     MatTableModule,
     NgbPaginationModule,
     NgbNavModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    ReactiveFormsModule,
+    NgSelectModule
   ]
 })
 // Module principal pour la gestion des recrutements et candidatures
