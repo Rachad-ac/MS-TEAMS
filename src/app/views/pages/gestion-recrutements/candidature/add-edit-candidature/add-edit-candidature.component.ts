@@ -35,9 +35,8 @@ export class AddEditCandidatureComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private candidatureService: CandidatureService,
-    private recrutementService: RecrutementService
-  ) // private candidatService: CandidatService // À décommenter quand disponible
-  {
+    private recrutementService: RecrutementService // private candidatService: CandidatService // À décommenter quand disponible
+  ) {
     // Initialisation du formulaire avec validation
     this.candidatureForm = this.fb.group({
       dateCandidature: [null, Validators.required],
@@ -53,9 +52,15 @@ export class AddEditCandidatureComponent implements OnInit {
       this.recrutements = data.payload || data; // adapte selon la structure de la réponse
     });
     // Charger la liste des candidats quand le service sera prêt
+    // Exemple à décommenter quand le service existera :
     // this.candidatService.getAllCandidats().subscribe(data => {
     //   this.candidats = data.payload || data;
     // });
+    // Pour test local, tu peux simuler :
+    this.candidats = [
+      { id: 1, nom: 'Jean Dupont' },
+      { id: 2, nom: 'Marie Ndiaye' },
+    ];
     if (this.candidatureToUpdate) {
       this.candidatureForm.patchValue({
         ...this.candidatureToUpdate,

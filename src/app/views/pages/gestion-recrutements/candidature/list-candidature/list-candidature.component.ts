@@ -13,8 +13,8 @@ export class ListCandidatureComponent implements OnInit {
   displayedColumns: string[] = [
     'dateCandidature',
     'statut',
-    'recrutementId',
-    'candidatId',
+    'titreRecrutement',
+    'nomCandidat',
     'detailles',
     'actions',
   ];
