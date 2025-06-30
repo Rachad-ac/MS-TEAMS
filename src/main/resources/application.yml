@@ -1,6 +1,6 @@
 # Configuration du serveur
 server:
-  port: 2000 # Port sur lequel l'application sera accessible
+  port: 2001 # Port sur lequel l'application sera accessible
   servlet:
     context-path: /api-webService # Préfixe de contexte pour toutes les URLs
 
