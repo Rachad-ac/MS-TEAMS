@@ -18,6 +18,13 @@ export const MENU: MenuItem[] = [
     icon: 'user-check',
     link: '/admin/gestion-recrutement/candidature',
   },
+  {
+    label: 'Evaluation',
+    icon: 'file-text',
+    link: '/admin/gestion-recrutement/evaluation'
+  },
+	
+  // gestion formation
 
   // Section gestion formation
   {
