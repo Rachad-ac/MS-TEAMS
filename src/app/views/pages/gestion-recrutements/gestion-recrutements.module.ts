@@ -1,13 +1,19 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
+// Import des modules de routing et des composants nécessaires
 import { GestionRecrutementsRoutingModule } from './gestion-recrutements-routing.module';
 import { ListRecrutementComponent } from './recrutement/list-recrutement/list-recrutement.component';
-import {MatButtonModule} from "@angular/material/button";
-import {MatIconModule} from "@angular/material/icon";
-import {MatMenuModule} from "@angular/material/menu";
-import {MatTableModule} from "@angular/material/table";
-import {NgbDropdownModule, NgbNavModule, NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
+import { MatButtonModule } from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatTableModule } from '@angular/material/table';
+import {
+  NgbDropdownModule,
+  NgbNavModule,
+  NgbPaginationModule,
+} from '@ng-bootstrap/ng-bootstrap';
 import { DetaillesRecrutementComponent } from './recrutement/detailles-recrutement/detailles-recrutement.component';
 import { AddEvaluationComponent } from './evaluation/add-evaluation/add-evaluation.component';
 import { ListEvaluationComponent } from './evaluation/list-evaluation/list-evaluation.component';
@@ -19,6 +25,7 @@ import {DetaillesEvaluationComponent} from "./evaluation/detailles-evaluations/d
 
 
 @NgModule({
+  // Déclaration de tous les composants utilisés dans ce module
   declarations: [
     ListRecrutementComponent,
     DetaillesRecrutementComponent,
@@ -27,6 +34,7 @@ import {DetaillesEvaluationComponent} from "./evaluation/detailles-evaluations/d
     EditEvaluationComponent,
     DetaillesEvaluationComponent,
   ],
+  // Import des modules nécessaires pour ce module
   imports: [
     CommonModule,
     GestionRecrutementsRoutingModule,
@@ -42,4 +50,5 @@ import {DetaillesEvaluationComponent} from "./evaluation/detailles-evaluations/d
 
   ]
 })
-export class GestionRecrutementsModule { }
+// Module principal pour la gestion des recrutements et candidatures
+export class GestionRecrutementsModule {}

@@ -15,6 +15,7 @@ const routes: Routes = [
   {path: 'evaluation', component: AddEvaluationComponent},
   {path: 'evaluation', component: EditEvaluationComponent},
   {path: 'evaluation/:id', component: DetaillesEvaluationComponent},
+  {path: 'detaille-recrutement', component: DetaillesRecrutementComponent},
 ];
 
 @NgModule({

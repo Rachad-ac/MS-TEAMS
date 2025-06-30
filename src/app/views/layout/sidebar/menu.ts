@@ -1,15 +1,22 @@
 import { MenuItem } from './menu.model';
 
+// Définition du menu latéral de l'application
 export const MENU: MenuItem[] = [
-  // gestion recrutement
+  // Section gestion recrutement
   {
     label: 'Gestion Recrutement',
-    isTitle: true
+    isTitle: true,
   },
   {
     label: 'Recrutement',
     icon: 'package',
-    link: '/admin/gestion-recrutement/recrutement'
+    link: '/admin/gestion-recrutement/recrutement',
+  },
+  // Ajout de l'entrée Candidature pour accéder à la gestion des candidatures
+  {
+    label: 'Candidature',
+    icon: 'user-check',
+    link: '/admin/gestion-recrutement/candidature',
   },
   {
     label: 'Evaluation',
@@ -18,13 +25,15 @@ export const MENU: MenuItem[] = [
   },
 	
   // gestion formation
+
+  // Section gestion formation
   {
     label: 'Gestion Formation',
-    isTitle: true
+    isTitle: true,
   },
   {
     label: 'Session Formation',
     icon: 'book-open',
-    link: '/admin/gestion-formation/session-formation'
+    link: '/admin/gestion-formation/session-formation',
   },
 ];

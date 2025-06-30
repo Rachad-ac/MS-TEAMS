@@ -7,7 +7,7 @@
 
 <ul ngbNav #fillJustifyNav="ngbNav" class="nav-tabs nav-fill" >
   <li [ngbNavItem]="1">
-    <a ngbNavLink>Information Personnels</a>
+    <a ngbNavLink><h5>Informations Complementaires</h5></a>
     <ng-template ngbNavContent>
       <div class="d-md-block left-wrapper" *ngIf="recrutement">
         <div class="card rounded">
@@ -73,13 +73,13 @@
 
   </li>
   <li [ngbNavItem]="3">
-    <a ngbNavLink>Candidatures</a>
+    <a ngbNavLink><h5>Candidatures</h5></a>
     <ng-template ngbNavContent>
       bla bla
     </ng-template>
   </li>
   <li [ngbNavItem]="5">
-    <a ngbNavLink>Competence</a>
+    <a ngbNavLink><h5>Competences</h5></a>
     <ng-template ngbNavContent>
       <table mat-table [dataSource]="recrutement?.competences">
 
