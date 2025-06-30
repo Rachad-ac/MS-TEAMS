@@ -8,6 +8,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
@@ -15,12 +16,12 @@ import java.time.LocalDate;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class OffreEmploiDTO implements Serializable {
+public class CompetenceDTO implements Serializable {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     @NotEmpty
-    private String titre;
-    private String description;
-    private LocalDate datePublication;
+    private String nom;
+    private String niveau;
+    private String domaine;
 }
