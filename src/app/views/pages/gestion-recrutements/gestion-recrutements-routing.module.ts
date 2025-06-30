@@ -6,6 +6,9 @@ import { ListEvaluationComponent } from './evaluation/list-evaluation/list-evalu
 import { AddEvaluationComponent } from './evaluation/add-evaluation/add-evaluation.component';
 import { EditEvaluationComponent } from './evaluation/edit-evaluation/edit-evaluation.component';
 import {DetaillesEvaluationComponent} from "./evaluation/detailles-evaluations/detailles-evaluation.component";
+import { ListCandidatureComponent } from './candidature/list-candidature/list-candidature.component';
+import { AddEditCandidatureComponent } from './candidature/add-edit-candidature/add-edit-candidature.component';
+import { DetaillesCandidatureComponent } from './candidature/detailles-candidature/detailles-candidature.component';
 
 const routes: Routes = [
   {path: '', component: ListRecrutementComponent},
@@ -16,6 +19,10 @@ const routes: Routes = [
   {path: 'evaluation', component: EditEvaluationComponent},
   {path: 'evaluation/:id', component: DetaillesEvaluationComponent},
   {path: 'detaille-recrutement', component: DetaillesRecrutementComponent},
+  { path: 'candidature', component: ListCandidatureComponent },
+  { path: 'candidature/add', component: AddEditCandidatureComponent },
+  { path: 'candidature/edit/:id', component: AddEditCandidatureComponent },
+  { path: 'candidature/:id', component: DetaillesCandidatureComponent },
 ];
 
 @NgModule({

@@ -21,6 +21,8 @@ import { EditEvaluationComponent } from './evaluation/edit-evaluation/edit-evalu
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ReactiveFormsModule } from '@angular/forms';
 import {DetaillesEvaluationComponent} from "./evaluation/detailles-evaluations/detailles-evaluation.component";
+import { AddEditCandidatureComponent } from './candidature/add-edit-candidature/add-edit-candidature.component';
+import { ListCandidatureComponent } from './candidature/list-candidature/list-candidature.component';
 
 
 
@@ -33,6 +35,8 @@ import {DetaillesEvaluationComponent} from "./evaluation/detailles-evaluations/d
     ListEvaluationComponent,
     EditEvaluationComponent,
     DetaillesEvaluationComponent,
+    AddEditCandidatureComponent,
+    ListCandidatureComponent,
   ],
   // Import des modules nécessaires pour ce module
   imports: [
