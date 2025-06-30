@@ -13,6 +13,7 @@ import org.mapstruct.ReportingPolicy;
 public interface CandidatureMapper extends EntityMapper<CandidatureDTO, Candidature> {
 
     @Mapping(target = "recrutementId", source = "recrutement.id")
+    @Mapping(target = "titreRecrutement", source = "recrutement.titre")
     // @Mapping(target = "candidatId", source = "candidat.id") // TODO: à réactiver quand CandidatEntity existera
     @Mapping(target = "statut", source = "statut")
     CandidatureDTO asDto(Candidature entity);

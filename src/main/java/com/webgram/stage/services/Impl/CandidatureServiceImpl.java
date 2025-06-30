@@ -30,7 +30,9 @@ public class CandidatureServiceImpl implements CandidatureService {
     @Override
     public CandidatureDTO save(CandidatureDTO candidatureDTO) {
         Candidature entity = candidatureMapper.asEntity(candidatureDTO);
-        return candidatureMapper.asDto(candidatureRepository.save(entity));
+        CandidatureDTO dto = candidatureMapper.asDto(candidatureRepository.save(entity));
+        dto.setNomCandidat("N/A");
+        return dto;
     }
 
     @Override
@@ -45,7 +47,9 @@ public class CandidatureServiceImpl implements CandidatureService {
             }
             entity.getRecrutement().setId(candidatureDTO.getRecrutementId());
             entity.setCandidatId(candidatureDTO.getCandidatId());
-            return candidatureMapper.asDto(candidatureRepository.save(entity));
+            CandidatureDTO dto = candidatureMapper.asDto(candidatureRepository.save(entity));
+            dto.setNomCandidat("N/A");
+            return dto;
         }
         return null;
     }
@@ -57,12 +61,24 @@ public class CandidatureServiceImpl implements CandidatureService {
 
     @Override
     public CandidatureDTO getById(Long id) {
-        return candidatureRepository.findById(id).map(candidatureMapper::asDto).orElse(null);
+        return candidatureRepository.findById(id)
+                .map(entity -> {
+                    CandidatureDTO dto = candidatureMapper.asDto(entity);
+                    dto.setNomCandidat("N/A");
+                    return dto;
+                })
+                .orElse(null);
     }
 
     @Override
     public List<CandidatureDTO> getAll() {
-        return candidatureRepository.findAll().stream().map(candidatureMapper::asDto).collect(Collectors.toList());
+        return candidatureRepository.findAll().stream()
+                .map(entity -> {
+                    CandidatureDTO dto = candidatureMapper.asDto(entity);
+                    dto.setNomCandidat("N/A");
+                    return dto;
+                })
+                .collect(Collectors.toList());
     }
 
     @Override
@@ -78,6 +94,11 @@ public class CandidatureServiceImpl implements CandidatureService {
                 booleanBuilder.and(qCandidature.candidatId.eq(Long.valueOf(searchParams.get("candidatId"))));
             // Ajoute d'autres filtres si besoin
         }
-        return candidatureRepository.findAll(booleanBuilder, pageable).map(candidatureMapper::asDto);
+        return candidatureRepository.findAll(booleanBuilder, pageable)
+                .map(entity -> {
+                    CandidatureDTO dto = candidatureMapper.asDto(entity);
+                    dto.setNomCandidat("N/A");
+                    return dto;
+                });
     }
 } 
