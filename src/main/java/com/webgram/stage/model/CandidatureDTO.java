@@ -37,7 +37,10 @@ public class CandidatureDTO implements Serializable {
     // Identifiant du recrutement associé à la candidature
     private Long recrutementId;
 
-    // Identifiant du candidat ayant postulé
+    // Objet du candidat ayant postulé
+    private CandidatDTO candidat;
+
+    // Identifiants simples pour l'affichage et l'édition
     private Long candidatId;
 
     // Nom du candidat
@@ -55,6 +58,8 @@ public class CandidatureDTO implements Serializable {
     public void setStatut(StatutCandidature statut) { this.statut = statut; }
     public Long getRecrutementId() { return recrutementId; }
     public void setRecrutementId(Long recrutementId) { this.recrutementId = recrutementId; }
+    public CandidatDTO getCandidat() { return candidat; }
+    public void setCandidat(CandidatDTO candidat) { this.candidat = candidat; }
     public Long getCandidatId() { return candidatId; }
     public void setCandidatId(Long candidatId) { this.candidatId = candidatId; }
     public String getNomCandidat() { return nomCandidat; }

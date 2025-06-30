@@ -18,7 +18,7 @@ import java.util.Map;
 @RestController
 @RequestMapping("recrutements")
 @RequiredArgsConstructor
-//@CrossOrigin("*")
+@CrossOrigin("*")
 
 public class RecrutementController {
 
