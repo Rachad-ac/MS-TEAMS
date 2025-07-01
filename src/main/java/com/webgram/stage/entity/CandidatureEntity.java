@@ -32,18 +32,9 @@ public class CandidatureEntity implements Serializable {
     private RecrutementEntity recrutement;
 
     // Relation ManyToOne vers CandidatEntity (chaque candidature est faite par un candidat)
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "candidat_id")
     private CandidatEntity candidat;
 
-    public Long getIdCandidature() { return idCandidature; }
-    public void setIdCandidature(Long idCandidature) { this.idCandidature = idCandidature; }
-    public LocalDateTime getDateCandidature() { return dateCandidature; }
-    public void setDateCandidature(LocalDateTime dateCandidature) { this.dateCandidature = dateCandidature; }
-    public StatutCandidature getStatut() { return statut; }
-    public void setStatut(StatutCandidature statut) { this.statut = statut; }
-    public RecrutementEntity getRecrutement() { return recrutement; }
-    public void setRecrutement(RecrutementEntity recrutement) { this.recrutement = recrutement; }
-    public CandidatEntity getCandidat() { return candidat; }
-    public void setCandidat(CandidatEntity candidat) { this.candidat = candidat; }
+
 } 

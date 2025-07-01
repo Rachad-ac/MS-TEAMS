@@ -31,7 +31,6 @@ public class CandidatureServiceImpl implements CandidatureService {
     public CandidatureDTO save(CandidatureDTO candidatureDTO) {
         CandidatureEntity entity = candidatureMapper.asEntity(candidatureDTO);
         CandidatureDTO dto = candidatureMapper.asDto(candidatureRepository.save(entity));
-        dto.setNomCandidat("N/A");
         return dto;
     }
 
@@ -51,7 +50,6 @@ public class CandidatureServiceImpl implements CandidatureService {
             }
             entity.getCandidat().setId(candidatureDTO.getCandidatId());
             CandidatureDTO dto = candidatureMapper.asDto(candidatureRepository.save(entity));
-            dto.setNomCandidat("N/A");
             return dto;
         }
         return null;
@@ -67,7 +65,6 @@ public class CandidatureServiceImpl implements CandidatureService {
         return candidatureRepository.findById(id)
                 .map(entity -> {
                     CandidatureDTO dto = candidatureMapper.asDto(entity);
-                    dto.setNomCandidat("N/A");
                     return dto;
                 })
                 .orElse(null);
@@ -78,7 +75,6 @@ public class CandidatureServiceImpl implements CandidatureService {
         return candidatureRepository.findAll().stream()
                 .map(entity -> {
                     CandidatureDTO dto = candidatureMapper.asDto(entity);
-                    dto.setNomCandidat("N/A");
                     return dto;
                 })
                 .collect(Collectors.toList());
@@ -88,7 +84,7 @@ public class CandidatureServiceImpl implements CandidatureService {
     public Page<CandidatureDTO> getAllCandidatures(Map<String, String> searchParams, Pageable pageable) {
         BooleanBuilder booleanBuilder = new BooleanBuilder();
         if (searchParams != null) {
-            QCandidatureEntity qCandidature = QCandidatureEntity.candidature;
+            QCandidatureEntity qCandidature = QCandidatureEntity.candidatureEntity;
             if (searchParams.containsKey("statut"))
                 booleanBuilder.and(qCandidature.statut.eq(StatutCandidature.valueOf(searchParams.get("statut"))));
             if (searchParams.containsKey("recrutementId"))
@@ -100,7 +96,6 @@ public class CandidatureServiceImpl implements CandidatureService {
         return candidatureRepository.findAll(booleanBuilder, pageable)
                 .map(entity -> {
                     CandidatureDTO dto = candidatureMapper.asDto(entity);
-                    dto.setNomCandidat("N/A");
                     return dto;
                 });
     }
