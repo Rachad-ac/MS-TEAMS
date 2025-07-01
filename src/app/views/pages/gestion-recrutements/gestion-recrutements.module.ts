@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
 
 // Import des modules de routing et des composants nécessaires
 import { GestionRecrutementsRoutingModule } from './gestion-recrutements-routing.module';
@@ -23,6 +22,11 @@ import { ReactiveFormsModule } from '@angular/forms';
 import {DetaillesEvaluationComponent} from "./evaluation/detailles-evaluations/detailles-evaluation.component";
 import { AddEditCandidatureComponent } from './candidature/add-edit-candidature/add-edit-candidature.component';
 import { ListCandidatureComponent } from './candidature/list-candidature/list-candidature.component';
+import { AddRecrutementComponent } from './recrutement/add-recrutement/add-recrutement.component';
+import { AddCandidatComponent } from './candidat/add-candidat/add-candidat.component';
+import { ListCandidatComponent } from './candidat/list-candidat/list-candidat.component';
+import { EditCandidatComponent } from './candidat/edit-candidat/edit-candidat.component';
+
 
 
 
@@ -37,6 +41,10 @@ import { ListCandidatureComponent } from './candidature/list-candidature/list-ca
     DetaillesEvaluationComponent,
     AddEditCandidatureComponent,
     ListCandidatureComponent,
+    AddRecrutementComponent,
+    AddCandidatComponent,
+    ListCandidatComponent,
+    EditCandidatComponent
   ],
   // Import des modules nécessaires pour ce module
   imports: [
