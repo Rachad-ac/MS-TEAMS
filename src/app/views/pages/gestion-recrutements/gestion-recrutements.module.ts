@@ -15,43 +15,29 @@ import {
   NgbPaginationModule,
 } from '@ng-bootstrap/ng-bootstrap';
 import { DetaillesRecrutementComponent } from './recrutement/detailles-recrutement/detailles-recrutement.component';
-<<<<<<< HEAD
 import { AddRecrutementComponent } from './recrutement/add-recrutement/add-recrutement.component';
-import { NgSelectModule } from '@ng-select/ng-select';
 import { ListCandidatureComponent } from './candidature/list-candidature/list-candidature.component';
 import { DetaillesCandidatureComponent } from './candidature/detailles-candidature/detailles-candidature.component';
 import { AddEditCandidatureComponent } from './candidature/add-edit-candidature/add-edit-candidature.component';
-=======
 import { AddEvaluationComponent } from './evaluation/add-evaluation/add-evaluation.component';
 import { ListEvaluationComponent } from './evaluation/list-evaluation/list-evaluation.component';
 import { EditEvaluationComponent } from './evaluation/edit-evaluation/edit-evaluation.component';
+import { DetaillesEvaluationComponent } from './evaluation/detailles-evaluations/detailles-evaluation.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { ReactiveFormsModule } from '@angular/forms';
-import {DetaillesEvaluationComponent} from "./evaluation/detailles-evaluations/detailles-evaluation.component";
-import { AddEditCandidatureComponent } from './candidature/add-edit-candidature/add-edit-candidature.component';
-import { ListCandidatureComponent } from './candidature/list-candidature/list-candidature.component';
-
-
->>>>>>> dev
 
 @NgModule({
   // Déclaration de tous les composants utilisés dans ce module
   declarations: [
     ListRecrutementComponent,
     DetaillesRecrutementComponent,
-<<<<<<< HEAD
+    AddRecrutementComponent,
     ListCandidatureComponent,
     DetaillesCandidatureComponent,
     AddEditCandidatureComponent,
-    AddRecrutementComponent,
-=======
     AddEvaluationComponent,
     ListEvaluationComponent,
     EditEvaluationComponent,
     DetaillesEvaluationComponent,
-    AddEditCandidatureComponent,
-    ListCandidatureComponent,
->>>>>>> dev
   ],
   // Import des modules nécessaires pour ce module
   imports: [
@@ -64,16 +50,9 @@ import { ListCandidatureComponent } from './candidature/list-candidature/list-ca
     NgbPaginationModule,
     NgbNavModule,
     NgbDropdownModule,
-<<<<<<< HEAD
     ReactiveFormsModule,
     NgSelectModule,
   ],
-=======
-    NgSelectModule,
-    ReactiveFormsModule
-
-  ]
->>>>>>> dev
 })
 // Module principal pour la gestion des recrutements et candidatures
 export class GestionRecrutementsModule {}
