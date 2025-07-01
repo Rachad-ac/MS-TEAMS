@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CandidatureService } from '../../../../../services/candidature/candidature.service';
 import { RecrutementService } from '../../../../../services/recrutement/recrutement.service';
 import { Alertes } from '../../../../../util/alerte';
+import { CandidatService } from '../../../../../services/candidat/candidat.service';
 
 @Component({
   selector: 'app-add-edit-candidature',
@@ -35,32 +36,27 @@ export class AddEditCandidatureComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private candidatureService: CandidatureService,
-    private recrutementService: RecrutementService // private candidatService: CandidatService // À décommenter quand disponible
-  ) {
+    private recrutementService: RecrutementService
+  ) // private candidatService: CandidatService // À décommenter quand disponible
+  {
     // Initialisation du formulaire avec validation
     this.candidatureForm = this.fb.group({
       dateCandidature: [null, Validators.required],
       statut: ['', Validators.required],
       recrutementId: [null, Validators.required],
-      candidatId: [null, Validators.required],
+      // candidatId: [null, Validators.required],
     });
   }
 
   ngOnInit(): void {
     // Charger la liste des recrutements pour le select
     this.recrutementService.getAllRecrutements().subscribe((data) => {
-      this.recrutements = data.payload || data; // adapte selon la structure de la réponse
+      this.recrutements = data.payload || data;
     });
     // Charger la liste des candidats quand le service sera prêt
-    // Exemple à décommenter quand le service existera :
     // this.candidatService.getAllCandidats().subscribe(data => {
     //   this.candidats = data.payload || data;
     // });
-    // Pour test local, tu peux simuler :
-    this.candidats = [
-      { id: 1, nom: 'Jean Dupont' },
-      { id: 2, nom: 'Marie Ndiaye' },
-    ];
     if (this.candidatureToUpdate) {
       this.candidatureForm.patchValue({
         ...this.candidatureToUpdate,

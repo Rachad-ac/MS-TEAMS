@@ -63,25 +63,6 @@
     </div>
   </div>
 
-  <div class="mb-3">
-    <label for="candidatId" class="form-label">Candidat</label>
-    <select id="candidatId" class="form-control" formControlName="candidatId">
-      <option value="">Sélectionner un candidat</option>
-      <option *ngFor="let c of candidats" [value]="c.id">
-        {{ c.nom }}
-      </option>
-    </select>
-    <div
-      *ngIf="
-        candidatureForm.get('candidatId')?.invalid &&
-        candidatureForm.get('candidatId')?.touched
-      "
-      class="text-danger"
-    >
-      Le candidat est requis.
-    </div>
-  </div>
-
   <div class="d-flex justify-content-end">
     <button
       type="submit"
