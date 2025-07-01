@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 
 // Import des modules de routing et des composants nécessaires
 import { GestionRecrutementsRoutingModule } from './gestion-recrutements-routing.module';
@@ -18,9 +19,7 @@ import { AddEvaluationComponent } from './evaluation/add-evaluation/add-evaluati
 import { ListEvaluationComponent } from './evaluation/list-evaluation/list-evaluation.component';
 import { EditEvaluationComponent } from './evaluation/edit-evaluation/edit-evaluation.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { ReactiveFormsModule } from '@angular/forms';
 import {DetaillesEvaluationComponent} from "./evaluation/detailles-evaluations/detailles-evaluation.component";
-import {AddRecrutementComponent} from "./recrutement/add-recrutement/add-recrutement.component";
 
 
 
@@ -33,7 +32,6 @@ import {AddRecrutementComponent} from "./recrutement/add-recrutement/add-recrute
     ListEvaluationComponent,
     EditEvaluationComponent,
     DetaillesEvaluationComponent,
-    AddRecrutementComponent
   ],
   // Import des modules nécessaires pour ce module
   imports: [
