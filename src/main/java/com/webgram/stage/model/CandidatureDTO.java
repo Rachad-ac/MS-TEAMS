@@ -12,7 +12,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 /**
- * DTO pour l'entité Candidature.
+ * DTO pour l'entité CandidatureEntity.
  * Utilisé pour transférer les données entre le backend et le frontend.
  */
 @Builder
@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 public class CandidatureDTO implements Serializable {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long idCandidature;
+    private Long id;
 
     // Date et heure de la candidature
     private LocalDateTime dateCandidature;
@@ -41,8 +41,8 @@ public class CandidatureDTO implements Serializable {
     private Long candidatId;
 
     // Getters et setters
-    public Long getIdCandidature() { return idCandidature; }
-    public void setIdCandidature(Long idCandidature) { this.idCandidature = idCandidature; }
+    public Long getId() { return id; }
+    public void setIdCandidature(Long id) { this.id = id; }
     public LocalDateTime getDateCandidature() { return dateCandidature; }
     public void setDateCandidature(LocalDateTime dateCandidature) { this.dateCandidature = dateCandidature; }
     public StatutCandidature getStatut() { return statut; }

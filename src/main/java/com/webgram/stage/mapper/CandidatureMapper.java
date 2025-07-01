@@ -1,26 +1,26 @@
 package com.webgram.stage.mapper;
 
-import com.webgram.stage.entity.Candidature;
+import com.webgram.stage.entity.CandidatureEntity;
 import com.webgram.stage.model.CandidatureDTO;
 import org.mapstruct.*;
 import org.mapstruct.ReportingPolicy;
 
 /**
- * Mapper MapStruct pour convertir entre Candidature et CandidatureDTO.
+ * Mapper MapStruct pour convertir entre CandidatureEntity et CandidatureDTO.
  * Gère la conversion des relations (recrutement, candidat) en ids et inversement.
  */
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
-public interface CandidatureMapper extends EntityMapper<CandidatureDTO, Candidature> {
+public interface CandidatureMapper extends EntityMapper<CandidatureDTO, CandidatureEntity> {
 
     @Mapping(target = "recrutementId", source = "recrutement.id")
     // @Mapping(target = "candidatId", source = "candidat.id") // TODO: à réactiver quand CandidatEntity existera
     @Mapping(target = "statut", source = "statut")
-    CandidatureDTO asDto(Candidature entity);
+    CandidatureDTO asDto(CandidatureEntity entity);
 
     @Mapping(target = "recrutement", source = "recrutementId", qualifiedByName = "recrutementFromId")
     // @Mapping(target = "candidat", source = "candidatId", qualifiedByName = "candidatFromId") // TODO: à réactiver quand CandidatEntity existera
     @Mapping(target = "statut", source = "statut")
-    Candidature asEntity(CandidatureDTO dto);
+    CandidatureEntity asEntity(CandidatureDTO dto);
 
     // Méthode utilitaire pour mapper un id vers un objet RecrutementEntity
     @Named("recrutementFromId")

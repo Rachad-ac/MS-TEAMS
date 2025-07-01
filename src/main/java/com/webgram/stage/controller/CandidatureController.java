@@ -28,7 +28,7 @@ public class CandidatureController {
     public Response<Object> create(@RequestBody CandidatureDTO dto) {
         try {
             var created = candidatureService.save(dto);
-            return Response.created().setPayload(created).setMessage("Candidature créée");
+            return Response.created().setPayload(created).setMessage("CandidatureEntity créée");
         } catch (Exception ex) {
             return Response.badRequest().setMessage(ex.getMessage());
         }
@@ -40,7 +40,7 @@ public class CandidatureController {
     public Response<Object> update(@PathVariable Long id, @RequestBody CandidatureDTO dto) {
         try {
             var updated = candidatureService.update(id, dto);
-            return Response.ok().setPayload(updated).setMessage("Candidature modifiée");
+            return Response.ok().setPayload(updated).setMessage("CandidatureEntity modifiée");
         } catch (Exception ex) {
             return Response.badRequest().setMessage(ex.getMessage());
         }
@@ -52,7 +52,7 @@ public class CandidatureController {
     public Response<Object> delete(@PathVariable Long id) {
         try {
             candidatureService.delete(id);
-            return Response.deleted().setMessage("Candidature supprimée");
+            return Response.deleted().setMessage("CandidatureEntity supprimée");
         } catch (Exception ex) {
             return Response.badRequest().setMessage(ex.getMessage());
         }
@@ -64,7 +64,7 @@ public class CandidatureController {
     public Response<Object> getById(@PathVariable Long id) {
         try {
             var dto = candidatureService.getById(id);
-            return Response.ok().setPayload(dto).setMessage("Candidature trouvée");
+            return Response.ok().setPayload(dto).setMessage("CandidatureEntity trouvée");
         } catch (Exception ex) {
             return Response.badRequest().setMessage(ex.getMessage());
         }

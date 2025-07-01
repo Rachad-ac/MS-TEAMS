@@ -31,20 +31,18 @@ public class EvaluationEntity implements Serializable {
     private String commentaire;
     @Column(name = "date_evaluation")
     private LocalDateTime dateEvaluation;
-    @Column(name = "recruteur")
-    private String recruteur;
     @Enumerated(EnumType.STRING)
     @Column(name = "status_evalution")
     private StatutType statut;
 
-    /*
+
     @ManyToOne
     @JoinColumn(name = "candidature_id", nullable = false)
     private CandidatureEntity candidature;
 
     @ManyToOne
-    @JoinColumn(name = "poste_id", nullable = false)
-    private PosteEntity poste;
+    @JoinColumn(name = "recrutement_id", nullable = false)
+    private RecrutementEntity recrutement;
 
     @ManyToOne
     @JoinColumn(name = "candidat_id", nullable = false)
@@ -55,6 +53,6 @@ public class EvaluationEntity implements Serializable {
     @JoinColumn(name = "recruteur_id", nullable = false)
     private RecruteurEntity recruteur;
     
-     */
+
 
 }

@@ -31,10 +31,7 @@ public class RecruteurDTO implements Serializable {
     private DepartementType departement;
     private SexType sexe;
 
-    /*
+
     private List<EvaluationDTO> evaluation;
 
-    private Long evaluationId;
-
-     */
 }

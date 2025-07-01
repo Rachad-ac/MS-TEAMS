@@ -66,8 +66,6 @@ public class EvaluationServiceImpl implements EvaluationService {
         if (Objects.nonNull(searchParams)) {
             var qEntity = QEvaluationEntity.evaluationEntity;
 
-            if (searchParams.containsKey("recruteur"))
-                booleanBuilder.and(qEntity.recruteur.containsIgnoreCase(searchParams.get("recruteur")));
             if (searchParams.containsKey("commentaire"))
                 booleanBuilder.and(qEntity.commentaire.containsIgnoreCase(searchParams.get("commentaire")));
 
