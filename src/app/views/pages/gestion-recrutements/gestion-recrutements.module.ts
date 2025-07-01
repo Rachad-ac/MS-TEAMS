@@ -20,6 +20,10 @@ import { ListEvaluationComponent } from './evaluation/list-evaluation/list-evalu
 import { EditEvaluationComponent } from './evaluation/edit-evaluation/edit-evaluation.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import {DetaillesEvaluationComponent} from "./evaluation/detailles-evaluations/detailles-evaluation.component";
+import {AddRecrutementComponent} from "./recrutement/add-recrutement/add-recrutement.component";
+import {ListCandidatComponent} from "./candidat/list-candidat/list-candidat.component";
+import {AddCandidatComponent} from "./candidat/add-candidat/add-candidat.component";
+import {EditCandidatComponent} from "./candidat/edit-candidat/edit-candidat.component";
 
 
 
@@ -27,11 +31,15 @@ import {DetaillesEvaluationComponent} from "./evaluation/detailles-evaluations/d
   // Déclaration de tous les composants utilisés dans ce module
   declarations: [
     ListRecrutementComponent,
+    AddRecrutementComponent,
     DetaillesRecrutementComponent,
     AddEvaluationComponent,
     ListEvaluationComponent,
     EditEvaluationComponent,
     DetaillesEvaluationComponent,
+    ListCandidatComponent,
+    AddCandidatComponent,
+    EditCandidatComponent,
   ],
   // Import des modules nécessaires pour ce module
   imports: [
