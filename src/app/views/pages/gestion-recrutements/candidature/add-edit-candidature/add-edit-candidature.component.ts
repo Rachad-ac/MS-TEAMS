@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CandidatureService } from '../../../../../services/candidature/candidature.service';
 import { RecrutementService } from '../../../../../services/recrutement/recrutement.service';
 import { Alertes } from '../../../../../util/alerte';
+import { CandidatService } from '../../../../../services/candidat/candidat.service';
 
 @Component({
   selector: 'app-add-edit-candidature',
@@ -35,9 +36,9 @@ export class AddEditCandidatureComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private candidatureService: CandidatureService,
-    private recrutementService: RecrutementService
-  ) // private candidatService: CandidatService // À décommenter quand disponible
-  {
+    private recrutementService: RecrutementService,
+    private candidatService: CandidatService
+  ) {
     // Initialisation du formulaire avec validation
     this.candidatureForm = this.fb.group({
       dateCandidature: [null, Validators.required],
@@ -50,12 +51,12 @@ export class AddEditCandidatureComponent implements OnInit {
   ngOnInit(): void {
     // Charger la liste des recrutements pour le select
     this.recrutementService.getAllRecrutements().subscribe((data) => {
-      this.recrutements = data.payload || data; // adapte selon la structure de la réponse
+      this.recrutements = data.payload || data;
     });
-    // Charger la liste des candidats quand le service sera prêt
-    // this.candidatService.getAllCandidats().subscribe(data => {
-    //   this.candidats = data.payload || data;
-    // });
+    // Charger la liste des candidats pour le select
+    this.candidatService.getAllCandidats().subscribe((data) => {
+      this.candidats = data.payload || data;
+    });
     if (this.candidatureToUpdate) {
       this.candidatureForm.patchValue({
         ...this.candidatureToUpdate,
