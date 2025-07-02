@@ -11,12 +11,17 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
 import { AddSessionFormationComponent } from './sessionFormation/add-session-formation/add-session-formation.component';
+import { AddFormateurComponent } from './formateur/add-formateur/add-formateur.component';
+import { ListFormateurComponent } from './formateur/list-formateur/list-formateur.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
   declarations: [
     ListSessionFormationComponent,
-    AddSessionFormationComponent
+    AddSessionFormationComponent,
+    AddFormateurComponent,
+    ListFormateurComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +30,8 @@ import { AddSessionFormationComponent } from './sessionFormation/add-session-for
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
-    NgbPaginationModule
+    NgbPaginationModule, 
+    ReactiveFormsModule
   ]
 })
 export class GestionFormationModule { }

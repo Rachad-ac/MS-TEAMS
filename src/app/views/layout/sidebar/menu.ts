@@ -12,7 +12,7 @@ export const MENU: MenuItem[] = [
     link: '/admin/gestion-recrutement/recrutement'
   },
 
-  // gestion recrutement
+  // gestion Formation
   {
     label: 'Gestion Formation',
     isTitle: true
@@ -21,5 +21,10 @@ export const MENU: MenuItem[] = [
     label: 'Session Formation',
     icon: 'book-open',
     link: '/admin/gestion-formation/session-formation'
+  },
+   {
+    label: 'Formateur',
+    icon: 'user',
+    link: '/admin/gestion-formation/formateur'
   },
 ];

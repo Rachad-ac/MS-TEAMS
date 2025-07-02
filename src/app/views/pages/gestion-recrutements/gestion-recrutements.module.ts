@@ -12,6 +12,8 @@ import { DetaillesRecrutementComponent } from './recrutement/detailles-recruteme
 import { AddRecrutementComponent } from './recrutement/add-recrutement/add-recrutement.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {NgSelectModule} from "@ng-select/ng-select";
+import { AddCompetenceComponent } from './competence/add-competence/add-competence.component';
+import { ListCompetenceComponent } from './competence/list-competence/list-competence.component';
 
 
 @NgModule({
@@ -19,6 +21,8 @@ import {NgSelectModule} from "@ng-select/ng-select";
     ListRecrutementComponent,
     DetaillesRecrutementComponent,
     AddRecrutementComponent,
+    AddCompetenceComponent,
+    ListCompetenceComponent,
   ],
   imports: [
     CommonModule,
