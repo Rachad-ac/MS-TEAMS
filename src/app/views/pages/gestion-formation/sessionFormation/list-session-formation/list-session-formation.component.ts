@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import {Component, Input, OnInit, TemplateRef} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Alertes } from 'src/app/util/alerte';
 import {SessionFormationService} from "../../../../../services/sessionFormation/session-formation.service";
@@ -9,18 +9,22 @@ import {SessionFormationService} from "../../../../../services/sessionFormation/
   styleUrls: ['./list-session-formation.component.scss']
 })
 export class ListSessionFormationComponent implements OnInit {
+
   displayedColumns: string[] = [
     'lieu',
-    'dateDebut',
-    'dateFin',
-    'nombrePlaces',
+    'date',
+    'heureDebut',
+    'heureFin',
+    'formation',
     'actions'
   ];
+
   sessionFormationToUpdate:any
-  pageOptions: any = { paze: 0, size: 10 };
+  pageOptions: any = { page: 0, size: 10, formationId: null };
   sessionFormations: any;
   dataSource: any;
   loadingIndicator = true;
+  @Input() formationId: any;
 
   constructor(
     private modalService: NgbModal,
@@ -31,6 +35,10 @@ export class ListSessionFormationComponent implements OnInit {
     this.getAllSessionFormations();
   }
   getAllSessionFormations() {
+    this.pageOptions.formationId = this.formationId;
+    this.pageOptions.page = 0;
+    this.pageOptions.size = 10;
+
     this.sessionFormationServices.getAllSessionFormations(this.pageOptions).subscribe(
       {
         next: response => {

@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {
-  ListSessionFormationComponent
-} from "./sessionFormation/list-session-formation/list-session-formation.component";
+import {ListFormationComponent} from "./formation/list-formation/list-formation.component";
+import {DetaillesFormationComponent} from "./formation/detailles-formation/detailles-formation.component";
 
 const routes: Routes = [
-  {path: '', component: ListSessionFormationComponent},
-  {path: 'session-formation', component: ListSessionFormationComponent},
+  {path: '', component: ListFormationComponent},
+  {path: 'formation', component: ListFormationComponent},
+  {path: 'detaille-formation', component: DetaillesFormationComponent},
 ];
 
 @NgModule({
