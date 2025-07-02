@@ -6,7 +6,7 @@ import {environment} from "../../../environments/environment";
 @Injectable({
   providedIn: 'root'
 })
-export class RecrutementService {
+export class RecruteurService {
   constructor(protected http : HttpClient) { }
 
   createRecrutement(recrutement:any):Observable<any>{

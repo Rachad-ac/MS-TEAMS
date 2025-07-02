@@ -12,6 +12,8 @@ import { Alertes } from 'src/app/util/alerte';
 })
 export class AddEvaluationComponent implements OnInit {
 
+  recruteurs: any[] = [];
+
   statutList = [
   { label: 'Prévue', value: 'PREVUE' },
   { label: 'En cours', value: 'EN_COURS' },
@@ -39,7 +41,23 @@ form!: FormGroup;
 
   ngOnInit(): void {
     this.initForm();
+    this.evaluationService.getAllEvaluations().subscribe({
+      next: (res) => {
+        console.log('Agents récupérés :', res);
+
+        // Ici, on récupère les agents depuis res.payload
+        this.recruteurs = res.payload.map((recruteur: any) => ({
+          id: recruteur.id,
+          nom: recruteur.nom,       // champ "name" dans ton JSON
+          prenom: recruteur.prenom // champ "lastName" dans ton JSON
+        }));
+      },
+      error: (err) => {
+        console.error('Erreur chargement recruteurs :', err);
+      }
+    });
   }
+
 
   initForm() {
     this.form = new FormGroup({
@@ -48,8 +66,11 @@ form!: FormGroup;
       noteGenerale: new FormControl('', Validators.required),
       commentaire: new FormControl('', Validators.maxLength(500)),
       dateEvaluation : new FormControl('', Validators.required),
-      recruteur: new FormControl('', Validators.required),
-      statut: new FormControl('', Validators.required)
+      statut: new FormControl('', Validators.required),
+      recruteurId: new FormControl('', Validators.required),
+      recrutementId: new FormControl('', Validators.required),
+      candidatId: new FormControl('', Validators.required),
+      candidatureId: new FormControl('', Validators.required),
     });
   }
 
