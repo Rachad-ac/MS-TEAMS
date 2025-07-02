@@ -20,6 +20,7 @@ form!: FormGroup;
   constructor(
     private modalService: NgbModal,
     private candidatService: CandidatService,
+    
     private fb: FormBuilder
   ) {}
 
@@ -38,6 +39,9 @@ form!: FormGroup;
       niveauEtude: new FormControl('', Validators.required)
     });
   }
+
+
+ 
 
   create(): void {
     const candidat = this.form.value;

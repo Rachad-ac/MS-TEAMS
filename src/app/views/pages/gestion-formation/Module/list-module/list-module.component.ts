@@ -1,44 +1,37 @@
 import { Component, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CandidatService } from 'src/app/services/candidat/candidat.service';
+import { ModuleService } from 'src/app/services/module/module.service';
 import { Alertes } from 'src/app/util/alerte';
 
 @Component({
-  selector: 'app-list-candidat',
-  templateUrl: './list-candidat.component.html',
-  styleUrls: ['./list-candidat.component.scss']
+  selector: 'app-list-module',
+  templateUrl: './list-module.component.html',
+  styleUrls: ['./list-module.component.scss']
 })
-export class ListCandidatComponent {
- // Colonnes affichées dans le tableau
-  displayedColumns: string[] = [
-    'nom',
-    'prenom',
-    'email',
-    'telephone',
-    'dateNaissance',
-    'adresse',
-    'niveauEtude',
+export class ListModuleComponent {
+ displayedColumns: string[] = [
+    'titre',
+    'ordre',
     'actions',
   ];
 
-
-   
-    candidatToUpdate: any; 
+  
+    moduleToUpdate: any; 
     pageOptions: any = { page: 0, size: 10 };
     dataSource: any;
     loadingIndicator = true;
   
     constructor(
       private modalService: NgbModal,
-      private candidatServices: CandidatService
+      private moduleServices: ModuleService
     ) { }
   
     ngOnInit(): void {
-      this.getAllCandidats();
+      this.getAllModules();
     }
 
-    getAllCandidats(): void {
-      this.candidatServices.getAllCandidats(this.pageOptions).subscribe({
+    getAllModules(): void {
+      this.moduleServices.getAllModules(this.pageOptions).subscribe({
         next: response => {
           console.log('response', response);
           this.dataSource = response;
@@ -57,15 +50,15 @@ export class ListCandidatComponent {
     paginate($event: number): void {
       this.loadingIndicator = true;
       this.pageOptions.page = $event - 1;
-      this.getAllCandidats();
+      this.getAllModules();
     }
-  
-    openAddCandidat(content: TemplateRef<any>): void {
+
+    openAddModule(content: TemplateRef<any>): void {
       this.openModal(content, 'lg');
     }
 
-    openEditCandidat(content: TemplateRef<any>, rCandidat: any): void {
-      this.candidatToUpdate = rCandidat;
+    openEditModule(content: TemplateRef<any>, rModule: any): void {
+      this.moduleToUpdate = rModule;
       this.openModal(content, 'lg');
     }
   
@@ -76,12 +69,12 @@ export class ListCandidatComponent {
       );
     }
 
-    deleteCandidat(rCandidat: any): void {
+    deleteModule(rModule: any): void {
       Alertes.confirmAction(
         'Voulez-vous supprimer ?',
         'Cet élément sera définitivement supprimé',
         () => {
-          this.candidatServices.deleteCandidat(rCandidat).subscribe({
+          this.moduleServices.deleteModule(rModule).subscribe({
             next: () => {
               Alertes.alerteAddSuccess('Suppression réussie');
             },
@@ -89,7 +82,7 @@ export class ListCandidatComponent {
               Alertes.alerteAddDanger(err?.error?.message || 'Erreur de suppression');
             },
             complete: () => {
-              this.getAllCandidats();
+              this.getAllModules();
             }
           });
         }
@@ -98,7 +91,7 @@ export class ListCandidatComponent {
   
     close(): void {
       this.modalService.dismissAll();
-      this.getAllCandidats();
+      this.getAllModules();
     }
   
     doSearch(data: any): void {
@@ -108,8 +101,8 @@ export class ListCandidatComponent {
         size: 20
       };
       console.log("Filtres appliqués : ", this.pageOptions);
-      this.getAllCandidats();
+      this.getAllModules();
       this.modalService.dismissAll();
     }
-  }
 
+}
