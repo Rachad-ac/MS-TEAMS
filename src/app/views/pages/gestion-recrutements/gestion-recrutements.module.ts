@@ -20,7 +20,12 @@ import { EditEvaluationComponent } from './evaluation/edit-evaluation/edit-evalu
 import { NgSelectModule } from '@ng-select/ng-select';
 import { ReactiveFormsModule } from '@angular/forms';
 import {DetaillesEvaluationComponent} from "./evaluation/detailles-evaluations/detailles-evaluation.component";
-import {AddRecrutementComponent} from "./recrutement/add-recrutement/add-recrutement.component";
+import { AddRecrutementComponent } from './recrutement/add-recrutement/add-recrutement.component';
+import { AddCandidatComponent } from './candidat/add-candidat/add-candidat.component';
+import { ListCandidatComponent } from './candidat/list-candidat/list-candidat.component';
+import { EditCandidatComponent } from './candidat/edit-candidat/edit-candidat.component';
+
+
 
 @NgModule({
   // Déclaration de tous les composants utilisés dans ce module
@@ -32,6 +37,9 @@ import {AddRecrutementComponent} from "./recrutement/add-recrutement/add-recrute
     EditEvaluationComponent,
     DetaillesEvaluationComponent,
     AddRecrutementComponent,
+    AddCandidatComponent,
+    ListCandidatComponent,
+    EditCandidatComponent
   ],
   // Import des modules nécessaires pour ce module
   imports: [

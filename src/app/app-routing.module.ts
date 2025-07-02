@@ -20,6 +20,7 @@ const routes: Routes = [
         path: 'gestion-formation',
         loadChildren: () => import('./views/pages/gestion-formation/gestion-formation.module').then(m => m.GestionFormationModule)
       },
+      
     ]
   },
   {
