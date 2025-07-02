@@ -9,14 +9,22 @@ import {MatTableModule} from "@angular/material/table";
 import {MatMenuModule} from "@angular/material/menu";
 import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
-import {NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
+import {NgbDropdownModule, NgbNavModule, NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
 import { AddSessionFormationComponent } from './sessionFormation/add-session-formation/add-session-formation.component';
+import {NgSelectModule} from "@ng-select/ng-select";
+import {ReactiveFormsModule} from "@angular/forms";
+import { ListFormationComponent } from './formation/list-formation/list-formation.component';
+import { AddFormationComponent } from './formation/add-formation/add-formation.component';
+import { DetaillesFormationComponent } from './formation/detailles-formation/detailles-formation.component';
 
 
 @NgModule({
   declarations: [
     ListSessionFormationComponent,
-    AddSessionFormationComponent
+    AddSessionFormationComponent,
+    ListFormationComponent,
+    AddFormationComponent,
+    DetaillesFormationComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +33,11 @@ import { AddSessionFormationComponent } from './sessionFormation/add-session-for
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    NgSelectModule,
+    ReactiveFormsModule,
+    NgbDropdownModule,
+    NgbNavModule
   ]
 })
 export class GestionFormationModule { }

@@ -1,0 +1,141 @@
+<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin mb-1">
+
+  <!-- Breadcrumb à gauche -->
+  <nav class="page-breadcrumb cursor-pointer">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item active"><a>List Formation</a></li>
+    </ol>
+  </nav>
+
+  <!-- Boutons à droite -->
+  <div class="d-flex justify-content-end align-items-center gap-2">
+    <button type="button" class="btn btn-secondary btn-icon me-2" (click)="openAddFormation(SearchFormationModal)">
+      <i class="feather icon-search"></i>
+    </button>
+    <button type="button" class="btn btn-primary btn-icon-text" (click)="openAddFormation(addFormationModal)">
+      <i class="feather icon-plus-circle"></i> Nouvel Formation
+    </button>
+  </div>
+
+</div>
+
+<div class="card mt-4">
+  <div class="card-body p-0">
+    <section class="table-container mat-elevation-z8" tabindex="0">
+      <!-- <app-spinner *ngIf="loadingIndicator" [displayedColumns]="displayedColumns"></app-spinner> -->
+
+      <table mat-table [dataSource]="dataSource?.payload">
+
+        <ng-container matColumnDef="titre">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Titre</th>
+          <td mat-cell *matCellDef="let formation"> {{formation?.titre}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="objectif">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Objectif</th>
+          <td mat-cell *matCellDef="let formation"> {{formation?.objectif}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateDebut">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Date Debut</th>
+          <td mat-cell *matCellDef="let formation"> {{formation?.dateDebut | date:'dd/MM/yyyy'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="dateFin">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Date Fin</th>
+          <td mat-cell *matCellDef="let formation"> {{formation?.dateFin | date:'dd/MM/yyyy'}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="niveau">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Niveau Formation</th>
+          <td mat-cell *matCellDef="let formation"> {{formation?.niveau?.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="statut">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Statut Formation</th>
+          <td mat-cell *matCellDef="let formation"> {{formation?.statut?.description}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="detailles">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center" style="min-width:50px;">
+            Detailles
+          </th>
+          <td mat-cell *matCellDef="let formation" class="text-center">
+            <button class="btn btn-outline-secondary pb-0 px-3 pt-1" (click)="saveIdFormation(formation.id)" [routerLink]="['/admin/gestion-formation/detaille-formation']">
+              <mat-icon class="m-0">assignment</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions" stickyEnd>
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Actions</th>
+          <td mat-cell *matCellDef="let formation">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu d’actions">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="openEditFormation(EditFormationModal, formation)">
+                <mat-icon>edit</mat-icon>
+                <span>Modifier</span>
+              </button>
+              <button mat-menu-item (click)="deleteFormation(formation.id)">
+                <mat-icon>delete</mat-icon>
+                <span>Supprimer</span>
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="table-head-bg"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+      </table>
+
+
+      <span *ngIf="dataSource?.payload?.length == 0" class="paginate text-danger mt-4">Les critères de recherche
+                tels qu'énoncés ne correspondent à aucun formation</span>
+
+      <div class="paginate">
+        <ngb-pagination [collectionSize]="dataSource?.metadata?.totalElements" [page]="pageOptions.page+1"
+                        [pageSize]="pageOptions.size" [maxSize]="5" (pageChange)="paginate($event)" size="sm"
+                        [rotate]="true" [ellipses]="true" [boundaryLinks]="true">
+        </ngb-pagination>
+      </div>
+    </section>
+  </div>
+</div>
+<!-- search formation -->
+<ng-template #SearchFormationModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Recherche Formation</h5>
+    <button type="button" class="btn-close"  (click)="modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-add-formation (search)="doSearch($event)" [isSearch]="true" (submit)="close()"></app-add-formation>
+  </div>
+</ng-template>
+<!-- search formation -->
+
+<!--Add formation-->
+<ng-template #addFormationModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="addFormationModalLabel">Ajout Formation</h5>
+    <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-add-formation [isSearch]="false" (submit)="close()"></app-add-formation>
+  </div>
+</ng-template>
+<!--End Add formation-->
+
+<!--Edit Formation-->
+<ng-template #EditFormationModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="EditFormationModalLabel">Modifier Formation</h5>
+    <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-add-formation  (submit)="close()" [formationToUpdate]="formationToUpdate"></app-add-formation>
+  </div>
+</ng-template>
+<!--End Edit formation-->
