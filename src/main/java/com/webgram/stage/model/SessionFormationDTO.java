@@ -8,6 +8,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Builder
 @NoArgsConstructor
@@ -22,7 +23,9 @@ public class SessionFormationDTO implements Serializable {
     private Long id;
     @NotEmpty
     private String lieu;
-    private LocalDate dateDebut;
-    private LocalDate dateFin;
-    private Long nombrePlaces;
+    private LocalDate date;
+    private LocalTime heureDebut;
+    private LocalTime heureFin;
+    private Long idFormation;
+    private FormationDTO formation;
 }
