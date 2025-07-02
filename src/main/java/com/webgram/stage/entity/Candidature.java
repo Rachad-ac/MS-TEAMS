@@ -1,27 +1,45 @@
 package com.webgram.stage.entity;
 
+import com.webgram.stage.entity.enums.StatutCandidature;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "candidature")
-public class Candidature {
+public class Candidature implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idCandidature;
 
+    // Date et heure de la candidature
     private LocalDateTime dateCandidature;
 
-    // Enum: EN_ATTENTE, ACCEPTEE, REJETEE
-    private String statut;
+    // Statut de la candidature (EN_ATTENTE, ACCEPTEE, REJETEE)
+    @Enumerated(EnumType.STRING)
+    private StatutCandidature statut;
 
-    // Relation ManyToOne vers Poste_a_pourvoir (représentée par l'id du poste)
-    private Long posteId;
+    // Relation ManyToOne vers RecrutementEntity (chaque candidature concerne un recrutement)
+    @ManyToOne
+    @JoinColumn(name = "recrutement_id")
+    private RecrutementEntity recrutement;
 
-    // Relation ManyToOne vers Candidat (représentée par l'id du candidat)
+    // Relation ManyToOne vers CandidatEntity (chaque candidature est faite par un candidat)
+    // TODO: Décommenter et utiliser cette relation quand CandidatEntity sera créée
+    // @ManyToOne
+    // @JoinColumn(name = "candidat_id")
+    // private CandidatEntity candidat;
+
     private Long candidatId;
 
-    // Getters et setters
+   /* // Getters et setters
     public Long getIdCandidature() { return idCandidature; }
     public void setIdCandidature(Long idCandidature) { this.idCandidature = idCandidature; }
     public LocalDateTime getDateCandidature() { return dateCandidature; }
@@ -31,5 +49,5 @@ public class Candidature {
     public Long getPosteId() { return posteId; }
     public void setPosteId(Long posteId) { this.posteId = posteId; }
     public Long getCandidatId() { return candidatId; }
-    public void setCandidatId(Long candidatId) { this.candidatId = candidatId; }
+    public void setCandidatId(Long candidatId) { this.candidatId = candidatId; }*/
 } 

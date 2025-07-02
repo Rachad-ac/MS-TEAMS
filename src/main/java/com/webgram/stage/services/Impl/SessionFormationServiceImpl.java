@@ -66,27 +66,22 @@ public class SessionFormationServiceImpl implements SessionFormationService {
             if (searchParams.containsKey("lieu"))
                 booleanBuilder.and(qEntity.lieu.containsIgnoreCase(searchParams.get("lieu")));
 
-            if (searchParams.containsKey("dateDebut")) {
+            if (searchParams.containsKey("date")) {
                 LocalDate date = null;
                 try {
-                    date = LocalDate.parse(searchParams.get("dateDebut"));
+                    date = LocalDate.parse(searchParams.get("date"));
                 } catch (DateTimeParseException e) {
                     throw new RuntimeException(e);
                 }
 
-                booleanBuilder.and(qEntity.dateDebut.eq(date));
+                booleanBuilder.and(qEntity.date.eq(date));
             }
 
-            if (searchParams.containsKey("dateFin")) {
-                LocalDate date = null;
-                try {
-                    date = LocalDate.parse(searchParams.get("dateFin"));
-                } catch (DateTimeParseException e) {
-                    throw new RuntimeException(e);
-                }
+            if (searchParams.containsKey("formation"))
+                booleanBuilder.and(qEntity.formation.titre.containsIgnoreCase(searchParams.get("formation")));
 
-                booleanBuilder.and(qEntity.dateFin.eq(date));
-            }
+            if (searchParams.containsKey("formationId"))
+                booleanBuilder.and(qEntity.formation.id.eq(Long.valueOf(searchParams.get("formationId"))));
         }
     }
 }
