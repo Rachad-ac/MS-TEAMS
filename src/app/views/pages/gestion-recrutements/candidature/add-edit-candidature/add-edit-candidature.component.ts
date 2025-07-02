@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CandidatureService } from '../../../../../services/candidature/candidature.service';
 import { RecrutementService } from '../../../../../services/recrutement/recrutement.service';
 import { Alertes } from '../../../../../util/alerte';
+import { CandidatService } from '../../../../../services/candidat/candidat.service';
 
 @Component({
   selector: 'app-add-edit-candidature',
@@ -30,15 +31,14 @@ export class AddEditCandidatureComponent implements OnInit {
   candidatureForm: FormGroup; // Formulaire réactif
   loading = false; // Indicateur de chargement
   recrutements: any[] = [];
-  candidats: any[] = []; // Prévu pour plus tard
+  candidats: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     private candidatureService: CandidatureService,
-    private recrutementService: RecrutementService
-  ) // private candidatService: CandidatService // À décommenter quand disponible
-  {
-    // Initialisation du formulaire avec validation
+    private recrutementService: RecrutementService,
+    private candidatService: CandidatService
+  ) {
     this.candidatureForm = this.fb.group({
       dateCandidature: [null, Validators.required],
       statut: ['', Validators.required],
@@ -48,18 +48,17 @@ export class AddEditCandidatureComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Charger la liste des recrutements pour le select
     this.recrutementService.getAllRecrutements().subscribe((data) => {
-      this.recrutements = data.payload || data; // adapte selon la structure de la réponse
+      this.recrutements = data.payload || data;
     });
-    // Charger la liste des candidats quand le service sera prêt
-    // this.candidatService.getAllCandidats().subscribe(data => {
-    //   this.candidats = data.payload || data;
-    // });
+    this.candidatService.getAllCandidats().subscribe((data) => {
+      this.candidats = data.payload || data;
+    });
     if (this.candidatureToUpdate) {
       this.candidatureForm.patchValue({
         ...this.candidatureToUpdate,
         recrutementId: this.candidatureToUpdate.recrutementId,
+        candidatId: this.candidatureToUpdate.candidatId,
       });
     }
   }

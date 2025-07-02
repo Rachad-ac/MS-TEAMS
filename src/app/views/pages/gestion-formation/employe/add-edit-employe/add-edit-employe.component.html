@@ -1,0 +1,32 @@
+<form [formGroup]="employeForm" (ngSubmit)="save()">
+  <div class="form-group">
+    <label>Nom</label>
+    <input formControlName="nom" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Prénom</label>
+    <input formControlName="prenom" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Email</label>
+    <input formControlName="email" class="form-control" type="email" />
+  </div>
+  <div class="form-group">
+    <label>Département</label>
+    <input formControlName="departement" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Poste</label>
+    <input formControlName="poste" class="form-control" />
+  </div>
+  <div class="form-group">
+    <label>Date d'embauche</label>
+    <input formControlName="dateEmbauche" class="form-control" type="date" />
+  </div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="activeModal.dismiss()">Annuler</button>
+    <button type="submit" class="btn btn-primary" [disabled]="employeForm.invalid || loading">
+      {{ employe ? 'Modifier' : 'Ajouter' }}
+    </button>
+  </div>
+</form>

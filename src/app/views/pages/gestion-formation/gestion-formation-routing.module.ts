@@ -1,16 +1,18 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ListFormationComponent} from "./formation/list-formation/list-formation.component";
-import {DetaillesFormationComponent} from "./formation/detailles-formation/detailles-formation.component";
+import { ListSessionFormationComponent } from './sessionFormation/list-session-formation/list-session-formation.component';
+import { ListEmployeComponent } from './employe/list-employe/list-employe.component';
+import { ListInscriptionComponent } from './inscription/list-inscription/list-inscription.component';
 
 const routes: Routes = [
-  {path: '', component: ListFormationComponent},
-  {path: 'formation', component: ListFormationComponent},
-  {path: 'detaille-formation', component: DetaillesFormationComponent},
+  { path: '', component: ListSessionFormationComponent },
+  { path: 'session-formation', component: ListSessionFormationComponent },
+  { path: 'employes', component: ListEmployeComponent },
+  { path: 'inscriptions', component: ListInscriptionComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class GestionFormationRoutingModule { }
+export class GestionFormationRoutingModule {}
