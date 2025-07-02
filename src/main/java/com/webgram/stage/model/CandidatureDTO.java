@@ -34,13 +34,8 @@ public class CandidatureDTO implements Serializable {
     @NotNull
     private StatutCandidature statut;
 
-    // Identifiant du recrutement associé à la candidature
-    private Long recrutementId;
-
     // Objet du candidat ayant postulé
     private CandidatDTO candidat;
-  
-
     // Identifiants simples pour l'affichage et l'édition
     private Long candidatId;
 
@@ -48,5 +43,7 @@ public class CandidatureDTO implements Serializable {
 
     // Titre du recrutement
     private RecrutementDTO recrutement;
+    // Identifiant du recrutement associé à la candidature
+     private Long recrutementId;
 
 }
