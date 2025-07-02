@@ -68,6 +68,8 @@ public class EvaluationServiceImpl implements EvaluationService {
 
             if (searchParams.containsKey("commentaire"))
                 booleanBuilder.and(qEntity.commentaire.containsIgnoreCase(searchParams.get("commentaire")));
+            if (searchParams.containsKey("nomRecruteur"))
+                booleanBuilder.and(qEntity.nomRecruteur.containsIgnoreCase(searchParams.get("nomRecruteur")));
 
             if (searchParams.containsKey("score")) {
                 try {

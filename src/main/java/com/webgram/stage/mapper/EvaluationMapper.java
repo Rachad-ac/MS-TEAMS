@@ -15,14 +15,14 @@ public interface EvaluationMapper extends EntityMapper<EvaluationDTO , Evaluatio
     @Override
     @Mapping(source = "recrutementId", target = "recrutement.id")
     @Mapping(source = "candidatId", target = "candidat.id")
-    @Mapping(source = "candidatureId", target = "candidature.statut")
+    @Mapping(source = "candidatureId", target = "candidature.id")
     @Mapping(source = "recruteurId", target = "recruteur.id")
     EvaluationEntity asEntity(EvaluationDTO dto);
 
     @Override
     @Mapping(source = "recrutement.id", target = "recrutementId")
     @Mapping(source = "candidat.id", target = "candidatId")
-    @Mapping(source = "candidature.statut", target = "candidatureId")
+    @Mapping(source = "candidature.id", target = "candidatureId")
     @Mapping(source = "recruteur.id", target = "recruteurId")
     EvaluationDTO asDto(EvaluationEntity entity);
 

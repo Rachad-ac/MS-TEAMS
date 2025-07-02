@@ -1,20 +1,16 @@
 package com.webgram.stage.entity.enums;
 
-public enum SexType {
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonValue;
 import lombok.Getter;
 import lombok.Setter;
-
 import java.text.MessageFormat;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
-
 import static java.util.Arrays.stream;
 
-public enum
-SexType {
+public enum SexType {
     MASCULIN("Masculin"),
     FEMININ("Féminin");
 
@@ -29,7 +25,7 @@ SexType {
 
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
     public static SexType fromValue(Object sexType) {
-        if (sexType instanceof Map) {
+        if (sexType instanceof Map<?,?>) {
             Map<String, Object> mapSexType = (Map<String, Object>) sexType;
             if (mapSexType.containsKey("name")) {
                 return SexType.valueOf(mapSexType.get("name").toString());

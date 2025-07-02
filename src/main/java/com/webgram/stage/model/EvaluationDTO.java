@@ -29,7 +29,7 @@ public class EvaluationDTO implements Serializable {
     private String commentaire;
     private LocalDateTime dateEvaluation;
     private StatutType statut;
-
+    private String nomRecruteur;
 
     private RecrutementDTO recrutement;
     private CandidatureDTO candidature;

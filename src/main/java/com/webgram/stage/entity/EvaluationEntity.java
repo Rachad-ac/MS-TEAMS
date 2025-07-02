@@ -34,6 +34,8 @@ public class EvaluationEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "status_evalution")
     private StatutType statut;
+    @Column(name = "recruteur")
+    private String nomRecruteur;
 
 
     @ManyToOne
