@@ -1,0 +1,84 @@
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/admin/gestion-formation/formation/']">Liste des formations</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Formation</li>
+  </ol>
+</nav>
+
+<ul ngbNav #fillJustifyNav="ngbNav" class="nav-tabs nav-fill" >
+  <li [ngbNavItem]="1">
+    <a ngbNavLink><h5>Informations Complementaires</h5></a>
+    <ng-template ngbNavContent>
+      <div class="d-md-block left-wrapper" *ngIf="formation">
+        <div class="card rounded">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h2 class="card-title mb-0">{{ formation.titre }}</h2>
+              <div ngbDropdown>
+                <button class="btn p-0 no-dropdown-toggle-icon" type="button" id="dropdownMenuButton" ngbDropdownToggle>
+                  <i class="feather icon-more-horizontal icon-lg text-muted pb-3px"></i>
+                </button>
+                <div ngbDropdownMenu aria-labelledby="dropdownMenuButton">
+                  <button ngbDropdownItem mat-menu-item>
+                    <mat-icon>edit</mat-icon>
+                    <span>Modifier</span>
+                  </button>
+                  <button ngbDropdownItem mat-menu-item>
+                    <mat-icon>delete</mat-icon>
+                    <span>Supprimer</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Objectif :</label>
+              <p class="text-muted">{{ formation.objectif }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Description :</label>
+              <p class="text-muted">{{ formation.description }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Date Debut :</label>
+              <p class="text-muted">{{ formation.dateDebut | date:'fullDate' }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Date Fin :</label>
+              <p class="text-muted">{{ formation.dateFin | date:'fullDate' }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Niveau Formation :</label>
+              <p class="text-muted">{{ formation.niveau?.description }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Statut Formation :</label>
+              <p class="text-muted">{{ formation.statut?.description }}</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </ng-template>
+
+  </li>
+  <li [ngbNavItem]="3">
+    <a ngbNavLink><h5>Session Formation</h5></a>
+    <ng-template ngbNavContent>
+      <app-list-session-formation [formationId]="formation.id"></app-list-session-formation>
+    </ng-template>
+  </li>
+  <li [ngbNavItem]="5">
+    <a ngbNavLink><h5>????</h5></a>
+    <ng-template ngbNavContent>
+      bla bla
+    </ng-template>
+  </li>
+</ul>
+
+<div [ngbNavOutlet]="fillJustifyNav" class="border border-top-0 p-3"></div>

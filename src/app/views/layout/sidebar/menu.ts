@@ -28,7 +28,7 @@ export const MENU: MenuItem[] = [
     icon: 'user',
     link: '/admin/gestion-recrutement/candidat'
   },
-	
+
   // gestion formation
 
   // Section gestion formation
@@ -37,9 +37,9 @@ export const MENU: MenuItem[] = [
     isTitle: true,
   },
   {
-    label: 'Session Formation',
+    label: 'Formation',
     icon: 'book-open',
-    link: '/admin/gestion-formation/session-formation',
+    link: '/admin/gestion-formation/formation',
   },
    {
     label: 'Module Formation',

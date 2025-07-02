@@ -1,45 +1,41 @@
-import {Component, Input, OnInit, TemplateRef} from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { Alertes } from 'src/app/util/alerte';
-import {SessionFormationService} from "../../../../../services/sessionFormation/session-formation.service";
+import {Component, OnInit, TemplateRef} from '@angular/core';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {FormationService} from "../../../../../services/formation/formation.service";
+import {Alertes} from "../../../../../util/alerte";
 
 @Component({
-  selector: 'app-list-session-formation',
-  templateUrl: './list-session-formation.component.html',
-  styleUrls: ['./list-session-formation.component.scss']
+  selector: 'app-list-formation',
+  templateUrl: './list-formation.component.html',
+  styleUrls: ['./list-formation.component.scss']
 })
-export class ListSessionFormationComponent implements OnInit {
-
+export class ListFormationComponent implements OnInit {
   displayedColumns: string[] = [
-    'lieu',
-    'date',
-    'heureDebut',
-    'heureFin',
-    'formation',
+    'titre',
+    'objectif',
+    'dateDebut',
+    'dateFin',
+    'niveau',
+    'statut',
+    'detailles',
     'actions'
   ];
 
-  sessionFormationToUpdate:any
-  pageOptions: any = { page: 0, size: 10, formationId: null };
-  sessionFormations: any;
+  formationToUpdate:any
+  pageOptions: any = { paze: 0, size: 10 };
+  formations: any;
   dataSource: any;
   loadingIndicator = true;
-  @Input() formationId: any;
 
   constructor(
     private modalService: NgbModal,
-    private sessionFormationServices : SessionFormationService
+    private formationServices : FormationService
   ) { }
 
   ngOnInit(): void {
-    this.getAllSessionFormations();
+    this.getAllFormations();
   }
-  getAllSessionFormations() {
-    this.pageOptions.formationId = this.formationId;
-    this.pageOptions.page = 0;
-    this.pageOptions.size = 10;
-
-    this.sessionFormationServices.getAllSessionFormations(this.pageOptions).subscribe(
+  getAllFormations() {
+    this.formationServices.getAllFormations(this.pageOptions).subscribe(
       {
         next: response => {
           console.log('response',response);
@@ -61,15 +57,15 @@ export class ListSessionFormationComponent implements OnInit {
   paginate($event: any) {
     this.loadingIndicator = true;
     this.pageOptions.page = $event - 1;
-    this.getAllSessionFormations();
+    this.getAllFormations();
   }
 
-  openAddSessionFormation(content: TemplateRef<any>) {
+  openAddFormation(content: TemplateRef<any>) {
     this.openModal(content, 'lg');
   }
 
-  openEditSessionFormation(content: TemplateRef<any>, sessionFormation: any) {
-    this.sessionFormationToUpdate = sessionFormation
+  openEditFormation(content: TemplateRef<any>, formation: any) {
+    this.formationToUpdate = formation
 
     this.openModal(content, 'lg');
   }
@@ -79,12 +75,12 @@ export class ListSessionFormationComponent implements OnInit {
     }).catch((res) => {});
   }
 
-  deleteSessionFormation(sessionFormation: any) {
+  deleteFormation(formation: any) {
     Alertes.confirmAction(
       'Voulez-vous supprimé ?',
       'Cet element sera definitivement supprimé',
       () => {
-        this.sessionFormationServices.deleteSessionFormation(sessionFormation).subscribe({
+        this.formationServices.deleteFormation(formation).subscribe({
           next: (value) => {
             Alertes.alerteAddSuccess('Suppression reussie');
           },
@@ -92,21 +88,27 @@ export class ListSessionFormationComponent implements OnInit {
             Alertes.alerteAddDanger(value.error.message);
           },
           complete: () => {
-            this.getAllSessionFormations();
+            this.getAllFormations();
           },
         });
       })
   }
   close(){
     this.modalService.dismissAll();
-    this.getAllSessionFormations();
+    this.getAllFormations();
   }
   doSearch(data: any) {
     this.pageOptions = data;
     this.pageOptions.page = 0;
     this.pageOptions.size = 20;
     console.log("filtres ", this.pageOptions)
-    this.getAllSessionFormations();
+    this.getAllFormations();
     this.modalService.dismissAll();
+  }
+
+  saveIdFormation(formationId: any) {
+    if (formationId != null) {
+      localStorage.setItem('formationId', formationId);
+    }
   }
 }
