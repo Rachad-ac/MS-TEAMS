@@ -31,36 +31,34 @@ export class AddEditCandidatureComponent implements OnInit {
   candidatureForm: FormGroup; // Formulaire réactif
   loading = false; // Indicateur de chargement
   recrutements: any[] = [];
-  candidats: any[] = []; // Prévu pour plus tard
+  candidats: any[] = [];
 
   constructor(
     private fb: FormBuilder,
     private candidatureService: CandidatureService,
-    private recrutementService: RecrutementService
-  ) // private candidatService: CandidatService // À décommenter quand disponible
-  {
-    // Initialisation du formulaire avec validation
+    private recrutementService: RecrutementService,
+    private candidatService: CandidatService
+  ) {
     this.candidatureForm = this.fb.group({
       dateCandidature: [null, Validators.required],
       statut: ['', Validators.required],
       recrutementId: [null, Validators.required],
-      // candidatId: [null, Validators.required],
+      candidatId: [null, Validators.required],
     });
   }
 
   ngOnInit(): void {
-    // Charger la liste des recrutements pour le select
     this.recrutementService.getAllRecrutements().subscribe((data) => {
       this.recrutements = data.payload || data;
     });
-    // Charger la liste des candidats quand le service sera prêt
-    // this.candidatService.getAllCandidats().subscribe(data => {
-    //   this.candidats = data.payload || data;
-    // });
+    this.candidatService.getAllCandidats().subscribe((data) => {
+      this.candidats = data.payload || data;
+    });
     if (this.candidatureToUpdate) {
       this.candidatureForm.patchValue({
         ...this.candidatureToUpdate,
         recrutementId: this.candidatureToUpdate.recrutementId,
+        candidatId: this.candidatureToUpdate.candidatId,
       });
     }
   }

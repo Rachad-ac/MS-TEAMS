@@ -4,6 +4,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {SessionFormationService} from "../../../../../services/sessionFormation/session-formation.service";
 import {Alertes} from "../../../../../util/alerte";
 import {Observable} from "rxjs";
+import {FormationService} from "../../../../../services/formation/formation.service";
 
 @Component({
   selector: 'app-add-session-formation',
@@ -17,30 +18,45 @@ export class AddSessionFormationComponent implements OnInit {
   @Input() isSearch!: boolean;
   pageOptions: any = { paze: 0, size: 10 };
   form!: FormGroup;
+  formations: any[] = [];
 
   constructor(private modalService: NgbModal,
               private fb: FormBuilder,
-              private sessionFormationServices : SessionFormationService
+              private sessionFormationServices : SessionFormationService,
+              private formationService: FormationService
   ) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
       id: [null],
-      nom: ['', Validators.required],
-      description: ['', Validators.required],
-      idAgents: [[], Validators.required],
-      agent: [null]
+      lieu: ['', Validators.required],
+      date: ['', Validators.required],
+      heureDebut: ['', Validators.required],
+      heureFin: ['', Validators.required],
+      idFormation: [null],
+      formation:[null]
     });
 
-
+    this.formationService.getAllFormations(this.pageOptions).subscribe({
+      next: response => {
+        console.log('response',response);
+        this.formations = response.payload;
+        this.loadFileds();
+      },
+      error: err => {
+        console.log(err);
+      },
+    });
   }
 
   loadFileds() {
     if (this.sessionFormationToUpdate !== undefined) {
       this.form?.get('id')?.setValue(this.sessionFormationToUpdate?.id);
-      this.form?.get('nom')?.setValue(this.sessionFormationToUpdate?.nom);
-      this.form?.get('description')?.setValue(this.sessionFormationToUpdate?.description);
-      this.form?.get('idAgents')?.setValue(this.sessionFormationToUpdate?.idAgents);
+      this.form?.get('lieu')?.setValue(this.sessionFormationToUpdate?.lieu);
+      this.form?.get('date')?.setValue(this.sessionFormationToUpdate?.date);
+      this.form?.get('heureDebut')?.setValue(this.sessionFormationToUpdate?.heureDebut);
+      this.form?.get('heureDebut')?.setValue(this.sessionFormationToUpdate?.heureDebut);
+      this.form?.get('idFormation')?.setValue(this.sessionFormationToUpdate?.idFormation);
     }
   }
 
