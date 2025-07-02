@@ -37,9 +37,9 @@ export const MENU: MenuItem[] = [
     isTitle: true,
   },
   {
-    label: 'Session Formation',
+    label: 'Formation',
     icon: 'book-open',
-    link: '/admin/gestion-formation/session-formation',
+    link: '/admin/gestion-formation/formation',
   },
   {
     label: 'Employés',

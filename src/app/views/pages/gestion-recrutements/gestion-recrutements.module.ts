@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 // Import des modules de routing et des composants nécessaires
 import { GestionRecrutementsRoutingModule } from './gestion-recrutements-routing.module';
@@ -12,29 +14,28 @@ import {
   NgbDropdownModule,
   NgbNavModule,
   NgbPaginationModule,
+  NgbModule
 } from '@ng-bootstrap/ng-bootstrap';
 import { DetaillesRecrutementComponent } from './recrutement/detailles-recrutement/detailles-recrutement.component';
 import { AddEvaluationComponent } from './evaluation/add-evaluation/add-evaluation.component';
 import { ListEvaluationComponent } from './evaluation/list-evaluation/list-evaluation.component';
 import { EditEvaluationComponent } from './evaluation/edit-evaluation/edit-evaluation.component';
 import { NgSelectModule } from '@ng-select/ng-select';
-import { ReactiveFormsModule } from '@angular/forms';
 import { DetaillesEvaluationComponent } from './evaluation/detailles-evaluations/detailles-evaluation.component';
-import { AddEditCandidatureComponent } from './candidature/add-edit-candidature/add-edit-candidature.component';
-import { ListCandidatureComponent } from './candidature/list-candidature/list-candidature.component';
 import { AddRecrutementComponent } from './recrutement/add-recrutement/add-recrutement.component';
 import { AddCandidatComponent } from './candidat/add-candidat/add-candidat.component';
 import { ListCandidatComponent } from './candidat/list-candidat/list-candidat.component';
 import { EditCandidatComponent } from './candidat/edit-candidat/edit-candidat.component';
+import { ListCandidatureComponent } from './candidature/list-candidature/list-candidature.component';
 import { DetaillesCandidatureComponent } from './candidature/detailles-candidature/detailles-candidature.component';
-
+import { AddEditCandidatureComponent } from './candidature/add-edit-candidature/add-edit-candidature.component';
 
 @NgModule({
   // Déclaration de tous les composants utilisés dans ce module
   declarations: [
     ListRecrutementComponent,
-    DetaillesRecrutementComponent,
     AddRecrutementComponent,
+    DetaillesRecrutementComponent,
     ListCandidatureComponent,
     DetaillesCandidatureComponent,
     AddEditCandidatureComponent,
@@ -42,15 +43,9 @@ import { DetaillesCandidatureComponent } from './candidature/detailles-candidatu
     ListEvaluationComponent,
     EditEvaluationComponent,
     DetaillesEvaluationComponent,
-
-    AddEditCandidatureComponent,
-    ListCandidatureComponent,
-    AddRecrutementComponent,
     AddCandidatComponent,
     ListCandidatComponent,
-    EditCandidatComponent,
-    DetaillesCandidatureComponent,
-
+    EditCandidatComponent
   ],
   // Import des modules nécessaires pour ce module
   imports: [
@@ -63,10 +58,10 @@ import { DetaillesCandidatureComponent } from './candidature/detailles-candidatu
     NgbPaginationModule,
     NgbNavModule,
     NgbDropdownModule,
+    NgbModule,
     ReactiveFormsModule,
     NgSelectModule,
-    ReactiveFormsModule,
-
+    RouterModule
   ],
 })
 // Module principal pour la gestion des recrutements et candidatures
