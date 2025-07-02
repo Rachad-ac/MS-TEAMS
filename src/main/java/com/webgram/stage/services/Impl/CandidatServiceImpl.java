@@ -4,6 +4,7 @@ import com.webgram.stage.entity.QCandidatEntity;
 import com.webgram.stage.mapper.CandidatMapper;
 import com.webgram.stage.model.CandidatDTO;
 import com.webgram.stage.repository.CandidatRepository;
+import com.webgram.stage.repository.CompetenceRepository;
 import com.webgram.stage.services.CandidatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -13,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Map;
+import java.util.Set;
 
 
 @Service
@@ -21,13 +23,16 @@ import java.util.Map;
 public class CandidatServiceImpl implements CandidatService {
     private final CandidatRepository candidatRepository;
     private final CandidatMapper candidatMapper;
+    private final CompetenceRepository competenceRepository;
 
 
-
-
-@Override
+    @Override
     public CandidatDTO createCandidat (CandidatDTO candidatDTO) {
         var entity = candidatMapper.asEntity( candidatDTO);
+    if (candidatDTO.getIdCompetence() != null && !candidatDTO.getIdCompetence().isEmpty()) {
+        var competences = competenceRepository.findAllById(candidatDTO.getIdCompetence());
+        entity.setCompetence(Set.copyOf(competences));
+    }
         var entitySave = candidatRepository.save(entity);
         return candidatMapper.asDto(entitySave);
     }
@@ -35,6 +40,13 @@ public class CandidatServiceImpl implements CandidatService {
     @Override
     public CandidatDTO updateCandidat (CandidatDTO candidatDTO) {
         var entityUpdate = candidatMapper.asEntity(candidatDTO);
+
+        if (candidatDTO.getIdCompetence() != null && !candidatDTO.getIdCompetence().isEmpty()) {
+            var competences = competenceRepository.findAllById(candidatDTO.getIdCompetence());
+            entityUpdate.setCompetence(Set.copyOf(competences));
+        } else {
+            entityUpdate.setCompetence(Set.of());
+        }
         var updatedEntity = candidatRepository.save(entityUpdate);
         return candidatMapper.asDto(updatedEntity);
     }
@@ -89,14 +101,18 @@ public class CandidatServiceImpl implements CandidatService {
             builder.and(qEntity.niveauEtude.containsIgnoreCase(searchParams.get("niveauEtude")));
         }
 
-//        if (searchParams.containsKey("dateNaissance")) {
-//            try {
-//                LocalDate date = LocalDate.parse(searchParams.get("dateNaissance"));
-//                builder.and(qEntity.dateNaissance.eq(date));
-//            } catch (DateTimeParseException e) {
-//                throw new IllegalArgumentException("Format de date invalide pour 'dateNaissance'. Format attendu : yyyy-MM-dd");
-//            }
-//        }
-    }
+        if (searchParams.containsKey("dateNaissance")) {
+            var dateStr = searchParams.get("dateNaissance");
+            if (dateStr != null && !dateStr.isBlank()) {
+                try {
+                    LocalDate date = LocalDate.parse(dateStr); // Format attendu : yyyy-MM-dd
+                    builder.and(qEntity.dateNaissance.eq(date));
+                } catch (DateTimeParseException e) {
+                    throw new IllegalArgumentException(
+                            "Format de date invalide pour 'dateNaissance'. Format attendu : yyyy-MM-dd");
+                }
+            }
+        }
 
+    }
 }

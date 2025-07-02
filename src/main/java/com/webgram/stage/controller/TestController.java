@@ -1,8 +1,7 @@
 package com.webgram.stage.controller;
-import com.webgram.stage.services.CandidatService;
-import com.webgram.stage.model.CandidatDTO;
 import com.webgram.stage.model.Response;
-
+import com.webgram.stage.model.TestDTO;
+import com.webgram.stage.services.TestService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -15,25 +14,25 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/candidats")
+@RequestMapping("/tests")
 @RequiredArgsConstructor
 @CrossOrigin("*")
-public class CandidatController {
+public class TestController {
 
-    private final CandidatService candidatService;
+    private final TestService testService;
 
-    @Operation(summary = "Create Candidat", description = "This endpoint takes input Candidat and saves it")
+    @Operation(summary = "Create Test", description = "This endpoint takes input Test and saves it")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Candidat successfully created"),
+            @ApiResponse(responseCode = "201", description = "Test successfully created"),
             @ApiResponse(responseCode = "400", description = "Invalid request"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Response<Object> createCandidat(@RequestBody CandidatDTO candidatDTO) {
+    public Response<Object> createTest(@RequestBody TestDTO testDTO) {
         try {
-            var dto = candidatService.createCandidat(candidatDTO);
-            return Response.ok().setPayload(dto).setMessage("Candidat créé");
+            var dto = testService.createTest(testDTO);
+            return Response.ok().setPayload(dto).setMessage("Test créé");
         } catch (Exception ex) {
             return Response.badRequest().setMessage(ex.getMessage());
         }
@@ -41,43 +40,43 @@ public class CandidatController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Response<Object> updateCandidat(
-            @Parameter(name = "id", description = "ID du candidat à modifier") @PathVariable Long id,
-            @RequestBody CandidatDTO candidatDTO
+    public Response<Object> updateTest(
+            @Parameter(name = "id", description = "ID du Test à modifier") @PathVariable Long id,
+            @RequestBody TestDTO testDTO
     ) {
         try {
-            candidatDTO.setId(id);
-            var dto = candidatService.updateCandidat(candidatDTO);
-            return Response.ok().setPayload(dto).setMessage("Candidat modifié");
+            testDTO.setId(id);
+            var dto = testService.updateTest(testDTO);
+            return Response.ok().setPayload(dto).setMessage("Test modifié");
         } catch (Exception ex) {
             return Response.badRequest().setMessage(ex.getMessage());
         }
     }
 
-    @Operation(summary = "Get Candidat by ID", description = "Récupère un candidat par son ID")
+    @Operation(summary = "Get Test by ID", description = "Récupère un Test par son ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Success"),
-            @ApiResponse(responseCode = "404", description = "Candidat not found")
+            @ApiResponse(responseCode = "404", description = "Test not found")
     })
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Response<Object> getCandidat(@PathVariable Long id) {
+    public Response<Object> getTest(@PathVariable Long id) {
         try {
-            var dto = candidatService.getCandidat(id);
-            return Response.ok().setPayload(dto).setMessage("Candidat trouvé");
+            var dto = testService.getTest(id);
+            return Response.ok().setPayload(dto).setMessage("Test trouvé");
         } catch (Exception ex) {
             return Response.badRequest().setMessage(ex.getMessage());
         }
     }
 
-    @Operation(summary = "Get all Candidats", description = "Retourne tous les candidats filtrés et paginés")
+    @Operation(summary = "Get all Tests", description = "Retourne tous les Tests filtrés et paginés")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Success")
     })
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public Response<Object> getAllCandidat(@RequestParam Map<String, String> searchParams, Pageable pageable) {
-        var page = candidatService.getAllCandidat(searchParams, pageable);
+    public Response<Object> getAllTests(@RequestParam Map<String, String> searchParams, Pageable pageable) {
+        var page = testService.getAllTests(searchParams, pageable);
         Response.PageMetadata metadata = Response.PageMetadata.builder()
                 .number(page.getNumber())
                 .totalElements(page.getTotalElements())
@@ -87,16 +86,16 @@ public class CandidatController {
         return Response.ok().setPayload(page.getContent()).setMetadata(metadata);
     }
 
-    @Operation(summary = "Delete Candidat", description = "Supprime un candidat par son ID")
+    @Operation(summary = "Delete Test", description = "Supprime un test par son ID")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "204", description = "Candidat supprimé"),
-            @ApiResponse(responseCode = "404", description = "Candidat not found")
+            @ApiResponse(responseCode = "204", description = "Test supprimé"),
+            @ApiResponse(responseCode = "404", description = "Test not found")
     })
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteCandidat(@PathVariable Long id) {
+    public void deleteTest(@PathVariable Long id) {
         try {
-            candidatService.deleteCandidat(id);
+            testService.deleteTest(id);
         } catch (Exception e) {
             throw new RuntimeException("Erreur lors de la suppression : " + e.getMessage(), e);
         }
