@@ -72,6 +72,18 @@ public class SessionFormationController {
         return Response.ok().setPayload(page.getContent()).setMetadata(metadata);
     }
 
+    @Operation(summary = "Liste simple des sessions de formation", description = "Retourne la liste de toutes les sessions de formation sans pagination.")
+    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Success"), @ApiResponse(responseCode = "500", description = "Internal server error during request processing")})
+    @GetMapping("/list")
+    @ResponseStatus(HttpStatus.OK)
+    public Response<Object> getAllSessionFormationsList() {
+        try {
+            var list = sessionFormationService.getAllSessionFormations(Map.of(), Pageable.unpaged()).getContent();
+            return Response.ok().setPayload(list);
+        } catch (Exception ex) {
+            return Response.badRequest().setMessage(ex.getMessage());
+        }
+    }
 
     @Operation(summary = "delete the sessionFormation", description = "Delete sessionFormation, it takes input id sessionFormation")
     @ApiResponses(value = {@ApiResponse(responseCode = "204", description = "No content"), @ApiResponse(responseCode = "400", description = "Request sent by the client was syntactically incorrect"), @ApiResponse(responseCode = "404", description = "Resource access does not exist"), @ApiResponse(responseCode = "500", description = "Internal server error during request processing")})

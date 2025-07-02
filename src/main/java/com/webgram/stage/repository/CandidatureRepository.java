@@ -1,10 +1,10 @@
 package com.webgram.stage.repository;
 
-import com.webgram.stage.entity.Candidature;
+import com.webgram.stage.entity.CandidatureEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CandidatureRepository extends JpaRepository<Candidature, Long>, QuerydslPredicateExecutor<Candidature> {
+public interface CandidatureRepository extends JpaRepository<CandidatureEntity, Long>, QuerydslPredicateExecutor<CandidatureEntity> {
 } 

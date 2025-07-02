@@ -1,4 +1,5 @@
 package com.webgram.stage.services.Impl;
+
 import com.querydsl.core.BooleanBuilder;
 import com.webgram.stage.entity.QCandidatEntity;
 import com.webgram.stage.mapper.CandidatMapper;
