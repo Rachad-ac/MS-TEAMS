@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 @Data
 @AllArgsConstructor
@@ -18,20 +19,22 @@ public class SessionFormationEntity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "session_formation_date_debut")
-	private LocalDate dateDebut;
-
-	@Temporal(TemporalType.DATE)
-	@Column(name = "session_formation_date_fin")
-	private LocalDate dateFin;
-
 	@Column(name = "session_formation_lieu")
 	private String lieu;
 
-	@Column(name = "session_formation_nombre_places")
-	private Long nombrePlaces;
+	@Temporal(TemporalType.DATE)
+	@Column(name = "session_formation_date")
+	private LocalDate date;
 
+	@Temporal(TemporalType.TIME)
+	@Column(name = "session_formation_heure_debut")
+	private LocalTime heureDebut;
 
+	@Temporal(TemporalType.TIME)
+	@Column(name = "session_formation_heure_fin")
+	private LocalTime heureFin;
+
+	@ManyToOne
+	@JoinColumn(name = "formation_id")
+	private FormationEntity formation;
 }
