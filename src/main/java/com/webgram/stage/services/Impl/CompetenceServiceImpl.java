@@ -34,16 +34,6 @@ public class CompetenceServiceImpl implements CompetenceService {
     @Override
     public CompetenceDTO createCompetence(CompetenceDTO competenceDTO) {
         var entity = competenceMapper.asEntity(competenceDTO);
-
-        if (competenceDTO.getRecrutements() != null && !competenceDTO.getRecrutements().isEmpty()) {
-            Set<RecrutementEntity> recrutements = competenceDTO.getIdRecrutements().stream()
-                    .map(id -> recrutementRepository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("Recrutement not found : " + id )))
-                    .collect(Collectors.toSet());
-
-            entity.setRecrutements(recrutements);
-        }
-
         var entitySave = competenceRepository.save(entity);
         return competenceMapper.asDto(entitySave);
     }
@@ -57,20 +47,6 @@ public class CompetenceServiceImpl implements CompetenceService {
         existing.setNom(competenceDTO.getNom());
         existing.setNiveau(NiveauCompetence.valueOf(competenceDTO.getNiveau()));
         existing.setDomaine(competenceDTO.getDomaine());
-
-        // Mettre à jour les competences associés à la compétence
-        if (competenceDTO.getIdRecrutements() != null) {
-            Set<RecrutementEntity> recrutements = competenceDTO.getIdRecrutements().stream()
-                    .map(id -> recrutementRepository.findById(id)
-                            .orElseThrow(() -> new RuntimeException("Recrutement introuvable : " + id)))
-                    .collect(Collectors.toSet());
-
-            existing.setRecrutements(recrutements);
-        } else {
-            // Si la liste est vide, on vide les competences associés
-            existing.getRecrutements().clear();
-        }
-
         CompetenceEntity updatedEntity = competenceRepository.save(existing);
         return competenceMapper.asDto(updatedEntity);
     }

@@ -90,6 +90,13 @@ public class CandidatServiceImpl implements CandidatService {
             builder.and(qEntity.niveauEtude.containsIgnoreCase(searchParams.get("niveauEtude")));
         }
 
+        if (searchParams.containsKey("statutCandidature")) {
+            builder.and(qEntity.statutCandidature.stringValue().lower().containsIgnoreCase(searchParams.get("statutCandidature")));
+        }
+
+        if (searchParams.containsKey("recrutementId"))
+            builder.and(qEntity.recrutement.id.eq(Long.valueOf(searchParams.get("recrutementId"))));
+
 //        if (searchParams.containsKey("dateNaissance")) {
 //            try {
 //                LocalDate date = LocalDate.parse(searchParams.get("dateNaissance"));

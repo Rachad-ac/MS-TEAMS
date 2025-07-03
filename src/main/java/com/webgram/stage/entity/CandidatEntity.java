@@ -1,5 +1,6 @@
 package com.webgram.stage.entity;
 
+import com.webgram.stage.entity.enums.StatutCandidature;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -40,4 +41,11 @@ public class CandidatEntity implements Serializable {
 	@Column (name ="niveau_etude")
 	private String niveauEtude;
 
+	@Column(name = "niveau_statut_candidature")
+	@Enumerated(EnumType.STRING)
+	private StatutCandidature statutCandidature;
+
+	@ManyToOne
+	@JoinColumn(name = "recrutement_id")
+	private RecrutementEntity recrutement;
 }

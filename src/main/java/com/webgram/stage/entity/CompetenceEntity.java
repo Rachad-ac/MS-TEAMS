@@ -7,9 +7,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.HashSet;
-import java.util.Set;
 
 @Data
 @AllArgsConstructor
@@ -31,8 +28,4 @@ public class CompetenceEntity implements Serializable {
 
 	@Column(name = "domaine_competence")
 	private String domaine;
-
-	@ManyToMany(mappedBy = "competences")
-	private Set<RecrutementEntity> recrutements;
-
 }
