@@ -1,11 +1,9 @@
 package com.webgram.stage.controller;
 
 import com.webgram.stage.model.EvaluationDTO;
-import com.webgram.stage.model.RecruteurDTO;
+import com.webgram.stage.model.PresenceDTO;
 import com.webgram.stage.model.Response;
-import com.webgram.stage.repository.RecruteurRepository;
-import com.webgram.stage.services.EvaluationService;
-import com.webgram.stage.services.RecruteurService;
+import com.webgram.stage.services.PresenceService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -17,23 +15,23 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("evaluations")
+@RequestMapping("presences")
 @RequiredArgsConstructor
 @CrossOrigin("*")
-public class EvaluationController {
+public class PresenceController {
 
-    private final EvaluationService evaluationService;
+    private final PresenceService presenceService;
 
-    @Operation(summary = "Create evaluation", description = "this endpoint takes input evaluation and saves it")
+    @Operation(summary = "Create presence", description = "this endpoint takes input presence and saves it")
     @ApiResponses(value = {@ApiResponse(responseCode = "201", description = "Success"),
             @ApiResponse(responseCode = "400", description = "Request sent by the client was syntactically incorrect"),
             @ApiResponse(responseCode = "500", description = "Internal server error during request processing")})
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public Response<Object> createEvaluation(@RequestBody EvaluationDTO evaluationDTO) {
+    public Response<Object> createPresence(@RequestBody PresenceDTO presenceDTO) {
         try {
-            var dto = evaluationService.createEvaluation(evaluationDTO);
-            return Response.ok().setPayload(dto).setMessage("Evaluation créé");
+            var dto = presenceService.createPresence(presenceDTO);
+            return Response.ok().setPayload(dto).setMessage("Presence créé");
         } catch (Exception ex) {
             return Response.badRequest().setMessage(ex.getMessage());
         }
@@ -41,28 +39,28 @@ public class EvaluationController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Response<Object> updateEvaluation(@Parameter(name = "id", description = "the evaluation id to updated") @PathVariable("id") Long id, @RequestBody EvaluationDTO evaluationDTO) {
-        evaluationDTO.setId(id);
+    public Response<Object> updatePresence(@Parameter(name = "id", description = "the presence id to updated") @PathVariable("id") Long id, @RequestBody PresenceDTO presenceDTO) {
+        presenceDTO.setId(id);
         try {
-            var dto = evaluationService.updateEvaluation(evaluationDTO);
-            return Response.ok().setPayload(dto).setMessage("Evaluation modifié");
+            var dto = presenceService.updatePresence(presenceDTO);
+            return Response.ok().setPayload(dto).setMessage("Presence modifié");
         } catch (Exception ex) {
             return Response.badRequest().setMessage(ex.getMessage());
         }
 
     }
 
-    @Operation(summary = "Read the Evaluation", description = "This endpoint is used to read evaluation, it takes input id evaluation")
+    @Operation(summary = "Read the presence", description = "This endpoint is used to read presence, it takes input id presence")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Success"),
             @ApiResponse(responseCode = "400", description = "Request sent by the client was syntactically incorrect"),
             @ApiResponse(responseCode = "404", description = "Resource access does not exist"),
             @ApiResponse(responseCode = "500", description = "Internal server error during request processing")})
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Response<Object> getEvaluation(@Parameter(name = "id", description = "the type evaluation id to valid") @PathVariable Long id) {
+    public Response<Object> getPresence(@Parameter(name = "id", description = "the type presence id to valid") @PathVariable Long id) {
         try {
-            var dto = evaluationService.getEvaluation(id);
-            return Response.ok().setPayload(dto).setMessage("Evaluation trouvé");
+            var dto = presenceService.getPresence(id);
+            return Response.ok().setPayload(dto).setMessage("Presence trouvé");
         } catch (Exception ex) {
             return Response.badRequest().setMessage(ex.getMessage());
         }
@@ -73,23 +71,23 @@ public class EvaluationController {
             @ApiResponse(responseCode = "500", description = "Internal server error during request processing")})
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public Response<Object> getAllEvaluation(@RequestParam Map<String, String> searchParams, Pageable pageable) {
-        var page = evaluationService.getAllEvaluation(searchParams, pageable);
+    public Response<Object> getAllPresence(@RequestParam Map<String, String> searchParams, Pageable pageable) {
+        var page = presenceService.getAllPresence(searchParams, pageable);
         Response.PageMetadata metadata = Response.PageMetadata.builder().number(page.getNumber()).totalElements(page.getTotalElements()).size(page.getSize()).totalPages(page.getTotalPages()).build();
         return Response.ok().setPayload(page.getContent()).setMetadata(metadata);
     }
 
 
-    @Operation(summary = "delete the evaluation", description = "Delete evaluation, it takes input id evaluation")
+    @Operation(summary = "delete the presence", description = "Delete presence, it takes input id presence")
     @ApiResponses(value = {@ApiResponse(responseCode = "204", description = "No content"),
             @ApiResponse(responseCode = "400", description = "Request sent by the client was syntactically incorrect"),
             @ApiResponse(responseCode = "404", description = "Resource access does not exist"),
             @ApiResponse(responseCode = "500", description = "Internal server error during request processing")})
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteEvaluation(@PathVariable("id") Long id) {
+    public void deletePresence(@PathVariable("id") Long id) {
         try {
-            evaluationService.deleteEvaluation(id);
+            presenceService.deletePresence(id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

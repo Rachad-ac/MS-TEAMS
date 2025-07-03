@@ -28,18 +28,17 @@ public class EvaluationDTO implements Serializable {
     private double noteGenerale;
     private String commentaire;
     private LocalDateTime dateEvaluation;
-    private String recruteur;
     private StatutType statut;
+    private String nomRecruteur;
 
-    /*
-    private PosteDTO poste;
+    private RecrutementDTO recrutement;
     private CandidatureDTO candidature;
     private CandidatDTO candidat;
     private RecruteurDTO recruteur;
 
-    private Long posteId;
     private Long candidatId;
     private Long candidatureId;
+    private Long recrutementId;
     private Long recruteurId;
-     */
+
 }

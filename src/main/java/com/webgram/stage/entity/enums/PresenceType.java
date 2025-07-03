@@ -8,33 +8,34 @@ import java.text.MessageFormat;
 import java.util.Map;
 import java.util.Set;
 import java.util.stream.Collectors;
+
 import static java.util.Arrays.stream;
 
-public enum SexType {
-    MASCULIN("Masculin"),
-    FEMININ("Féminin");
+public enum PresenceType {
+    PRESENT("Present"),
+    ABSENT("Absent");
 
 
     @Getter
     @Setter
     private String description;
 
-    SexType(String description) {
+    PresenceType(String description) {
         this.description = description;
     }
 
     @JsonCreator(mode = JsonCreator.Mode.DELEGATING)
-    public static SexType fromValue(Object sexType) {
-        if (sexType instanceof Map<?,?>) {
-            Map<String, Object> mapSexType = (Map<String, Object>) sexType;
-            if (mapSexType.containsKey("name")) {
-                return SexType.valueOf(mapSexType.get("name").toString());
+    public static PresenceType fromValue(Object presenceType) {
+        if (presenceType instanceof Map<?,?>) {
+            Map<String, Object> mapPresenceType = (Map<String, Object>) presenceType;
+            if (mapPresenceType.containsKey("name")) {
+                return PresenceType.valueOf(mapPresenceType.get("name").toString());
             }
         }
-        if (sexType instanceof String) {
-            return SexType.valueOf(sexType.toString());
+        if (presenceType instanceof String) {
+            return PresenceType.valueOf(presenceType.toString());
         }
-        throw new IllegalArgumentException(MessageFormat.format("{0} not found with the value: {1} in [{2}]", SexType.class, sexType, values()));
+        throw new IllegalArgumentException(MessageFormat.format("{0} not found with the value: {1} in [{2}]", SexType.class, presenceType, values()));
     }
 
     @JsonValue
@@ -45,7 +46,7 @@ public enum SexType {
         );
     }
 
-    public static Set<SexType> getAllSexe() {
+    public static Set<PresenceType> getAllPresence() {
         return stream(values())
                 .collect(Collectors.toSet());
     }

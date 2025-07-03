@@ -3,12 +3,9 @@ package com.webgram.stage.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.webgram.stage.entity.enums.DepartementType;
-import com.webgram.stage.entity.enums.SexType;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import java.io.Serializable;
-import java.util.List;
 
 @Builder
 @Data
@@ -17,21 +14,19 @@ import java.util.List;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class RecruteurDTO implements Serializable {
+public class ResultatDTO implements Serializable {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
 
     @NotEmpty
-    private String nom;
-    private String prenom;
-    private String email;
-    private String telephone;
-    private String poste;
-    private DepartementType departement;
-    private SexType sexe;
+    private double note;
+    private String commentaire;
 
+    //private EmployeDTO employe;
+    private EvaluationDTO evaluation;
 
-    private List<EvaluationDTO> evaluation;
+    //private Long employeId;
+    private Long evaluationId;
 
 }

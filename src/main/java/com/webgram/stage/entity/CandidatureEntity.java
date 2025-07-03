@@ -17,7 +17,7 @@ import java.time.LocalDateTime;
 public class CandidatureEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idCandidature;
+    private Long id;
 
     // Date et heure de la candidature
     private LocalDateTime dateCandidature;

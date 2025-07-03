@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 public class CandidatureDTO implements Serializable {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long idCandidature;
+    private Long id;
 
     // Date et heure de la candidature
     private LocalDateTime dateCandidature;
