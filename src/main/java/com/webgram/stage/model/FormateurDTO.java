@@ -8,7 +8,6 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.Set;
 
 @Builder
 @NoArgsConstructor
@@ -17,14 +16,14 @@ import java.util.Set;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CompetenceDTO implements Serializable {
+public class FormateurDTO implements Serializable {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     @NotEmpty
     private String nom;
-    private String niveau;
-    private String domaine;
-    private Set<Long> idRecrutements;
-    private Set<RecrutementDTO> recrutements ;
+    private String prenom;
+    private String email;
+    private String type;
+    private String specialites;
 }
