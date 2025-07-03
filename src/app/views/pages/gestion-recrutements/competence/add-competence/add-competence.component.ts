@@ -61,7 +61,7 @@ export class AddCompetenceComponent implements OnInit {
         } else {
                   Alertes.alerteAddSuccess('Enregistrement reussi');
         this.emitSubmit()
-        } 
+        }
       },
       error:(error)=>{
         Alertes.alerteAddDanger(error.error.message)
@@ -73,7 +73,7 @@ export class AddCompetenceComponent implements OnInit {
   }
 
   close(){
-    this.modalService.dismissAll();
+    this.competenceService.dismiss();
   }
 
   doSearch(){

@@ -1,8 +1,8 @@
-<section *ngIf="!isSearch">   
+<section *ngIf="!isSearch">
   <form [formGroup]="form">
     <div class="row">
       <div class="col-sm-6">
-        <div class="mb-3"> 
+        <div class="mb-3">
           <label for="nom" class="form-label">Nom<small style="color: red;">*</small></label>
           <input type="text" class="form-control form-control-lg" id="nom" placeholder="Nom" formControlName="nom">
         </div>
@@ -38,13 +38,25 @@
             <input type="text" class="form-control form-control-lg" id="adresse" placeholder="Adresse" formControlName="adresse">
             </div>
         </div>
-      
+
         <div class="col-sm-6">
             <div class="mb-3">
             <label for="niveauEtude" class="form-label">Niveau d'Étude<small style="color: red;">*</small></label>
             <input type="text" class="form-control form-control-lg" id="niveauEtude" placeholder="Niveau d'Étude" formControlName="niveauEtude">
             </div>
         </div>
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label  class="form-label">Statut Candidature <small style="color: red;">*</small></label>
+          <ng-select
+            [items]="statuts"
+            bindLabel="description"
+            bindValue="name"
+            placeholder="Selectionner..."
+            formControlName="statutCandidature">
+          </ng-select>
+        </div>
+      </div>
     </div>
   </form>
 
@@ -54,11 +66,11 @@
   </div>
 </section>
 
-<section *ngIf="isSearch">   
+<section *ngIf="isSearch">
   <form [formGroup]="form">
     <div class="row">
       <div class="col-sm-6">
-        <div class="mb-3"> 
+        <div class="mb-3">
           <label for="nom" class="form-label">Nom<small style="color: red;">*</small></label>
           <input type="text" class="form-control form-control-lg" id="nom" placeholder="" formControlName="nom">
         </div>

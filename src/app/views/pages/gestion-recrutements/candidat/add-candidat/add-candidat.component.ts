@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CandidatService } from 'src/app/services/candidat/candidat.service';
@@ -10,12 +10,17 @@ import { EventEmitter } from '@angular/core';
   templateUrl: './add-candidat.component.html',
   styleUrls: ['./add-candidat.component.scss']
 })
-export class AddCandidatComponent {
+export class AddCandidatComponent implements OnInit {
 form!: FormGroup;
 @Output() submit: EventEmitter<boolean> = new EventEmitter();
 @Output() search: EventEmitter<boolean> = new EventEmitter();
 @Input() evaluationToUpdate: any;
 @Input() isSearch: any;
+  statuts = [
+    {name:'EN_ATTENTE',description:'En Attente'},
+    {name:'ACCEPTEE',description:'Acceptée'},
+    {name:'REJETEE',description:'Rejetée'},
+  ]
 
   constructor(
     private modalService: NgbModal,
@@ -32,10 +37,12 @@ form!: FormGroup;
       nom: ['', Validators.required],
       prenom: new FormControl('', [Validators.required, Validators.min(0)]),
       email: new FormControl('', [Validators.required, Validators.email]),
-      telephone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(15)]),
+      telephone: new FormControl('', [Validators.required, Validators.minLength(10)]),
       dateNaissance: new FormControl('', Validators.required),
       adresse: new FormControl('', Validators.required),
-      niveauEtude: new FormControl('', Validators.required)
+      niveauEtude: new FormControl('', Validators.required),
+      statutCandidature: new FormControl('EN_ATTENTE', Validators.required),
+      recrutementId: new FormControl(localStorage.getItem('recrutementId'), Validators.required)
     });
   }
 

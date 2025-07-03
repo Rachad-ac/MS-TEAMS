@@ -1,9 +1,10 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Observable} from "rxjs";
 import {Alertes} from "../../../../../util/alerte";
 import {RecrutementService} from "../../../../../services/recrutement/recrutement.service";
+import {competenceService} from "../../../../../services/competence/competence.service";
 
 @Component({
   selector: 'app-add-recrutement',
@@ -22,12 +23,13 @@ export class AddRecrutementComponent implements OnInit {
     {name:'CDD',description:'Contrat à Durée Déterminée'},
     {name:'CDI',description:'Contrat à Durée Indéterminée'},
     {name:'STAGE',description:'Stage'},
-  ]
+  ];
 
   constructor(
               private modalService: NgbModal,
               private fb: FormBuilder,
-              private recrutementServices : RecrutementService
+              private recrutementServices : RecrutementService,
+              private competenceService: competenceService
   ) { }
 
   ngOnInit(): void {
@@ -45,20 +47,7 @@ export class AddRecrutementComponent implements OnInit {
       competence: [null]
     });
 
-    // this.competenceService.getAllCompetences(this.pageOptions).subscribe({
-    //   next: response => {
-    //     console.log('response',response);
-    //     this.competences = response.payload.map((competence: any) => ({
-    //       ...competence,
-    //       fullName: `${competence.name} ${competence.lastName}`
-    //     }));
-    //
-        this.loadFileds();
-    //   },
-    //   error: err => {
-    //     console.log(err);
-    //   },
-    // });
+    this.allCompetences();
   }
 
   loadFileds() {
@@ -104,5 +93,25 @@ export class AddRecrutementComponent implements OnInit {
 
   emitSubmit(){
     this.submit.emit(true);
+  }
+
+  openModal(content: TemplateRef<any>) {
+    this.competenceService.open(content)
+  }
+
+  allCompetences() {
+    this.competenceService.getAllCompetence(this.pageOptions).subscribe({
+      next: response => {
+        console.log('response',response);
+        this.competences = response.payload.map((competence: any) => ({
+          ...competence,
+          fullName: `${competence.nom} (${competence.niveau})`
+        }));
+        this.loadFileds();
+      },
+      error: err => {
+        console.log(err);
+      },
+    });
   }
 }
