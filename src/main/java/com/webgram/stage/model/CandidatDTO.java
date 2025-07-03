@@ -2,6 +2,7 @@ package com.webgram.stage.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.webgram.stage.entity.enums.StatutCandidature;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import java.io.Serializable;
@@ -25,6 +26,7 @@ public class CandidatDTO implements Serializable  {
     private LocalDate dateNaissance;
     private String adresse ;
     private String niveauEtude;
-
-
+    private StatutCandidature statutCandidature;
+    private String recrutementId;
+    private RecrutementDTO recrutement;
 }

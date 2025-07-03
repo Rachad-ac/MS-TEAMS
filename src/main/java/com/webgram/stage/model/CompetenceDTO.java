@@ -7,8 +7,6 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.util.Set;
 
 @Builder
 @NoArgsConstructor
@@ -25,6 +23,4 @@ public class CompetenceDTO implements Serializable {
     private String nom;
     private String niveau;
     private String domaine;
-    private Set<Long> idRecrutements;
-    private Set<RecrutementDTO> recrutements ;
 }
