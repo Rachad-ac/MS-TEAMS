@@ -36,7 +36,7 @@ export class AddEditCandidatureComponent implements OnInit {
     private fb: FormBuilder,
     private candidatureService: CandidatureService,
     private recrutementService: RecrutementService
-  ) // private candidatService: CandidatService // À décommenter quand disponible
+  ) // private candidatService: ResultatService // À décommenter quand disponible
   {
     // Initialisation du formulaire avec validation
     this.candidatureForm = this.fb.group({

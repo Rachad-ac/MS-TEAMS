@@ -11,12 +11,31 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatIconModule} from "@angular/material/icon";
 import {NgbPaginationModule} from "@ng-bootstrap/ng-bootstrap";
 import { AddSessionFormationComponent } from './sessionFormation/add-session-formation/add-session-formation.component';
+import { AddResultatComponent } from './resultat/add-resultat/add-resultat.component';
+import { ListResultatComponent } from './resultat/list-resultat/list-resultat.component';
+import { EditResultatComponent } from './resultat/edit-resultat/edit-resultat.component';
+import { DetailleResultatComponent } from './resultat/detaille-resultat/detaille-resultat.component';
+import { DetaillePresenceComponent } from './presence/detaille-presence/detaille-presence.component';
+import { AddPresenceComponent } from './presence/add-presence/add-presence.component';
+import { EditPresenceComponent } from './presence/edit-presence/edit-presence.component';
+import { ListPresenceComponent } from './presence/list-presence/list-presence.component';
+import {NgSelectModule} from "@ng-select/ng-select";
+import {ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "@progress/kendo-angular-dropdowns";
 
 
 @NgModule({
   declarations: [
     ListSessionFormationComponent,
-    AddSessionFormationComponent
+    AddSessionFormationComponent,
+    AddResultatComponent,
+    ListResultatComponent,
+    EditResultatComponent,
+    DetailleResultatComponent,
+    DetaillePresenceComponent,
+    AddPresenceComponent,
+    EditPresenceComponent,
+    ListPresenceComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +44,10 @@ import { AddSessionFormationComponent } from './sessionFormation/add-session-for
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
-    NgbPaginationModule
+    NgbPaginationModule,
+    NgSelectModule,
+    ReactiveFormsModule,
+    SharedModule
   ]
 })
 export class GestionFormationModule { }
