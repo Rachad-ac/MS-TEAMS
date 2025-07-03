@@ -10,42 +10,27 @@ export class PresenceService {
 
   constructor(protected http: HttpClient) {}
 
-   createCandidat(candidat: any): Observable<any> {
-     return this.http.post<any>(`${environment.baseUrl}candidats`, candidat);
+   createPresence(presence: any): Observable<any> {
+     return this.http.post<any>(`${environment.baseUrl}presences`, presence);
    }
 
-   updateCandidat(candidatId: any, candidat: any): Observable<any> {
-     return this.http.put<any>(`${environment.baseUrl}candidats/${candidatId}`, candidat);
+   updatePresence(presenceId: any, presence: any): Observable<any> {
+     return this.http.put<any>(`${environment.baseUrl}presences/${presenceId}`, presence);
    }
 
-   getCandidatById(candidatId: any): Observable<any> {
-     return this.http.get<any>(`${environment.baseUrl}candidats/${candidatId}`);
+   getPresenceById(presenceId: any): Observable<any> {
+     return this.http.get<any>(`${environment.baseUrl}presences/${presenceId}`);
    }
 
- getAllCandidats(req?: any): Observable<any> {
+ getAllPresence(req?: any): Observable<any> {
   let params: HttpParams = new HttpParams();
 
   if (req) {
-    if (req.nom) {
-      params = params.append("nom", req.nom);
+    if (req.statutPresence) {
+      params = params.append("statutPresence", req.statutPresence);
     }
-    if (req.prenom) {
-      params = params.append("prenom", req.prenom);
-    }
-    if (req.email) {
-      params = params.append("email", req.email);
-    }
-    if (req.telephone) {
-      params = params.append("telephone", req.telephone);
-    }
-    if (req.dateNaissance) {
-      params = params.append("dateNaissance", req.dateNaissance);
-    }
-    if (req.adresse) {
-      params = params.append("adresse", req.adresse);
-    }
-    if (req.niveauEtude) {
-      params = params.append("niveauEtude", req.niveauEtude);
+    if (req.justification) {
+      params = params.append("justification", req.justification);
     }
     params = params.append("page", req.page ?? 0);
     params = params.append("size", req.size ?? 10);
@@ -54,12 +39,10 @@ export class PresenceService {
     params = params.append("size", 100000);
   }
 
-  return this.http.get<any>(`${environment.baseUrl}candidats/all`, { params });
+  return this.http.get<any>(`${environment.baseUrl}presences/all`, { params });
 }
-
-
-   deleteCandidat(candidatId: any): Observable<any> {
-     return this.http.delete<any>(`${environment.baseUrl}candidats/${candidatId}`, {
+   deletePresence(presenceId: any): Observable<any> {
+     return this.http.delete<any>(`${environment.baseUrl}presences/${presenceId}`, {
        observe: 'response'
      });
    }

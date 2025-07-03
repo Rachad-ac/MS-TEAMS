@@ -6,7 +6,7 @@ import {environment} from "../../../environments/environment";
 @Injectable({
   providedIn: 'root'
 })
-export class RecruteurService {
+export class RecrutementService {
   constructor(protected http : HttpClient) { }
 
   createRecrutement(recrutement:any):Observable<any>{
@@ -67,4 +67,7 @@ export class RecruteurService {
       observe: 'response',
     });
   }
+}
+
+export class RecruteuementService {
 }

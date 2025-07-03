@@ -4,6 +4,7 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Alertes} from "../../../../../util/alerte";
 import {ResultatService} from "../../../../../services/resultat/resultat.service";
 import {EvaluationService} from "../../../../../services/evaluation/evaluation.service";
+import {EmployeService} from "../../../../../services/employe/employe.service";
 
 @Component({
   selector: 'app-add-resultat',
@@ -24,7 +25,7 @@ export class AddResultatComponent {
   constructor(
     private modalService: NgbModal,
     private evaluationService: EvaluationService,
-   // private employeService: EmployeService,
+    private employeService: EmployeService,
     private resultatService: ResultatService,
     private fb: FormBuilder
   ) {}
@@ -44,8 +45,8 @@ export class AddResultatComponent {
         console.error('Erreur chargement recruteurs :', err);
       }
     });
-/*
-    this.employeService.getAllEmploye().subscribe({
+
+    this.employeService.getAllEmployes().subscribe({
       next: (res) => {
         console.log('employes récupérés :', res);
 
@@ -56,9 +57,9 @@ export class AddResultatComponent {
         }));
       },
       error: (err) => {
-        console.error('Erreur chargement recruteurs :', err);
+        console.error('Erreur chargement employe :', err);
       }
-    });*/
+    });
   }
 
   initForm() {

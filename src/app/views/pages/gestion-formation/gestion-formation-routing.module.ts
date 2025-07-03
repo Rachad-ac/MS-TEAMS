@@ -9,15 +9,21 @@ import {ListPresenceComponent} from "./presence/list-presence/list-presence.comp
 import {ListResultatComponent} from "./resultat/list-resultat/list-resultat.component";
 import {DetailleResultatComponent} from "./resultat/detaille-resultat/detaille-resultat.component";
 import {DetaillePresenceComponent} from "./presence/detaille-presence/detaille-presence.component";
+import {AddPresenceComponent} from "./presence/add-presence/add-presence.component";
+import {EditPresenceComponent} from "./presence/edit-presence/edit-presence.component";
+import {AddResultatComponent} from "./resultat/add-resultat/add-resultat.component";
+import {EditResultatComponent} from "./resultat/edit-resultat/edit-resultat.component";
 
 const routes: Routes = [
   {path: '', component: ListSessionFormationComponent},
   {path: 'session-formation', component: ListSessionFormationComponent},
-  {path: '', component: ListPresenceComponent},
   {path: 'presence', component: ListPresenceComponent},
+  {path: 'presence', component: AddPresenceComponent},
+  {path: 'presence', component: EditPresenceComponent},
   {path: 'detaille-presence', component: DetaillePresenceComponent},
-  {path: '', component: ListResultatComponent},
   {path: 'resultat', component: ListResultatComponent},
+  {path: 'resultat', component: AddResultatComponent},
+  {path: 'resultat', component: EditResultatComponent},
   {path: 'detaille-resultat', component: DetailleResultatComponent},
   { path: '', component: ListSessionFormationComponent },
   { path: 'session-formation', component: ListSessionFormationComponent },

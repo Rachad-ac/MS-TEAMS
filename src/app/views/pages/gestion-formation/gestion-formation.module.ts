@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
-
 import { GestionFormationRoutingModule } from './gestion-formation-routing.module';
 import { ListSessionFormationComponent } from './sessionFormation/list-session-formation/list-session-formation.component';
 import { MatTableModule } from '@angular/material/table';
