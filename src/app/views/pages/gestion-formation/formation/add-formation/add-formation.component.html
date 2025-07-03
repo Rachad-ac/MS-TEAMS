@@ -1,0 +1,153 @@
+<section *ngIf="isSearch">
+  <form [formGroup]="form">
+    <div class="row">
+      <!-- Titre -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="titre" class="form-label">Titre de la formation</label>
+          <input type="text" class="form-control form-control-lg" id="titre" placeholder="Titre" formControlName="titre">
+        </div>
+      </div>
+
+      <!-- Objectif -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="objectif" class="form-label">Objectif</label>
+          <input type="text" class="form-control form-control-lg" id="objectif" placeholder="Objectif" formControlName="objectif">
+        </div>
+      </div>
+
+      <!-- Date début -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="dateDebut" class="form-label">Date de début</label>
+          <input type="date" class="form-control form-control-lg" id="dateDebut" formControlName="dateDebut">
+        </div>
+      </div>
+
+      <!-- Date fin -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="dateFin" class="form-label">Date de fin</label>
+          <input type="date" class="form-control form-control-lg" id="dateFin" formControlName="dateFin">
+        </div>
+      </div>
+
+      <!-- Niveau -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="niveau" class="form-label">Niveau</label>
+          <ng-select
+            [items]="niveaux"
+            id="niveau"
+            bindLabel="description"
+            bindValue="name"
+            placeholder="Sélectionnez un niveau"
+            formControlName="niveau">
+          </ng-select>
+        </div>
+      </div>
+
+      <!-- Statut -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="statut" class="form-label">Statut</label>
+          <ng-select
+            [items]="statuts"
+            id="statut"
+            bindLabel="description"
+            bindValue="name"
+            placeholder="Sélectionnez un statut"
+            formControlName="statut">
+          </ng-select>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Boutons -->
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-primary" (click)="doSearch()">Rechercher</button>
+  </div>
+</section>
+
+<section *ngIf="!isSearch">
+  <form [formGroup]="form">
+    <div class="row">
+      <!-- Titre -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="titre" class="form-label">Titre <small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="titre" formControlName="titre">
+        </div>
+      </div>
+
+      <!-- Objectif -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="objectif" class="form-label">Objectif <small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="objectif" formControlName="objectif">
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="col-sm-12">
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea class="form-control form-control-lg" id="description" rows="3" formControlName="description"></textarea>
+        </div>
+      </div>
+
+      <!-- Date début -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="dateDebut" class="form-label">Date de début <small style="color: red;">*</small></label>
+          <input type="date" class="form-control form-control-lg" id="dateDebut" formControlName="dateDebut">
+        </div>
+      </div>
+
+      <!-- Date fin -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="dateFin" class="form-label">Date de fin <small style="color: red;">*</small></label>
+          <input type="date" class="form-control form-control-lg" id="dateFin" formControlName="dateFin">
+        </div>
+      </div>
+
+      <!-- Niveau -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="niveau" class="form-label">Niveau <small style="color: red;">*</small></label>
+          <ng-select
+            [items]="niveaux"
+            bindLabel="description"
+            bindValue="name"
+            placeholder="Sélectionnez un niveau"
+            formControlName="niveau">
+          </ng-select>
+        </div>
+      </div>
+
+      <!-- Statut -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="statut" class="form-label">Statut <small style="color: red;">*</small></label>
+          <ng-select
+            [items]="statuts"
+            bindLabel="description"
+            bindValue="name"
+            placeholder="Sélectionnez un statut"
+            formControlName="statut">
+          </ng-select>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Boutons -->
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-primary" (click)="create()" [disabled]="!form.valid">Enregistrer</button>
+  </div>
+</section>

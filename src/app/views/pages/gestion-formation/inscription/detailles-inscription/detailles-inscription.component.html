@@ -1,0 +1,13 @@
+<div *ngIf="loading">Chargement...</div>
+<div *ngIf="!loading && inscription">
+  <h3>Détails de l'inscription</h3>
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Employé :</strong> {{ inscription.employeId }}</li>
+    <li class="list-group-item"><strong>Formation :</strong> {{ inscription.formationId }}</li>
+    <li class="list-group-item"><strong>Date d'inscription :</strong> {{ inscription.dateInscription | date:'yyyy-MM-dd HH:mm' }}</li>
+    <li class="list-group-item"><strong>Statut :</strong> {{ inscription.statut }}</li>
+  </ul>
+</div>
+<div *ngIf="!loading && !inscription">
+  <p>Inscription introuvable.</p>
+</div>

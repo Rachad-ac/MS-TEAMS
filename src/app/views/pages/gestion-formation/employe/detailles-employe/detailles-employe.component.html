@@ -1,0 +1,26 @@
+<div *ngIf="loading">Chargement...</div>
+<div *ngIf="!loading && employe">
+  <h3>Détails de l'employé</h3>
+  <ul class="list-group">
+    <li class="list-group-item"><strong>Nom :</strong> {{ employe.nom }}</li>
+    <li class="list-group-item">
+      <strong>Prénom :</strong> {{ employe.prenom }}
+    </li>
+    <li class="list-group-item">
+      <strong>Email :</strong> {{ employe.email }}
+    </li>
+    <li class="list-group-item">
+      <strong>Département :</strong> {{ employe.departement }}
+    </li>
+    <li class="list-group-item">
+      <strong>Poste :</strong> {{ employe.poste }}
+    </li>
+    <li class="list-group-item">
+      <strong>Date d'embauche :</strong>
+      {{ employe.dateEmbauche | date : "yyyy-MM-dd" }}
+    </li>
+  </ul>
+</div>
+<div *ngIf="!loading && !employe">
+  <p>Employé introuvable.</p>
+</div>

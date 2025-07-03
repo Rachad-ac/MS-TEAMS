@@ -1,34 +1,49 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {ListRecrutementComponent} from "./recrutement/list-recrutement/list-recrutement.component";
-import {DetaillesRecrutementComponent} from "./recrutement/detailles-recrutement/detailles-recrutement.component";
+import { ListRecrutementComponent } from './recrutement/list-recrutement/list-recrutement.component';
+import { DetaillesRecrutementComponent } from './recrutement/detailles-recrutement/detailles-recrutement.component';
 import { ListEvaluationComponent } from './evaluation/list-evaluation/list-evaluation.component';
 import { AddEvaluationComponent } from './evaluation/add-evaluation/add-evaluation.component';
 import { EditEvaluationComponent } from './evaluation/edit-evaluation/edit-evaluation.component';
-import {DetaillesEvaluationComponent} from "./evaluation/detailles-evaluations/detailles-evaluation.component";
+import { DetaillesEvaluationComponent } from './evaluation/detailles-evaluations/detailles-evaluation.component';
+import { ListCandidatureComponent } from './candidature/list-candidature/list-candidature.component';
+import { AddEditCandidatureComponent } from './candidature/add-edit-candidature/add-edit-candidature.component';
+import { DetaillesCandidatureComponent } from './candidature/detailles-candidature/detailles-candidature.component';
 import { AddCandidatComponent } from './candidat/add-candidat/add-candidat.component';
 import { ListCandidatComponent } from './candidat/list-candidat/list-candidat.component';
 import { EditCandidatComponent } from './candidat/edit-candidat/edit-candidat.component';
-
 
 const routes: Routes = [
   {path: '', component: ListRecrutementComponent},
   {path: 'recrutement', component: ListRecrutementComponent},
   {path: 'recrutement/:id', component: DetaillesRecrutementComponent},
+  {path: 'detaille-recrutement', component: DetaillesRecrutementComponent},
+
   {path: 'evaluation', component: ListEvaluationComponent},
   {path: 'evaluation', component: AddEvaluationComponent},
   {path: 'evaluation', component: EditEvaluationComponent},
   {path: 'evaluation/:id', component: DetaillesEvaluationComponent},
-  {path: 'detaille-valuation', component: DetaillesEvaluationComponent},
-  {path: 'detaille-recrutement', component: DetaillesRecrutementComponent},
+  {path: 'detaille-evaluation', component: DetaillesEvaluationComponent},
+
   {path: 'candidat', component: ListCandidatComponent},
   {path: 'candidat', component: AddCandidatComponent},
-  {path: 'candidat', component: EditCandidatComponent}
+  {path: 'candidat', component: EditCandidatComponent},
+
+  { path: 'evaluation', component: AddEvaluationComponent },
+  { path: 'evaluation', component: EditEvaluationComponent },
+  { path: 'evaluation/:id', component: DetaillesEvaluationComponent },
+  { path: 'detaille-recrutement', component: DetaillesRecrutementComponent },
+
+
+  { path: 'candidature', component: ListCandidatureComponent },
+  { path: 'candidature/add', component: AddEditCandidatureComponent },
+  { path: 'candidature/edit/:id', component: AddEditCandidatureComponent },
+  { path: 'candidature/:id', component: DetaillesCandidatureComponent },
 
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class GestionRecrutementsRoutingModule { }
+export class GestionRecrutementsRoutingModule {}
