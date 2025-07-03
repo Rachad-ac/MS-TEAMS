@@ -62,8 +62,11 @@ public class PresenceServiceImpl implements PresenceService {
         if (Objects.nonNull(searchParams)) {
             var qEntity = QPresenceEntity.presenceEntity;
 
-            if (searchParams.containsKey("statutPresence"))
-                booleanBuilder.and(qEntity.statutPresence.eq(Boolean.parseBoolean(searchParams.get("statutPresence"))));
+            String statutPresence = searchParams.get("statutPresence");
+            if (statutPresence != null && !statutPresence.isEmpty()) {
+                booleanBuilder.and(qEntity.statutPresence.stringValue().lower().containsIgnoreCase(statutPresence.toLowerCase()));
+            }
+
             if (searchParams.containsKey("justification"))
                 booleanBuilder.and(qEntity.justification.containsIgnoreCase(searchParams.get("justification")));
 

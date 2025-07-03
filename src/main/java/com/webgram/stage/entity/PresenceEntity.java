@@ -1,5 +1,6 @@
 package com.webgram.stage.entity;
 
+import com.webgram.stage.entity.enums.PresenceType;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,9 +19,9 @@ public class PresenceEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "statut")
-    private boolean statutPresence = false;
-    @Column(name = "justification")
+    @Column(name = "statut_presence")
+    private PresenceType statutPresence;
+    @Column(name = "justification" , nullable = true)
     private String justification;
 
     /*

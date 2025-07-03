@@ -3,6 +3,7 @@ package com.webgram.stage.model;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.webgram.stage.entity.enums.PresenceType;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import java.io.Serializable;
@@ -20,7 +21,7 @@ public class PresenceDTO implements Serializable {
     private Long id;
 
     @NotEmpty
-    private boolean statutPresence;
+    private PresenceType statutPresence;
     private String justification;
 
     /*
