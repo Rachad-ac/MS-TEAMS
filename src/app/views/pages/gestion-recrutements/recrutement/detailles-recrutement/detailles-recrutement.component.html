@@ -75,34 +75,34 @@
   <li [ngbNavItem]="3">
     <a ngbNavLink><h5>Candidatures</h5></a>
     <ng-template ngbNavContent>
-      <app-list-candidature [recrutementId]="recrutementId"></app-list-candidature>
+      <app-detailles-candidat></app-detailles-candidat>
     </ng-template>
   </li>
   <li [ngbNavItem]="5">
-    <a ngbNavLink><h5>Competences</h5></a>
+    <a ngbNavLink><h5>Competences Pour le Poste {{recrutement.titre}}</h5></a>
     <ng-template ngbNavContent>
-      <app-list-competence></app-list-competence>
-      <!-- <table mat-table [dataSource]="recrutement?.competences">
+      <section class="table-container mat-elevation-z8" tabindex="0">
+        <table mat-table [dataSource]="recrutement?.competences">
+          <ng-container matColumnDef="nom">
+            <th mat-header-cell *matHeaderCellDef class="table-head-text">Nom</th>
+            <td mat-cell *matCellDef="let competence"> {{ competence.nom }} </td>
+          </ng-container>
 
-        <ng-container matColumnDef="nom">
-          <th mat-header-cell *matHeaderCellDef class="table-head-text">Nom</th>
-          <td mat-cell *matCellDef="let competence"> {{ competence.nom }} </td>
-        </ng-container>
+          <ng-container matColumnDef="niveau">
+            <th mat-header-cell *matHeaderCellDef class="table-head-text">Niveau</th>
+            <td mat-cell *matCellDef="let competence"> {{ competence.niveau }} </td>
+          </ng-container>
 
-        <ng-container matColumnDef="niveau">
-          <th mat-header-cell *matHeaderCellDef class="table-head-text">Niveau</th>
-          <td mat-cell *matCellDef="let competence"> {{ competence.niveau }} </td>
-        </ng-container>
+          <ng-container matColumnDef="domaine">
+            <th mat-header-cell *matHeaderCellDef class="table-head-text">Domaine</th>
+            <td mat-cell *matCellDef="let competence"> {{ competence.domaine }} </td>
+          </ng-container>
 
-        <ng-container matColumnDef="domaine">
-          <th mat-header-cell *matHeaderCellDef class="table-head-text">Domaine</th>
-          <td mat-cell *matCellDef="let competence"> {{ competence.domaine }} </td>
-        </ng-container>
+          <tr mat-header-row *matHeaderRowDef="displayedColumnsCompetence; sticky: true" class="table-head-bg"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumnsCompetence"></tr>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumnsCompetence; sticky: true" class="table-head-bg"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumnsCompetence"></tr>
-
-      </table> -->
+        </table>
+      </section>
     </ng-template>
   </li>
 </ul>

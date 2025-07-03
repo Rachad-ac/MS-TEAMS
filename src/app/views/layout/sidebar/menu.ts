@@ -23,13 +23,6 @@ export const MENU: MenuItem[] = [
     icon: 'file-text',
     link: '/admin/gestion-recrutement/evaluation'
   },
-   {
-    label: 'Candidat',
-    icon: 'user',
-    link: '/admin/gestion-recrutement/candidat'
-  },
-
-  // gestion formation
 
   // Section gestion formation
   {

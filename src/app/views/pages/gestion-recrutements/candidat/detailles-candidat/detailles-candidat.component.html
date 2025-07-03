@@ -1,0 +1,60 @@
+<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin mb-3">
+  <nav class="page-breadcrumb cursor-pointer">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item active"><a>Liste des Candidats</a></li>
+    </ol>
+  </nav>
+
+  <div class="d-flex justify-content-end align-items-center gap-2">
+    <button type="button" class="btn btn-primary btn-icon-text" (click)="openAddCandidat(addCandidatModal)">
+      <i class="feather icon-plus-circle"></i> Nouveau Candidat
+    </button>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <ngb-accordion [closeOthers]="true" activeIds="faq1">
+          <ngb-panel id="faq1">
+            <ng-template ngbPanelTitle>
+              <span class="text-success">Candidatures ACCEPTÉE</span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <app-list-candidat [recrutementId]="recrutementId" [statutCandidature]="'ACCEPTEE'"></app-list-candidat>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel id="faq2">
+            <ng-template ngbPanelTitle>
+              <span class="text-warning">Candidatures EN ATTENTE</span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <app-list-candidat [recrutementId]="recrutementId" [statutCandidature]="'EN_ATTENTE'"></app-list-candidat>
+            </ng-template>
+          </ngb-panel>
+          <ngb-panel id="faq3">
+            <ng-template ngbPanelTitle>
+              <span class="text-danger">Candidatures REJETEE</span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+              <app-list-candidat [recrutementId]="recrutementId" [statutCandidature]="'REJETEE'"></app-list-candidat>
+            </ng-template>
+          </ngb-panel>
+        </ngb-accordion>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- MODALE : Nouvelle Candidat -->
+<ng-template #addCandidatModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="addCandidatModalLabel">Ajouter Candidat</h5>
+    <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-add-candidat [isSearch]="false" (submit)="close()"></app-add-candidat>
+  </div>
+</ng-template>

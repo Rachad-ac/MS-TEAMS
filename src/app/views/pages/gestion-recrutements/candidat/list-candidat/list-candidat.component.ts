@@ -1,4 +1,4 @@
-import { Component, TemplateRef } from '@angular/core';
+import {Component, Input, TemplateRef} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CandidatService } from 'src/app/services/candidat/candidat.service';
 import { Alertes } from 'src/app/util/alerte';
@@ -21,23 +21,29 @@ export class ListCandidatComponent {
     'actions',
   ];
 
-  
+
     evaluationToUpdate: any;
-    candidatToUpdate: any; 
+    candidatToUpdate: any;
     pageOptions: any = { page: 0, size: 10 };
     dataSource: any;
     loadingIndicator = true;
-  
+    @Input() recrutementId: any;
+    @Input() statutCandidature: any;
+
     constructor(
       private modalService: NgbModal,
       private candidatServices: CandidatService
     ) { }
-  
+
     ngOnInit(): void {
       this.getAllCandidats();
     }
 
     getAllCandidats(): void {
+      this.pageOptions.recrutementId = this.recrutementId;
+      this.pageOptions.statutCandidature = this.statutCandidature;
+      this.pageOptions.page = 0;
+      this.pageOptions.size = 10;
       this.candidatServices.getAllCandidats(this.pageOptions).subscribe({
         next: response => {
           console.log('response', response);
@@ -53,13 +59,13 @@ export class ListCandidatComponent {
         }
       });
     }
-  
+
     paginate($event: number): void {
       this.loadingIndicator = true;
       this.pageOptions.page = $event - 1;
       this.getAllCandidats();
     }
-  
+
     openAddCandidat(content: TemplateRef<any>): void {
       this.openModal(content, 'lg');
     }
@@ -68,7 +74,7 @@ export class ListCandidatComponent {
       this.candidatToUpdate = rCandidat;
       this.openModal(content, 'lg');
     }
-  
+
     openModal(content: TemplateRef<any>, size: 'sm' | 'lg' | 'xl'): void {
       this.modalService.open(content, { size, backdrop: 'static' }).result.then(
         () => {},
@@ -95,12 +101,12 @@ export class ListCandidatComponent {
         }
       );
     }
-  
+
     close(): void {
       this.modalService.dismissAll();
       this.getAllCandidats();
     }
-  
+
     doSearch(data: any): void {
       this.pageOptions = {
         ...data,

@@ -2,12 +2,32 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
+import {NgbModal, NgbModalRef} from "@ng-bootstrap/ng-bootstrap";
 
 @Injectable({
   providedIn: 'root'
 })
 export class competenceService {
-constructor(protected http : HttpClient) { }
+constructor(protected http : HttpClient,
+            private modalService: NgbModal) { }
+  private modalRef?: NgbModalRef;
+
+  open(content: any, size: any = 'xl') {
+    this.modalRef = this.modalService.open(content, {
+      backdrop: 'static',
+      size
+    });
+
+    return this.modalRef;
+  }
+
+  close() {
+    this.modalRef?.close();
+  }
+
+  dismiss() {
+    this.modalRef?.dismiss();
+  }
 
   createCompetence(competence:any):Observable<any>{
     return this.http.post<any>(`${environment.baseUrl}competence`,competence)

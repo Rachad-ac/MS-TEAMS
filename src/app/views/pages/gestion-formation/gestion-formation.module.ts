@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
-import { NgbActiveModal } from '@ng-bootstrap/ng-bootstrap';
 import { NgSelectModule } from '@ng-select/ng-select';
 
 import { GestionFormationRoutingModule } from './gestion-formation-routing.module';
@@ -11,46 +10,48 @@ import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule, NgbNavModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { AddSessionFormationComponent } from './sessionFormation/add-session-formation/add-session-formation.component';
-<<<<<<< HEAD
 
-=======
 import { ListEmployeComponent } from './employe/list-employe/list-employe.component';
 import { AddEditEmployeComponent } from './employe/add-edit-employe/add-edit-employe.component';
 import { ListInscriptionComponent } from './inscription/list-inscription/list-inscription.component';
 import { AddEditInscriptionComponent } from './inscription/add-edit-inscription/add-edit-inscription.component';
->>>>>>> dev
+import {ListFormationComponent} from "./formation/list-formation/list-formation.component";
+import {AddFormationComponent} from "./formation/add-formation/add-formation.component";
+import {ListFormateurComponent} from "./formateur/list-formateur/list-formateur.component";
+import {AddFormateurComponent} from "./formateur/add-formateur/add-formateur.component";
+
+import {DetaillesFormationComponent} from "./formation/detailles-formation/detailles-formation.component";
 
 @NgModule({
   declarations: [
     ListSessionFormationComponent,
-<<<<<<< HEAD
-    AddSessionFormationComponent
-=======
+    AddSessionFormationComponent,
     AddSessionFormationComponent,
     ListEmployeComponent,
     AddEditEmployeComponent,
     ListInscriptionComponent,
     AddEditInscriptionComponent,
->>>>>>> dev
+    ListFormationComponent,
+    AddFormationComponent,
+    DetaillesFormationComponent,
+    ListFormateurComponent,
+    AddFormateurComponent,
   ],
-  imports: [
-    CommonModule,
-    GestionFormationRoutingModule,
-    MatTableModule,
-    MatMenuModule,
-    MatButtonModule,
-    MatIconModule,
-<<<<<<< HEAD
-    NgbPaginationModule
-  ]
-=======
-    NgbPaginationModule,
-    ReactiveFormsModule,
-    NgSelectModule,
-    RouterModule,
-  ],
->>>>>>> dev
+    imports: [
+        CommonModule,
+        GestionFormationRoutingModule,
+        MatTableModule,
+        MatMenuModule,
+        MatButtonModule,
+        MatIconModule,
+        NgbPaginationModule,
+        ReactiveFormsModule,
+        NgSelectModule,
+        RouterModule,
+        NgbNavModule,
+        NgbModule,
+    ],
 })
 export class GestionFormationModule {}
