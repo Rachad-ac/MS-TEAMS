@@ -29,10 +29,12 @@ public class PresenceEntity implements Serializable {
     @JoinColumn(name = "employe_id")
     private EmployeEntity employe;
 
+     */
+
     @ManyToOne
     @JoinColumn(name = "session_id")
     private SessionFormationEntity sessionFormation;
 
-     */
+
 
 }

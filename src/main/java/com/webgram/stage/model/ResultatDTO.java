@@ -23,12 +23,10 @@ public class ResultatDTO implements Serializable {
     private double note;
     private String commentaire;
 
-    /*
-    private EmployeDTO employe;
+    //private EmployeDTO employe;
     private EvaluationDTO evaluation;
 
-    private Long employeId;
+    //private Long employeId;
     private Long evaluationId;
 
-     */
 }

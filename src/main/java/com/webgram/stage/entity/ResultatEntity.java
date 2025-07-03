@@ -27,10 +27,12 @@ public class ResultatEntity implements Serializable {
     @JoinColumn(name = "employe_id")
     private EmployeEntity employe;
 
+     */
+
     @ManyToOne
     @JoinColumn(name = "evaluation_id")
     private EvaluationEntity evaluation;
 
-     */
+
 
 }
