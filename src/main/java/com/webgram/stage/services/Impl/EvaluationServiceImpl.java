@@ -27,15 +27,15 @@ public class EvaluationServiceImpl implements EvaluationService {
     private final EvaluationMapper evaluationMapper;
 
     @Override
-    public EvaluationDTO createEvaluation(EvaluationDTO offreEmploiDTO) {
-        var entity = evaluationMapper.asEntity(offreEmploiDTO);
+    public EvaluationDTO createEvaluation(EvaluationDTO evaluationDTO) {
+        var entity = evaluationMapper.asEntity(evaluationDTO);
         var entitySave = evaluationRepository.save(entity);
         return evaluationMapper.asDto(entitySave);
     }
 
     @Override
-    public EvaluationDTO updateEvaluation(EvaluationDTO offreEmploiDTO) {
-        var entityUpdate = evaluationMapper.asEntity(offreEmploiDTO);
+    public EvaluationDTO updateEvaluation(EvaluationDTO evaluationDTO) {
+        var entityUpdate = evaluationMapper.asEntity(evaluationDTO);
         var updatedEntity = evaluationRepository.save(entityUpdate);
         return evaluationMapper.asDto(updatedEntity);
     }
