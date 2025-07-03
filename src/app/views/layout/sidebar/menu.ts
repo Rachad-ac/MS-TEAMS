@@ -1,10 +1,11 @@
 import { MenuItem } from './menu.model';
 
+// Définition du menu latéral de l'application
 export const MENU: MenuItem[] = [
-  // gestion recrutement
+  // Section gestion recrutement
   {
     label: 'Gestion Recrutement',
-    isTitle: true
+    isTitle: true,
   },
   {
     label: 'Recrutement',
@@ -12,15 +13,15 @@ export const MENU: MenuItem[] = [
     link: '/admin/gestion-recrutement/recrutement'
   },
 
-  // gestion Formation
+  // gestion recrutement
   {
     label: 'Gestion Formation',
-    isTitle: true
+    isTitle: true,
   },
   {
-    label: 'Session Formation',
+    label: 'Formation',
     icon: 'book-open',
-    link: '/admin/gestion-formation/session-formation'
+    link: '/admin/gestion-formation/formation',
   },
    {
     label: 'Formateur',

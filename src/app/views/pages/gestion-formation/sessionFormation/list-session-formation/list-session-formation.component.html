@@ -30,19 +30,24 @@
           <td mat-cell *matCellDef="let sessionFormation" class="text-left"> {{sessionFormation?.lieu}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="dateDebut">
-          <th mat-header-cell *matHeaderCellDef class="table-head-text text" style="min-width:100px;">Date Début</th>
-          <td mat-cell *matCellDef="let sessionFormation" class="text-center"> {{sessionFormation?.dateDebut | date:'dd/MM/YYYY'}} </td>
+        <ng-container matColumnDef="date">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text text" style="min-width:100px;">Date Session</th>
+          <td mat-cell *matCellDef="let sessionFormation" class="text-center"> {{sessionFormation?.date | date:'dd/MM/YYYY'}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="dateFin">
-          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center" style="min-width:50px;">Date Fin</th>
-          <td mat-cell *matCellDef="let sessionFormation" class="text-center"> {{sessionFormation?.dateFin | date:'dd/MM/YYYY'}} </td>
+        <ng-container matColumnDef="heureDebut">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center" style="min-width:50px;">Heure Début</th>
+          <td mat-cell *matCellDef="let sessionFormation" class="text-center"> {{sessionFormation?.heureDebut}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="nombrePlaces">
-          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center" style="min-width:50px;">Nombre de Places</th>
-          <td mat-cell *matCellDef="let sessionFormation" class="text-center"> {{sessionFormation?.nombrePlaces}} </td>
+        <ng-container matColumnDef="heureFin">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center" style="min-width:50px;">Heure Fin</th>
+          <td mat-cell *matCellDef="let sessionFormation" class="text-center"> {{sessionFormation?.heureFin}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="formation">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center" style="min-width:50px;">Formation</th>
+          <td mat-cell *matCellDef="let sessionFormation" class="text-center"> {{sessionFormation?.formation?.titre}} </td>
         </ng-container>
 
         <ng-container matColumnDef="actions" stickyEnd>
@@ -88,7 +93,7 @@
     <button type="button" class="btn-close"  (click)="modal.close('by: close icon')" aria-label="Close"></button>
   </div>
   <div class="modal-body">
-<!--    <app-add-sessionFormation (search)="doSearch($event)" [isSearch]="true" (submit)="close()"></app-add-sessionFormation>-->
+    <app-add-session-formation (search)="doSearch($event)" [isSearch]="true" (submit)="close()"></app-add-session-formation>
   </div>
 </ng-template>
 <!-- search sessionFormation -->
@@ -100,7 +105,7 @@
     <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
   </div>
   <div class="modal-body">
-<!--    <app-add-sessionFormation [isSearch]="false" (submit)="close()"></app-add-sessionFormation>-->
+    <app-add-session-formation [isSearch]="false" (submit)="close()"></app-add-session-formation>
   </div>
 </ng-template>
 <!--End Add sessionFormation-->
@@ -112,7 +117,7 @@
     <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
   </div>
   <div class="modal-body">
-<!--    <app-edit-sessionFormation  (submit)="close()"[sessionFormationToUpdate]="sessionFormationToUpdate"></app-edit-sessionFormation>-->
+    <app-add-session-formation  (submit)="close()"[sessionFormationToUpdate]="sessionFormationToUpdate"></app-add-session-formation>
   </div>
 </ng-template>
 <!--End Edit sessionFormation-->

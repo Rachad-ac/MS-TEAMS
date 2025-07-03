@@ -1,0 +1,77 @@
+<form
+  [formGroup]="candidatureForm"
+  (ngSubmit)="isSearch ? onSearch() : onSubmit()"
+>
+  <div class="mb-3">
+    <label for="dateCandidature" class="form-label">Date de Candidature</label>
+    <input
+      type="datetime-local"
+      id="dateCandidature"
+      class="form-control"
+      formControlName="dateCandidature"
+    />
+    <div
+      *ngIf="
+        candidatureForm.get('dateCandidature')?.invalid &&
+        candidatureForm.get('dateCandidature')?.touched
+      "
+      class="text-danger"
+    >
+      La date de candidature est requise.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="statut" class="form-label">Statut</label>
+    <select id="statut" class="form-control" formControlName="statut">
+      <option value="">Sélectionner un statut</option>
+      <option value="EN_ATTENTE">En attente</option>
+      <option value="ACCEPTEE">Acceptée</option>
+      <option value="REJETEE">Rejetée</option>
+    </select>
+    <div
+      *ngIf="
+        candidatureForm.get('statut')?.invalid &&
+        candidatureForm.get('statut')?.touched
+      "
+      class="text-danger"
+    >
+      Le statut est requis.
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="recrutementId" class="form-label">Recrutement</label>
+    <select
+      id="recrutementId"
+      class="form-control"
+      formControlName="recrutementId"
+    >
+      <option value="">Sélectionner un recrutement</option>
+      <option *ngFor="let r of recrutements" [value]="r.id">
+        {{ r.titre }}
+      </option>
+    </select>
+    <div
+      *ngIf="
+        candidatureForm.get('recrutementId')?.invalid &&
+        candidatureForm.get('recrutementId')?.touched
+      "
+      class="text-danger"
+    >
+      Le recrutement est requis.
+    </div>
+  </div>
+
+  <div class="d-flex justify-content-end">
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="candidatureForm.invalid || loading"
+    >
+      {{
+        isSearch ? "Rechercher" : candidatureToUpdate ? "Modifier" : "Ajouter"
+      }}
+    </button>
+  </div>
+</form>
