@@ -10,10 +10,28 @@ export const MENU: MenuItem[] = [
   {
     label: 'Recrutement',
     icon: 'package',
-    link: '/admin/gestion-recrutement/recrutement'
+    link: '/admin/gestion-recrutement/recrutement',
+  },
+  // Ajout de l'entrée Candidature pour accéder à la gestion des candidatures
+  {
+    label: 'Candidature',
+    icon: 'user-check',
+    link: '/admin/gestion-recrutement/candidature',
+  },
+  {
+    label: 'Evaluation',
+    icon: 'file-text',
+    link: '/admin/gestion-recrutement/evaluation'
+  },
+   {
+    label: 'Candidat',
+    icon: 'user',
+    link: '/admin/gestion-recrutement/candidat'
   },
 
-  // gestion recrutement
+  // gestion formation
+
+  // Section gestion formation
   {
     label: 'Gestion Formation',
     isTitle: true,
@@ -22,10 +40,5 @@ export const MENU: MenuItem[] = [
     label: 'Formation',
     icon: 'book-open',
     link: '/admin/gestion-formation/formation',
-  },
-   {
-    label: 'Formateur',
-    icon: 'user',
-    link: '/admin/gestion-formation/formateur'
   },
 ];

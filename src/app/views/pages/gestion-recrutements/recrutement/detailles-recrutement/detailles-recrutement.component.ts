@@ -12,13 +12,14 @@ export class DetaillesRecrutementComponent implements OnInit {
 
   recrutement: any = null;
   displayedColumnsCompetence: string[] = ['nom', 'niveau', 'domaine'];
+  recrutementId: any;
 
   constructor(private activateRoute: ActivatedRoute,
               private recrutementService: RecrutementService) {}
 
   ngOnInit(): void {
-    const recrutementId = localStorage.getItem('recrutementId');
-    this.recrutementService.getRecrutementId(recrutementId).subscribe({
+    this.recrutementId = localStorage.getItem('recrutementId');
+    this.recrutementService.getRecrutementId(this.recrutementId).subscribe({
       next:(data) =>{
         console.log(data);
         this.recrutement = data.payload;

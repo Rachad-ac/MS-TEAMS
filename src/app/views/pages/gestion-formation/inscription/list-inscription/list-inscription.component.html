@@ -1,0 +1,89 @@
+<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin mb-1">
+  <nav class="page-breadcrumb cursor-pointer">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item active"><a>Liste Inscriptions</a></li>
+    </ol>
+  </nav>
+  <div class="d-flex justify-content-end align-items-center gap-2">
+    <button type="button" class="btn btn-primary btn-icon-text" (click)="openAddInscription(addInscriptionModal)">
+      <i class="feather icon-plus-circle"></i> Nouvelle Inscription
+    </button>
+  </div>
+</div>
+
+<div class="card mt-4">
+  <div class="card-body p-0">
+    <section class="table-container mat-elevation-z8" tabindex="0">
+      <table mat-table [dataSource]="dataSource?.content">
+        <ng-container matColumnDef="employeId">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Employé</th>
+          <td mat-cell *matCellDef="let inscription">{{ getEmployeName(inscription.employeId) }}</td>
+        </ng-container>
+        <ng-container matColumnDef="formationId">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Formation</th>
+          <td mat-cell *matCellDef="let inscription">{{ getFormationTitle(inscription.formationId) }}</td>
+        </ng-container>
+        <ng-container matColumnDef="dateInscription">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Date d'inscription</th>
+          <td mat-cell *matCellDef="let inscription">{{ inscription.dateInscription | date:'yyyy-MM-dd HH:mm' }}</td>
+        </ng-container>
+        <ng-container matColumnDef="statut">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Statut</th>
+          <td mat-cell *matCellDef="let inscription">{{ inscription.statut }}</td>
+        </ng-container>
+        <ng-container matColumnDef="actions" stickyEnd>
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Actions</th>
+          <td mat-cell *matCellDef="let inscription">
+            <button class="btn btn-outline-secondary pb-0 px-3 pt-1" [routerLink]="['/gestion-formation/inscriptions', inscription.id]">
+              <mat-icon class="m-0">assignment</mat-icon>
+            </button>
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu d'actions">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="openEditInscription(editInscriptionModal, inscription)">
+                <mat-icon>edit</mat-icon>
+                <span>Modifier</span>
+              </button>
+              <button mat-menu-item (click)="deleteInscription(inscription)">
+                <mat-icon>delete</mat-icon>
+                <span>Supprimer</span>
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="table-head-bg"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <span *ngIf="dataSource?.content?.length == 0" class="paginate text-danger mt-4">Aucune inscription trouvée</span>
+      <div class="paginate">
+        <ngb-pagination [collectionSize]="dataSource?.totalElements" [page]="pageOptions.page+1"
+                        [pageSize]="pageOptions.size" [maxSize]="5" (pageChange)="paginate($event)" size="sm"
+                        [rotate]="true" [ellipses]="true" [boundaryLinks]="true">
+        </ngb-pagination>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Modal Ajout Inscription -->
+<ng-template #addInscriptionModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Ajout Inscription</h5>
+    <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-add-edit-inscription (submit)="close()"></app-add-edit-inscription>
+  </div>
+</ng-template>
+
+<!-- Modal Edition Inscription -->
+<ng-template #editInscriptionModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Modifier Inscription</h5>
+    <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-add-edit-inscription (submit)="close()" [inscription]="inscriptionToUpdate"></app-add-edit-inscription>
+  </div>
+</ng-template>

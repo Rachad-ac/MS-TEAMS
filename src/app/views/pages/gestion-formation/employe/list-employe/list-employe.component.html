@@ -1,0 +1,171 @@
+<div
+  class="d-flex justify-content-between align-items-center flex-wrap grid-margin mb-1"
+>
+  <nav class="page-breadcrumb cursor-pointer">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item active"><a>Liste Employés</a></li>
+    </ol>
+  </nav>
+  <div class="d-flex justify-content-end align-items-center gap-2">
+    <button
+      type="button"
+      class="btn btn-primary btn-icon-text"
+      (click)="openAddEmploye(addEmployeModal)"
+    >
+      <i class="feather icon-plus-circle"></i> Nouvel Employé
+    </button>
+  </div>
+</div>
+
+<div class="card mt-4">
+  <div class="card-body p-0">
+    <section class="table-container mat-elevation-z8" tabindex="0">
+      <table mat-table [dataSource]="dataSource?.content">
+        <ng-container matColumnDef="nom">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Nom</th>
+          <td mat-cell *matCellDef="let employe">{{ employe.nom }}</td>
+        </ng-container>
+        <ng-container matColumnDef="prenom">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">
+            Prénom
+          </th>
+          <td mat-cell *matCellDef="let employe">{{ employe.prenom }}</td>
+        </ng-container>
+        <ng-container matColumnDef="email">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">
+            Email
+          </th>
+          <td mat-cell *matCellDef="let employe">{{ employe.email }}</td>
+        </ng-container>
+        <ng-container matColumnDef="departement">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">
+            Département
+          </th>
+          <td mat-cell *matCellDef="let employe">{{ employe.departement }}</td>
+        </ng-container>
+        <ng-container matColumnDef="poste">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">
+            Poste
+          </th>
+          <td mat-cell *matCellDef="let employe">{{ employe.poste }}</td>
+        </ng-container>
+        <ng-container matColumnDef="dateEmbauche">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">
+            Date d'embauche
+          </th>
+          <td mat-cell *matCellDef="let employe">
+            {{ employe.dateEmbauche | date : "yyyy-MM-dd" }}
+          </td>
+        </ng-container>
+        <ng-container matColumnDef="actions" stickyEnd>
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">
+            Actions
+          </th>
+          <td mat-cell *matCellDef="let employe">
+            <button
+              class="btn btn-outline-secondary pb-0 px-3 pt-1"
+              [routerLink]="['/gestion-formation/employes', employe.id]"
+            >
+              <mat-icon class="m-0">assignment</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              [matMenuTriggerFor]="menu"
+              aria-label="Menu d'actions"
+            >
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button
+                mat-menu-item
+                (click)="openEditEmploye(editEmployeModal, employe)"
+              >
+                <mat-icon>edit</mat-icon>
+                <span>Modifier</span>
+              </button>
+              <button mat-menu-item (click)="deleteEmploye(employe)">
+                <mat-icon>delete</mat-icon>
+                <span>Supprimer</span>
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+        <tr
+          mat-header-row
+          *matHeaderRowDef="displayedColumns; sticky: true"
+          class="table-head-bg"
+        ></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+      <span
+        *ngIf="dataSource?.content?.length == 0"
+        class="paginate text-danger mt-4"
+        >Aucun employé trouvé</span
+      >
+      <div class="paginate">
+        <ngb-pagination
+          [collectionSize]="dataSource?.totalElements"
+          [page]="pageOptions.page + 1"
+          [pageSize]="pageOptions.size"
+          [maxSize]="5"
+          (pageChange)="paginate($event)"
+          size="sm"
+          [rotate]="true"
+          [ellipses]="true"
+          [boundaryLinks]="true"
+        >
+        </ngb-pagination>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- Modal Ajout Employé -->
+<ng-template #addEmployeModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Ajout Employé</h5>
+    <button
+      type="button"
+      class="btn-close"
+      (click)="modal.close('by: close icon')"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <app-add-edit-employe (submit)="close()"></app-add-edit-employe>
+  </div>
+</ng-template>
+
+<!-- Modal Edition Employé -->
+<ng-template #editEmployeModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Modifier Employé</h5>
+    <button
+      type="button"
+      class="btn-close"
+      (click)="modal.close('by: close icon')"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <app-add-edit-employe
+      (submit)="close()"
+      [employe]="employeToUpdate"
+    ></app-add-edit-employe>
+  </div>
+</ng-template>
+
+<ng-template #testModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title">Test Modal</h5>
+    <button
+      type="button"
+      class="btn-close"
+      (click)="modal.close('by: close icon')"
+      aria-label="Close"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <p>Test d'ouverture de modale</p>
+  </div>
+</ng-template>
