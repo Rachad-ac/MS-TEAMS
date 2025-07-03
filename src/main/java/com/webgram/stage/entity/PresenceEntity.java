@@ -24,12 +24,9 @@ public class PresenceEntity implements Serializable {
     @Column(name = "justification" , nullable = true)
     private String justification;
 
-    /*
     @ManyToOne
     @JoinColumn(name = "employe_id")
     private EmployeEntity employe;
-
-     */
 
     @ManyToOne
     @JoinColumn(name = "session_id")

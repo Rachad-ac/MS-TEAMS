@@ -25,10 +25,10 @@ public class PresenceDTO implements Serializable {
     private String justification;
 
 
-    //private EmployeDTO employe;
+    private EmployeDTO employe;
     private SessionFormationDTO sessionFormation;
 
-    //private Long employeId;
+    private Long employeId;
     private Long sessionFormationId;
 
 }

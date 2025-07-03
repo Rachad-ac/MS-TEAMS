@@ -22,12 +22,10 @@ public class ResultatEntity implements Serializable {
     @Column(name = "commentaire")
     private String commentaire;
 
-    /*
+
     @ManyToOne
     @JoinColumn(name = "employe_id")
     private EmployeEntity employe;
-
-     */
 
     @ManyToOne
     @JoinColumn(name = "evaluation_id")
