@@ -13,19 +13,27 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { AddSessionFormationComponent } from './sessionFormation/add-session-formation/add-session-formation.component';
+<<<<<<< HEAD
+
+=======
 import { ListEmployeComponent } from './employe/list-employe/list-employe.component';
 import { AddEditEmployeComponent } from './employe/add-edit-employe/add-edit-employe.component';
 import { ListInscriptionComponent } from './inscription/list-inscription/list-inscription.component';
 import { AddEditInscriptionComponent } from './inscription/add-edit-inscription/add-edit-inscription.component';
+>>>>>>> dev
 
 @NgModule({
   declarations: [
     ListSessionFormationComponent,
+<<<<<<< HEAD
+    AddSessionFormationComponent
+=======
     AddSessionFormationComponent,
     ListEmployeComponent,
     AddEditEmployeComponent,
     ListInscriptionComponent,
     AddEditInscriptionComponent,
+>>>>>>> dev
   ],
   imports: [
     CommonModule,
@@ -34,10 +42,15 @@ import { AddEditInscriptionComponent } from './inscription/add-edit-inscription/
     MatMenuModule,
     MatButtonModule,
     MatIconModule,
+<<<<<<< HEAD
+    NgbPaginationModule
+  ]
+=======
     NgbPaginationModule,
     ReactiveFormsModule,
     NgSelectModule,
     RouterModule,
   ],
+>>>>>>> dev
 })
 export class GestionFormationModule {}

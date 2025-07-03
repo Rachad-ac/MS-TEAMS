@@ -81,7 +81,8 @@
   <li [ngbNavItem]="5">
     <a ngbNavLink><h5>Competences</h5></a>
     <ng-template ngbNavContent>
-      <table mat-table [dataSource]="recrutement?.competences">
+      <app-list-competence></app-list-competence>
+      <!-- <table mat-table [dataSource]="recrutement?.competences">
 
         <ng-container matColumnDef="nom">
           <th mat-header-cell *matHeaderCellDef class="table-head-text">Nom</th>
@@ -101,7 +102,7 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumnsCompetence; sticky: true" class="table-head-bg"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumnsCompetence"></tr>
 
-      </table>
+      </table> -->
     </ng-template>
   </li>
 </ul>

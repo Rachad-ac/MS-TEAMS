@@ -17,6 +17,12 @@ import {
   NgbModule
 } from '@ng-bootstrap/ng-bootstrap';
 import { DetaillesRecrutementComponent } from './recrutement/detailles-recrutement/detailles-recrutement.component';
+<<<<<<< HEAD
+import { AddRecrutementComponent } from './recrutement/add-recrutement/add-recrutement.component';
+import {ReactiveFormsModule} from "@angular/forms";
+import {NgSelectModule} from "@ng-select/ng-select";
+
+=======
 import { AddEvaluationComponent } from './evaluation/add-evaluation/add-evaluation.component';
 import { ListEvaluationComponent } from './evaluation/list-evaluation/list-evaluation.component';
 import { EditEvaluationComponent } from './evaluation/edit-evaluation/edit-evaluation.component';
@@ -29,6 +35,7 @@ import { EditCandidatComponent } from './candidat/edit-candidat/edit-candidat.co
 import { ListCandidatureComponent } from './candidature/list-candidature/list-candidature.component';
 import { DetaillesCandidatureComponent } from './candidature/detailles-candidature/detailles-candidature.component';
 import { AddEditCandidatureComponent } from './candidature/add-edit-candidature/add-edit-candidature.component';
+>>>>>>> dev
 
 @NgModule({
   // Déclaration de tous les composants utilisés dans ce module
@@ -36,6 +43,9 @@ import { AddEditCandidatureComponent } from './candidature/add-edit-candidature/
     ListRecrutementComponent,
     AddRecrutementComponent,
     DetaillesRecrutementComponent,
+<<<<<<< HEAD
+    AddRecrutementComponent,
+=======
     ListCandidatureComponent,
     DetaillesCandidatureComponent,
     AddEditCandidatureComponent,
@@ -46,6 +56,7 @@ import { AddEditCandidatureComponent } from './candidature/add-edit-candidature/
     AddCandidatComponent,
     ListCandidatComponent,
     EditCandidatComponent
+>>>>>>> dev
   ],
   // Import des modules nécessaires pour ce module
   imports: [
