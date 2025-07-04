@@ -11,6 +11,29 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./add-candidat.component.scss']
 })
 export class AddCandidatComponent {
+niveauEtudeList = [
+  { label: 'Aucun niveau scolaire', value: 'AUCUN' },
+  { label: 'Primaire', value: 'PRIMAIRE' },
+  { label: 'Certificat d\'Études Primaires (CEP)', value: 'CEP' },
+  { label: 'Brevet d\'Études du Premier Cycle (BEPC)', value: 'BEPC' },
+  { label: 'Secondaire', value: 'SECONDAIRE' },
+  { label: 'Baccalauréat', value: 'BAC' },
+  { label: 'BAC +1', value: 'BAC_PLUS_1' },
+  { label: 'BAC +2 (BTS, DUT...)', value: 'BAC_PLUS_2' },
+  { label: 'Licence (BAC +3)', value: 'LICENCE' },
+  { label: 'Licence Professionnelle', value: 'LICENCE_PRO' },
+  { label: 'Maîtrise (BAC +4)', value: 'MAITRISE' },
+  { label: 'Master 1 (BAC +4)', value: 'MASTER_1' },
+  { label: 'Master 2 (BAC +5)', value: 'MASTER_2' },
+  { label: 'Master Professionnel', value: 'MASTER_PRO' },
+  { label: 'Doctorat (BAC +8)', value: 'DOCTORAT' },
+  { label: 'Post-doctorat', value: 'POST_DOCTORAT' },
+  { label: 'Formation Professionnelle', value: 'FORMATION_PROFESSIONNELLE' },
+  { label: 'Autre (à préciser)', value: 'AUTRE' }
+];
+
+
+
 form!: FormGroup;
 @Output() submit: EventEmitter<boolean> = new EventEmitter();
 @Output() search: EventEmitter<boolean> = new EventEmitter();
@@ -26,6 +49,7 @@ form!: FormGroup;
 
   ngOnInit(): void {
     this.initForm();
+      this.handleValidationAutreNiveau();
   }
 
   initForm() {
@@ -36,8 +60,22 @@ form!: FormGroup;
       telephone: new FormControl('', [Validators.required, Validators.minLength(10), Validators.maxLength(15)]),
       dateNaissance: new FormControl('', Validators.required),
       adresse: new FormControl('', Validators.required),
-      niveauEtude: new FormControl('', Validators.required)
+      niveauEtude: new FormControl('', Validators.required),
+      autreNiveauEtude: [''] 
     });
+    }
+    handleValidationAutreNiveau() {
+  this.form.get('niveauEtude')?.valueChanges.subscribe(value => {
+    const autreCtrl = this.form.get('autreNiveauEtude');
+    if (value === 'AUTRE') {
+      autreCtrl?.setValidators([Validators.required]);
+    } else {
+      autreCtrl?.clearValidators();
+      autreCtrl?.setValue(''); // reset si pas AUTRE
+    }
+    autreCtrl?.updateValueAndValidity();
+  });
+
   }
 
 

@@ -24,6 +24,9 @@ import {AddRecrutementComponent} from "./recrutement/add-recrutement/add-recrute
 import {ListCandidatComponent} from "./candidat/list-candidat/list-candidat.component";
 import {AddCandidatComponent} from "./candidat/add-candidat/add-candidat.component";
 import {EditCandidatComponent} from "./candidat/edit-candidat/edit-candidat.component";
+import { DetaillesCandidatureComponent } from './candidature/detailles-candidature/detailles-candidature.component';
+import { AddEditCandidatureComponent } from './candidature/add-edit-candidature/add-edit-candidature.component';
+import { ListCandidatureComponent } from './candidature/list-candidature/list-candidature.component';
 
 
 
@@ -40,6 +43,11 @@ import {EditCandidatComponent} from "./candidat/edit-candidat/edit-candidat.comp
     ListCandidatComponent,
     AddCandidatComponent,
     EditCandidatComponent,
+    ListCandidatComponent,
+    DetaillesCandidatureComponent,
+    AddEditCandidatureComponent,
+    ListCandidatureComponent
+
   ],
   // Import des modules nécessaires pour ce module
   imports: [

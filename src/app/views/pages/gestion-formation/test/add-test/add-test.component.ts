@@ -1,28 +1,28 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormationService } from 'src/app/services/formation/formation.service';
-import { ModuleService } from 'src/app/services/module/module.service';
+import { TestService } from 'src/app/services/test/test.service';
 import { Alertes } from 'src/app/util/alerte';
 
 @Component({
-  selector: 'app-add-module',
-  templateUrl: './add-module.component.html',
-  styleUrls: ['./add-module.component.scss']
+  selector: 'app-add-test',
+  templateUrl: './add-test.component.html',
+  styleUrls: ['./add-test.component.scss']
 })
-export class AddModuleComponent {
+export class AddTestComponent {
 form!: FormGroup;
-@Output() submit: EventEmitter<any> = new EventEmitter();
-@Output() search: EventEmitter<any> = new EventEmitter();
-@Input() moduleToUpdate: any;
+@Output() submit: EventEmitter<boolean> = new EventEmitter();
+@Output() search: EventEmitter<boolean> = new EventEmitter();
+@Input() testToUpdate: any;
 @Input() isSearch: any;
 formations: any[] = [];
- pageOptions: any = { page: 0, size: 10 };
+pageOptions: any = { page: 0, size: 10 };
 
 
   constructor(
     private modalService: NgbModal,
-    private moduleService: ModuleService,
+    private testService: TestService,
     private fb: FormBuilder,
      private formationService: FormationService
     
@@ -34,10 +34,10 @@ formations: any[] = [];
 
   initForm() {
     this.form = this.fb.group({
-      titre: ['', Validators.required],
-      ordre: new FormControl('', [Validators.required, Validators.min(1)]),
+      type: ['', Validators.required],
+      date: ['', [Validators.required]],
+      bareme: ['', [Validators.required]],
       formationId: [localStorage.getItem("formationId")],
-   
     });
 
      this.formationService.getAllFormations(this.pageOptions).subscribe({
@@ -53,20 +53,21 @@ formations: any[] = [];
   }
 
  loadFileds() {
-    if (this.moduleToUpdate !== undefined) {
-      this.form?.get('id')?.setValue(this.moduleToUpdate?.id);
-      this.form?.get('titre')?.setValue(this.moduleToUpdate?.titre);
-      this.form?.get('ordre')?.setValue(this.moduleToUpdate?.ordre);
-      this.form?.get('FormationId')?.setValue(this.moduleToUpdate?.FormationId);
+    if (this.testToUpdate !== undefined) {
+      this.form?.get('id')?.setValue(this.testToUpdate?.id);
+      this.form?.get('type')?.setValue(this.testToUpdate?.type);
+      this.form?.get('date')?.setValue(this.testToUpdate?.date);
+      this.form?.get('bareme')?.setValue(this.testToUpdate?.bareme);
+      this.form?.get('formationId')?.setValue(this.testToUpdate?.formationId);
     }
   }
  
 
   create(): void {
-    const module = this.form.value;
-    this.moduleService.createModule(module).subscribe({
+    const test = this.form.value;
+    this.testService.createTest(test).subscribe({
       next: () => {
-        Alertes.alerteAddSuccess('Module ajoutée avec succès');
+        Alertes.alerteAddSuccess('Test ajouté avec succès');
         this.emitSubmit();
       },
       error: (err) => {

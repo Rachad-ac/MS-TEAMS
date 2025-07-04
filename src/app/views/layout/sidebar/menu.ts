@@ -41,9 +41,6 @@ export const MENU: MenuItem[] = [
     icon: 'book-open',
     link: '/admin/gestion-formation/formation',
   },
-   {
-    label: 'Module Formation',
-    icon: 'layers',
-    link: '/admin/gestion-formation/module',
-  },
+
+   
 ];

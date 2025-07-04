@@ -32,7 +32,12 @@ export class ModuleService {
       if (req.ordre) {
         params = params.append("ordre", req.ordre);
       }
-   
+      if(req?.formation != undefined && req?.formation){
+        params = params.append("formation", req?.formation);
+      }
+       if (req.formationId) {
+      params = params.append("formationId", req.formationId);
+    }
             
       params = params.append("page", req.page ?? 0);
       params = params.append("size", req.size ?? 10);

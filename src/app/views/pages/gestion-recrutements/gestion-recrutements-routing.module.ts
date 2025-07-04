@@ -9,6 +9,9 @@ import {DetaillesEvaluationComponent} from "./evaluation/detailles-evaluations/d
 import { AddCandidatComponent } from './candidat/add-candidat/add-candidat.component';
 import { ListCandidatComponent } from './candidat/list-candidat/list-candidat.component';
 import { EditCandidatComponent } from './candidat/edit-candidat/edit-candidat.component';
+import { ListCandidatureComponent } from './candidature/list-candidature/list-candidature.component';
+import { AddEditCandidatureComponent } from './candidature/add-edit-candidature/add-edit-candidature.component';
+import { DetaillesCandidatureComponent } from './candidature/detailles-candidature/detailles-candidature.component';
 
 
 const routes: Routes = [
@@ -22,8 +25,14 @@ const routes: Routes = [
   {path: 'detaille-recrutement', component: DetaillesRecrutementComponent},
   {path: 'candidat', component: ListCandidatComponent},
   {path: 'candidat', component: AddCandidatComponent},
-  {path: 'candidat', component: EditCandidatComponent}
+  {path: 'candidat', component: EditCandidatComponent},
 
+{path: 'candidature', component: ListCandidatureComponent},
+  {path: 'candidature/add', component: AddEditCandidatureComponent},
+  {path: 'candidature/edit/:id', component: AddEditCandidatureComponent},
+  {path: 'candidature/edit/:id', component: AddEditCandidatureComponent},
+  {path: 'candidature/edit/:id', component: AddEditCandidatureComponent},
+  {path: 'candidature/:id', component: DetaillesCandidatureComponent},
 ];
 
 @NgModule({

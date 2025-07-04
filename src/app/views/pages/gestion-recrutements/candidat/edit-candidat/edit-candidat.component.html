@@ -40,15 +40,32 @@
             <input type="text" class="form-control form-control-lg" id="adresse" placeholder="Adresse" formControlName="adresse">
           </div>
 
-        <div class="col-sm-6">
-          <div class="mb-3">
-            <label for="niveauEtude" class="form-label">Niveau d'Étude<small style="color: red;">*</small></label>
-            <input type="text" class="form-control form-control-lg" id="niveauEtude" placeholder="Niveau d'Étude" formControlName="niveauEtude">
-          </div>
-      
-   </div>
+         <div class="col-sm-6">
+        <div class="mb-3">
+          <label  class="form-label">Niveau Etude <small style="color: red;">*</small></label>
+          <ng-select
+            [items]="niveauEtudeList"
+            bindValue="value"
+            placeholder="Selectionner..."
+            formControlName="niveauEtude">
+          </ng-select>
+        </div>
+      </div>
    
-  
+        <div class="col-sm-6" *ngIf="form.get('niveauEtude')?.value === 'AUTRE'">
+    <div class="mb-3">
+    <label for="autreNiveauEtude" class="form-label">
+      Précisez votre niveau d'étude <small style="color: red;">*</small>
+    </label>
+    <input
+      type="text"
+      class="form-control form-control-lg"
+      id="autreNiveauEtude"
+      placeholder="Veillez saisir votre niveau d'étude "
+      formControlName="autreNiveauEtude"
+    />
+  </div>
+</div>
       </div>
     </form>
   

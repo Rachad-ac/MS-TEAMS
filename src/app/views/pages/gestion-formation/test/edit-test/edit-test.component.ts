@@ -1,27 +1,26 @@
-import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { FormationService } from 'src/app/services/formation/formation.service';
-import { ModuleService } from 'src/app/services/module/module.service';
+import { TestService } from 'src/app/services/test/test.service';
 import { Alertes } from 'src/app/util/alerte';
 
 @Component({
-  selector: 'app-edit-module',
-  templateUrl: './edit-module.component.html',
-  styleUrls: ['./edit-module.component.scss']
+  selector: 'app-edit-test',
+  templateUrl: './edit-test.component.html',
+  styleUrls: ['./edit-test.component.scss']
 })
-export class EditModuleComponent implements OnInit {
-  form!: FormGroup;
+export class EditTestComponent {
+form!: FormGroup;
   @Output() submit: EventEmitter<boolean> = new EventEmitter();
   @Output() search: EventEmitter<boolean> = new EventEmitter();
-  @Input() sessionFormationToUpdate!: any;
   @Input() isSearch: any;
-  @Input() moduleToUpdate: any;
+  @Input() testToUpdate: any;
   formations: any[] = [];
   pageOptions: any = { page: 0, size: 10 };
 
   constructor(
-    private moduleService: ModuleService,
+    private testService: TestService,
     private modalService: NgbModal,
     private formationService: FormationService
   ) {}
@@ -41,25 +40,27 @@ export class EditModuleComponent implements OnInit {
 
   initForm() {
     this.form = new FormGroup({
-      titre: new FormControl('', Validators.required),
-      ordre: new FormControl('', [Validators.required, Validators.min(1)]),
-      formationId: new FormControl(localStorage.getItem("formationId")),       
-      
+      type: new FormControl('', Validators.required),
+      date: new FormControl('', Validators.required),
+      bareme: new FormControl('', Validators.required),
+      formationId: new FormControl(null),
+      formation: new FormControl(null)
     });
   }
 
   loadFileds() {
-    if (this.moduleToUpdate !== undefined && this.moduleToUpdate !== null) {
-      this.form.get('titre')?.setValue(this.moduleToUpdate.titre);
-      this.form.get('ordre')?.setValue(this.moduleToUpdate.ordre);
-      this.form.get('formationId')?.setValue(this.moduleToUpdate.formationId);
+    if (this.testToUpdate !== undefined && this.testToUpdate !== null) {
+      this.form.get('type')?.setValue(this.testToUpdate.type);
+      this.form.get('date')?.setValue(this.testToUpdate.date);
+      this.form.get('bareme')?.setValue(this.testToUpdate.bareme);
+      this.form.get('formationId')?.setValue(this.testToUpdate.formationId);
     }
   }
 
   update() {
     const module = this.form.value;
 
-    this.moduleService.updateModule(this.moduleToUpdate?.id, module).subscribe({
+    this.testService.updateTest(this.testToUpdate?.id, module).subscribe({
       next: (data) => {
         Alertes.alerteAddSuccess('Enregistrement reussi');
         this.emitSubmit()
