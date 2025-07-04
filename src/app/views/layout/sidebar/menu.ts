@@ -34,4 +34,24 @@ export const MENU: MenuItem[] = [
     icon: 'book-open',
     link: '/admin/gestion-formation/formation',
   },
+  {
+    label: 'Employés',
+    icon: 'users',
+    link: '/admin/gestion-formation/employes',
+  },
+  {
+    label: 'Resultat',
+    icon: 'bar-chart-2',
+    link: '/admin/gestion-formation/resultat',
+  },
+  {
+    label: 'Presence',
+    icon: 'check-circle',
+    link: '/admin/gestion-formation/presence',
+  },
+  {
+    label: 'Inscriptions',
+    icon: 'edit',
+    link: '/admin/gestion-formation/inscriptions',
+  },
 ];

@@ -1,43 +1,42 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EvaluationService } from "../../../../../services/evaluation/evaluation.service";
+import {Component, TemplateRef} from '@angular/core';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
+import {ResultatService} from "../../../../../services/resultat/resultat.service";
 import {Alertes} from "../../../../../util/alerte";
+import {PresenceService} from "../../../../../services/presence/presence.service";
 
 @Component({
-  selector: 'app-list-evaluation',
-  templateUrl: './list-evaluation.component.html',
-  styleUrls: ['./list-evaluation.component.scss']
+  selector: 'app-list-presence',
+  templateUrl: './list-presence.component.html',
+  styleUrls: ['./list-presence.component.scss']
 })
-export class ListEvaluationComponent implements OnInit {
+export class ListPresenceComponent {
+
 
   displayedColumns : string[] = [
-    'type',
-    'score',
-    'noteGenerale',
-    'commentaire',
-    'dateEvaluation',
-    'recruteur',
     'statut',
+    'justification',
+    'employe_id',
+    'sessionFormation_id',
     'detailles',
     'actions'
   ];
 
-  evaluationToUpdate: any;
+  presenceToUpdate: any;
   pageOptions: any = { page: 0, size: 10 };
   dataSource: any;
   loadingIndicator = true;
 
   constructor(
     private modalService: NgbModal,
-    private evaluationServices: EvaluationService
+    private presenceService: PresenceService
   ) { }
 
   ngOnInit(): void {
-    this.getAllEvaluations();
+    this.getAllPresence();
   }
 
-  getAllEvaluations(): void {
-    this.evaluationServices.getAllEvaluations(this.pageOptions).subscribe({
+  getAllPresence(): void {
+    this.presenceService.getAllPresence(this.pageOptions).subscribe({
       next: response => {
         console.log('response', response);
         this.dataSource = response;
@@ -56,15 +55,15 @@ export class ListEvaluationComponent implements OnInit {
   paginate($event: number): void {
     this.loadingIndicator = true;
     this.pageOptions.page = $event - 1;
-    this.getAllEvaluations();
+    this.getAllPresence();
   }
 
-  openAddEvaluation(content: TemplateRef<any>): void {
+  openAddPresence(content: TemplateRef<any>): void {
     this.openModal(content, 'lg');
   }
 
-  openEditEvaluation(content: TemplateRef<any>, rEvaluation: any): void {
-    this.evaluationToUpdate = rEvaluation;
+  openEditPresence(content: TemplateRef<any>, presence: any): void {
+    this.presenceToUpdate = presence;
     this.openModal(content, 'lg');
   }
 
@@ -75,12 +74,12 @@ export class ListEvaluationComponent implements OnInit {
     );
   }
 
-  deleteEvaluation(evaluation: any): void {
+  deletePresence(presence: any): void {
     Alertes.confirmAction(
       'Voulez-vous supprimer ?',
       'Cet élément sera définitivement supprimé',
       () => {
-        this.evaluationServices.deleteEvaluation(evaluation).subscribe({
+        this.presenceService.deletePresence(presence).subscribe({
           next: () => {
             Alertes.alerteAddSuccess('Suppression réussie');
           },
@@ -88,7 +87,7 @@ export class ListEvaluationComponent implements OnInit {
             Alertes.alerteAddDanger(err?.error?.message || 'Erreur de suppression');
           },
           complete: () => {
-            this.getAllEvaluations();
+            this.getAllPresence();
           }
         });
       }
@@ -97,7 +96,7 @@ export class ListEvaluationComponent implements OnInit {
 
   close(): void {
     this.modalService.dismissAll();
-    this.getAllEvaluations();
+    this.getAllPresence();
   }
 
   doSearch(data: any): void {
@@ -107,7 +106,8 @@ export class ListEvaluationComponent implements OnInit {
       size: 20
     };
     console.log("Filtres appliqués : ", this.pageOptions);
-    this.getAllEvaluations();
+    this.getAllPresence();
     this.modalService.dismissAll();
   }
+
 }

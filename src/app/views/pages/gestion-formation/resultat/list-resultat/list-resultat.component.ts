@@ -1,43 +1,40 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EvaluationService } from "../../../../../services/evaluation/evaluation.service";
+import {Component, TemplateRef} from '@angular/core';
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Alertes} from "../../../../../util/alerte";
+import {ResultatService} from "../../../../../services/resultat/resultat.service";
 
 @Component({
-  selector: 'app-list-evaluation',
-  templateUrl: './list-evaluation.component.html',
-  styleUrls: ['./list-evaluation.component.scss']
+  selector: 'app-list-resultat',
+  templateUrl: './list-resultat.component.html',
+  styleUrls: ['./list-resultat.component.scss']
 })
-export class ListEvaluationComponent implements OnInit {
+export class ListResultatComponent {
 
   displayedColumns : string[] = [
-    'type',
-    'score',
-    'noteGenerale',
+    'note',
     'commentaire',
-    'dateEvaluation',
-    'recruteur',
-    'statut',
+    'employe_id',
+    'evaluation_id',
     'detailles',
     'actions'
   ];
 
-  evaluationToUpdate: any;
+  resultatToUpdate: any;
   pageOptions: any = { page: 0, size: 10 };
   dataSource: any;
   loadingIndicator = true;
 
   constructor(
     private modalService: NgbModal,
-    private evaluationServices: EvaluationService
+    private resultatService: ResultatService
   ) { }
 
   ngOnInit(): void {
-    this.getAllEvaluations();
+    this.getAllResultat();
   }
 
-  getAllEvaluations(): void {
-    this.evaluationServices.getAllEvaluations(this.pageOptions).subscribe({
+  getAllResultat(): void {
+    this.resultatService.getAllResultat(this.pageOptions).subscribe({
       next: response => {
         console.log('response', response);
         this.dataSource = response;
@@ -56,15 +53,15 @@ export class ListEvaluationComponent implements OnInit {
   paginate($event: number): void {
     this.loadingIndicator = true;
     this.pageOptions.page = $event - 1;
-    this.getAllEvaluations();
+    this.getAllResultat();
   }
 
-  openAddEvaluation(content: TemplateRef<any>): void {
+  openAddResultat(content: TemplateRef<any>): void {
     this.openModal(content, 'lg');
   }
 
-  openEditEvaluation(content: TemplateRef<any>, rEvaluation: any): void {
-    this.evaluationToUpdate = rEvaluation;
+  openEditResultat(content: TemplateRef<any>, resultat: any): void {
+    this.resultatToUpdate = resultat;
     this.openModal(content, 'lg');
   }
 
@@ -75,12 +72,12 @@ export class ListEvaluationComponent implements OnInit {
     );
   }
 
-  deleteEvaluation(evaluation: any): void {
+  deleteResultat(resultat: any): void {
     Alertes.confirmAction(
       'Voulez-vous supprimer ?',
       'Cet élément sera définitivement supprimé',
       () => {
-        this.evaluationServices.deleteEvaluation(evaluation).subscribe({
+        this.resultatService.deleteResultat(resultat).subscribe({
           next: () => {
             Alertes.alerteAddSuccess('Suppression réussie');
           },
@@ -88,7 +85,7 @@ export class ListEvaluationComponent implements OnInit {
             Alertes.alerteAddDanger(err?.error?.message || 'Erreur de suppression');
           },
           complete: () => {
-            this.getAllEvaluations();
+            this.getAllResultat();
           }
         });
       }
@@ -97,7 +94,7 @@ export class ListEvaluationComponent implements OnInit {
 
   close(): void {
     this.modalService.dismissAll();
-    this.getAllEvaluations();
+    this.getAllResultat();
   }
 
   doSearch(data: any): void {
@@ -107,7 +104,8 @@ export class ListEvaluationComponent implements OnInit {
       size: 20
     };
     console.log("Filtres appliqués : ", this.pageOptions);
-    this.getAllEvaluations();
+    this.getAllResultat();
     this.modalService.dismissAll();
   }
+
 }

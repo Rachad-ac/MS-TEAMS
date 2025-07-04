@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgSelectModule } from '@ng-select/ng-select';
-
 import { GestionFormationRoutingModule } from './gestion-formation-routing.module';
 import { ListSessionFormationComponent } from './sessionFormation/list-session-formation/list-session-formation.component';
 import { MatTableModule } from '@angular/material/table';
@@ -17,6 +16,17 @@ import { ListEmployeComponent } from './employe/list-employe/list-employe.compon
 import { AddEditEmployeComponent } from './employe/add-edit-employe/add-edit-employe.component';
 import { ListInscriptionComponent } from './inscription/list-inscription/list-inscription.component';
 import { AddEditInscriptionComponent } from './inscription/add-edit-inscription/add-edit-inscription.component';
+import { AddResultatComponent } from './resultat/add-resultat/add-resultat.component';
+import { ListResultatComponent } from './resultat/list-resultat/list-resultat.component';
+import { EditResultatComponent } from './resultat/edit-resultat/edit-resultat.component';
+import { DetailleResultatComponent } from './resultat/detaille-resultat/detaille-resultat.component';
+import { DetaillePresenceComponent } from './presence/detaille-presence/detaille-presence.component';
+import { AddPresenceComponent } from './presence/add-presence/add-presence.component';
+import { EditPresenceComponent } from './presence/edit-presence/edit-presence.component';
+import { ListPresenceComponent } from './presence/list-presence/list-presence.component';
+import {NgSelectModule} from "@ng-select/ng-select";
+import {ReactiveFormsModule} from "@angular/forms";
+import {SharedModule} from "@progress/kendo-angular-dropdowns";
 import {ListFormationComponent} from "./formation/list-formation/list-formation.component";
 import {AddFormationComponent} from "./formation/add-formation/add-formation.component";
 import {ListFormateurComponent} from "./formateur/list-formateur/list-formateur.component";
@@ -33,25 +43,36 @@ import {DetaillesFormationComponent} from "./formation/detailles-formation/detai
     AddEditEmployeComponent,
     ListInscriptionComponent,
     AddEditInscriptionComponent,
+    AddSessionFormationComponent,
+    AddResultatComponent,
+    ListResultatComponent,
+    EditResultatComponent,
+    DetailleResultatComponent,
+    DetaillePresenceComponent,
+    AddPresenceComponent,
+    EditPresenceComponent,
+    ListPresenceComponent
+  ],
+  imports: [
+    CommonModule,
+    GestionFormationRoutingModule,
+    MatTableModule,
+    MatMenuModule,
+    MatButtonModule,
+    MatIconModule,
+    NgbPaginationModule,
+    NgSelectModule,
+    ReactiveFormsModule,
+    SharedModule,
+    NgbPaginationModule,
+    ReactiveFormsModule,
+    NgSelectModule,
+    RouterModule,
     ListFormationComponent,
     AddFormationComponent,
     DetaillesFormationComponent,
     ListFormateurComponent,
     AddFormateurComponent,
   ],
-    imports: [
-        CommonModule,
-        GestionFormationRoutingModule,
-        MatTableModule,
-        MatMenuModule,
-        MatButtonModule,
-        MatIconModule,
-        NgbPaginationModule,
-        ReactiveFormsModule,
-        NgSelectModule,
-        RouterModule,
-        NgbNavModule,
-        NgbModule,
-    ],
 })
 export class GestionFormationModule {}

@@ -14,15 +14,20 @@ import { ListCandidatComponent } from './candidat/list-candidat/list-candidat.co
 import { EditCandidatComponent } from './candidat/edit-candidat/edit-candidat.component';
 
 const routes: Routes = [
-  { path: '', component: ListRecrutementComponent },
-  { path: 'recrutement', component: ListRecrutementComponent },
-  { path: 'recrutement/:id', component: DetaillesRecrutementComponent },
-  { path: 'evaluation', component: ListEvaluationComponent },
+  {path: '', component: ListRecrutementComponent},
+  {path: 'recrutement', component: ListRecrutementComponent},
+  {path: 'recrutement/:id', component: DetaillesRecrutementComponent},
+  {path: 'detaille-recrutement', component: DetaillesRecrutementComponent},
 
-  { path: 'evaluation/add', component: AddEvaluationComponent },
-  { path: 'evaluation/edit/:id', component: EditEvaluationComponent },
-  { path: 'evaluation/:id', component: DetaillesEvaluationComponent },
-  { path: 'detaille-recrutement', component: DetaillesRecrutementComponent },
+  {path: 'evaluation', component: ListEvaluationComponent},
+  {path: 'evaluation', component: AddEvaluationComponent},
+  {path: 'evaluation', component: EditEvaluationComponent},
+  {path: 'evaluation/:id', component: DetaillesEvaluationComponent},
+  {path: 'detaille-evaluation', component: DetaillesEvaluationComponent},
+
+  {path: 'candidat', component: ListCandidatComponent},
+  {path: 'candidat', component: AddCandidatComponent},
+  {path: 'candidat', component: EditCandidatComponent},
 
   { path: 'evaluation', component: AddEvaluationComponent },
   { path: 'evaluation', component: EditEvaluationComponent },
@@ -35,9 +40,6 @@ const routes: Routes = [
   { path: 'candidature/edit/:id', component: AddEditCandidatureComponent },
   { path: 'candidature/:id', component: DetaillesCandidatureComponent },
 
-  { path: 'candidat', component: ListCandidatComponent },
-  { path: 'candidat', component: AddCandidatComponent },
-  { path: 'candidat', component: EditCandidatComponent },
 ];
 
 @NgModule({
