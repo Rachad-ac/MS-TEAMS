@@ -1,0 +1,106 @@
+<section  *ngIf="!isSearch" >
+  <form [formGroup]="form">
+    <div class="row">
+      <!-- Nom -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom <small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="nom" placeholder="nom" formControlName="nom">
+        </div>
+      </div>
+
+      <!-- Prenom -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="prenom" class="form-label">Prenom <small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="prenom" placeholder="prenom" formControlName="prenom">
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email <small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="email" placeholder="email" formControlName="email">
+        </div>
+      </div>
+
+      <!-- Type -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="type" class="form-label">Type <small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="type" placeholder="type" formControlName="type">
+        </div>
+      </div>
+
+      <!-- Specialites -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="specialites" class="form-label">Specialites</label>
+          <input type="text" class="form-control form-control-lg" id="specialites" placeholder="specialites" formControlName="specialites">
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Boutons -->
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-primary" *ngIf="!isSearch" (click)="create()" [disabled]="!form.valid">Enregistrer</button>
+    <button type="button" class="btn btn-primary" *ngIf="isSearch" (click)="doSearch()">Rechercher</button>
+  </div>
+</section>
+
+<section *ngIf="isSearch">
+  <form [formGroup]="form">
+    <div class="row">
+      <!-- Nom -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom <small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="nom" placeholder="nom" formControlName="nom">
+        </div>
+      </div>
+
+      <!-- Prenom -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="prenom" class="form-label">Prenom <small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="prenom" placeholder="prenom" formControlName="prenom">
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email <small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="email" placeholder="email" formControlName="email">
+        </div>
+      </div>
+
+      <!-- Type -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="type" class="form-label">Type <small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="type" placeholder="type" formControlName="type">
+        </div>
+      </div>
+
+      <!-- Specialites -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="specialites" class="form-label">Specialites</label>
+          <input type="text" class="form-control form-control-lg" id="specialites" placeholder="specialites" formControlName="specialites">
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Boutons -->
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-primary" *ngIf="!isSearch" (click)="create()" [disabled]="!form.valid">Enregistrer</button>
+    <button type="button" class="btn btn-primary" *ngIf="isSearch" (click)="doSearch()">Rechercher</button>
+  </div>
+</section>
+

@@ -1,14 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
+import { NgSelectModule } from '@ng-select/ng-select';
 import { GestionFormationRoutingModule } from './gestion-formation-routing.module';
 import { ListSessionFormationComponent } from './sessionFormation/list-session-formation/list-session-formation.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import {NgbModule, NgbNavModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { AddSessionFormationComponent } from './sessionFormation/add-session-formation/add-session-formation.component';
+
 import { ListEmployeComponent } from './employe/list-employe/list-employe.component';
 import { AddEditEmployeComponent } from './employe/add-edit-employe/add-edit-employe.component';
 import { ListInscriptionComponent } from './inscription/list-inscription/list-inscription.component';
@@ -24,11 +27,17 @@ import { ListPresenceComponent } from './presence/list-presence/list-presence.co
 import {NgSelectModule} from "@ng-select/ng-select";
 import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "@progress/kendo-angular-dropdowns";
+import {ListFormationComponent} from "./formation/list-formation/list-formation.component";
+import {AddFormationComponent} from "./formation/add-formation/add-formation.component";
+import {ListFormateurComponent} from "./formateur/list-formateur/list-formateur.component";
+import {AddFormateurComponent} from "./formateur/add-formateur/add-formateur.component";
 
+import {DetaillesFormationComponent} from "./formation/detailles-formation/detailles-formation.component";
 
 @NgModule({
   declarations: [
     ListSessionFormationComponent,
+    AddSessionFormationComponent,
     AddSessionFormationComponent,
     ListEmployeComponent,
     AddEditEmployeComponent,
@@ -59,6 +68,11 @@ import {SharedModule} from "@progress/kendo-angular-dropdowns";
     ReactiveFormsModule,
     NgSelectModule,
     RouterModule,
+    ListFormationComponent,
+    AddFormationComponent,
+    DetaillesFormationComponent,
+    ListFormateurComponent,
+    AddFormateurComponent,
   ],
 })
 export class GestionFormationModule {}

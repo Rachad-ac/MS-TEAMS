@@ -13,6 +13,8 @@ import {AddPresenceComponent} from "./presence/add-presence/add-presence.compone
 import {EditPresenceComponent} from "./presence/edit-presence/edit-presence.component";
 import {AddResultatComponent} from "./resultat/add-resultat/add-resultat.component";
 import {EditResultatComponent} from "./resultat/edit-resultat/edit-resultat.component";
+import {ListFormationComponent} from "./formation/list-formation/list-formation.component";
+import {DetaillesFormationComponent} from "./formation/detailles-formation/detailles-formation.component";
 
 const routes: Routes = [
   {path: '', component: ListSessionFormationComponent},
@@ -29,6 +31,9 @@ const routes: Routes = [
   { path: 'session-formation', component: ListSessionFormationComponent },
   { path: 'employes', component: ListEmployeComponent },
   { path: 'inscriptions', component: ListInscriptionComponent },
+  { path: '', component: ListFormationComponent },
+  { path: 'formation', component: ListFormationComponent },
+  { path: 'detaille-formation', component: DetaillesFormationComponent },
 ];
 
 @NgModule({

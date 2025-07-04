@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { FormControl, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CandidatService } from 'src/app/services/candidat/candidat.service';
@@ -10,13 +10,18 @@ import { Helper } from 'src/app/util/helper';
   templateUrl: './edit-candidat.component.html',
   styleUrls: ['./edit-candidat.component.scss']
 })
-export class EditCandidatComponent {
+export class EditCandidatComponent implements OnInit {
  form!: FormGroup
   @Output() submit: EventEmitter<boolean> = new EventEmitter();
   @Output() search: EventEmitter<boolean> = new EventEmitter();
 
   @Input() isSearch: any;
   @Input() candidatToUpdate: any;
+  statuts = [
+    {name:'EN_ATTENTE',description:'En Attente'},
+    {name:'ACCEPTEE',description:'Acceptée'},
+    {name:'REJETEE',description:'Rejetée'},
+  ];
 
   constructor(private candidatService: CandidatService,
     private modalService: NgbModal,
@@ -33,6 +38,8 @@ export class EditCandidatComponent {
         dateNaissance: new FormControl("", Validators.required),
         adresse: new FormControl("", Validators.required),
         niveauEtude: new FormControl("", Validators.required),
+        statutCandidature: new FormControl('EN_ATTENTE', Validators.required),
+        recrutementId: new FormControl(localStorage.getItem('recrutementId'), Validators.required)
       }
     )
     this.loadFileds()
@@ -47,6 +54,8 @@ export class EditCandidatComponent {
       this.form?.get('dateNaissance')?.setValue(Helper.editDate(this.candidatToUpdate?.dateNaissance));
       this.form?.get('adresse')?.setValue(this.candidatToUpdate?.adresse);
       this.form?.get('niveauEtude')?.setValue(this.candidatToUpdate?.niveauEtude);
+      this.form?.get('statutCandidature')?.setValue(this.candidatToUpdate?.statutCandidature?.name);
+      this.form?.get('recrutementId')?.setValue(this.candidatToUpdate?.recrutementId);
     }
   }
 
