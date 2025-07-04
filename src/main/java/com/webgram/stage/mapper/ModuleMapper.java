@@ -2,8 +2,10 @@ package com.webgram.stage.mapper;
 import com.webgram.stage.entity.CandidatEntity;
 import com.webgram.stage.entity.CompetenceEntity;
 import com.webgram.stage.entity.ModuleEntity;
+import com.webgram.stage.entity.SessionFormationEntity;
 import com.webgram.stage.model.CandidatDTO;
 import com.webgram.stage.model.ModuleDTO;
+import com.webgram.stage.model.SessionFormationDTO;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Named;
@@ -14,6 +16,15 @@ import java.util.stream.Collectors;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring")
 public interface ModuleMapper extends EntityMapper<ModuleDTO, ModuleEntity> {
+
+    @Override
+    @Mapping(source = "formationId", target = "formation.id")
+    ModuleEntity asEntity(ModuleDTO dto);
+
+    @Override
+    @Mapping(source = "formation.id", target = "formationId")
+    ModuleDTO asDto(ModuleEntity entity);
+
 
     // @Override
     // @Mapping(source = "formation.id", target = "formationId")

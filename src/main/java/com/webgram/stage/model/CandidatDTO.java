@@ -3,6 +3,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.webgram.stage.entity.CompetenceEntity;
+import com.webgram.stage.entity.enums.NiveauEtude;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 import java.io.Serializable;
@@ -26,7 +27,8 @@ public class CandidatDTO implements Serializable  {
     private String telephone ;
     private LocalDate dateNaissance;
     private String adresse ;
-    private String niveauEtude;
+    private NiveauEtude niveauEtude;
+    private String autreNiveauEtude;
     private Set<CompetenceDTO> competence;
     private Set<Long> idCompetence;
 

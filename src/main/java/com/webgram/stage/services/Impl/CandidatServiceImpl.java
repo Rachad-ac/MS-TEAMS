@@ -1,6 +1,7 @@
 package com.webgram.stage.services.Impl;
 import com.querydsl.core.BooleanBuilder;
 import com.webgram.stage.entity.QCandidatEntity;
+import com.webgram.stage.entity.enums.NiveauEtude;
 import com.webgram.stage.mapper.CandidatMapper;
 import com.webgram.stage.model.CandidatDTO;
 import com.webgram.stage.repository.CandidatRepository;
@@ -29,6 +30,20 @@ public class CandidatServiceImpl implements CandidatService {
     @Override
     public CandidatDTO createCandidat (CandidatDTO candidatDTO) {
         var entity = candidatMapper.asEntity( candidatDTO);
+
+        // gestion du niveau d'étude
+        NiveauEtude niveauEtudeValue = candidatDTO.getNiveauEtude();
+        String autreNiveau = candidatDTO.getAutreNiveauEtude();
+
+        if (niveauEtudeValue == NiveauEtude.AUTRE) {
+            entity.setNiveauEtude(NiveauEtude.AUTRE);
+            entity.setAutreNiveauEtude(autreNiveau);
+        } else {
+            entity.setNiveauEtude(niveauEtudeValue);
+            entity.setAutreNiveauEtude(null);
+        }
+
+        //gestion des competences
     if (candidatDTO.getIdCompetence() != null && !candidatDTO.getIdCompetence().isEmpty()) {
         var competences = competenceRepository.findAllById(candidatDTO.getIdCompetence());
         entity.setCompetence(Set.copyOf(competences));
@@ -40,6 +55,19 @@ public class CandidatServiceImpl implements CandidatService {
     @Override
     public CandidatDTO updateCandidat (CandidatDTO candidatDTO) {
         var entityUpdate = candidatMapper.asEntity(candidatDTO);
+
+       // gestion du niveau d'étude
+        NiveauEtude niveauEtudeValue = candidatDTO.getNiveauEtude();
+        String autreNiveau = candidatDTO.getAutreNiveauEtude();
+
+        if (niveauEtudeValue == NiveauEtude.AUTRE) {
+            entityUpdate.setNiveauEtude(NiveauEtude.AUTRE);
+            entityUpdate.setAutreNiveauEtude(autreNiveau);
+        } else {
+            entityUpdate.setNiveauEtude(niveauEtudeValue);
+            entityUpdate.setAutreNiveauEtude(null);
+        }
+           //gestion des Competences
 
         if (candidatDTO.getIdCompetence() != null && !candidatDTO.getIdCompetence().isEmpty()) {
             var competences = competenceRepository.findAllById(candidatDTO.getIdCompetence());
@@ -97,8 +125,9 @@ public class CandidatServiceImpl implements CandidatService {
             builder.and(qEntity.adresse.containsIgnoreCase(searchParams.get("adresse")));
         }
 
-        if (searchParams.containsKey("niveauEtude")) {
-            builder.and(qEntity.niveauEtude.containsIgnoreCase(searchParams.get("niveauEtude")));
+        String niveauEtude = searchParams.get("niveauEtude");
+        if (niveauEtude != null && !niveauEtude.isEmpty()) {
+            builder.and(qEntity.niveauEtude.stringValue().lower().containsIgnoreCase(niveauEtude.toLowerCase()));
         }
 
         if (searchParams.containsKey("dateNaissance")) {

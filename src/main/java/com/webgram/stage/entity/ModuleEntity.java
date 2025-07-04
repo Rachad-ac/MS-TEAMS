@@ -24,8 +24,7 @@ public class ModuleEntity implements Serializable {
     @Column (name = "ordre")
     private Integer ordre;
 
-    // @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    //@JoinColumn(name = "formation_id", nullable = false)
-    // private FormationEntity formation;
-
+    @ManyToOne
+    @JoinColumn(name = "formation_id",nullable = false)
+    private FormationEntity formation;
 }

@@ -1,4 +1,5 @@
 package com.webgram.stage.services.Impl;
+import com.querydsl.core.BooleanBuilder;
 
 import com.querydsl.core.BooleanBuilder;
 import com.webgram.stage.entity.ModuleEntity;
@@ -12,9 +13,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+
 
 @Service
 @Transactional
@@ -61,31 +61,6 @@ public class ModuleServiceImpl implements ModuleService {
                 .map(moduleMapper::asDto);
     }
 
-    // @Override
-    // public Page<ModuleDTO> getModulesByFormation(Long formationId, Pageable pageable) {
-    //     var pageEntities = moduleRepository.findByFormationIdOrderByOrdreAsc(formationId, pageable);
-    //     return pageEntities.map(moduleMapper::asDto);
-    // }
-
-    // @Override
-    // public void reorderModules(Long formationId, List<Long> moduleIdsInOrder) {
-        // Récupérer tous les modules de la formation
-    //  List<ModuleEntity> modules = moduleRepository.findByFormationIdOrderByOrdreAsc(formationId);
-
-        // Créer un map pour accès rapide par id
-    //var modulesMap = modules.stream()
-    //   .collect(Collectors.toMap(ModuleEntity::getId, m -> m));
-
-        // Mettre à jour l’ordre selon la liste fournie
-        // for (int i = 0; i < moduleIdsInOrder.size(); i++) {
-        // Long moduleId = moduleIdsInOrder.get(i);
-    //ModuleEntity module = modulesMap.get(moduleId);
-    //if (module != null) {
-    //     module.setOrdre(i + 1); // ordre commence à 1
-    //         moduleRepository.save(module);
-    //     }
-    //   }
-    //   }
 
     private Integer parseIntOrNull(String value) {
         try {
@@ -108,6 +83,15 @@ public class ModuleServiceImpl implements ModuleService {
             if (ordreValue != null) {
                 builder.and(qEntity.ordre.eq(ordreValue));
             }
+
         }
+
+        if (searchParams.containsKey("formation") && searchParams.get("formation") != null && !searchParams.get("formation").isEmpty()) {
+            builder.and(qEntity.formation.titre.containsIgnoreCase(searchParams.get("formation")));
+        }
+
+        if (searchParams.containsKey("formationId"))
+            builder.and(qEntity.formation.id.eq(Long.valueOf(searchParams.get("formationId"))));
     }
 }
+

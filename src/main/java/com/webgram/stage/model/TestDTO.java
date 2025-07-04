@@ -23,6 +23,7 @@ public class TestDTO implements Serializable  {
     private String type;
     private LocalDate date;
     private Integer bareme;
-    // private Long formationId;
+     private FormationDTO formation;
+     private Long formationId;
 
 }

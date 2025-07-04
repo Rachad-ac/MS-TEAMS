@@ -28,8 +28,8 @@ public class TestEntity implements Serializable {
     @Column(name = "bareme")
     private Integer bareme;
 
-    //   @ManyToOne(() => Formation, formation => formation.evaluations)
-    //  @JoinColumn({ name: 'formation_id' })
-    //  formation: Formation;
 
+    @ManyToOne
+    @JoinColumn(name = "formation_id",nullable = false)
+    private FormationEntity formation;
 }

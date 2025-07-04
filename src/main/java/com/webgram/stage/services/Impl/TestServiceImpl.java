@@ -84,10 +84,18 @@ public class TestServiceImpl implements TestService {
                 // log or ignore invalid number
             }
         }
+
+        if (searchParams.containsKey("formation") && searchParams.get("formation") != null && !searchParams.get("formation").isEmpty()) {
+            builder.and(qEntity.formation.titre.containsIgnoreCase(searchParams.get("formation")));
+        }
+
+        if (searchParams.containsKey("formationId"))
+            builder.and(qEntity.formation.id.eq(Long.valueOf(searchParams.get("formationId"))));
+    }
     }
 
 
 
-}
+
 
 

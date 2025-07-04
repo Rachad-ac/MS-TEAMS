@@ -23,6 +23,7 @@ public class ModuleDTO implements Serializable  {
     @NotEmpty
     private String titre;
     private int ordre;
-    // private Long formationId;
+    private Long formationId;
+    private FormationDTO formation;
 
 }

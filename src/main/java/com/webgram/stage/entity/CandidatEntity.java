@@ -1,5 +1,5 @@
 package com.webgram.stage.entity;
-
+import com.webgram.stage.entity.enums.NiveauEtude;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -39,7 +39,11 @@ public class CandidatEntity implements Serializable {
 	private String adresse;
 
 	@Column (name ="niveau_etude")
-	private String niveauEtude;
+	private NiveauEtude niveauEtude;
+
+	@Column(name = "autre_niveau_etude")
+	private String autreNiveauEtude;
+
 
 	@ManyToMany
 	@JoinTable(

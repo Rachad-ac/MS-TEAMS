@@ -1,9 +1,6 @@
 package com.webgram.stage.controller;
-
-import com.webgram.stage.model.CandidatDTO;
 import com.webgram.stage.model.ModuleDTO;
 import com.webgram.stage.model.Response;
-import com.webgram.stage.services.CandidatService;
 import com.webgram.stage.services.ModuleService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -13,7 +10,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.Map;
 
 @RestController
