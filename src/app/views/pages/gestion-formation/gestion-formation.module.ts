@@ -87,8 +87,8 @@ import {AddFormateurComponent} from "./formateur/add-formateur/add-formateur.com
     ReactiveFormsModule,
     NgSelectModule,
     RouterModule,
-    NgbNavModule
-    
+    NgbNavModule,
+    NgbModule
   ],
 })
 export class GestionFormationModule {}
