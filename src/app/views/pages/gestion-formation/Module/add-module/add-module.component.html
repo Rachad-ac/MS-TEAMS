@@ -1,0 +1,50 @@
+<section *ngIf="!isSearch">   
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="mb-3"> 
+          <label for="titre" class="form-label">titre<small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="titre" placeholder="titre" formControlName="titre">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="ordre" class="form-label">Ordre<small style="color: red;">*</small></label>
+          <input type="number" class="form-control form-control-lg" id="ordre" placeholder="Ordre" formControlName="ordre">
+        </div>
+      </div>
+       </div>
+     
+  </form>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-primary" (click)="create()" [disabled]="!form.valid">Enregistrer</button>
+  </div>
+</section>
+
+<section *ngIf="isSearch">   
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="mb-3"> 
+          <label for="titre" class="form-label">Titre<small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="titre" placeholder="" formControlName="titre">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="ordre" class="form-label">Ordre<small style="color: red;">*</small></label>
+          <input type="number" class="form-control form-control-lg" id="ordre" placeholder="Ordre" formControlName="ordre">
+        </div>
+      </div>
+    
+        
+    </div>
+  </form>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-primary" (click)="doSearch()">Rechercher</button>
+  </div>
+</section>

@@ -33,6 +33,7 @@ import {ListCompetenceComponent} from "./competence/list-competence/list-compete
 import {AddCompetenceComponent} from "./competence/add-competence/add-competence.component";
 import { DetaillesCandidatComponent } from './candidat/detailles-candidat/detailles-candidat.component';
 
+
 @NgModule({
   // Déclaration de tous les composants utilisés dans ce module
   declarations: [
@@ -49,6 +50,10 @@ import { DetaillesCandidatComponent } from './candidat/detailles-candidat/detail
     AddCandidatComponent,
     ListCandidatComponent,
     EditCandidatComponent,
+    ListCandidatComponent,
+    DetaillesCandidatureComponent,
+    AddEditCandidatureComponent,
+    ListCandidatureComponent,
     ListCompetenceComponent,
     AddCompetenceComponent,
     DetaillesCandidatComponent,

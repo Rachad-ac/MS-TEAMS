@@ -1,5 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ListFormationComponent } from './formation/list-formation/list-formation.component';
+import { ListModuleComponent } from './Module/list-module/list-module.component';
+import { DetaillesFormationComponent } from './formation/detailles-formation/detailles-formation.component';
+import { ListTestComponent } from './test/list-test/list-test.component';
 import { ListEmployeComponent } from './employe/list-employe/list-employe.component';
 import { ListInscriptionComponent } from './inscription/list-inscription/list-inscription.component';
 import {
@@ -13,10 +17,14 @@ import {AddPresenceComponent} from "./presence/add-presence/add-presence.compone
 import {EditPresenceComponent} from "./presence/edit-presence/edit-presence.component";
 import {AddResultatComponent} from "./resultat/add-resultat/add-resultat.component";
 import {EditResultatComponent} from "./resultat/edit-resultat/edit-resultat.component";
-import {ListFormationComponent} from "./formation/list-formation/list-formation.component";
-import {DetaillesFormationComponent} from "./formation/detailles-formation/detailles-formation.component";
+
 
 const routes: Routes = [
+  {path: '', component: ListFormationComponent},
+  {path: 'formation', component: ListFormationComponent},
+  {path: 'module', component: ListModuleComponent},
+  {path: 'detaille-formation', component: DetaillesFormationComponent},
+  {path: 'test', component: ListTestComponent},
   {path: '', component: ListSessionFormationComponent},
   {path: 'session-formation', component: ListSessionFormationComponent},
   {path: 'presence', component: ListPresenceComponent},

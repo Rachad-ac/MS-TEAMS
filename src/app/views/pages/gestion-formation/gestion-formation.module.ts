@@ -12,6 +12,15 @@ import { MatIconModule } from '@angular/material/icon';
 import {NgbModule, NgbNavModule, NgbPaginationModule} from '@ng-bootstrap/ng-bootstrap';
 import { AddSessionFormationComponent } from './sessionFormation/add-session-formation/add-session-formation.component';
 
+import { AddModuleComponent } from './Module/add-module/add-module.component';
+import { EditModuleComponent } from './Module/edit-module/edit-module.component';
+import { ListModuleComponent } from './Module/list-module/list-module.component';
+import { ListFormationComponent } from './formation/list-formation/list-formation.component';
+import { AddFormationComponent } from './formation/add-formation/add-formation.component';
+import { DetaillesFormationComponent } from './formation/detailles-formation/detailles-formation.component';
+import { AddTestComponent } from './test/add-test/add-test.component';
+import { EditTestComponent } from './test/edit-test/edit-test.component';
+import { ListTestComponent } from './test/list-test/list-test.component';
 import { ListEmployeComponent } from './employe/list-employe/list-employe.component';
 import { AddEditEmployeComponent } from './employe/add-edit-employe/add-edit-employe.component';
 import { ListInscriptionComponent } from './inscription/list-inscription/list-inscription.component';
@@ -24,20 +33,24 @@ import { DetaillePresenceComponent } from './presence/detaille-presence/detaille
 import { AddPresenceComponent } from './presence/add-presence/add-presence.component';
 import { EditPresenceComponent } from './presence/edit-presence/edit-presence.component';
 import { ListPresenceComponent } from './presence/list-presence/list-presence.component';
-import {NgSelectModule} from "@ng-select/ng-select";
-import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "@progress/kendo-angular-dropdowns";
-import {ListFormationComponent} from "./formation/list-formation/list-formation.component";
-import {AddFormationComponent} from "./formation/add-formation/add-formation.component";
 import {ListFormateurComponent} from "./formateur/list-formateur/list-formateur.component";
 import {AddFormateurComponent} from "./formateur/add-formateur/add-formateur.component";
 
-import {DetaillesFormationComponent} from "./formation/detailles-formation/detailles-formation.component";
 
 @NgModule({
   declarations: [
     ListSessionFormationComponent,
     AddSessionFormationComponent,
+    AddModuleComponent,
+    EditModuleComponent,
+    ListModuleComponent,
+    ListFormationComponent,
+    AddFormationComponent,
+    DetaillesFormationComponent,
+    AddTestComponent,
+    EditTestComponent,
+    ListTestComponent,
     AddSessionFormationComponent,
     ListEmployeComponent,
     AddEditEmployeComponent,
@@ -51,10 +64,16 @@ import {DetaillesFormationComponent} from "./formation/detailles-formation/detai
     DetaillePresenceComponent,
     AddPresenceComponent,
     EditPresenceComponent,
-    ListPresenceComponent
+    ListPresenceComponent,
+    ListFormationComponent,
+    AddFormationComponent,
+    DetaillesFormationComponent,
+    ListFormateurComponent,
+    AddFormateurComponent,
   ],
   imports: [
     CommonModule,
+    ReactiveFormsModule,
     GestionFormationRoutingModule,
     MatTableModule,
     MatMenuModule,
@@ -68,11 +87,8 @@ import {DetaillesFormationComponent} from "./formation/detailles-formation/detai
     ReactiveFormsModule,
     NgSelectModule,
     RouterModule,
-    ListFormationComponent,
-    AddFormationComponent,
-    DetaillesFormationComponent,
-    ListFormateurComponent,
-    AddFormateurComponent,
+    NgbNavModule,
+    NgbModule
   ],
 })
 export class GestionFormationModule {}
