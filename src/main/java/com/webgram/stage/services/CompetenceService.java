@@ -18,4 +18,5 @@ public interface CompetenceService {
 
 	Page<CompetenceDTO> getAllCompetences(Map<String, String> searchParams, Pageable pageable);
 
+
 }

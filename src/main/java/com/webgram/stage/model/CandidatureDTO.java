@@ -25,7 +25,7 @@ import java.time.LocalDateTime;
 public class CandidatureDTO implements Serializable {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
-    private Long idCandidature;
+    private Long id;
 
     // Date et heure de la candidature
     private LocalDateTime dateCandidature;
@@ -34,21 +34,16 @@ public class CandidatureDTO implements Serializable {
     @NotNull
     private StatutCandidature statut;
 
-    // Identifiant du recrutement associé à la candidature
-    private Long recrutementId;
-
-    // Identifiant du candidat ayant postulé
+    // Objet du candidat ayant postulé
+    private CandidatDTO candidat;
+    // Identifiants simples pour l'affichage et l'édition
     private Long candidatId;
 
-    // Getters et setters
-    public Long getIdCandidature() { return idCandidature; }
-    public void setIdCandidature(Long idCandidature) { this.idCandidature = idCandidature; }
-    public LocalDateTime getDateCandidature() { return dateCandidature; }
-    public void setDateCandidature(LocalDateTime dateCandidature) { this.dateCandidature = dateCandidature; }
-    public StatutCandidature getStatut() { return statut; }
-    public void setStatut(StatutCandidature statut) { this.statut = statut; }
-    public Long getRecrutementId() { return recrutementId; }
-    public void setRecrutementId(Long recrutementId) { this.recrutementId = recrutementId; }
-    public Long getCandidatId() { return candidatId; }
-    public void setCandidatId(Long candidatId) { this.candidatId = candidatId; }
-} 
+
+
+    // Titre du recrutement
+    private RecrutementDTO recrutement;
+    // Identifiant du recrutement associé à la candidature
+     private Long recrutementId;
+
+}

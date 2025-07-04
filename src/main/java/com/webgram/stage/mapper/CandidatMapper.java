@@ -14,10 +14,12 @@ import java.util.stream.Collectors;
 public interface CandidatMapper extends EntityMapper<CandidatDTO, CandidatEntity> {
     @Override
     @Mapping(target = "idCompetence", source = "competence", qualifiedByName = "competencesToIdSet")
+    @Mapping(source = "recrutement.id", target = "recrutementId")
     CandidatDTO asDto(CandidatEntity entity);
 
     @Override
     @Mapping(target = "competence", ignore = true) // Géré manuellement dans le service
+    @Mapping(source = "recrutementId", target = "recrutement.id")
     CandidatEntity asEntity(CandidatDTO dto);
 
     @Named("competencesToIdSet")
@@ -29,5 +31,4 @@ public interface CandidatMapper extends EntityMapper<CandidatDTO, CandidatEntity
                 .map(CompetenceEntity::getId)
                 .collect(Collectors.toSet());
     }
-
 }

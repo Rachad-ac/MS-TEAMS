@@ -1,4 +1,5 @@
 package com.webgram.stage.services.Impl;
+
 import com.querydsl.core.BooleanBuilder;
 import com.webgram.stage.entity.QCandidatEntity;
 import com.webgram.stage.entity.enums.NiveauEtude;
@@ -129,7 +130,6 @@ public class CandidatServiceImpl implements CandidatService {
         if (niveauEtude != null && !niveauEtude.isEmpty()) {
             builder.and(qEntity.niveauEtude.stringValue().lower().containsIgnoreCase(niveauEtude.toLowerCase()));
         }
-
         if (searchParams.containsKey("dateNaissance")) {
             var dateStr = searchParams.get("dateNaissance");
             if (dateStr != null && !dateStr.isBlank()) {
@@ -142,6 +142,12 @@ public class CandidatServiceImpl implements CandidatService {
                 }
             }
         }
+        if (searchParams.containsKey("statutCandidature")) {
+            builder.and(qEntity.statutCandidature.stringValue().lower().containsIgnoreCase(searchParams.get("statutCandidature")));
+        }
+
+        if (searchParams.containsKey("recrutementId"))
+            builder.and(qEntity.recrutement.id.eq(Long.valueOf(searchParams.get("recrutementId"))));
 
     }
 }

@@ -7,6 +7,7 @@ import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 @Builder
 @NoArgsConstructor
@@ -15,12 +16,14 @@ import java.io.Serializable;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CompetenceDTO implements Serializable {
+public class FormateurDTO implements Serializable {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     @NotEmpty
     private String nom;
-    private String niveau;
-    private String domaine;
+    private String prenom;
+    private String email;
+    private String type;
+    private String specialites;
 }

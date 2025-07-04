@@ -1,8 +1,8 @@
 package com.webgram.stage.controller;
 
-import com.webgram.stage.model.SessionFormationDTO;
 import com.webgram.stage.model.Response;
-import com.webgram.stage.services.SessionFormationService;
+import com.webgram.stage.model.FormateurDTO;
+import com.webgram.stage.services.FormateurService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -15,22 +15,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Map;
 
 @RestController
-@RequestMapping("session-formations")
+@RequestMapping("formateurs")
 @RequiredArgsConstructor
 @CrossOrigin("*")
 
-public class SessionFormationController {
+public class FormateurController {
 
-    private final SessionFormationService sessionFormationService;
+    private final FormateurService formateurService;
 
-    @Operation(summary = "Create sessionFormation", description = "this endpoint takes input sessionFormation and saves it")
+    @Operation(summary = "Create formateur", description = "this endpoint takes input formateur and saves it")
     @ApiResponses(value = {@ApiResponse(responseCode = "201", description = "Success"), @ApiResponse(responseCode = "400", description = "Request sent by the client was syntactically incorrect"), @ApiResponse(responseCode = "500", description = "Internal server error during request processing")})
     @PostMapping()
     @ResponseStatus(HttpStatus.CREATED)
-    public Response<Object> createSessionFormation(@RequestBody SessionFormationDTO sessionFormationDTO) {
+    public Response<Object> createFormateur(@RequestBody FormateurDTO formateurDTO) {
         try {
-            var dto = sessionFormationService.createSessionFormation(sessionFormationDTO);
-            return Response.ok().setPayload(dto).setMessage("SessionFormation créé");
+            var dto = formateurService.createFormateur(formateurDTO);
+            return Response.ok().setPayload(dto).setMessage("Formateur créé");
         } catch (Exception ex) {
             return Response.badRequest().setMessage(ex.getMessage());
         }
@@ -38,25 +38,25 @@ public class SessionFormationController {
 
     @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Response<Object> updateSessionFormation(@Parameter(name = "id", description = "the sessionFormation id to updated") @PathVariable("id") Long id, @RequestBody SessionFormationDTO sessionFormationDTO) {
-        sessionFormationDTO.setId(id);
+    public Response<Object> updateFormateur(@Parameter(name = "id", description = "the formateur id to updated") @PathVariable("id") Long id, @RequestBody FormateurDTO formateurDTO) {
+        formateurDTO.setId(id);
         try {
-            var dto = sessionFormationService.updateSessionFormation(sessionFormationDTO);
-            return Response.ok().setPayload(dto).setMessage("sessionFormation modifié");
+            var dto = formateurService.updateFormateur(formateurDTO);
+            return Response.ok().setPayload(dto).setMessage("formateur modifié");
         } catch (Exception ex) {
             return Response.badRequest().setMessage(ex.getMessage());
         }
 
     }
 
-    @Operation(summary = "Read the sessionFormation", description = "This endpoint is used to read sessionFormation, it takes input id sessionFormation")
+    @Operation(summary = "Read the formateur", description = "This endpoint is used to read formateur, it takes input id formateur")
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Success"), @ApiResponse(responseCode = "400", description = "Request sent by the client was syntactically incorrect"), @ApiResponse(responseCode = "404", description = "Resource access does not exist"), @ApiResponse(responseCode = "500", description = "Internal server error during request processing")})
     @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
-    public Response<Object> getSessionFormation(@Parameter(name = "id", description = "the type sessionFormation id to valid") @PathVariable Long id) {
+    public Response<Object> getFormateur(@Parameter(name = "id", description = "the type formateur id to valid") @PathVariable Long id) {
         try {
-            var dto = sessionFormationService.getSessionFormation(id);
-            return Response.ok().setPayload(dto).setMessage("sessionFormation trouvé");
+            var dto = formateurService.getFormateur(id);
+            return Response.ok().setPayload(dto).setMessage("formateur trouvé");
         } catch (Exception ex) {
             return Response.badRequest().setMessage(ex.getMessage());
         }
@@ -66,32 +66,20 @@ public class SessionFormationController {
     @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Success"), @ApiResponse(responseCode = "500", description = "Internal server error during request processing")})
     @GetMapping("/all")
     @ResponseStatus(HttpStatus.OK)
-    public Response<Object> getAllSessionFormations(@RequestParam Map<String, String> searchParams, Pageable pageable) {
-        var page = sessionFormationService.getAllSessionFormations(searchParams, pageable);
+    public Response<Object> getAllFormateurs(@RequestParam Map<String, String> searchParams, Pageable pageable) {
+        var page = formateurService.getAllFormateurs(searchParams, pageable);
         Response.PageMetadata metadata = Response.PageMetadata.builder().number(page.getNumber()).totalElements(page.getTotalElements()).size(page.getSize()).totalPages(page.getTotalPages()).build();
         return Response.ok().setPayload(page.getContent()).setMetadata(metadata);
     }
 
-    @Operation(summary = "Liste simple des sessions de formation", description = "Retourne la liste de toutes les sessions de formation sans pagination.")
-    @ApiResponses(value = {@ApiResponse(responseCode = "200", description = "Success"), @ApiResponse(responseCode = "500", description = "Internal server error during request processing")})
-    @GetMapping("/list")
-    @ResponseStatus(HttpStatus.OK)
-    public Response<Object> getAllSessionFormationsList() {
-        try {
-            var list = sessionFormationService.getAllSessionFormations(Map.of(), Pageable.unpaged()).getContent();
-            return Response.ok().setPayload(list);
-        } catch (Exception ex) {
-            return Response.badRequest().setMessage(ex.getMessage());
-        }
-    }
 
-    @Operation(summary = "delete the sessionFormation", description = "Delete sessionFormation, it takes input id sessionFormation")
+    @Operation(summary = "delete the formateur", description = "Delete formateur, it takes input id formateur")
     @ApiResponses(value = {@ApiResponse(responseCode = "204", description = "No content"), @ApiResponse(responseCode = "400", description = "Request sent by the client was syntactically incorrect"), @ApiResponse(responseCode = "404", description = "Resource access does not exist"), @ApiResponse(responseCode = "500", description = "Internal server error during request processing")})
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void deleteSessionFormation(@PathVariable("id") Long id) {
+    public void deleteFormateur(@PathVariable("id") Long id) {
         try {
-            sessionFormationService.deleteSessionFormation(id);
+            formateurService.deleteFormateur(id);
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
