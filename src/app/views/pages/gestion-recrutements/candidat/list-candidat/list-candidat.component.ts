@@ -14,10 +14,7 @@ export class ListCandidatComponent {
     'nom',
     'prenom',
     'email',
-    'telephone',
-    'dateNaissance',
-    'adresse',
-    'niveauEtude',
+    'infos',
     'actions',
   ];
    
@@ -116,5 +113,11 @@ export class ListCandidatComponent {
       this.getAllCandidats();
       this.modalService.dismissAll();
     }
+
+    saveIdCandidat(candidatId: any) {
+    if (candidatId != null) {
+      localStorage.setItem('candidatId', candidatId);
+    }
+  }
   }
 
