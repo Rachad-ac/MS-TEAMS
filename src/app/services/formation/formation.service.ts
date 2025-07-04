@@ -1,25 +1,14 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpParams} from "@angular/common/http";
-import {Observable} from "rxjs";
-import {environment} from "../../../environments/environment";
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({ providedIn: 'root' })
 export class FormationService {
-  constructor(protected http : HttpClient) { }
+  private apiUrl = '/api/formations';
 
-  createFormation(formation:any):Observable<any>{
-    return this.http.post<any>(`${environment.baseUrl}formations`,formation)
+  constructor(private http: HttpClient) {}
 
-  }
-  updateFormation(formationId:any, formation:any):Observable<any>{
-    return this.http.put<any>(`${environment.baseUrl}formations/${formationId}`,formation)
-  }
-
-  getFormationId(formationId:any):Observable<any>{
-    return this.http.get<any>(`${environment.baseUrl}formations/${formationId}`)
-  }
   getAllFormations(req?: any): Observable<any> {
     let parametres: HttpParams = new HttpParams();
 
@@ -49,7 +38,9 @@ export class FormationService {
       }
 
       return this.http.get<any>(
-        `${environment.baseUrl}formations/all?page=${req.page || 0}&size=${req.size || 10}`,
+        `${environment.baseUrl}formations/all?page=${req.page || 0}&size=${
+          req.size || 10
+        }`,
         { params: parametres }
       );
     } else {
@@ -60,9 +51,29 @@ export class FormationService {
     }
   }
 
+  createFormation(formation: any): Observable<any> {
+    return this.http.post<any>(`${environment.baseUrl}formations`, formation);
+  }
+
+  updateFormation(formationId: any, formation: any): Observable<any> {
+    return this.http.put<any>(
+      `${environment.baseUrl}formations/${formationId}`,
+      formation
+    );
+  }
+
+  getFormationId(formationId: any): Observable<any> {
+    return this.http.get<any>(
+      `${environment.baseUrl}formations/${formationId}`
+    );
+  }
+
   deleteFormation(formationId: any): Observable<any> {
-    return this.http.delete<any>(`${environment.baseUrl}formations/${formationId}`, {
-      observe: 'response',
-    });
+    return this.http.delete<any>(
+      `${environment.baseUrl}formations/${formationId}`,
+      {
+        observe: 'response',
+      }
+    );
   }
 }

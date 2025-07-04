@@ -26,6 +26,12 @@ export class CandidatService {
   let params: HttpParams = new HttpParams();
 
   if (req) {
+    if (req.recrutementId) {
+      params = params.append("recrutementId", req.recrutementId);
+    }
+    if (req.statutCandidature) {
+      params = params.append("statutCandidature", req.statutCandidature);
+    }
     if (req.nom) {
       params = params.append("nom", req.nom);
     }

@@ -23,13 +23,6 @@ export const MENU: MenuItem[] = [
     icon: 'file-text',
     link: '/admin/gestion-recrutement/evaluation'
   },
-   {
-    label: 'Candidat',
-    icon: 'user',
-    link: '/admin/gestion-recrutement/candidat'
-  },
-
-  // gestion formation
 
   // Section gestion formation
   {
@@ -41,6 +34,29 @@ export const MENU: MenuItem[] = [
     icon: 'book-open',
     link: '/admin/gestion-formation/formation',
   },
-
-   
+  {
+    label: 'Formateur',
+    icon: 'users',
+    link: '/admin/gestion-formation/formateur',
+  },
+  {
+    label: 'Employés',
+    icon: 'users',
+    link: '/admin/gestion-formation/employes',
+  },
+  {
+    label: 'Resultat',
+    icon: 'bar-chart-2',
+    link: '/admin/gestion-formation/resultat',
+  },
+  {
+    label: 'Presence',
+    icon: 'check-circle',
+    link: '/admin/gestion-formation/presence',
+  },
+  {
+    label: 'Inscriptions',
+    icon: 'edit',
+    link: '/admin/gestion-formation/inscriptions',
+  },
 ];

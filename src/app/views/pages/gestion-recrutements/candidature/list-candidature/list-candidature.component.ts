@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, Input } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { Alertes } from '../../../../../util/alerte';
 import { CandidatureService } from '../../../../../services/candidature/candidature.service';
@@ -13,8 +13,8 @@ export class ListCandidatureComponent implements OnInit {
   displayedColumns: string[] = [
     'dateCandidature',
     'statut',
-    'recrutementId',
-    'candidatId',
+    'recrutement',
+    'candidat',
     'detailles',
     'actions',
   ];
@@ -24,6 +24,7 @@ export class ListCandidatureComponent implements OnInit {
   candidatures: any; // Liste des candidatures (non utilisé directement)
   dataSource: any; // Source de données pour le tableau
   loadingIndicator = true; // Indicateur de chargement
+  @Input() recrutementId: any; // ID du recrutement pour filtrer les candidatures
 
   constructor(
     private modalService: NgbModal,
