@@ -24,8 +24,6 @@ import { DetaillePresenceComponent } from './presence/detaille-presence/detaille
 import { AddPresenceComponent } from './presence/add-presence/add-presence.component';
 import { EditPresenceComponent } from './presence/edit-presence/edit-presence.component';
 import { ListPresenceComponent } from './presence/list-presence/list-presence.component';
-import {NgSelectModule} from "@ng-select/ng-select";
-import {ReactiveFormsModule} from "@angular/forms";
 import {SharedModule} from "@progress/kendo-angular-dropdowns";
 import {ListFormationComponent} from "./formation/list-formation/list-formation.component";
 import {AddFormationComponent} from "./formation/add-formation/add-formation.component";
@@ -51,7 +49,12 @@ import {DetaillesFormationComponent} from "./formation/detailles-formation/detai
     DetaillePresenceComponent,
     AddPresenceComponent,
     EditPresenceComponent,
-    ListPresenceComponent
+    ListPresenceComponent,
+    ListFormationComponent,
+    AddFormationComponent,
+    DetaillesFormationComponent,
+    ListFormateurComponent,
+    AddFormateurComponent,
   ],
   imports: [
     CommonModule,
@@ -68,11 +71,8 @@ import {DetaillesFormationComponent} from "./formation/detailles-formation/detai
     ReactiveFormsModule,
     NgSelectModule,
     RouterModule,
-    ListFormationComponent,
-    AddFormationComponent,
-    DetaillesFormationComponent,
-    ListFormateurComponent,
-    AddFormateurComponent,
+    NgbNavModule
+    
   ],
 })
 export class GestionFormationModule {}
