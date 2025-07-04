@@ -2,9 +2,11 @@ package com.webgram.stage.services.Impl;
 
 import com.querydsl.core.BooleanBuilder;
 import com.webgram.stage.entity.QCandidatEntity;
+import com.webgram.stage.entity.enums.NiveauEtude;
 import com.webgram.stage.mapper.CandidatMapper;
 import com.webgram.stage.model.CandidatDTO;
 import com.webgram.stage.repository.CandidatRepository;
+import com.webgram.stage.repository.CompetenceRepository;
 import com.webgram.stage.services.CandidatService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
@@ -14,6 +16,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
 import java.util.Map;
+import java.util.Set;
 
 
 @Service
@@ -22,13 +25,30 @@ import java.util.Map;
 public class CandidatServiceImpl implements CandidatService {
     private final CandidatRepository candidatRepository;
     private final CandidatMapper candidatMapper;
+    private final CompetenceRepository competenceRepository;
 
 
-
-
-@Override
+    @Override
     public CandidatDTO createCandidat (CandidatDTO candidatDTO) {
         var entity = candidatMapper.asEntity( candidatDTO);
+
+        // gestion du niveau d'étude
+        NiveauEtude niveauEtudeValue = candidatDTO.getNiveauEtude();
+        String autreNiveau = candidatDTO.getAutreNiveauEtude();
+
+        if (niveauEtudeValue == NiveauEtude.AUTRE) {
+            entity.setNiveauEtude(NiveauEtude.AUTRE);
+            entity.setAutreNiveauEtude(autreNiveau);
+        } else {
+            entity.setNiveauEtude(niveauEtudeValue);
+            entity.setAutreNiveauEtude(null);
+        }
+
+        //gestion des competences
+    if (candidatDTO.getIdCompetence() != null && !candidatDTO.getIdCompetence().isEmpty()) {
+        var competences = competenceRepository.findAllById(candidatDTO.getIdCompetence());
+        entity.setCompetence(Set.copyOf(competences));
+    }
         var entitySave = candidatRepository.save(entity);
         return candidatMapper.asDto(entitySave);
     }
@@ -36,6 +56,26 @@ public class CandidatServiceImpl implements CandidatService {
     @Override
     public CandidatDTO updateCandidat (CandidatDTO candidatDTO) {
         var entityUpdate = candidatMapper.asEntity(candidatDTO);
+
+       // gestion du niveau d'étude
+        NiveauEtude niveauEtudeValue = candidatDTO.getNiveauEtude();
+        String autreNiveau = candidatDTO.getAutreNiveauEtude();
+
+        if (niveauEtudeValue == NiveauEtude.AUTRE) {
+            entityUpdate.setNiveauEtude(NiveauEtude.AUTRE);
+            entityUpdate.setAutreNiveauEtude(autreNiveau);
+        } else {
+            entityUpdate.setNiveauEtude(niveauEtudeValue);
+            entityUpdate.setAutreNiveauEtude(null);
+        }
+           //gestion des Competences
+
+        if (candidatDTO.getIdCompetence() != null && !candidatDTO.getIdCompetence().isEmpty()) {
+            var competences = competenceRepository.findAllById(candidatDTO.getIdCompetence());
+            entityUpdate.setCompetence(Set.copyOf(competences));
+        } else {
+            entityUpdate.setCompetence(Set.of());
+        }
         var updatedEntity = candidatRepository.save(entityUpdate);
         return candidatMapper.asDto(updatedEntity);
     }
@@ -86,10 +126,22 @@ public class CandidatServiceImpl implements CandidatService {
             builder.and(qEntity.adresse.containsIgnoreCase(searchParams.get("adresse")));
         }
 
-        if (searchParams.containsKey("niveauEtude")) {
-            builder.and(qEntity.niveauEtude.containsIgnoreCase(searchParams.get("niveauEtude")));
+        String niveauEtude = searchParams.get("niveauEtude");
+        if (niveauEtude != null && !niveauEtude.isEmpty()) {
+            builder.and(qEntity.niveauEtude.stringValue().lower().containsIgnoreCase(niveauEtude.toLowerCase()));
         }
-
+        if (searchParams.containsKey("dateNaissance")) {
+            var dateStr = searchParams.get("dateNaissance");
+            if (dateStr != null && !dateStr.isBlank()) {
+                try {
+                    LocalDate date = LocalDate.parse(dateStr); // Format attendu : yyyy-MM-dd
+                    builder.and(qEntity.dateNaissance.eq(date));
+                } catch (DateTimeParseException e) {
+                    throw new IllegalArgumentException(
+                            "Format de date invalide pour 'dateNaissance'. Format attendu : yyyy-MM-dd");
+                }
+            }
+        }
         if (searchParams.containsKey("statutCandidature")) {
             builder.and(qEntity.statutCandidature.stringValue().lower().containsIgnoreCase(searchParams.get("statutCandidature")));
         }
@@ -97,14 +149,5 @@ public class CandidatServiceImpl implements CandidatService {
         if (searchParams.containsKey("recrutementId"))
             builder.and(qEntity.recrutement.id.eq(Long.valueOf(searchParams.get("recrutementId"))));
 
-//        if (searchParams.containsKey("dateNaissance")) {
-//            try {
-//                LocalDate date = LocalDate.parse(searchParams.get("dateNaissance"));
-//                builder.and(qEntity.dateNaissance.eq(date));
-//            } catch (DateTimeParseException e) {
-//                throw new IllegalArgumentException("Format de date invalide pour 'dateNaissance'. Format attendu : yyyy-MM-dd");
-//            }
-//        }
     }
-
 }
