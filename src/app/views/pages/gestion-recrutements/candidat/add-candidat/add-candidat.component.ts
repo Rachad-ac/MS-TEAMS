@@ -1,9 +1,10 @@
-import {Component, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit, Output, TemplateRef} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CandidatService } from 'src/app/services/candidat/candidat.service';
 import { Alertes } from 'src/app/util/alerte';
 import { EventEmitter } from '@angular/core';
+import { competenceService } from 'src/app/services/competence/competence.service';
 
 @Component({
   selector: 'app-add-candidat',
@@ -40,18 +41,23 @@ form!: FormGroup;
     {name:'EN_ATTENTE',description:'En Attente'},
     {name:'ACCEPTEE',description:'Acceptée'},
     {name:'REJETEE',description:'Rejetée'},
-  ]
+  ];
+  competences: any[] =[];
+  pageOptions: any = { page: 0, size: 10 };
+
 
   constructor(
     private modalService: NgbModal,
     private candidatService: CandidatService,
-    
-    private fb: FormBuilder
+    private fb: FormBuilder,
+    private competenceService: competenceService
   ) {}
 
   ngOnInit(): void {
     this.initForm();
-      this.handleValidationAutreNiveau();
+    this.handleValidationAutreNiveau();
+    this.allCompetences
+
   }
 
   initForm() {
@@ -65,7 +71,8 @@ form!: FormGroup;
       niveauEtude: new FormControl('', Validators.required),
       autreNiveauEtude: [''],
       statutCandidature: new FormControl('EN_ATTENTE', Validators.required),
-      recrutementId: new FormControl(localStorage.getItem('recrutementId'), Validators.required)
+      recrutementId: new FormControl(localStorage.getItem('recrutementId'), Validators.required),
+      competences: new FormControl ([])
     });
     }
     handleValidationAutreNiveau() {
@@ -111,5 +118,24 @@ form!: FormGroup;
 
   close(): void {
     this.modalService.dismissAll();
+  }
+
+  openModal(content: TemplateRef<any>) {
+      this.competenceService.open(content)
+  }
+
+  allCompetences() {
+    this.competenceService.getAllCompetence(this.pageOptions).subscribe({
+      next: response => {
+        console.log('response',response);
+        this.competences = response.payload.map((competence: any) => ({
+          ...competence,
+          fullName: `${competence.nom} (${competence.niveau})`
+        }));
+      },
+      error: err => {
+        console.log(err);
+      },
+    });
   }
 }
