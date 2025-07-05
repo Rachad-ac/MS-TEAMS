@@ -50,10 +50,10 @@ export class CandidatService {
     if (req.adresse) {
       params = params.append("adresse", req.adresse);
     }
-    if (req.competence) {
+    if (req.competenceId) {
       params = params.append("competenceId", req.competenceId);
     }
-          
+
     params = params.append("page", req.page ?? 0);
     params = params.append("size", req.size ?? 10);
   } else {

@@ -1,9 +1,11 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { FormControl, FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
+import {Component, EventEmitter, Input, OnInit, Output, TemplateRef} from '@angular/core';
+import {FormBuilder, FormControl, FormGroup, UntypedFormBuilder, Validators} from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CandidatService } from 'src/app/services/candidat/candidat.service';
 import { Alertes } from 'src/app/util/alerte';
 import { Helper } from 'src/app/util/helper';
+import { competenceService } from 'src/app/services/competence/competence.service';
+
 
 @Component({
   selector: 'app-edit-candidat',
@@ -42,28 +44,32 @@ export class EditCandidatComponent implements OnInit {
     {name:'ACCEPTEE',description:'Acceptée'},
     {name:'REJETEE',description:'Rejetée'},
   ];
+  competences: any[] =[];
+  pageOptions: any = { page: 0, size: 10 };
 
   constructor(
     private candidatService: CandidatService,
     private modalService: NgbModal,
-    private fb: UntypedFormBuilder
+    private fb: FormBuilder,
+    private competenceService: competenceService
   ) {}
   ngOnInit(): void {
-    this.form = new FormGroup({
-      nom: new FormControl("", Validators.required),
-      prenom: new FormControl("", Validators.required),
-      email: new FormControl("", [Validators.required, Validators.email]),
-      telephone: new FormControl("", Validators.required),
-      dateNaissance: new FormControl("", Validators.required),
-      adresse: new FormControl("", Validators.required),
-      niveauEtude: new FormControl("", Validators.required),
-      autreNiveauEtude: new FormControl(''),
+    this.form = this.fb.group({
+      nom: ['', Validators.required],
+      prenom: new FormControl('', [Validators.required, Validators.min(0)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      telephone: new FormControl('', [Validators.required, Validators.minLength(10)]),
+      dateNaissance: new FormControl('', Validators.required),
+      adresse: new FormControl('', Validators.required),
+      niveauEtude: new FormControl('', Validators.required),
+      autreNiveauEtude: [''],
       statutCandidature: new FormControl('EN_ATTENTE', Validators.required),
-      recrutementId: new FormControl(localStorage.getItem('recrutementId'), Validators.required)
+      recrutementId: new FormControl(localStorage.getItem('recrutementId'), Validators.required),
+      competence: new FormControl ([])
     });
 
     this.handleValidationAutreNiveau();
-    this.loadFileds()
+    this.allCompetences()
   }
 
   handleValidationAutreNiveau() {
@@ -91,6 +97,7 @@ export class EditCandidatComponent implements OnInit {
       this.form?.get('autreNiveauEtude')?.setValue(this.candidatToUpdate?.autreNiveauEtude || '');
       this.form?.get('statutCandidature')?.setValue(this.candidatToUpdate?.statutCandidature?.name);
       this.form?.get('recrutementId')?.setValue(this.candidatToUpdate?.recrutementId);
+      this.form?.get('competence')?.setValue(this.candidatToUpdate?.competence);
     }
   }
 
@@ -115,11 +122,27 @@ export class EditCandidatComponent implements OnInit {
     this.modalService.dismissAll();
   }
 
-  doSearch() {
-    this.search.emit(this.form.value);
+  openModal(content: TemplateRef<any>) {
+    this.competenceService.open(content)
   }
 
   emitSubmit() {
     this.submit.emit(true);
+  }
+
+  allCompetences() {
+    this.competenceService.getAllCompetence(this.pageOptions).subscribe({
+      next: response => {
+        console.log('response',response);
+        this.competences = response.payload.map((competence: any) => ({
+          ...competence,
+          fullName: `${competence.nom} (${competence.niveau})`
+        }));
+        this.loadFileds()
+      },
+      error: err => {
+        console.log(err);
+      },
+    });
   }
 }
