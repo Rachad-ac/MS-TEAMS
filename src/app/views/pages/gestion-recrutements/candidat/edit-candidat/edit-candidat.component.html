@@ -20,26 +20,26 @@
         </div>
       </div>
 
-        <div class="col-sm-6">
-            <div class="mb-3">
-            <label for="telephone" class="form-label">Téléphone<small style="color: red;">*</small></label>
-            <input type="text" class="form-control form-control-lg" id="telephone" placeholder="Téléphone" formControlName="telephone">
-            </div>
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="telephone" class="form-label">Téléphone<small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="telephone" placeholder="Téléphone" formControlName="telephone">
         </div>
-        <div class="col-sm-6">
-            <div class="mb-3">
-            <label for="dateNaissance" class="form-label">Date de Naissance<small style="color: red;">*</small></label>
-            <input type="date" class="form-control form-control-lg" id="dateNaissance" placeholder="Date de Naissance" formControlName="dateNaissance">
-            </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="dateNaissance" class="form-label">Date de Naissance<small style="color: red;">*</small></label>
+          <input type="date" class="form-control form-control-lg" id="dateNaissance" placeholder="Date de Naissance" formControlName="dateNaissance">
         </div>
-       <div class="col-sm-6">
-            <div class="mb-3">
-            <label for="adresse" class="form-label">Adresse<small style="color: red;">*</small></label>
-            <input type="text" class="form-control form-control-lg" id="adresse" placeholder="Adresse" formControlName="adresse">
-            </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="adresse" class="form-label">Adresse<small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="adresse" placeholder="Adresse" formControlName="adresse">
         </div>
+      </div>
 
-        <div class="col-sm-6">
+      <div class="col-sm-6">
         <div class="mb-3">
           <label  class="form-label">Niveau Etude <small style="color: red;">*</small></label>
           <ng-select
@@ -50,21 +50,48 @@
           </ng-select>
         </div>
       </div>
+      <!-- Sélection des compétences -->
+      <div *ngIf="!isSearch" class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-title">Sélectionner les compétences</h6>
+            <div class="row">
+              <div class="col-8">
+                <ng-select
+                  [items]="competences"
+                  [multiple]="true"
+                  [closeOnSelect]="false"
+                  [searchable]="true"
+                  bindValue="id"
+                  bindLabel="fullName"
+                  placeholder="Sélectionnez les compétences"
+                  formControlName="idCompetences">
+                </ng-select>
+              </div>
+              <div class="col-4 d-flex justify-content-end">
+                <button type="button" class="btn btn-primary btn-icon-text" (click)="openModal(addcompetenceModal)">
+                  <i class="feather icon-plus-circle"></i> Nouvel Competence
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-    <div class="col-sm-6" *ngIf="form.get('niveauEtude')?.value === 'AUTRE'">
-    <div class="mb-3">
-    <label for="autreNiveauEtude" class="form-label">
-      Précisez votre niveau d'étude <small style="color: red;">*</small>
-    </label>
-    <input
-      type="text"
-      class="form-control form-control-lg"
-      id="autreNiveauEtude"
-      placeholder="Veillez saisir votre niveau d'étude "
-      formControlName="autreNiveauEtude"
-    />
-  </div>
-</div>
+      <div class="col-sm-6" *ngIf="form.get('niveauEtude')?.value === 'AUTRE'">
+        <div class="mb-3">
+          <label for="autreNiveauEtude" class="form-label">
+            Précisez votre niveau d'étude <small style="color: red;">*</small>
+          </label>
+          <input
+            type="text"
+            class="form-control form-control-lg"
+            id="autreNiveauEtude"
+            placeholder="Veillez saisir votre niveau d'étude "
+            formControlName="autreNiveauEtude"
+          />
+        </div>
+      </div>
       <div class="col-sm-6">
         <div class="mb-3">
           <label  class="form-label">Statut Candidature <small style="color: red;">*</small></label>
@@ -85,3 +112,15 @@
     <button type="button" class="btn btn-primary" (click)="update()" [disabled]="!form.valid">Enregistrer</button>
   </div>
 </section>
+
+
+<!--Add competence-->
+<ng-template #addcompetenceModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="addcompetenceModalLabel">Ajout competence</h5>
+    <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-add-competence [isSearch]="false" (submit)="allCompetences()"></app-add-competence>
+  </div>
+</ng-template>
