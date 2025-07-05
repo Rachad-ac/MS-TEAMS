@@ -40,6 +40,7 @@ public class CandidatEntity implements Serializable {
 	private String adresse;
 
 	@Column (name ="niveau_etude")
+	@Enumerated(EnumType.STRING)
 	private NiveauEtude niveauEtude;
 
 	@Column(name = "autre_niveau_etude")
