@@ -46,7 +46,7 @@ export class AddResultatComponent {
       }
     });
 
-    this.employeService.getAllEmployes().subscribe({
+    this.employeService.getAllEmploye().subscribe({
       next: (res) => {
         console.log('employes récupérés :', res);
 

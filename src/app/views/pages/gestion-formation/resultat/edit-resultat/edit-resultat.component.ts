@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Alertes} from "../../../../../util/alerte";
@@ -11,7 +11,7 @@ import {EvaluationService} from "../../../../../services/evaluation/evaluation.s
   templateUrl: './edit-resultat.component.html',
   styleUrls: ['./edit-resultat.component.scss']
 })
-export class EditResultatComponent {
+export class EditResultatComponent implements OnInit{
 
   employe : any[] = [];
   evaluations: any[] = [];
@@ -46,7 +46,7 @@ export class EditResultatComponent {
       }
     });
 
-    this.employeService.getAllEmployes().subscribe({
+    this.employeService.getAllEmploye().subscribe({
       next: (res) => {
         console.log('employes récupérés :', res);
 
@@ -57,7 +57,7 @@ export class EditResultatComponent {
         }));
       },
       error: (err) => {
-        console.error('Erreur chargement recruteurs :', err);
+        console.error('Erreur chargement Employe :', err);
       }
     });
     this.loadFileds()

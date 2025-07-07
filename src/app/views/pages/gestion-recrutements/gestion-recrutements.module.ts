@@ -34,7 +34,6 @@ import {AddCompetenceComponent} from "./competence/add-competence/add-competence
 import { DetaillesCandidatComponent } from './candidat/detailles-candidat/detailles-candidat.component';
 import {InfosCandidatComponent} from "./candidat/infos-candidat/infos-candidat.component";
 
-
 @NgModule({
   // Déclaration de tous les composants utilisés dans ce module
   declarations: [
