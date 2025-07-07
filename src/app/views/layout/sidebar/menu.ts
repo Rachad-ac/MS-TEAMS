@@ -41,6 +41,11 @@ export const MENU: MenuItem[] = [
     link: '/admin/gestion-formation/formation',
   },
   {
+    label: 'Formateur',
+    icon: 'users',
+    link: '/admin/gestion-formation/formateur',
+  },
+  {
     label: 'Employés',
     icon: 'users',
     link: '/admin/gestion-formation/employe',

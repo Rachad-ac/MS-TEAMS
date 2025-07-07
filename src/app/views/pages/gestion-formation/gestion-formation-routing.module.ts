@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ListModuleComponent } from './Module/list-module/list-module.component';
+import { ListTestComponent } from './test/list-test/list-test.component';
 import { ListEmployeComponent } from './employe/list-employe/list-employe.component';
 import { ListInscriptionComponent } from './inscription/list-inscription/list-inscription.component';
 import {
@@ -18,7 +20,13 @@ import {DetaillesFormationComponent} from "./formation/detailles-formation/detai
 import {AddEmployeComponent} from "./employe/add-employe/add-employe.component";
 import {EditEmployeComponent} from "./employe/edit-employe/edit-employe.component";
 
+
 const routes: Routes = [
+  {path: '', component: ListFormationComponent},
+  {path: 'formation', component: ListFormationComponent},
+  {path: 'module', component: ListModuleComponent},
+  {path: 'detaille-formation', component: DetaillesFormationComponent},
+  {path: 'test', component: ListTestComponent},
   {path: '', component: ListSessionFormationComponent},
   {path: 'session-formation', component: ListSessionFormationComponent},
 

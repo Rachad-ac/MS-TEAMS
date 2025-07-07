@@ -1,0 +1,54 @@
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a routerLink="/admin/gestion-recrutement/recrutement">Liste Recrutements</a></li>
+    <li class="breadcrumb-item"><a routerLink="/admin/gestion-recrutement/detaille-recrutement">Candidats</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Information Candidats</li>
+  </ol>
+</nav>
+
+<div class="row">
+  <div class="col-md-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="container-fluid d-flex justify-content-between">
+          <div class="col-lg-3 ps-0">
+            <a routerLink="." class="nobleui-logo d-block mt-3">{{candidat.prenom}} <span>{{candidat.nom}}</span></a>
+            <p>{{candidat.dateNaissance | date: 'fullDate'}}</p>
+            <p>{{candidat.niveauEtude.description}}</p>
+            <h5 class="mt-5 mb-2 text-muted">Coordonnées :</h5>
+            <p class="mt-1 mb-1"><b>{{candidat.email}}</b></p>
+            <p>{{candidat.adresse}},<br> {{candidat.telephone}}.</p>
+          </div>
+          <div class="col-lg-3 pe-0">
+            <h4 class="fw-bold text-uppercase text-end mt-4 mb-2">
+              <span *ngIf="candidat.statutCandidature.name == 'EN_ATTENTE'" class="btn btn-inverse-warning">EN_ATTENTE</span>
+              <span *ngIf="candidat.statutCandidature.name == 'ACCEPTEE'" class="btn btn-inverse-success">ACCEPTEE</span>
+              <span *ngIf="candidat.statutCandidature.name == 'REJETEE'" class="btn btn-inverse-danger">REJETEE</span>
+            </h4>
+          </div>
+        </div>
+        <div class="container-fluid mt-5 d-flex justify-content-center w-100">
+          <div class="table-responsive w-100">
+            <h5 class="mt-5 mb-2 text-primary">Competences :</h5>
+            <table class="table table-bordered">
+              <thead>
+              <tr>
+                <th>Nom</th>
+                <th>Niveau</th>
+                <th>Domaine</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let competence of candidat.competence">
+                <td>{{ competence.nom }}</td>
+                <td>{{ competence.niveau }}</td>
+                <td>{{ competence.domaine }}</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

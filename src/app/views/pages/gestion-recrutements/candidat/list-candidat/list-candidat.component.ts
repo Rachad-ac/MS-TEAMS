@@ -14,16 +14,12 @@ export class ListCandidatComponent {
     'nom',
     'prenom',
     'email',
-    'telephone',
-    'dateNaissance',
-    'adresse',
-    'niveauEtude',
+    'infos',
     'actions',
   ];
-
-
+   
+    candidatToUpdate: any; 
     evaluationToUpdate: any;
-    candidatToUpdate: any;
     pageOptions: any = { page: 0, size: 10 };
     dataSource: any;
     loadingIndicator = true;
@@ -117,5 +113,11 @@ export class ListCandidatComponent {
       this.getAllCandidats();
       this.modalService.dismissAll();
     }
+
+    saveIdCandidat(candidatId: any) {
+    if (candidatId != null) {
+      localStorage.setItem('candidatId', candidatId);
+    }
+  }
   }
 
