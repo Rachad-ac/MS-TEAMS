@@ -1,103 +1,102 @@
 package com.webgram.stage.services.Impl;
 
-import com.webgram.stage.entity.EmployeEntity;
+import com.querydsl.core.BooleanBuilder;
+import com.webgram.stage.entity.QEmployeEntity;
 import com.webgram.stage.mapper.EmployeMapper;
 import com.webgram.stage.model.EmployeDTO;
 import com.webgram.stage.repository.EmployeRepository;
 import com.webgram.stage.services.EmployeService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
-import java.util.List;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
-import java.util.Optional;
-import java.util.stream.Collectors;
+import java.util.Objects;
 
-/**
- * Implémentation du service Employe.
- */
 @Service
+@Transactional
+@RequiredArgsConstructor
 public class EmployeServiceImpl implements EmployeService {
 
-    @Autowired
-    private EmployeRepository employeRepository;
-
-    @Autowired
-    private EmployeMapper employeMapper;
+    private final EmployeRepository employeRepository;
+    private final EmployeMapper recruteurMapper;
 
     @Override
     public EmployeDTO createEmploye(EmployeDTO employeDTO) {
-        EmployeEntity entity = employeMapper.toEntity(employeDTO);
-        EmployeEntity saved = employeRepository.save(entity);
-        return employeMapper.toDto(saved);
+        var entity = recruteurMapper.asEntity(employeDTO);
+        var entitySave = employeRepository.save(entity);
+        return recruteurMapper.asDto(entitySave);
     }
 
     @Override
-    public EmployeDTO updateEmploye(Integer id, EmployeDTO employeDTO) {
-        Optional<EmployeEntity> optional = employeRepository.findById(id);
-        if (optional.isPresent()) {
-            EmployeEntity entity = employeMapper.toEntity(employeDTO);
-            entity.setId(id);
-            EmployeEntity updated = employeRepository.save(entity);
-            return employeMapper.toDto(updated);
+    public EmployeDTO updateEmploye(EmployeDTO employeDTO) {
+        var entityUpdate = recruteurMapper.asEntity(employeDTO);
+        var updatedEntity = employeRepository.save(entityUpdate);
+        return recruteurMapper.asDto(updatedEntity);
+    }
+
+    @Override
+    public void deleteEmploye(Long id) {
+        if (!employeRepository.existsById(id)) {
+            throw new RuntimeException("Evaluation not found");
         }
-        return null;
-    }
-
-    @Override
-    public void deleteEmploye(Integer id) {
         employeRepository.deleteById(id);
     }
 
     @Override
-    public EmployeDTO getEmployeById(Integer id) {
-        return employeRepository.findById(id)
-                .map(employeMapper::toDto)
-                .orElse(null);
+    public EmployeDTO getEmploye(Long id) {
+        var entity = employeRepository.findById(id);
+        return recruteurMapper.asDto(entity.get());
     }
 
     @Override
-    public List<EmployeDTO> getAllEmployes() {
-        return employeRepository.findAll().stream()
-                .map(employeMapper::toDto)
-                .collect(Collectors.toList());
+    public Page<EmployeDTO> getAllEmploye(Map<String, String> searchParams, Pageable pageable) {
+        var booleanBuilder = new BooleanBuilder();
+        buildSearch(searchParams, booleanBuilder);
+        return employeRepository.findAll(booleanBuilder, pageable)
+                .map(recruteurMapper::asDto);
     }
 
-    /**
-     * Recherche paginée et filtrée des employés.
-     * @param searchParams paramètres de recherche (clé = champ, valeur = valeur recherchée)
-     * @param pageable pagination
-     * @return page de résultats DTO
-     */
-    @Override
-    public Page<EmployeDTO> getAllEmployes(Map<String, String> searchParams, Pageable pageable) {
-        List<EmployeDTO> filtered = getAllEmployes().stream()
-            .filter(dto -> {
-                boolean match = true;
-                if (searchParams.containsKey("nom")) {
-                    match &= dto.getNom() != null && dto.getNom().toLowerCase().contains(searchParams.get("nom").toLowerCase());
+    private void buildSearch(Map<String, String> searchParams, BooleanBuilder booleanBuilder) {
+        if (Objects.nonNull(searchParams)) {
+            var qEntity = QEmployeEntity.employeEntity;
+            if (searchParams.containsKey("nom"))
+                booleanBuilder.and(qEntity.nom.containsIgnoreCase(searchParams.get("nom")));
+            if (searchParams.containsKey("prenom"))
+                booleanBuilder.and(qEntity.prenom.containsIgnoreCase(searchParams.get("prenom")));
+            if (searchParams.containsKey("email"))
+                booleanBuilder.and(qEntity.email.containsIgnoreCase(searchParams.get("email")));
+            if (searchParams.containsKey("telephone"))
+                booleanBuilder.and(qEntity.telephone.containsIgnoreCase(searchParams.get("telephone")));
+            if (searchParams.containsKey("poste"))
+                booleanBuilder.and(qEntity.poste.containsIgnoreCase(searchParams.get("poste")));
+            if (searchParams.containsKey("role"))
+                booleanBuilder.and(qEntity.role.containsIgnoreCase(searchParams.get("role")));
+
+            String departement = searchParams.get("departement");
+            if (departement != null && !departement.isEmpty()) {
+                booleanBuilder.and(qEntity.departement.stringValue().lower().containsIgnoreCase(departement.toLowerCase()));
+            }
+            String sexe = searchParams.get("sexe");
+            if (sexe != null && !sexe.isEmpty()) {
+                booleanBuilder.and(qEntity.sexe.stringValue().lower().containsIgnoreCase(sexe.toLowerCase()));
+            }
+
+            if (searchParams.containsKey("dateEmbauche")){
+                Date date = null;
+                try {
+                    date = new SimpleDateFormat("yyyy-MM-dd").parse(searchParams.get("dateEmbauche"));
+                } catch (ParseException e) {
+                    throw new RuntimeException(e);
                 }
-                if (searchParams.containsKey("prenom")) {
-                    match &= dto.getPrenom() != null && dto.getPrenom().toLowerCase().contains(searchParams.get("prenom").toLowerCase());
-                }
-                if (searchParams.containsKey("email")) {
-                    match &= dto.getEmail() != null && dto.getEmail().toLowerCase().contains(searchParams.get("email").toLowerCase());
-                }
-                if (searchParams.containsKey("departement")) {
-                    match &= dto.getDepartement() != null && dto.getDepartement().equalsIgnoreCase(searchParams.get("departement"));
-                }
-                if (searchParams.containsKey("poste")) {
-                    match &= dto.getPoste() != null && dto.getPoste().equalsIgnoreCase(searchParams.get("poste"));
-                }
-                return match;
-            })
-            .collect(Collectors.toList());
-        int start = (int) pageable.getOffset();
-        int end = Math.min((start + pageable.getPageSize()), filtered.size());
-        List<EmployeDTO> pageContent = (start <= end) ? filtered.subList(start, end) : List.of();
-        return new PageImpl<>(pageContent, pageable, filtered.size());
+                booleanBuilder.and(qEntity.dateEmbauche.eq(date));
+            }
+
+        }
     }
-} 
+}
