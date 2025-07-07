@@ -3,6 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EvaluationService } from 'src/app/services/evaluation/evaluation.service';
 import { Alertes } from 'src/app/util/alerte';
+import {EmployeService} from "../../../../../services/employe/employe.service";
+import {CandidatService} from "../../../../../services/candidat/candidat.service";
+import {CandidatureService} from "../../../../../services/candidature/candidature.service";
 
 
 @Component({
@@ -13,6 +16,7 @@ import { Alertes } from 'src/app/util/alerte';
 export class AddEvaluationComponent implements OnInit {
 
   recruteurs: any[] = [];
+  candidatures: any[] = [];
 
   statutList = [
   { label: 'Prévue', value: 'PREVUE' },
@@ -36,24 +40,38 @@ form!: FormGroup;
   constructor(
     private modalService: NgbModal,
     private evaluationService: EvaluationService,
+    private employeService: EmployeService,
+    private candidatureService: CandidatureService,
     private fb: FormBuilder
   ) {}
 
   ngOnInit(): void {
     this.initForm();
-    this.evaluationService.getAllEvaluations().subscribe({
+    this.employeService.getAllEmploye().subscribe({
       next: (res) => {
-        console.log('Agents récupérés :', res);
+        console.log('Recruteur récupérés :', res);
 
-        // Ici, on récupère les agents depuis res.payload
         this.recruteurs = res.payload.map((recruteur: any) => ({
-          id: recruteur.id,
-          nom: recruteur.nom,       // champ "name" dans ton JSON
-          prenom: recruteur.prenom // champ "lastName" dans ton JSON
+          ...recruteur,
+          fullName: `${recruteur.nom} ${recruteur.prenom}`,
         }));
       },
       error: (err) => {
         console.error('Erreur chargement recruteurs :', err);
+      }
+    });
+
+    this.candidatureService.getAllCandidatures().subscribe({
+      next: (res) => {
+        console.log('Candidatures récupérés :', res);
+
+        this.candidatures = res.payload.map((candidature: any) => ({
+          ...candidature,
+          fullName: `${candidature.candidat.nom} ${candidature.candidat.prenom}`,
+        }));
+      },
+      error: (err) => {
+        console.error('Erreur chargement candidatures :', err);
       }
     });
   }
@@ -68,8 +86,6 @@ form!: FormGroup;
       dateEvaluation : new FormControl('', Validators.required),
       statut: new FormControl('', Validators.required),
       recruteurId: new FormControl('', Validators.required),
-      recrutementId: new FormControl('', Validators.required),
-      candidatId: new FormControl('', Validators.required),
       candidatureId: new FormControl('', Validators.required),
     });
   }

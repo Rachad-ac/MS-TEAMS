@@ -15,7 +15,6 @@ export class AddCompetenceComponent implements OnInit {
   @Output() search: EventEmitter<boolean> = new EventEmitter();
   @Input() competenceToUpdate!: any;
   @Input() isSearch: boolean =true;
-  competence: any[] = [];
   pageOptions: any = { page: 0, size: 10 };
   form!: FormGroup;
   niveau =[
