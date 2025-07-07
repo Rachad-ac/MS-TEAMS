@@ -1,12 +1,20 @@
 package com.webgram.stage.services.Impl;
 
 import com.querydsl.core.BooleanBuilder;
+import com.webgram.stage.entity.CandidatureEntity;
+import com.webgram.stage.entity.EmployeEntity;
+import com.webgram.stage.entity.EvaluationEntity;
 import com.webgram.stage.entity.QEvaluationEntity;
+import com.webgram.stage.entity.enums.EvaluationType;
+import com.webgram.stage.entity.enums.StatutType;
 import com.webgram.stage.mapper.EvaluationMapper;
 import com.webgram.stage.model.EvaluationDTO;
+import com.webgram.stage.repository.CandidatureRepository;
+import com.webgram.stage.repository.EmployeRepository;
 import com.webgram.stage.repository.EvaluationRepository;
 import com.webgram.stage.services.EvaluationService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -21,6 +29,7 @@ import java.util.Objects;
 @Service
 @Transactional
 @RequiredArgsConstructor
+@Slf4j
 public class EvaluationServiceImpl implements EvaluationService {
 
     private final EvaluationRepository evaluationRepository;
@@ -68,8 +77,6 @@ public class EvaluationServiceImpl implements EvaluationService {
 
             if (searchParams.containsKey("commentaire"))
                 booleanBuilder.and(qEntity.commentaire.containsIgnoreCase(searchParams.get("commentaire")));
-            if (searchParams.containsKey("nomRecruteur"))
-                booleanBuilder.and(qEntity.nomRecruteur.containsIgnoreCase(searchParams.get("nomRecruteur")));
 
             if (searchParams.containsKey("score")) {
                 try {

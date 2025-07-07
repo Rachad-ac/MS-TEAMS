@@ -34,26 +34,14 @@ public class EvaluationEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "status_evalution")
     private StatutType statut;
-    @Column(name = "recruteur")
-    private String nomRecruteur;
-
 
     @ManyToOne
     @JoinColumn(name = "candidature_id", nullable = false)
     private CandidatureEntity candidature;
 
     @ManyToOne
-    @JoinColumn(name = "recrutement_id", nullable = false)
-    private RecrutementEntity recrutement;
-
-    @ManyToOne
-    @JoinColumn(name = "candidat_id", nullable = false)
-    private CandidatEntity candidat;
-
-
-    @ManyToOne
-    @JoinColumn(name = "recruteur_id", nullable = false)
-    private RecruteurEntity recruteur;
+    @JoinColumn(name = "employe_id", nullable = false)
+    private EmployeEntity employe;
     
 
 
