@@ -68,3 +68,6 @@ export class RecrutementService {
     });
   }
 }
+
+export class RecruteuementService {
+}

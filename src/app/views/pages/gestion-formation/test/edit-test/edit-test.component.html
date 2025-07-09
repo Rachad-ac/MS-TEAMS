@@ -1,0 +1,50 @@
+<section>   
+    <form [formGroup]="form">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="mb-3"> 
+            <label for="type" class="form-label">type<small style="color: red;">*</small></label>
+            <input type="text" class="form-control form-control-lg" id="type" placeholder="type" formControlName="type">
+          </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="mb-3">
+                <label for="date" class="form-label">Date<small style="color: red;">*</small></label>
+                <input type="date" class="form-control form-control-lg" id="date" placeholder="Date" formControlName="date">
+            </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label for="bareme" class="form-label">Bareme<small style="color: red;">*</small></label>
+            <input type="number" class="form-control form-control-lg" id="bareme" placeholder="Bareme" formControlName="bareme">
+          </div>
+    </div>
+
+      <!-- Formation -->
+      <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-title">Sélectionner une formation</h6>
+            <ng-select
+              [items]="formations"
+              [multiple]="false"
+              [closeOnSelect]="true"
+              [searchable]="true"
+              bindValue="id"
+              bindLabel="titre"
+              placeholder="Sélectionnez une formation"
+              formControlName="formationId">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+   </div>
+    </form>
+  
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+      <button type="button" class="btn btn-primary" (click)="update()" [disabled]="!form.valid">Enregistrer</button>
+    </div>
+  </section>
+
+  

@@ -1,7 +1,7 @@
 <nav class="page-breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a [routerLink]="['/admin/gestion-formation/formation/']">Liste des formations</a></li>
-    <li class="breadcrumb-item active" aria-current="page">Formation</li>
+    <li class="breadcrumb-item active" aria-current="page">Formation {{formation.titre}}</li>
   </ol>
 </nav>
 
@@ -74,9 +74,15 @@
     </ng-template>
   </li>
   <li [ngbNavItem]="5">
-    <a ngbNavLink><h5>????</h5></a>
+    <a ngbNavLink><h5>Module</h5></a>
     <ng-template ngbNavContent>
-      bla bla
+      <app-list-module [formationId]="formation.id"></app-list-module>
+    </ng-template>
+  </li>
+   <li [ngbNavItem]="7">
+    <a ngbNavLink><h5>Test</h5></a>
+    <ng-template ngbNavContent>
+      <app-list-test [formationId]="formation.id"></app-list-test>
     </ng-template>
   </li>
 </ul>

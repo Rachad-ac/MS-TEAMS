@@ -35,7 +35,7 @@ export class AddEditInscriptionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.employeService.getAllEmployes().subscribe(res => this.employes = res);
+    this.employeService.getAllEmploye().subscribe(res => this.employes = res);
     this.formationService.getAllFormations().subscribe(res => this.formations = res);
     if (this.inscription) {
       this.inscriptionForm.patchValue(this.inscription);

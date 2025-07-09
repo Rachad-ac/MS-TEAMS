@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EvaluationService } from "../../../../../services/evaluation/evaluation.service"; 
+import { EvaluationService } from "../../../../../services/evaluation/evaluation.service";
 import {Alertes} from "../../../../../util/alerte";
 
 @Component({
@@ -11,15 +11,15 @@ import {Alertes} from "../../../../../util/alerte";
 export class ListEvaluationComponent implements OnInit {
 
   displayedColumns : string[] = [
-   'type',
-  'score',
-  'noteGenerale',
-  'commentaire',
-  'dateEvaluation',
-  'recruteur',
-  'statut',
-  'detailles',
-  'actions'
+    'type',
+    'score',
+    'noteGenerale',
+    'commentaire',
+    'dateEvaluation',
+    'recruteur',
+    'statut',
+    'detailles',
+    'actions'
   ];
 
   evaluationToUpdate: any;
@@ -75,12 +75,12 @@ export class ListEvaluationComponent implements OnInit {
     );
   }
 
-  deleteEvaluation(rEvaluation: any): void {
+  deleteEvaluation(evaluation: any): void {
     Alertes.confirmAction(
       'Voulez-vous supprimer ?',
       'Cet élément sera définitivement supprimé',
       () => {
-        this.evaluationServices.deleteEvaluation(rEvaluation).subscribe({
+        this.evaluationServices.deleteEvaluation(evaluation).subscribe({
           next: () => {
             Alertes.alerteAddSuccess('Suppression réussie');
           },

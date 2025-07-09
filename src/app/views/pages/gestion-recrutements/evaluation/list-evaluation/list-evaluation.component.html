@@ -49,7 +49,7 @@
         </ng-container>
 
         <ng-container matColumnDef="recruteur">
-          <th mat-header-cell *matHeaderCellDef class="table-head-text">Recruteur</th>
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Responsable</th>
           <td mat-cell *matCellDef="let evaluation">{{ evaluation?.recruteur }}</td>
         </ng-container>
 
@@ -97,7 +97,7 @@
       </span>
 
       <div class="paginate">
-        <ngb-pagination 
+        <ngb-pagination
           [collectionSize]="dataSource?.metadata?.totalElements"
           [page]="pageOptions.page + 1"
           [pageSize]="pageOptions.size"
@@ -138,7 +138,7 @@
 <!-- MODALE : Modifier Évaluation -->
 <ng-template #EditEvaluationModal let-modal>
   <div class="modal-header">
-    <h5 class="modal-title" id="addEvaluationModalModalLabel">Modifier Evaluation</h5>
+    <h5 class="modal-title" id="editEvaluationModalModalLabel">Modifier Evaluation</h5>
     <button type="button" class="btn-close" (click) = "modal.close('by: close icon')" aria-label="Close"></button>
   </div>
   <div class="modal-body">

@@ -12,11 +12,17 @@ export const MENU: MenuItem[] = [
     icon: 'package',
     link: '/admin/gestion-recrutement/recrutement',
   },
+
   // Ajout de l'entrée Candidature pour accéder à la gestion des candidatures
   {
     label: 'Candidature',
     icon: 'user-check',
     link: '/admin/gestion-recrutement/candidature',
+  },
+  {
+    label: 'Candidat',
+    icon: 'user',
+    link: '/admin/gestion-recrutement/candidat'
   },
   {
     label: 'Evaluation',
@@ -34,9 +40,29 @@ export const MENU: MenuItem[] = [
     icon: 'book-open',
     link: '/admin/gestion-formation/formation',
   },
-   {
+  {
     label: 'Formateur',
-    icon: 'book-open',
+    icon: 'users',
     link: '/admin/gestion-formation/formateur',
+  },
+  {
+    label: 'Employés',
+    icon: 'users',
+    link: '/admin/gestion-formation/employe',
+  },
+  {
+    label: 'Resultat',
+    icon: 'bar-chart-2',
+    link: '/admin/gestion-formation/resultat',
+  },
+  {
+    label: 'Presence',
+    icon: 'check-circle',
+    link: '/admin/gestion-formation/presence',
+  },
+  {
+    label: 'Inscriptions',
+    icon: 'edit',
+    link: '/admin/gestion-formation/inscriptions',
   },
 ];
