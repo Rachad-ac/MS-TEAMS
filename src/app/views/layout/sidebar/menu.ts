@@ -34,4 +34,9 @@ export const MENU: MenuItem[] = [
     icon: 'book-open',
     link: '/admin/gestion-formation/formation',
   },
+   {
+    label: 'Formateur',
+    icon: 'book-open',
+    link: '/admin/gestion-formation/formateur',
+  },
 ];

@@ -4,6 +4,7 @@ import { ListEmployeComponent } from './employe/list-employe/list-employe.compon
 import { ListInscriptionComponent } from './inscription/list-inscription/list-inscription.component';
 import {ListFormationComponent} from "./formation/list-formation/list-formation.component";
 import {DetaillesFormationComponent} from "./formation/detailles-formation/detailles-formation.component";
+import { ListFormateurComponent } from './formateur/list-formateur/list-formateur.component';
 
 const routes: Routes = [
   { path: '', component: ListFormationComponent },
@@ -11,6 +12,7 @@ const routes: Routes = [
   { path: 'detaille-formation', component: DetaillesFormationComponent },
   { path: 'employes', component: ListEmployeComponent },
   { path: 'inscriptions', component: ListInscriptionComponent },
+  {path: 'formateur', component: ListFormateurComponent },
 ];
 
 @NgModule({
