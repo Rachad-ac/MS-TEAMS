@@ -16,7 +16,7 @@ export class ListEvaluationComponent implements OnInit {
     'noteGenerale',
     'commentaire',
     'dateEvaluation',
-    'recruteur',
+    'employe',
     'statut',
     'detailles',
     'actions'
@@ -63,8 +63,8 @@ export class ListEvaluationComponent implements OnInit {
     this.openModal(content, 'lg');
   }
 
-  openEditEvaluation(content: TemplateRef<any>, rEvaluation: any): void {
-    this.evaluationToUpdate = rEvaluation;
+  openEditEvaluation(content: TemplateRef<any>, evaluation: any): void {
+    this.evaluationToUpdate = evaluation;
     this.openModal(content, 'lg');
   }
 
