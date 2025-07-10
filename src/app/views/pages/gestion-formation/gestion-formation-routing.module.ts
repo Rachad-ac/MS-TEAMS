@@ -19,6 +19,7 @@ import {ListFormationComponent} from "./formation/list-formation/list-formation.
 import {DetaillesFormationComponent} from "./formation/detailles-formation/detailles-formation.component";
 import {AddEmployeComponent} from "./employe/add-employe/add-employe.component";
 import {EditEmployeComponent} from "./employe/edit-employe/edit-employe.component";
+import {ListFormateurComponent} from "./formateur/list-formateur/list-formateur.component";
 
 
 const routes: Routes = [
@@ -47,7 +48,7 @@ const routes: Routes = [
   { path: 'inscriptions', component: ListInscriptionComponent },
   { path: '', component: ListFormationComponent },
 
-  { path: 'formation', component: ListFormationComponent },
+  { path: 'formateur', component: ListFormateurComponent },
   { path: 'detaille-formation', component: DetaillesFormationComponent },
 ];
 
