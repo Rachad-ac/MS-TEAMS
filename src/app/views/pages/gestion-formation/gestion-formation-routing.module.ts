@@ -22,6 +22,7 @@ import {EditEmployeComponent} from "./employe/edit-employe/edit-employe.componen
 import {
   DetaillesEvaluationComponent
 } from "../gestion-recrutements/evaluation/detailles-evaluations/detailles-evaluation.component";
+import {ListFormateurComponent} from "./formateur/list-formateur/list-formateur.component";
 
 
 const routes: Routes = [
@@ -52,7 +53,7 @@ const routes: Routes = [
   { path: 'inscriptions', component: ListInscriptionComponent },
   { path: '', component: ListFormationComponent },
 
-  { path: 'formation', component: ListFormationComponent },
+  { path: 'formateur', component: ListFormateurComponent },
   { path: 'detaille-formation', component: DetaillesFormationComponent },
 ];
 

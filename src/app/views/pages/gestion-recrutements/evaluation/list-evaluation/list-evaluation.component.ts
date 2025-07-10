@@ -80,7 +80,7 @@ export class ListEvaluationComponent implements OnInit {
       'Voulez-vous supprimer ?',
       'Cet élément sera définitivement supprimé',
       () => {
-        this.evaluationServices.deleteEvaluation(evaluation).subscribe({
+        this.evaluationServices.deleteEvaluation(evaluation.id).subscribe({
           next: () => {
             Alertes.alerteAddSuccess('Suppression réussie');
           },

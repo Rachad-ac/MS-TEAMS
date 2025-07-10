@@ -82,7 +82,7 @@ export class ListEmployeComponent implements OnInit{
       'Voulez-vous supprimer ?',
       'Cet élément sera définitivement supprimé',
       () => {
-        this.employeService.deleteEmploye(employe).subscribe({
+        this.employeService.deleteEmploye(employe.id).subscribe({
           next: () => {
             Alertes.alerteAddSuccess('Suppression réussie');
           },

@@ -77,7 +77,7 @@ export class ListResultatComponent {
       'Voulez-vous supprimer ?',
       'Cet élément sera définitivement supprimé',
       () => {
-        this.resultatService.deleteResultat(resultat).subscribe({
+        this.resultatService.deleteResultat(resultat.id).subscribe({
           next: () => {
             Alertes.alerteAddSuccess('Suppression réussie');
           },
