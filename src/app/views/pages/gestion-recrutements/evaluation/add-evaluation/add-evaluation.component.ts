@@ -15,7 +15,7 @@ import {CandidatureService} from "../../../../../services/candidature/candidatur
 })
 export class AddEvaluationComponent implements OnInit {
 
-  recruteurs: any[] = [];
+  employes: any[] = [];
   candidatures: any[] = [];
 
   statutList = [
@@ -51,9 +51,14 @@ form!: FormGroup;
       next: (res) => {
         console.log('Recruteur récupérés :', res);
 
-        this.recruteurs = res.payload.map((recruteur: any) => ({
-          ...recruteur,
-          fullName: `${recruteur.nom} ${recruteur.prenom}`,
+        this.employes = res.payload.map((employe: any) => ({
+          ...employe,
+          fullName: `${employe.nom} ${employe.prenom}`,
+
+          id: employe.id,
+          name: employe.nom,       // champ "name" dans ton JSON
+          lastName: employe.prenom
+
         }));
       },
       error: (err) => {
@@ -68,6 +73,8 @@ form!: FormGroup;
         this.candidatures = res.payload.map((candidature: any) => ({
           ...candidature,
           fullName: `${candidature.candidat.nom} ${candidature.candidat.prenom}`,
+
+          id: candidature.id,
         }));
       },
       error: (err) => {
@@ -85,7 +92,7 @@ form!: FormGroup;
       commentaire: new FormControl('', Validators.maxLength(500)),
       dateEvaluation : new FormControl('', Validators.required),
       statut: new FormControl('', Validators.required),
-      recruteurId: new FormControl('', Validators.required),
+      employeId: new FormControl('', Validators.required),
       candidatureId: new FormControl('', Validators.required),
     });
   }
@@ -96,6 +103,7 @@ form!: FormGroup;
       next: () => {
         Alertes.alerteAddSuccess('Évaluation ajoutée avec succès');
         this.emitSubmit();
+        console.log(evaluation);
       },
       error: (err) => {
         Alertes.alerteAddDanger(err.error.message || 'Erreur lors de l’ajout');

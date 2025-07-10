@@ -26,7 +26,7 @@
       <div class="col-sm-6">
         <div class="mb-3">
           <label for="noteGenerale" class="form-label">Note Generale</label>
-          <input type="number" class="form-control form-control-lg" id="noteGenerale" placeholder="noteGenerale" formControlName="noteGenerale">
+          <input type="number" class="form-control form-control-lg" id="note generale" placeholder="noteGenerale" formControlName="noteGenerale">
         </div>
       </div>
 
@@ -49,10 +49,10 @@
       <!-- employe -->
       <div class="col-sm-6">
         <div class="mb-3">
-          <label for="recruteurId" class="form-label">Recruteur<small style="color: red;"> *</small></label>
+          <label for="employeId" class="form-label">Responsable<small style="color: red;"> *</small></label>
           <ng-select
             [items]="employes"
-            bindLabel="name"
+            bindLabel="fullName"
             bindValue="id"
             placeholder="Sélectionner uns session de formation..."
             formControlName="employeId">
@@ -76,18 +76,18 @@
         </div>
       </div>
 
-      <!-- candidature -->
+      <!-- candidat -->
       <div class="col-sm-6">
         <div class="mb-3">
           <label for="candidatureId" class="form-label">Candidat<small style="color: red;"> *</small></label>
           <ng-select
             [items]="candidatures"
-            bindLabel="name"
+            bindLabel="fullName"
             bindValue="id"
             placeholder="Sélectionner un candidat..."
             formControlName="candidatureId">
             <ng-template ng-option-tmp let-item="item">
-              {{ item.candidat.nom }} {{item.candidat.prenom}}
+              {{ item.candidat?.nom }} {{item.candidat?.prenom}}
             </ng-template>
           </ng-select>
         </div>

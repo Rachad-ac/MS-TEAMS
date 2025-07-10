@@ -20,6 +20,9 @@ import {DetaillesFormationComponent} from "./formation/detailles-formation/detai
 import { ListFormateurComponent } from './formateur/list-formateur/list-formateur.component';
 import {AddEmployeComponent} from "./employe/add-employe/add-employe.component";
 import {EditEmployeComponent} from "./employe/edit-employe/edit-employe.component";
+import {
+  DetaillesEvaluationComponent
+} from "../gestion-recrutements/evaluation/detailles-evaluations/detailles-evaluation.component";
 
 const routes: Routes = [
   {path: '', component: ListFormationComponent},
@@ -33,11 +36,13 @@ const routes: Routes = [
   {path: 'presence', component: ListPresenceComponent},
   {path: 'presence', component: AddPresenceComponent},
   {path: 'presence', component: EditPresenceComponent},
+  {path: 'presence/:id', component: DetaillePresenceComponent},
   {path: 'detaille-presence', component: DetaillePresenceComponent},
 
   {path: 'resultat', component: ListResultatComponent},
   {path: 'resultat', component: AddResultatComponent},
   {path: 'resultat', component: EditResultatComponent},
+  {path: 'resultat/:id', component: DetailleResultatComponent},
   {path: 'detaille-resultat', component: DetailleResultatComponent},
 
   { path: 'employe', component: ListEmployeComponent },

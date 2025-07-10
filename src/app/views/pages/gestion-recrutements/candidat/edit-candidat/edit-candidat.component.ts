@@ -65,7 +65,7 @@ export class EditCandidatComponent implements OnInit {
       autreNiveauEtude: [''],
       statutCandidature: new FormControl('EN_ATTENTE', Validators.required),
       recrutementId: new FormControl(localStorage.getItem('recrutementId'), Validators.required),
-      competence: new FormControl ([])
+      idCompetence: new FormControl ([])
     });
 
     this.handleValidationAutreNiveau();
@@ -97,7 +97,7 @@ export class EditCandidatComponent implements OnInit {
       this.form?.get('autreNiveauEtude')?.setValue(this.candidatToUpdate?.autreNiveauEtude || '');
       this.form?.get('statutCandidature')?.setValue(this.candidatToUpdate?.statutCandidature?.name);
       this.form?.get('recrutementId')?.setValue(this.candidatToUpdate?.recrutementId);
-      this.form?.get('competence')?.setValue(this.candidatToUpdate?.competence);
+      this.form?.get('idCompetence')?.setValue(this.candidatToUpdate?.idCompetence);
     }
   }
 
