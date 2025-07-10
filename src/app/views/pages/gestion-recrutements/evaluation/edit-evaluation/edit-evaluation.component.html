@@ -1,4 +1,4 @@
-<section>   
+<section>
     <form [formGroup]="form">
     <div class="row">
       <!-- type evaluation -->
@@ -26,7 +26,7 @@
       <div class="col-sm-6">
         <div class="mb-3">
           <label for="noteGenerale" class="form-label">Note Generale</label>
-          <input type="number" class="form-control form-control-lg" id="noteGenerale" placeholder="noteGenerale" formControlName="noteGenerale">
+          <input type="number" class="form-control form-control-lg" id="note generale" placeholder="noteGenerale" formControlName="noteGenerale">
         </div>
       </div>
 
@@ -46,11 +46,20 @@
         </div>
       </div>
 
-      <!-- recruteur -->
+      <!-- employe -->
       <div class="col-sm-6">
         <div class="mb-3">
-          <label for="recruteur" class="form-label">Recruteur</label>
-          <input type="text" class="form-control form-control-lg" id="recruteur" placeholder="  Recruteur" formControlName="recruteur">
+          <label for="employeId" class="form-label">Responsable<small style="color: red;"> *</small></label>
+          <ng-select
+            [items]="employes"
+            bindLabel="fullName"
+            bindValue="id"
+            placeholder="Sélectionner uns session de formation..."
+            formControlName="employeId">
+            <ng-template ng-option-tmp let-item="item">
+              {{ item.nom }} {{item.prenom}}
+            </ng-template>
+          </ng-select>
         </div>
       </div>
 
@@ -63,6 +72,23 @@
             bindValue="value"
             placeholder="Selectionner..."
             formControlName="statut">
+          </ng-select>
+        </div>
+      </div>
+
+      <!-- candidat -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="candidatureId" class="form-label">Candidat<small style="color: red;"> *</small></label>
+          <ng-select
+            [items]="candidatures"
+            bindLabel="fullName"
+            bindValue="id"
+            placeholder="Sélectionner un candidat..."
+            formControlName="candidatureId">
+            <ng-template ng-option-tmp let-item="item">
+              {{ item.candidat?.nom }} {{item.candidat?.prenom}}
+            </ng-template>
           </ng-select>
         </div>
       </div>

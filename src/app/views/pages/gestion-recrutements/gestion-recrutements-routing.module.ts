@@ -12,11 +12,11 @@ import { DetaillesCandidatureComponent } from './candidature/detailles-candidatu
 import { AddCandidatComponent } from './candidat/add-candidat/add-candidat.component';
 import { ListCandidatComponent } from './candidat/list-candidat/list-candidat.component';
 import { EditCandidatComponent } from './candidat/edit-candidat/edit-candidat.component';
-import { InfosCandidatComponent } from './candidat/infos-candidat/infos-candidat.component';
+import {InfosCandidatComponent} from "./candidat/infos-candidat/infos-candidat.component";
+
 const routes: Routes = [
   {path: '', component: ListRecrutementComponent},
   {path: 'recrutement', component: ListRecrutementComponent},
-  {path: 'recrutement/:id', component: DetaillesRecrutementComponent},
   {path: 'detaille-recrutement', component: DetaillesRecrutementComponent},
 
   {path: 'evaluation', component: ListEvaluationComponent},

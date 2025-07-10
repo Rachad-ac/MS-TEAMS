@@ -5,7 +5,7 @@
       <!-- note  -->
       <div class="col-sm-6">
         <div class="mb-3">
-          <label for="note" class="form-label">Note </label>
+          <label for="note" class="form-label">Note</label>
           <input type="number" class="form-control form-control-lg" id="note" placeholder="note" formControlName="note">
         </div>
       </div>
@@ -21,37 +21,31 @@
       <!-- evaluation id -->
       <div class="col-sm-6">
         <div class="mb-3">
-          <label for="evaluationId" class="form-label">Evaluation ID<small style="color: red;">*</small></label>
+          <label for="evaluationId" class="form-label">Evaluation<small style="color: red;">*</small></label>
           <ng-select
             [items]="evaluations"
-            bindLabel="name"
+            bindLabel="typeEvalutation"
             bindValue="id"
-            placeholder="Sélectionner un employe..."
+            placeholder="Sélectionner une evaluation..."
             formControlName="evaluationId">
-            <ng-template ng-option-tmp let-item="item">
-              {{ item.type }}
-            </ng-template>
           </ng-select>
         </div>
       </div>
-    </div>
 
-    <!-- employe id-->
-    <div class="col-sm-6">
-      <div class="mb-3">
-        <label for="employeId" class="form-label">Employe ID<small style="color: red;">*</small></label>
-        <ng-select
-          [items]="employe"
-          bindLabel="name"
-          bindValue="id"
-          placeholder="Sélectionner un employe..."
-          formControlName="employeId">
-          <ng-template ng-option-tmp let-item="item">
-            {{ item.nom }} {{ item.prenom }}
-          </ng-template>
-        </ng-select>
+      <!-- employe id-->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="employeId" class="form-label">Employe<small style="color: red;">*</small></label>
+          <ng-select
+            [items]="employe"
+            bindLabel="fullName"
+            bindValue="id"
+            placeholder="Sélectionner un employe..."
+            formControlName="employeId">
+          </ng-select>
+        </div>
+
       </div>
-
     </div>
   </form>
 

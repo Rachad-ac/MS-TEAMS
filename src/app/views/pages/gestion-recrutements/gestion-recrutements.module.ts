@@ -32,8 +32,7 @@ import { AddEditCandidatureComponent } from './candidature/add-edit-candidature/
 import {ListCompetenceComponent} from "./competence/list-competence/list-competence.component";
 import {AddCompetenceComponent} from "./competence/add-competence/add-competence.component";
 import { DetaillesCandidatComponent } from './candidat/detailles-candidat/detailles-candidat.component';
-import { InfosCandidatComponent } from './candidat/infos-candidat/infos-candidat.component';
-
+import {InfosCandidatComponent} from "./candidat/infos-candidat/infos-candidat.component";
 
 @NgModule({
   // Déclaration de tous les composants utilisés dans ce module
@@ -58,7 +57,7 @@ import { InfosCandidatComponent } from './candidat/infos-candidat/infos-candidat
     ListCompetenceComponent,
     AddCompetenceComponent,
     DetaillesCandidatComponent,
-    InfosCandidatComponent,
+    InfosCandidatComponent
   ],
   // Import des modules nécessaires pour ce module
   imports: [

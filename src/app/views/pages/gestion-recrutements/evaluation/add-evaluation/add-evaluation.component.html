@@ -46,16 +46,8 @@
         </div>
       </div>
 
-      <!-- recruteur -->
-      <div class="col-sm-6">
-        <div class="mb-3">
-          <label for="recruteur" class="form-label">Recruteur</label>
-          <input type="text" class="form-control form-control-lg" id="recruteur" placeholder="  Recruteur" formControlName="recruteur">
-        </div>
-      </div>
-
       <!-- statut evaluation -->
-       <div class="col-sm-6">
+      <div class="col-sm-6">
         <div class="mb-3">
           <label  class="form-label">Statut Evaluation <small style="color: red;">*</small></label>
           <ng-select
@@ -66,7 +58,35 @@
           </ng-select>
         </div>
       </div>
+
+      <!-- employe -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="recruteurId" class="form-label">Responsable<small style="color: red;"> *</small></label>
+          <ng-select
+            [items]="employes"
+            bindLabel="fullName"
+            bindValue="id"
+            placeholder="Sélectionner un responsable..."
+            formControlName="employeId">
+          </ng-select>
+        </div>
       </div>
+      <!-- candidature -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="candidatureId" class="form-label">Candidat<small style="color: red;"> *</small></label>
+          <ng-select
+            [items]="candidatures"
+            bindLabel="fullName"
+            bindValue="id"
+            placeholder="Sélectionner un candidat..."
+            formControlName="candidatureId">
+          </ng-select>
+        </div>
+      </div>
+    </div>
+
   </form>
 
   <!-- Boutons -->

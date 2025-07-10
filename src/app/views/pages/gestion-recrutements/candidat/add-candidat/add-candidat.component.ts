@@ -54,10 +54,9 @@ form!: FormGroup;
   ) {}
 
   ngOnInit(): void {
+    this.allCompetences;
     this.initForm();
     this.handleValidationAutreNiveau();
-    this.allCompetences
-
   }
 
   initForm() {
@@ -72,7 +71,7 @@ form!: FormGroup;
       autreNiveauEtude: [''],
       statutCandidature: new FormControl('EN_ATTENTE', Validators.required),
       recrutementId: new FormControl(localStorage.getItem('recrutementId'), Validators.required),
-      competences: new FormControl ([])
+      idCompetences: new FormControl (null)
     });
     }
     handleValidationAutreNiveau() {
@@ -90,7 +89,7 @@ form!: FormGroup;
   }
 
 
- 
+
 
   create(): void {
     const candidat = this.form.value;

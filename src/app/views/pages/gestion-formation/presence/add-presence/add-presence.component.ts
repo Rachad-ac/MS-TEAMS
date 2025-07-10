@@ -41,6 +41,9 @@ export class AddPresenceComponent {
         console.log('session formation récupérés :', res);
 
         this.sessionFormation = res.payload.map((sessionFormations: any) => ({
+          ...sessionFormations,
+          session: `${sessionFormations.formation.titre}`,
+
           id: sessionFormations.id,
         }));
       },
@@ -49,7 +52,7 @@ export class AddPresenceComponent {
       }
     });
 
-    this.employeService.getAllEmployes().subscribe({
+    this.employeService.getAllEmploye().subscribe({
       next: (res) => {
         console.log('employes récupérés :', res);
 

@@ -39,24 +39,24 @@
           </ng-select>
         </div>
       </div>
-    </div>
 
-    <!-- employe id-->
-    <div class="col-sm-6">
-      <div class="mb-3">
-        <label for="employeId" class="form-label">Employe<small style="color: red;"> *</small></label>
-        <ng-select
-          [items]="employe"
-          bindLabel="name"
-          bindValue="id"
-          placeholder="Sélectionner un employe..."
-          formControlName="employeId">
-          <ng-template ng-option-tmp let-item="item">
-            {{ item.nom }} {{ item.prenom }}
-          </ng-template>
-        </ng-select>
+      <!-- employe id-->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="employeId" class="form-label">Employe<small style="color: red;"> *</small></label>
+          <ng-select
+            [items]="employe"
+            bindLabel="name"
+            bindValue="id"
+            placeholder="Sélectionner un employe..."
+            formControlName="employeId">
+            <ng-template ng-option-tmp let-item="item">
+              {{ item.nom }} {{ item.prenom }}
+            </ng-template>
+          </ng-select>
+        </div>
+
       </div>
-
     </div>
   </form>
 
