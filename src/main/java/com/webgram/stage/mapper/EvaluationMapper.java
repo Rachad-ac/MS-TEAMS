@@ -9,7 +9,7 @@ import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring" ,
-       uses = { EmployeMapper.class , RecrutementMapper.class , CandidatureMapper.class , CandidatMapper.class} )
+       uses = { EmployeMapper.class , CandidatureMapper.class } )
 public interface EvaluationMapper extends EntityMapper<EvaluationDTO , EvaluationEntity>{
 
     @Override

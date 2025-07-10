@@ -36,11 +36,11 @@ public class EvaluationEntity implements Serializable {
     private StatutType statut;
 
     @ManyToOne
-    @JoinColumn(name = "candidature_id", nullable = false)
+    @JoinColumn(name = "candidature_id")
     private CandidatureEntity candidature;
 
     @ManyToOne
-    @JoinColumn(name = "employe_id", nullable = false)
+    @JoinColumn(name = "employe_id")
     private EmployeEntity employe;
     
 
