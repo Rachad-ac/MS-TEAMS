@@ -26,7 +26,7 @@
 
         <ng-container matColumnDef="statut">
           <th mat-header-cell *matHeaderCellDef class="table-head-text text-center">Statut</th>
-          <td mat-cell *matCellDef="let presence" class="text-center">{{ presence?.statutPresence }}</td>
+          <td mat-cell *matCellDef="let presence" class="text-center">{{ presence?.statutPresence.description }}</td>
         </ng-container>
 
         <ng-container matColumnDef="justification">
@@ -35,14 +35,14 @@
         </ng-container>
 
         <ng-container matColumnDef="employe_id">
-          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center">Employe ID</th>
-          <td mat-cell *matCellDef="let presence" class="text-center">{{ presence?.employe.id }}</td>
+          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center">Employe</th>
+          <td mat-cell *matCellDef="let presence" class="text-center">{{ presence?.employe.nom }} {{ presence?.employe.prenom }}</td>
         </ng-container>
 
 
         <ng-container matColumnDef="sessionFormation_id">
-          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center">Session Formation ID</th>
-          <td mat-cell *matCellDef="let presence" class="text-center">{{ presence?.sessionFormation.id }}</td>
+          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center">Session Formation</th>
+          <td mat-cell *matCellDef="let presence" class="text-center">{{ presence?.sessionFormation.formation.titre }}</td>
         </ng-container>
 
         <ng-container matColumnDef="detailles">

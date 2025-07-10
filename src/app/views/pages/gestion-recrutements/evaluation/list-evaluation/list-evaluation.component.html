@@ -48,9 +48,9 @@
           <td mat-cell *matCellDef="let evaluation" class="text-center">{{ evaluation?.dateEvaluation | date:'dd/MM/yyyy' }}</td>
         </ng-container>
 
-        <ng-container matColumnDef="recruteur">
+        <ng-container matColumnDef="employe">
           <th mat-header-cell *matHeaderCellDef class="table-head-text">Responsable</th>
-          <td mat-cell *matCellDef="let evaluation">{{ evaluation?.recruteur }}</td>
+          <td mat-cell *matCellDef="let evaluation">{{ evaluation?.employe.nom }} {{ evaluation?.employe.prenom }}</td>
         </ng-container>
 
         <ng-container matColumnDef="statut">

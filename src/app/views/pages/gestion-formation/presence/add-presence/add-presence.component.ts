@@ -41,6 +41,9 @@ export class AddPresenceComponent {
         console.log('session formation récupérés :', res);
 
         this.sessionFormation = res.payload.map((sessionFormations: any) => ({
+          ...sessionFormations,
+          session: `${sessionFormations.formation.titre}`,
+
           id: sessionFormations.id,
         }));
       },

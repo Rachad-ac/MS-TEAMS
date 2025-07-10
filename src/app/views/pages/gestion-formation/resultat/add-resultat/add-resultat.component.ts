@@ -37,6 +37,8 @@ export class AddResultatComponent {
         console.log('evaluations récupérés :', res);
 
         this.evaluations = res.payload.map((evaluation: any) => ({
+          ...evaluation,
+          typeEvalutation: `${evaluation.type.description}`,
           id: evaluation.id,
           type: evaluation.type,
         }));
@@ -51,6 +53,9 @@ export class AddResultatComponent {
         console.log('employes récupérés :', res);
 
         this.employe = res.payload.map((employe: any) => ({
+          ...employe,
+          fullName: `${employe.nom} ${employe.prenom}`,
+
           id: employe.id,
           nom: employe.nom,
           prenom: employe.prenom

@@ -5,6 +5,7 @@ import { EvaluationService } from 'src/app/services/evaluation/evaluation.servic
 import { Alertes } from 'src/app/util/alerte';
 import { Helper } from 'src/app/util/helper';
 import {CandidatureService} from "../../../../../services/candidature/candidature.service";
+import {EmployeService} from "../../../../../services/employe/employe.service";
 
 @Component({
   selector: 'app-edit-evaluation',
@@ -39,16 +40,20 @@ export class EditEvaluationComponent implements OnInit {
       private modalService: NgbModal,
       private evaluationService: EvaluationService,
       private candidatureService: CandidatureService,
+      private employeService: EmployeService,
       private fb: FormBuilder
     ) {}
 
     ngOnInit(): void {
       this.initForm();
-      this.evaluationService.getAllEvaluations().subscribe({
+      this.employeService.getAllEmploye().subscribe({
         next: (res) => {
           console.log('Recruteur récupérés :', res);
 
           this.employes = res.payload.map((employe: any) => ({
+            ...employe,
+            fullName: `${employe.nom} ${employe.prenom}`,
+
             id: employe.id,
             nom: employe.nom,
             prenom: employe.prenom
@@ -64,9 +69,10 @@ export class EditEvaluationComponent implements OnInit {
           console.log('Candidatures récupérés :', res);
 
           this.candidatures = res.payload.map((candidature: any) => ({
-            id: candidature.candidat.id,
-            nom: candidature.candidat.nom,
-            prenom: candidature.candidat.prenom
+            ...candidature,
+            fullName: `${candidature.candidat.nom} ${candidature.candidat.prenom}`,
+
+            id: candidature.id,
           }));
         },
         error: (err) => {
@@ -79,14 +85,14 @@ export class EditEvaluationComponent implements OnInit {
 
   initForm() {
     this.form = new FormGroup({
-      type: new FormControl('', Validators.required),
-      score: new FormControl('', [Validators.required, Validators.min(0)]),
-      noteGenerale: new FormControl('', Validators.required),
-      commentaire: new FormControl('', Validators.maxLength(500)),
-      dateEvaluation : new FormControl('', Validators.required),
-      statut: new FormControl('', Validators.required),
-      employeId: new FormControl('', Validators.required),
-      candidatureId: new FormControl('', Validators.required),
+      type: new FormControl(''),
+      score: new FormControl(''),
+      noteGenerale: new FormControl(''),
+      commentaire: new FormControl(''),
+      dateEvaluation : new FormControl(''),
+      statut: new FormControl(''),
+      employeId: new FormControl(''),
+      candidatureId: new FormControl(''),
     });
   }
 
