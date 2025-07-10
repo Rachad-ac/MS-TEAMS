@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Alertes} from "../../../../../util/alerte";
 import {EvaluationService} from "../../../../../services/evaluation/evaluation.service";
@@ -8,10 +8,10 @@ import {EvaluationService} from "../../../../../services/evaluation/evaluation.s
   templateUrl: './detailles-evaluation.component.html',
   styleUrls: ['./detailles-evaluation.component.scss']
 })
-export class DetaillesEvaluationComponent {
+export class DetaillesEvaluationComponent implements OnInit {
 
   evaluation: any = null;
-  displayedColumnsCompetence: string[] = ['nom', 'niveau', 'domaine'];
+  evaluationId: any;
 
   constructor(private activateRoute: ActivatedRoute,
               private evaluationService: EvaluationService) {}
@@ -31,5 +31,4 @@ export class DetaillesEvaluationComponent {
       }
     });
   }
-
 }

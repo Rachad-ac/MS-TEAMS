@@ -35,14 +35,14 @@
         </ng-container>
 
         <ng-container matColumnDef="employe_id">
-          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center">Employe ID</th>
-          <td mat-cell *matCellDef="let resultat" class="text-center">{{ resultat?.employe.id }}</td>
+          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center">Employe</th>
+          <td mat-cell *matCellDef="let resultat" class="text-center">{{ resultat?.employe.nom }} {{ resultat?.employe.prenom }}</td>
         </ng-container>
 
 
         <ng-container matColumnDef="evaluation_id">
-          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center">Evaluation ID</th>
-          <td mat-cell *matCellDef="let resultat" class="text-center">{{ resultat?.evaluation.id }}</td>
+          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center">Evaluation</th>
+          <td mat-cell *matCellDef="let resultat" class="text-center">{{ resultat?.evaluation.type.description }}</td>
         </ng-container>
 
         <ng-container matColumnDef="detailles">
@@ -80,7 +80,7 @@
       </table>
 
       <span *ngIf="dataSource?.payload?.length === 0" class="paginate text-danger mt-4">
-        Les critères de recherche ne correspondent à aucune évaluation
+        Les critères de recherche ne correspondent à aucune resultat
       </span>
 
       <div class="paginate">
