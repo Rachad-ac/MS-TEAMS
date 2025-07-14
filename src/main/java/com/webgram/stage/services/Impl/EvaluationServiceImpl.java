@@ -35,7 +35,6 @@ public class EvaluationServiceImpl implements EvaluationService {
     private final EvaluationRepository evaluationRepository;
     private final EvaluationMapper evaluationMapper;
 
-    @Transactional
     @Override
     public EvaluationDTO createEvaluation(EvaluationDTO evaluationDTO) {
         var entity = evaluationMapper.asEntity(evaluationDTO);
