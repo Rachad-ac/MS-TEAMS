@@ -14,13 +14,10 @@ export class ListEmployeComponent implements OnInit{
     'nom',
     'prenom',
     'email',
-    'telephone',
     'poste',
     'departement',
-    'sexe',
     'dateEmbauche',
-    'role',
-    'detailles',
+    'details',
     'actions'
   ];
 

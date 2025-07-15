@@ -23,6 +23,7 @@ import {
   DetaillesEvaluationComponent
 } from "../gestion-recrutements/evaluation/detailles-evaluations/detailles-evaluation.component";
 import {ListFormateurComponent} from "./formateur/list-formateur/list-formateur.component";
+import {DetailsEmployeComponent} from "./employe/details-employe/details-employe.component";
 
 
 const routes: Routes = [
@@ -49,6 +50,8 @@ const routes: Routes = [
   { path: 'employe', component: ListEmployeComponent },
   { path: 'employe', component: AddEmployeComponent },
   { path: 'employe', component: EditEmployeComponent },
+  { path: 'employe/:id', component: DetailsEmployeComponent },
+  { path: 'details-employe', component: DetailsEmployeComponent },
 
   { path: 'inscriptions', component: ListInscriptionComponent },
   { path: '', component: ListFormationComponent },
