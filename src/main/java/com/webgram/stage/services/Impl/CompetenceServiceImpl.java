@@ -46,7 +46,6 @@ public class CompetenceServiceImpl implements CompetenceService {
         // Mettre à jour les champs simples
         existing.setNom(competenceDTO.getNom());
         existing.setNiveau(NiveauCompetence.valueOf(competenceDTO.getNiveau()));
-        existing.setDomaine(competenceDTO.getDomaine());
         CompetenceEntity updatedEntity = competenceRepository.save(existing);
         return competenceMapper.asDto(updatedEntity);
     }
@@ -84,7 +83,7 @@ public class CompetenceServiceImpl implements CompetenceService {
             }
 
             if (searchParams.containsKey("domaine")) {
-                booleanBuilder.and(qEntity.domaine.containsIgnoreCase(searchParams.get("domaine")));
+                booleanBuilder.and(qEntity.domaine.nom.containsIgnoreCase(searchParams.get("domaine")));
             }
         }
 
