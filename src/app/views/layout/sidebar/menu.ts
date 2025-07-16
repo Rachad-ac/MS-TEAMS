@@ -14,11 +14,11 @@ export const MENU: MenuItem[] = [
   },
 
   // Ajout de l'entrée Candidature pour accéder à la gestion des candidatures
-  {
+  /*{
     label: 'Candidature',
     icon: 'user-check',
     link: '/admin/gestion-recrutement/candidature',
-  },
+  },*/
   {
     label: 'Candidat',
     icon: 'user',
@@ -28,11 +28,6 @@ export const MENU: MenuItem[] = [
     label: 'Evaluation',
     icon: 'file-text',
     link: '/admin/gestion-recrutement/evaluation'
-  },
-  {
-    label: 'Domaine',
-    icon: 'box',
-    link: '/admin/gestion-recrutement/domaine'
   },
 
   // Section gestion formation

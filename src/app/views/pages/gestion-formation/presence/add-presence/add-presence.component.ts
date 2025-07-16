@@ -57,6 +57,9 @@ export class AddPresenceComponent {
         console.log('employes récupérés :', res);
 
         this.employe = res.payload.map((employe: any) => ({
+          ...employe,
+          fullName: `${employe.nom} ${employe.prenom}`,
+
           id: employe.id,
           nom: employe.nom,
           prenom: employe.prenom

@@ -18,10 +18,14 @@ export class ListRecrutementComponent implements OnInit {
     'detailles',
     'actions'
   ];
+  displayedColumnsCompetence: string[] = ['nom', 'niveau', 'domaine'];
 
+  candidat: any = null;
+  recrutementId: any;
   recrutementToUpdate:any
   pageOptions: any = { paze: 0, size: 10 };
   recrutements: any;
+  recrutement: any;
   dataSource: any;
   loadingIndicator = true;
 
@@ -32,6 +36,7 @@ export class ListRecrutementComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllRecrutements();
+    this.getRecrutementById();
   }
   getAllRecrutements() {
     this.recrutementServices.getAllRecrutements(this.pageOptions).subscribe(
@@ -53,6 +58,19 @@ export class ListRecrutementComponent implements OnInit {
     )
   }
 
+  getRecrutementById() {
+    this.recrutementId = localStorage.getItem('recrutementId');
+    this.recrutementServices.getRecrutementId(this.recrutementId).subscribe({
+      next:(data) =>{
+        console.log(data);
+        this.recrutements = data.payload;
+      },
+      error:(error)=>{
+        Alertes.alerteAddDanger(error.error.message)
+      }
+    });
+  }
+
   paginate($event: any) {
     this.loadingIndicator = true;
     this.pageOptions.page = $event - 1;
@@ -60,6 +78,11 @@ export class ListRecrutementComponent implements OnInit {
   }
 
   openAddRecrutement(content: TemplateRef<any>) {
+    this.openModal(content, 'lg');
+  }
+
+  openInfoRecrutement(content: TemplateRef<any>, recrutement: any) {
+    this.recrutement = recrutement;
     this.openModal(content, 'lg');
   }
 
@@ -95,6 +118,7 @@ export class ListRecrutementComponent implements OnInit {
   close(){
     this.modalService.dismissAll();
     this.getAllRecrutements();
+    this.getRecrutementById();
   }
   doSearch(data: any) {
     this.pageOptions = data;

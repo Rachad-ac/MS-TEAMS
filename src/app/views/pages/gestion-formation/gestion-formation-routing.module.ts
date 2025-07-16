@@ -23,6 +23,8 @@ import {EditEmployeComponent} from "./employe/edit-employe/edit-employe.componen
 import {
   DetaillesEvaluationComponent
 } from "../gestion-recrutements/evaluation/detailles-evaluations/detailles-evaluation.component";
+import {ListFormateurComponent} from "./formateur/list-formateur/list-formateur.component";
+import {DetailsEmployeComponent} from "./employe/details-employe/details-employe.component";
 
 const routes: Routes = [
   {path: '', component: ListFormationComponent},
@@ -48,11 +50,13 @@ const routes: Routes = [
   { path: 'employe', component: ListEmployeComponent },
   { path: 'employe', component: AddEmployeComponent },
   { path: 'employe', component: EditEmployeComponent },
+  { path: 'employe/:id', component: DetailsEmployeComponent },
+  { path: 'details-employe', component: DetailsEmployeComponent },
 
   { path: 'inscriptions', component: ListInscriptionComponent },
   { path: '', component: ListFormationComponent },
 
-  { path: 'formation', component: ListFormationComponent },
+  { path: 'formateur', component: ListFormateurComponent },
   { path: 'detaille-formation', component: DetaillesFormationComponent },
   {path: 'formateur', component: ListFormateurComponent },
 ];

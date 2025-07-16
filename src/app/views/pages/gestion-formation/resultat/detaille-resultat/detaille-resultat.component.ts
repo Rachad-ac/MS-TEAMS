@@ -1,8 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {EvaluationService} from "../../../../../services/evaluation/evaluation.service";
 import {Alertes} from "../../../../../util/alerte";
 import {ResultatService} from "../../../../../services/resultat/resultat.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-detaille-resultat',
@@ -13,11 +13,17 @@ export class DetailleResultatComponent implements OnInit {
 
   resultats: any = null;
   resultatId: any;
+  resultatToUpdate: any;
 
   constructor(private activateRoute: ActivatedRoute,
+              private modalService: NgbModal,
               private resultatService: ResultatService) {}
 
   ngOnInit(): void {
+    this.getResultatById();
+  }
+
+  getResultatById(){
     const resultatId = this.activateRoute.snapshot.paramMap.get('id');
     if (resultatId != null) {
       localStorage.setItem('resultatId', resultatId);
