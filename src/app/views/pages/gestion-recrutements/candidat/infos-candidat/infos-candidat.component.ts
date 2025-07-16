@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {CandidatService} from "../../../../../services/candidat/candidat.service";
 import {Alertes} from "../../../../../util/alerte";
@@ -10,14 +10,12 @@ import {Alertes} from "../../../../../util/alerte";
 })
 export class InfosCandidatComponent implements OnInit {
   candidat: any = null;
-  displayedColumnsCompetence: string[] = ['nom', 'niveau', 'domaine'];
-  candidatId: any;
+  @Input() candidatId: any;
 
   constructor(private activateRoute: ActivatedRoute,
               private candidatService: CandidatService) {}
 
   ngOnInit(): void {
-    this.candidatId = localStorage.getItem('candidatId');
     this.candidatService.getCandidatById(this.candidatId).subscribe({
       next:(data) =>{
         console.log(data);

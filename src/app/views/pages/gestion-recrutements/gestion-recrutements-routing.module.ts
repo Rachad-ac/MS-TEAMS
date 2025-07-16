@@ -13,6 +13,8 @@ import { AddCandidatComponent } from './candidat/add-candidat/add-candidat.compo
 import { ListCandidatComponent } from './candidat/list-candidat/list-candidat.component';
 import { EditCandidatComponent } from './candidat/edit-candidat/edit-candidat.component';
 import {InfosCandidatComponent} from "./candidat/infos-candidat/infos-candidat.component";
+import {ListCompetenceComponent} from "./competence/list-competence/list-competence.component";
+import {AddCompetenceComponent} from "./competence/add-competence/add-competence.component";
 const routes: Routes = [
   {path: '', component: ListRecrutementComponent},
   {path: 'recrutement', component: ListRecrutementComponent},
@@ -27,6 +29,9 @@ const routes: Routes = [
   {path: 'candidat', component: ListCandidatComponent},
   {path: 'candidat', component: AddCandidatComponent},
   {path: 'candidat', component: EditCandidatComponent},
+
+  {path: 'competence', component: ListCompetenceComponent},
+  {path: 'competence', component: AddCompetenceComponent},
 
   { path: 'candidature', component: ListCandidatureComponent },
   { path: 'candidature/add', component: AddEditCandidatureComponent },

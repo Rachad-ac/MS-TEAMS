@@ -37,6 +37,9 @@ export class EditResultatComponent implements OnInit{
         console.log('evaluations récupérés :', res);
 
         this.evaluations = res.payload.map((evaluation: any) => ({
+          ...evaluation,
+          typeEvalutation: `${evaluation.type.description}`,
+
           id: evaluation.id,
           type: evaluation.type,
         }));
@@ -51,6 +54,9 @@ export class EditResultatComponent implements OnInit{
         console.log('employes récupérés :', res);
 
         this.employe = res.payload.map((employe: any) => ({
+          ...employe,
+          fullName: `${employe.nom} ${employe.prenom}`,
+
           id: employe.id,
           nom: employe.nom,
           prenom: employe.prenom
@@ -75,9 +81,9 @@ export class EditResultatComponent implements OnInit{
   loadFileds() {
     if (this.resultatToUpdate !== undefined) {
       this.form?.get('note')?.setValue(this.resultatToUpdate?.note);
-      this.form?.get('commentaire')?.setValue(this.resultatToUpdate.commentaire);
-      this.form?.get('employeId')?.setValue(this.resultatToUpdate.employeId);
-      this.form?.get('evaluationId')?.setValue(this.resultatToUpdate.evaluationId);
+      this.form?.get('commentaire')?.setValue(this.resultatToUpdate?.commentaire);
+      this.form?.get('employeId')?.setValue(this.resultatToUpdate?.employeId);
+      this.form?.get('evaluationId')?.setValue(this.resultatToUpdate?.evaluationId);
 
     }
   }
