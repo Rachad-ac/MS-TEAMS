@@ -26,6 +26,7 @@ public class CompetenceEntity implements Serializable {
 	@Enumerated(EnumType.STRING)
 	private NiveauCompetence niveau;
 
-	@Column(name = "domaine_competence")
-	private String domaine;
+	@ManyToOne
+	@JoinColumn(name = "domaine_id")
+	private DomaineEntity domaine;
 }
