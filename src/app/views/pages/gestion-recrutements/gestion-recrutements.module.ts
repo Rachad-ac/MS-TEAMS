@@ -33,7 +33,13 @@ import {ListCompetenceComponent} from "./competence/list-competence/list-compete
 import {AddCompetenceComponent} from "./competence/add-competence/add-competence.component";
 import { DetaillesCandidatComponent } from './candidat/detailles-candidat/detailles-candidat.component';
 import {InfosCandidatComponent} from "./candidat/infos-candidat/infos-candidat.component";
+<<<<<<< HEAD
+import { AddDomaineComponent } from './domaine/add-domaine/add-domaine.component';
+import { ListDomaineComponent } from './domaine/list-domaine/list-domaine.component';
+import { EditDomaineComponent } from './domaine/edit-domaine/edit-domaine.component';
+=======
 import {GestionFormationModule} from "../gestion-formation/gestion-formation.module";
+>>>>>>> dev
 
 @NgModule({
   // Déclaration de tous les composants utilisés dans ce module
@@ -59,6 +65,12 @@ import {GestionFormationModule} from "../gestion-formation/gestion-formation.mod
     AddCompetenceComponent,
     DetaillesCandidatComponent,
     InfosCandidatComponent,
+<<<<<<< HEAD
+    AddDomaineComponent,
+    ListDomaineComponent,
+    EditDomaineComponent
+=======
+>>>>>>> dev
   ],
   // Import des modules nécessaires pour ce module
     imports: [
