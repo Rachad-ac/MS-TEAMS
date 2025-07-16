@@ -17,6 +17,7 @@ import {AddResultatComponent} from "./resultat/add-resultat/add-resultat.compone
 import {EditResultatComponent} from "./resultat/edit-resultat/edit-resultat.component";
 import {ListFormationComponent} from "./formation/list-formation/list-formation.component";
 import {DetaillesFormationComponent} from "./formation/detailles-formation/detailles-formation.component";
+import { ListFormateurComponent } from './formateur/list-formateur/list-formateur.component';
 import {AddEmployeComponent} from "./employe/add-employe/add-employe.component";
 import {EditEmployeComponent} from "./employe/edit-employe/edit-employe.component";
 import {
@@ -24,7 +25,6 @@ import {
 } from "../gestion-recrutements/evaluation/detailles-evaluations/detailles-evaluation.component";
 import {ListFormateurComponent} from "./formateur/list-formateur/list-formateur.component";
 import {DetailsEmployeComponent} from "./employe/details-employe/details-employe.component";
-
 
 const routes: Routes = [
   {path: '', component: ListFormationComponent},
@@ -58,6 +58,7 @@ const routes: Routes = [
 
   { path: 'formateur', component: ListFormateurComponent },
   { path: 'detaille-formation', component: DetaillesFormationComponent },
+  {path: 'formateur', component: ListFormateurComponent },
 ];
 
 @NgModule({
