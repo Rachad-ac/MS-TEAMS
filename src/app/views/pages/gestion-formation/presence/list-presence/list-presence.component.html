@@ -35,7 +35,7 @@
         </ng-container>
 
         <ng-container matColumnDef="employe_id">
-          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center">Employe</th>
+          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center">Participant</th>
           <td mat-cell *matCellDef="let presence" class="text-center">{{ presence?.employe.nom }} {{ presence?.employe.prenom }}</td>
         </ng-container>
 
@@ -50,7 +50,7 @@
             Detailles
           </th>
           <td mat-cell *matCellDef="let presence" class="text-center">
-            <button class="btn btn-outline-primary pb-0 px-3 pt-1" [routerLink]="['/admin/gestion-formation/presence/', presence.id]">
+            <button class="btn btn-outline-secondary pb-0 px-3 pt-1" [routerLink]="['/admin/gestion-formation/presence/', presence.id]">
               <mat-icon class="m-0">assignment</mat-icon>
             </button>
           </td>

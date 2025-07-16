@@ -11,7 +11,7 @@
     <button type="button" class="btn btn-secondary btn-icon me-2" (click)="openAddResultat(SearchResultatModal)">
       <i class="feather icon-search"></i>
     </button>
-    <button type="button" class="btn btn-primary btn-icon-text" (click)="openAddResultat(addEvaluationModal)">
+    <button type="button" class="btn btn-primary btn-icon-text" (click)="openAddResultat(addResultatModal)">
       <i class="feather icon-plus-circle"></i> Nouveau Resultat
     </button>
   </div>
@@ -50,7 +50,7 @@
             Detailles
           </th>
           <td mat-cell *matCellDef="let resultat" class="text-center">
-            <button class="btn btn-outline-primary pb-0 px-3 pt-1" [routerLink]="['/admin/gestion-formation/resultat/', resultat.id]">
+            <button class="btn btn-outline-secondary pb-0 px-3 pt-1" [routerLink]="['/admin/gestion-formation/resultat/', resultat.id]">
               <mat-icon class="m-0">assignment</mat-icon>
             </button>
           </td>
@@ -112,9 +112,9 @@
 </ng-template>
 
 <!-- MODALE : Nouvelle resultat -->
-<ng-template #addEvaluationModal let-modal>
+<ng-template #addResultatModal let-modal>
   <div class="modal-header">
-    <h5 class="modal-title" id="addEvaluationModalModalLabel">Ajouter Evaluation</h5>
+    <h5 class="modal-title" id="addResultatModalModalLabel">Ajouter Resultat</h5>
     <button type="button" class="btn-close" (click) = "modal.close('by: close icon')" aria-label="Close"></button>
   </div>
   <div class="modal-body">
@@ -125,7 +125,7 @@
 <!-- MODALE : Modifier resultat -->
 <ng-template #EditResultatModal let-modal>
   <div class="modal-header">
-    <h5 class="modal-title" id="editResultatModalModalLabel">Modifier Evaluation</h5>
+    <h5 class="modal-title" id="editResultatModalModalLabel">Modifier Resultat</h5>
     <button type="button" class="btn-close" (click) = "modal.close('by: close icon')" aria-label="Close"></button>
   </div>
   <div class="modal-body">
