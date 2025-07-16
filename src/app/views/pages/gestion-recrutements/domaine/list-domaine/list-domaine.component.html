@@ -3,17 +3,17 @@
   <!-- Breadcrumb à gauche -->
   <nav class="page-breadcrumb cursor-pointer">
     <ol class="breadcrumb mb-0">
-      <li class="breadcrumb-item active"><a>List Competence</a></li>
+      <li class="breadcrumb-item active"><a>Liste Domaine</a></li>
     </ol>
   </nav>
 
   <!-- Boutons à droite -->
   <div class="d-flex justify-content-end align-items-center gap-2">
-    <button type="button" class="btn btn-secondary btn-icon me-2" (click)="openAddCompetence(SearchCompetenceModal)">
+    <button type="button" class="btn btn-secondary btn-icon me-2" (click)="openAddDomaine(SearchDomaineModal)">
       <i class="feather icon-search"></i>
     </button>
-    <button type="button" class="btn btn-primary btn-icon-text" (click)="openAddCompetence(addCompetenceModal)">
-      <i class="feather icon-plus-circle"></i> Nouvel Competence
+    <button type="button" class="btn btn-primary btn-icon-text" (click)="openAddDomaine(addDomaineModal)">
+      <i class="feather icon-plus-circle"></i> Nouveau Domaine
     </button>
   </div>
 
@@ -28,28 +28,37 @@
 
         <ng-container matColumnDef="nom">
           <th mat-header-cell *matHeaderCellDef class="table-head-text">Nom</th>
-          <td mat-cell *matCellDef="let competence"> {{competence?.nom}} </td>
+          <td mat-cell *matCellDef="let domaine"> {{domaine?.nom}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="niveau">
-          <th mat-header-cell *matHeaderCellDef class="table-head-text">Niveau</th>
-          <td mat-cell *matCellDef="let competence"> {{competence?.niveau}} </td>
+        <ng-container matColumnDef="description">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Description</th>
+          <td mat-cell *matCellDef="let domaine"> {{domaine?.description}} </td>
         </ng-container>
 
-
+       <!--    <ng-container matColumnDef="detailles">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center" style="min-width:50px;">
+            Detailles
+          </th>
+          <td mat-cell *matCellDef="let domaine" class="text-center">
+            <button class="btn btn-outline-secondary pb-0 px-3 pt-1" (click)="saveIdDomaine(domaine.id)" [routerLink]="['/admin/gestion-recrutement/detaille-domaine']">
+              <mat-icon class="m-0">assignment</mat-icon>
+            </button>
+          </td>
+        </ng-container> -->
 
         <ng-container matColumnDef="actions" stickyEnd>
           <th mat-header-cell *matHeaderCellDef class="table-head-text">Actions</th>
-          <td mat-cell *matCellDef="let competence">
+          <td mat-cell *matCellDef="let domaine">
             <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu d’actions">
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="openEditCompetence(EditcompetenceModal, competence)">
+              <button mat-menu-item (click)="openEditDomaine(EditDomaineModal, domaine)">
                 <mat-icon>edit</mat-icon>
                 <span>Modifier</span>
               </button>
-              <button mat-menu-item (click)="deleteCompetence(competence)">
+              <button mat-menu-item (click)="deleteDomaine(domaine.id)">
                 <mat-icon>delete</mat-icon>
                 <span>Supprimer</span>
               </button>
@@ -64,7 +73,7 @@
 
 
       <span *ngIf="dataSource?.payload?.length == 0" class="paginate text-danger mt-4">Les critères de recherche
-                tels qu'énoncés ne correspondent à aucun competence</span>
+                tels qu'énoncés ne correspondent à aucun Domaine</span>
 
       <div class="paginate">
         <ngb-pagination [collectionSize]="dataSource?.metadata?.totalElements" [page]="pageOptions.page+1"
@@ -75,38 +84,38 @@
     </section>
   </div>
 </div>
-<!-- search competence -->
-<ng-template #SearchcompetenceModal let-modal>
+<!-- search Domaine -->
+<ng-template #SearchDomaineModal let-modal>
   <div class="modal-header">
-    <h5 class="modal-title" id="exampleModalLabel">Recherche competence</h5>
+    <h5 class="modal-title" id="exampleModalLabel">Recherche Domaine</h5>
     <button type="button" class="btn-close"  (click)="modal.close('by: close icon')" aria-label="Close"></button>
   </div>
   <div class="modal-body">
-        <app-add-competence (search)="doSearch($event)" [isSearch]="true" (submit)="close()"></app-add-competence>
+        <app-add-domaine (search)="doSearch($event)" [isSearch]="true" (submit)="close()"></app-add-domaine>
   </div>
 </ng-template>
-<!-- search competence -->
+<!-- search Domaine -->
 
-<!--Add competence-->
-<ng-template #addcompetenceModal let-modal>
+<!--Add Domaine-->
+<ng-template #addDomaineModal let-modal>
   <div class="modal-header">
-    <h5 class="modal-title" id="addcompetenceModalLabel">Ajout competence</h5>
+    <h5 class="modal-title" id="addDomaineModalLabel">Ajout Domaine</h5>
     <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
   </div>
   <div class="modal-body">
-        <app-add-competence [isSearch]="false" (submit)="close()"></app-add-competence>
+        <app-add-domaine [isSearch]="false" (submit)="close()"></app-add-domaine>
   </div>
 </ng-template>
-<!--End Add competence-->
+<!--End Add Domaine-->
 
-<!--Edit competence-->
-<ng-template #EditcompetenceModal let-modal>
+<!--Edit Domaine-->
+<ng-template #EditDomaineModal let-modal>
   <div class="modal-header">
-    <h5 class="modal-title" id="EditcompetenceModalLabel">Modifier competence</h5>
+    <h5 class="modal-title" id="EditDomaineModalLabel">Modifier Domaine</h5>
     <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
   </div>
   <div class="modal-body">
-    <app-add-competence  (submit)="close()" [competenceToUpdate]="competenceToUpdate"></app-add-competence>
+    <app-add-domaine  (submit)="close()" [domaineToUpdate]="domaineToUpdate"></app-add-domaine>
   </div>
 </ng-template>
-<!--End Edit competence-->
+<!--End Edit Domaine-->

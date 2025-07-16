@@ -29,11 +29,6 @@ export const MENU: MenuItem[] = [
     icon: 'file-text',
     link: '/admin/gestion-recrutement/evaluation'
   },
-  {
-    label: 'Competence',
-    icon: 'award',
-    link: '/admin/gestion-recrutement/competence'
-  },
 
   // Section gestion formation
   {
