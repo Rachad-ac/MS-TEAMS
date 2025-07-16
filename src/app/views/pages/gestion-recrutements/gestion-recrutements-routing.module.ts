@@ -13,6 +13,7 @@ import { AddCandidatComponent } from './candidat/add-candidat/add-candidat.compo
 import { ListCandidatComponent } from './candidat/list-candidat/list-candidat.component';
 import { EditCandidatComponent } from './candidat/edit-candidat/edit-candidat.component';
 import {InfosCandidatComponent} from "./candidat/infos-candidat/infos-candidat.component";
+import {ListDomaineComponent} from "./domaine/list-domaine/list-domaine.component";
 const routes: Routes = [
   {path: '', component: ListRecrutementComponent},
   {path: 'recrutement', component: ListRecrutementComponent},
@@ -33,6 +34,8 @@ const routes: Routes = [
   { path: 'candidature/edit/:id', component: AddEditCandidatureComponent },
   { path: 'candidature/:id', component: DetaillesCandidatureComponent },
   { path: 'infos-candidat', component: InfosCandidatComponent },
+  
+  {path: 'domaine', component: ListDomaineComponent},
 ];
 
 @NgModule({

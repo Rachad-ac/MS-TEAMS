@@ -1,0 +1,49 @@
+<section *ngIf="!isSearch">
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom<small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="nom" placeholder="Nom" formControlName="nom">
+        </div>
+      </div>
+       
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="description" class="form-label">Description<small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="description" placeholder="Description" formControlName="description">
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-primary" (click)="update()" [disabled]="!form.valid">Enregistrer</button>
+  </div>
+</section>
+
+
+<section *ngIf="isSearch">
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom</label>
+          <input type="text" class="form-control form-control-lg" id="nom" placeholder="Nom" formControlName="nom">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <input type="text" class="form-control form-control-lg" id="description" placeholder="Description" formControlName="description">
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-primary" (click)="search.emit(form.value)" [disabled]="!form.valid">Rechercher</button>
+  </div>
+</section>

@@ -1,0 +1,68 @@
+<section *ngIf="!isSearch" >
+  <form [formGroup]="form">
+    <div class="row">
+      <!-- Nom -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom <small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="nom" placeholder="Nom" formControlName="nom">
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div *ngIf="!isSearch" class="col-sm-12">
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea type="text" class="form-control form-control-lg" id="description" placeholder="Description" formControlName="description"></textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Boutons -->
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-primary" *ngIf="!isSearch" (click)="create()" [disabled]="!form.valid">Enregistrer</button>
+    <button type="button" class="btn btn-primary" *ngIf="isSearch" (click)="doSearch()">Rechercher</button>
+  </div>
+</section>
+
+<section *ngIf="isSearch" >
+  <form [formGroup]="form">
+    <div class="row">
+      <!-- Nom -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom <small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="nom" placeholder="Nom" formControlName="nom">
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div *ngIf="!isSearch" class="col-sm-12">
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea type="text" class="form-control form-control-lg" id="description" placeholder="Description" formControlName="description"></textarea>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Boutons -->
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-primary" *ngIf="!isSearch" (click)="create()" [disabled]="!form.valid">Enregistrer</button>
+    <button type="button" class="btn btn-primary" *ngIf="isSearch" (click)="doSearch()">Rechercher</button>
+  </div>
+</section>
+
+<!--Add domaine-->
+<ng-template #addDomaineModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="addDomaineModalLabel">Ajout domaine </h5>
+    <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-add-domaine [isSearch]="false" (submit)="close()"></app-add-domaine>
+  </div>
+</ng-template>
