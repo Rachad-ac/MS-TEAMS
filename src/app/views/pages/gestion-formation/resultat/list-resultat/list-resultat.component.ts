@@ -1,4 +1,4 @@
-import {Component, TemplateRef} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Alertes} from "../../../../../util/alerte";
 import {ResultatService} from "../../../../../services/resultat/resultat.service";
@@ -8,7 +8,7 @@ import {ResultatService} from "../../../../../services/resultat/resultat.service
   templateUrl: './list-resultat.component.html',
   styleUrls: ['./list-resultat.component.scss']
 })
-export class ListResultatComponent {
+export class ListResultatComponent implements OnInit {
 
   displayedColumns : string[] = [
     'note',
@@ -77,7 +77,7 @@ export class ListResultatComponent {
       'Voulez-vous supprimer ?',
       'Cet élément sera définitivement supprimé',
       () => {
-        this.resultatService.deleteResultat(resultat).subscribe({
+        this.resultatService.deleteResultat(resultat.id).subscribe({
           next: () => {
             Alertes.alerteAddSuccess('Suppression réussie');
           },

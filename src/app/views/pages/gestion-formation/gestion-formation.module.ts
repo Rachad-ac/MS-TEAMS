@@ -37,6 +37,7 @@ import {EditModuleComponent} from "./Module/edit-module/edit-module.component";
 import {AddModuleComponent} from "./Module/add-module/add-module.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NgSelectModule} from "@ng-select/ng-select";
+import { DetailsEmployeComponent } from './employe/details-employe/details-employe.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +55,6 @@ import {NgSelectModule} from "@ng-select/ng-select";
     AddSessionFormationComponent,
     ListInscriptionComponent,
     AddEditInscriptionComponent,
-    AddSessionFormationComponent,
     AddResultatComponent,
     ListResultatComponent,
     EditResultatComponent,
@@ -77,6 +77,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
     DetaillesFormationComponent,
     ListFormateurComponent,
     AddFormateurComponent,
+    DetailsEmployeComponent,
   ],
   imports: [
     CommonModule,
@@ -95,5 +96,8 @@ import {NgSelectModule} from "@ng-select/ng-select";
     NgbModule,
 
   ],
+  exports: [
+    EditEmployeComponent
+  ]
 })
 export class GestionFormationModule {}

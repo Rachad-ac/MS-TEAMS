@@ -1,4 +1,4 @@
-import {Component, Input, TemplateRef} from '@angular/core';
+import {Component, Input, OnInit, TemplateRef} from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { CandidatService } from 'src/app/services/candidat/candidat.service';
 import { Alertes } from 'src/app/util/alerte';
@@ -8,17 +8,18 @@ import { Alertes } from 'src/app/util/alerte';
   templateUrl: './list-candidat.component.html',
   styleUrls: ['./list-candidat.component.scss']
 })
-export class ListCandidatComponent {
+export class ListCandidatComponent implements OnInit {
  // Colonnes affichées dans le tableau
   displayedColumns: string[] = [
     'nom',
     'prenom',
     'email',
-    'infos',
+    'statutCandidature',
     'actions',
   ];
-   
-    candidatToUpdate: any; 
+
+    candidatToUpdate: any;
+    candidatId: any;
     evaluationToUpdate: any;
     pageOptions: any = { page: 0, size: 10 };
     dataSource: any;
@@ -114,10 +115,10 @@ export class ListCandidatComponent {
       this.modalService.dismissAll();
     }
 
-    saveIdCandidat(candidatId: any) {
-    if (candidatId != null) {
-      localStorage.setItem('candidatId', candidatId);
-    }
+  openInfoCandidat(content: TemplateRef<any>, id :any) {
+    this.candidatId = id
+    this.openModal(content, 'lg');
   }
-  }
+
+}
 

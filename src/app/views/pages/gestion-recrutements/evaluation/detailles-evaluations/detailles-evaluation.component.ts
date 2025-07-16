@@ -1,7 +1,8 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, TemplateRef} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import {Alertes} from "../../../../../util/alerte";
 import {EvaluationService} from "../../../../../services/evaluation/evaluation.service";
+import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
   selector: 'app-detailles-evaluation',
@@ -10,13 +11,21 @@ import {EvaluationService} from "../../../../../services/evaluation/evaluation.s
 })
 export class DetaillesEvaluationComponent implements OnInit {
 
+  evaluationToUpdate: any;
   evaluation: any = null;
   evaluationId: any;
+  loadingIndicator = true;
 
   constructor(private activateRoute: ActivatedRoute,
-              private evaluationService: EvaluationService) {}
+              private modalService: NgbModal,
+              private evaluationService: EvaluationService,
+             ) {}
 
   ngOnInit(): void {
+    this.getEvaluationById();
+  }
+
+  getEvaluationById(){
     const evaluationId = this.activateRoute.snapshot.paramMap.get('id');
     if (evaluationId != null) {
       localStorage.setItem('evaluationId', evaluationId);
@@ -31,4 +40,42 @@ export class DetaillesEvaluationComponent implements OnInit {
       }
     });
   }
+
+  openEditEvaluation(content: TemplateRef<any>, evaluation: any): void {
+    this.evaluationToUpdate = evaluation;
+    this.openModal(content, 'lg');
+  }
+
+  openModal(content: TemplateRef<any>, size: 'sm' | 'lg' | 'xl'): void {
+    this.modalService.open(content, { size, backdrop: 'static' }).result.then(
+      () => {},
+      () => {}
+    );
+  }
+
+  deleteEvaluation(evaluation: any): void {
+    Alertes.confirmAction(
+      'Voulez-vous supprimer ?',
+      'Cet élément sera définitivement supprimé',
+      () => {
+        this.evaluationService.deleteEvaluation(evaluation.id ).subscribe({
+          next: () => {
+            Alertes.alerteAddSuccess('Suppression réussie');
+          },
+          error: (err) => {
+            Alertes.alerteAddDanger(err?.error?.message || 'Erreur de suppression');
+          },
+          complete: () => {
+            this.getEvaluationById()
+          }
+        });
+      }
+    );
+  }
+
+  close(): void {
+    this.modalService.dismissAll();
+    this.getEvaluationById();
+  }
+
 }
