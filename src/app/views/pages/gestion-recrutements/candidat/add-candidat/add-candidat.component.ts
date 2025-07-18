@@ -54,9 +54,9 @@ form!: FormGroup;
   ) {}
 
   ngOnInit(): void {
-    this.allCompetences;
     this.initForm();
     this.handleValidationAutreNiveau();
+    this.allCompetences;
   }
 
   initForm() {

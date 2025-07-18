@@ -81,14 +81,11 @@
         <div class="mb-3">
           <label for="candidatureId" class="form-label">Candidat<small style="color: red;"> *</small></label>
           <ng-select
-            [items]="candidatures"
+            [items]="candidat"
             bindLabel="fullName"
             bindValue="id"
             placeholder="Sélectionner un candidat..."
-            formControlName="candidatureId">
-            <ng-template ng-option-tmp let-item="item">
-              {{ item.candidat?.nom }} {{item.candidat?.prenom}}
-            </ng-template>
+            formControlName="candidatId">
           </ng-select>
         </div>
       </div>

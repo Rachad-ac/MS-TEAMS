@@ -23,7 +23,6 @@ import {EditEmployeComponent} from "./employe/edit-employe/edit-employe.componen
 import {
   DetaillesEvaluationComponent
 } from "../gestion-recrutements/evaluation/detailles-evaluations/detailles-evaluation.component";
-import {ListFormateurComponent} from "./formateur/list-formateur/list-formateur.component";
 import {DetailsEmployeComponent} from "./employe/details-employe/details-employe.component";
 
 const routes: Routes = [
