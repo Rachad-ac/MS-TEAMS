@@ -41,8 +41,8 @@
               <tbody>
               <tr *ngFor="let competence of candidat.competence">
                 <td>{{ competence.nom }}</td>
-                <td>{{ competence.niveau }}</td>
-                <td>{{ competence.domaine }}</td>
+                <td>{{ competence.niveau.toLowerCase() }}</td>
+                <td>{{ competence.domaine.nom }}</td>
               </tr>
               </tbody>
             </table>

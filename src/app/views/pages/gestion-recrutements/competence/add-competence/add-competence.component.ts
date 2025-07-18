@@ -1,9 +1,10 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 import {Observable} from "rxjs";
 import {Alertes} from "../../../../../util/alerte";
 import {competenceService} from "../../../../../services/competence/competence.service";
+import {DomaineService} from "../../../../../services/domaine/domaine.service";
 
 @Component({
   selector: 'app-add-competence',
@@ -11,12 +12,16 @@ import {competenceService} from "../../../../../services/competence/competence.s
   styleUrls: ['./add-competence.component.scss']
 })
 export class AddCompetenceComponent implements OnInit {
-@Output() submit: EventEmitter<boolean> = new EventEmitter();
+
+  @Output() submit: EventEmitter<boolean> = new EventEmitter();
   @Output() search: EventEmitter<boolean> = new EventEmitter();
   @Input() competenceToUpdate!: any;
   @Input() isSearch: boolean =true;
+
   pageOptions: any = { page: 0, size: 10 };
   form!: FormGroup;
+  domaine: any[] = [];
+
   niveau =[
     {name:'DEBUTANT',description:'Debutant'},
     {name:'INTERMEDIARE',description:'Intermediare'},
@@ -26,25 +31,42 @@ export class AddCompetenceComponent implements OnInit {
   constructor(
               private modalService: NgbModal,
               private fb: FormBuilder,
-              private competenceService : competenceService
+              private competenceService : competenceService,
+              private domaineService : DomaineService,
   ) { }
 
   ngOnInit(): void {
-    this.form = this.fb.group({
-      id: [null],
-      nom: [''],
-      niveau: [''],
-      domaine: ['']
+    this.initForm();
+    this.domaineService.getAllDomaines().subscribe({
+      next: (res) => {
+        console.log('Domaine récupérés :', res);
+
+        this.domaine = res.payload.map((domaine: any) => ({
+          ...domaine,
+          name: `${domaine.nom} `,
+          id: domaine.id,
+        }));
+      },
+      error: (err) => {
+        console.error('Erreur chargement recruteurs :', err);
+      }
     });
-        this.loadFileds();
+    this.loadFileds();
+  }
+
+  initForm() {
+    this.form = this.fb.group({
+      nom: new FormControl('', Validators.required),
+      niveau: new FormControl('', Validators.required),
+      domaineId: new FormControl('', Validators.required),
+    });
   }
 
   loadFileds() {
     if (this.competenceToUpdate !== undefined) {
-      this.form?.get('id')?.setValue(this.competenceToUpdate.id);
       this.form?.get('nom')?.setValue(this.competenceToUpdate.nom);
       this.form?.get('niveau')?.setValue(this.competenceToUpdate.niveau);
-      this.form?.get('domaine')?.setValue(this.competenceToUpdate.domaine);
+      this.form?.get('domaineId')?.setValue(this.competenceToUpdate.domaine);
     }
   }
 
@@ -72,7 +94,7 @@ export class AddCompetenceComponent implements OnInit {
   }
 
   close(){
-    this.competenceService.dismiss();
+    this.modalService.dismissAll();
   }
 
   doSearch(){

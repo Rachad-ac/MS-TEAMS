@@ -11,7 +11,6 @@ import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 })
 export class DetaillesEvaluationComponent implements OnInit {
 
-  evaluationToUpdate: any;
   evaluation: any = null;
   evaluationId: any;
   loadingIndicator = true;
@@ -41,11 +40,6 @@ export class DetaillesEvaluationComponent implements OnInit {
     });
   }
 
-  openEditEvaluation(content: TemplateRef<any>, evaluation: any): void {
-    this.evaluationToUpdate = evaluation;
-    this.openModal(content, 'lg');
-  }
-
   openModal(content: TemplateRef<any>, size: 'sm' | 'lg' | 'xl'): void {
     this.modalService.open(content, { size, backdrop: 'static' }).result.then(
       () => {},
@@ -71,11 +65,6 @@ export class DetaillesEvaluationComponent implements OnInit {
         });
       }
     );
-  }
-
-  close(): void {
-    this.modalService.dismissAll();
-    this.getEvaluationById();
   }
 
 }

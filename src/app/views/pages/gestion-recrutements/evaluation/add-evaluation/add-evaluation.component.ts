@@ -5,7 +5,6 @@ import { EvaluationService } from 'src/app/services/evaluation/evaluation.servic
 import { Alertes } from 'src/app/util/alerte';
 import {EmployeService} from "../../../../../services/employe/employe.service";
 import {CandidatService} from "../../../../../services/candidat/candidat.service";
-import {CandidatureService} from "../../../../../services/candidature/candidature.service";
 
 
 @Component({
@@ -16,7 +15,7 @@ import {CandidatureService} from "../../../../../services/candidature/candidatur
 export class AddEvaluationComponent implements OnInit {
 
   employes: any[] = [];
-  candidatures: any[] = [];
+  candidat: any[] = [];
 
   statutList = [
   { label: 'Prévue', value: 'PREVUE' },
@@ -41,7 +40,7 @@ form!: FormGroup;
     private modalService: NgbModal,
     private evaluationService: EvaluationService,
     private employeService: EmployeService,
-    private candidatureService: CandidatureService,
+    private candidatService: CandidatService,
     private fb: FormBuilder
   ) {}
 
@@ -66,15 +65,15 @@ form!: FormGroup;
       }
     });
 
-    this.candidatureService.getAllCandidatures().subscribe({
+    this.candidatService.getAllCandidats().subscribe({
       next: (res) => {
-        console.log('Candidatures récupérés :', res);
+        console.log('Candidats récupérés :', res);
 
-        this.candidatures = res.payload.map((candidature: any) => ({
-          ...candidature,
-          fullName: `${candidature.candidat.nom} ${candidature.candidat.prenom}`,
+        this.candidat = res.payload.map((candidat: any) => ({
+          ...candidat,
+          fullName: `${candidat.nom} ${candidat.prenom}`,
 
-          id: candidature.id,
+          id: candidat.id,
         }));
       },
       error: (err) => {
@@ -93,7 +92,7 @@ form!: FormGroup;
       dateEvaluation : new FormControl('', Validators.required),
       statut: new FormControl('', Validators.required),
       employeId: new FormControl('', Validators.required),
-      candidatureId: new FormControl('', Validators.required),
+      candidatId: new FormControl('', Validators.required),
     });
   }
 
