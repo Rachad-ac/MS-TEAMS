@@ -1,11 +1,11 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { EvaluationService } from 'src/app/services/evaluation/evaluation.service';
 import { Alertes } from 'src/app/util/alerte';
 import { Helper } from 'src/app/util/helper';
-import {CandidatureService} from "../../../../../services/candidature/candidature.service";
 import {EmployeService} from "../../../../../services/employe/employe.service";
+import {CandidatService} from "../../../../../services/candidat/candidat.service";
 
 @Component({
   selector: 'app-edit-evaluation',
@@ -15,7 +15,7 @@ import {EmployeService} from "../../../../../services/employe/employe.service";
 export class EditEvaluationComponent implements OnInit {
 
   employes: any[] = [];
-  candidatures: any[] = [];
+  candidat: any[] = [];
 
   statutList = [
     { label: 'Prévue', value: 'PREVUE' },
@@ -39,7 +39,7 @@ export class EditEvaluationComponent implements OnInit {
     constructor(
       private modalService: NgbModal,
       private evaluationService: EvaluationService,
-      private candidatureService: CandidatureService,
+      private candidatService: CandidatService,
       private employeService: EmployeService,
       private fb: FormBuilder
     ) {}
@@ -48,31 +48,27 @@ export class EditEvaluationComponent implements OnInit {
       this.initForm();
       this.employeService.getAllEmploye().subscribe({
         next: (res) => {
-          console.log('Recruteur récupérés :', res);
+          console.log('employes récupérés :', res);
 
           this.employes = res.payload.map((employe: any) => ({
             ...employe,
             fullName: `${employe.nom} ${employe.prenom}`,
-
             id: employe.id,
-            nom: employe.nom,
-            prenom: employe.prenom
           }));
         },
         error: (err) => {
-          console.error('Erreur chargement recruteurs :', err);
+          console.error('Erreur chargement employes :', err);
         }
       });
 
-      this.candidatureService.getAllCandidatures().subscribe({
+      this.candidatService.getAllCandidats().subscribe({
         next: (res) => {
-          console.log('Candidatures récupérés :', res);
+          console.log('Candidats récupérés :', res);
 
-          this.candidatures = res.payload.map((candidature: any) => ({
-            ...candidature,
-            fullName: `${candidature.candidat.nom} ${candidature.candidat.prenom}`,
-
-            id: candidature.id,
+          this.candidat = res.payload.map((candidat: any) => ({
+            ...candidat,
+            fullName: `${candidat.nom} ${candidat.prenom}`,
+            id: candidat.id,
           }));
         },
         error: (err) => {
@@ -92,7 +88,7 @@ export class EditEvaluationComponent implements OnInit {
       dateEvaluation : new FormControl(''),
       statut: new FormControl(''),
       employeId: new FormControl(''),
-      candidatureId: new FormControl(''),
+      candidatId: new FormControl(''),
     });
   }
 
@@ -105,7 +101,7 @@ export class EditEvaluationComponent implements OnInit {
       this.form?.get('dateEvaluation')?.setValue(Helper.editDate(this.evaluationToUpdate?.dateEvaluation));
       this.form?.get('statut')?.setValue(this.evaluationToUpdate?.statut?.description);
       this.form?.get('employeId')?.setValue(this.evaluationToUpdate?.employeId);
-      this.form?.get('candidatureId')?.setValue(this.evaluationToUpdate?.candidatureId);
+      this.form?.get('candidatId')?.setValue(this.evaluationToUpdate?.candidatureId);
     }
   }
 

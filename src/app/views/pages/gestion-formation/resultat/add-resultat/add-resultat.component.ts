@@ -41,7 +41,6 @@ export class AddResultatComponent {
           typeEvalutation: `${evaluation.type.description}`,
 
           id: evaluation.id,
-          type: evaluation.type,
         }));
       },
       error: (err) => {
