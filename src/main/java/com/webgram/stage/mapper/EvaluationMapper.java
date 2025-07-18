@@ -9,16 +9,16 @@ import org.mapstruct.Mapping;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(unmappedTargetPolicy = ReportingPolicy.IGNORE, componentModel = "spring" ,
-       uses = { EmployeMapper.class , CandidatureMapper.class } )
+       uses = { EmployeMapper.class , CandidatMapper.class } )
 public interface EvaluationMapper extends EntityMapper<EvaluationDTO , EvaluationEntity>{
 
     @Override
-    @Mapping(source = "candidatureId", target = "candidature.id")
+    @Mapping(source = "candidatId", target = "candidat.id")
     @Mapping(source = "employeId", target = "employe.id")
     EvaluationEntity asEntity(EvaluationDTO dto);
 
     @Override
-    @Mapping(source = "candidature.id", target = "candidatureId")
+    @Mapping(source = "candidat.id", target = "candidatId")
     @Mapping(source = "employe.id", target = "employeId")
     EvaluationDTO asDto(EvaluationEntity entity);
 
