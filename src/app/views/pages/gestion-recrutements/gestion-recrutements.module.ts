@@ -37,7 +37,9 @@ import {InfosCandidatComponent} from "./candidat/infos-candidat/infos-candidat.c
 import { AddDomaineComponent } from './domaine/add-domaine/add-domaine.component';
 import { ListDomaineComponent } from './domaine/list-domaine/list-domaine.component';
 import { EditDomaineComponent } from './domaine/edit-domaine/edit-domaine.component';
+
 import {GestionFormationModule} from "../gestion-formation/gestion-formation.module";
+
 
 @NgModule({
   // Déclaration de tous les composants utilisés dans ce module
