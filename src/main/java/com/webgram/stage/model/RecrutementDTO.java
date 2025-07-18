@@ -37,7 +37,9 @@ public class RecrutementDTO implements Serializable {
 
     private Double salaire;
 
-    private String domaine;
+    private DomaineDTO domaine;
+
+    private Long domaineId;
 
     private Boolean publier;
 
