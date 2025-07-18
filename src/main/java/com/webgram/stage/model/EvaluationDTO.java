@@ -30,10 +30,10 @@ public class EvaluationDTO implements Serializable {
     private LocalDateTime dateEvaluation;
     private StatutType statut;
 
-    private CandidatureDTO candidature;
+    private CandidatDTO candidat;
     private EmployeDTO employe;
 
-    private Long candidatureId;
+    private Long candidatId;
     private Long employeId;
 
 }
