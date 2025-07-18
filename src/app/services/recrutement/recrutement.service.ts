@@ -39,9 +39,9 @@ export class RecrutementService {
       if (req?.salaire != undefined && req?.salaire) {
         parametres = parametres.append('salaire', req?.salaire.toString());
       }
-      if (req?.domaine != undefined && req?.domaine) {
-        parametres = parametres.append('domaine', req?.domaine);
-      }
+      // if (req?.domaine != undefined && req?.domaine) {
+      //   parametres = parametres.append('domaine', req?.domaine);
+      // }
       if (req?.publier != undefined && req?.publier) {
         parametres = parametres.append('publier', req.publier.toString());
       }

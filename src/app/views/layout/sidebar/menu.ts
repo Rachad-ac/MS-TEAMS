@@ -12,13 +12,6 @@ export const MENU: MenuItem[] = [
     icon: 'package',
     link: '/admin/gestion-recrutement/recrutement',
   },
-
-  // Ajout de l'entrée Candidature pour accéder à la gestion des candidatures
-  {
-    label: 'Candidature',
-    icon: 'user-check',
-    link: '/admin/gestion-recrutement/candidature',
-  },
   {
     label: 'competence',
     icon: 'layers',

@@ -50,8 +50,8 @@ constructor(protected http : HttpClient,
       if (req?.niveau != undefined && req?.niveau) {
         parametres = parametres.append('niveau', req?.niveau);
       }
-      if (req?.domaine != undefined && req?.domaine) {
-        parametres = parametres.append('domaine', req?.domaine);
+      if (req?.domaineId != undefined && req?.domaineId) {
+        parametres = parametres.append('domaineId', req?.domaineId);
       }
 
       return this.http.get<any>(

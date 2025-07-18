@@ -71,7 +71,7 @@ form!: FormGroup;
       autreNiveauEtude: [''],
       statutCandidature: new FormControl('EN_ATTENTE', Validators.required),
       recrutementId: new FormControl(localStorage.getItem('recrutementId'), Validators.required),
-      idCompetences: new FormControl (null)
+      idCompetence: new FormControl (null)
     });
     }
     handleValidationAutreNiveau() {

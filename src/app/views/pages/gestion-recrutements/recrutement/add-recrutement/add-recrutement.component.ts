@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {Alertes} from "../../../../../util/alerte";
 import {RecrutementService} from "../../../../../services/recrutement/recrutement.service";
 import {competenceService} from "../../../../../services/competence/competence.service";
+import {DomaineService} from "../../../../../services/domaine/domaine.service";
 
 @Component({
   selector: 'app-add-recrutement',
@@ -17,6 +18,7 @@ export class AddRecrutementComponent implements OnInit {
   @Input() recrutementToUpdate!: any;
   @Input() isSearch!: boolean;
   competences: any[] = [];
+  domaines: any[] = [];
   pageOptions: any = { paze: 0, size: 10 };
   form!: FormGroup;
   typeContrats =[
@@ -29,7 +31,8 @@ export class AddRecrutementComponent implements OnInit {
               private modalService: NgbModal,
               private fb: FormBuilder,
               private recrutementServices : RecrutementService,
-              private competenceService: competenceService
+              private competenceService: competenceService,
+              private domaineService: DomaineService
   ) { }
 
   ngOnInit(): void {
@@ -42,12 +45,13 @@ export class AddRecrutementComponent implements OnInit {
       typeContrat: [null, Validators.required],
       salaire: [null],
       domaine: [''],
+      domaineId: [null],
       publier: [false],
       idCompetences: [[]],
       competence: [null]
     });
 
-    this.allCompetences();
+    this.allDomaine();
   }
 
   loadFileds() {
@@ -99,7 +103,18 @@ export class AddRecrutementComponent implements OnInit {
     this.competenceService.open(content)
   }
 
-  allCompetences() {
+  allDomaine() {
+    this.domaineService.getAllDomaines(this.pageOptions).subscribe({
+      next: response => {
+        this.domaines = response.payload;
+      }
+    })
+  }
+
+  allCompetences(domaine: any) {
+    this.pageOptions.domaineId = domaine?.id;
+    this.pageOptions.paze = 0;
+    this.pageOptions.size = 100;
     this.competenceService.getAllCompetence(this.pageOptions).subscribe({
       next: response => {
         console.log('response',response);
