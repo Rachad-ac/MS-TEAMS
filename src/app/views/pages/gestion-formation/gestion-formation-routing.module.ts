@@ -20,11 +20,9 @@ import {DetaillesFormationComponent} from "./formation/detailles-formation/detai
 import { ListFormateurComponent } from './formateur/list-formateur/list-formateur.component';
 import {AddEmployeComponent} from "./employe/add-employe/add-employe.component";
 import {EditEmployeComponent} from "./employe/edit-employe/edit-employe.component";
-import {ListFormateurComponent} from "./formateur/list-formateur/list-formateur.component";
 import {
   DetaillesEvaluationComponent
 } from "../gestion-recrutements/evaluation/detailles-evaluations/detailles-evaluation.component";
-import {ListFormateurComponent} from "./formateur/list-formateur/list-formateur.component";
 import {DetailsEmployeComponent} from "./employe/details-employe/details-employe.component";
 
 const routes: Routes = [

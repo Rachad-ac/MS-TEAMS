@@ -24,7 +24,6 @@ import { ListPresenceComponent } from './presence/list-presence/list-presence.co
 import {SharedModule} from "@progress/kendo-angular-dropdowns";
 import {ListFormateurComponent} from "./formateur/list-formateur/list-formateur.component";
 import {AddFormateurComponent} from "./formateur/add-formateur/add-formateur.component";
-
 import {DetaillesFormationComponent} from "./formation/detailles-formation/detailles-formation.component";
 import {ListEmployeComponent} from "./employe/list-employe/list-employe.component";
 import {AddEmployeComponent} from "./employe/add-employe/add-employe.component";
