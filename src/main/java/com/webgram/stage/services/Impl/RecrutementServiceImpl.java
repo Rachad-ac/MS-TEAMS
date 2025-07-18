@@ -2,11 +2,13 @@ package com.webgram.stage.services.Impl;
 
 import com.querydsl.core.BooleanBuilder;
 import com.webgram.stage.entity.CompetenceEntity;
+import com.webgram.stage.entity.DomaineEntity;
 import com.webgram.stage.entity.QRecrutementEntity;
 import com.webgram.stage.entity.RecrutementEntity;
 import com.webgram.stage.mapper.RecrutementMapper;
 import com.webgram.stage.model.RecrutementDTO;
 import com.webgram.stage.repository.CompetenceRepository;
+import com.webgram.stage.repository.DomaineRepository;
 import com.webgram.stage.repository.RecrutementRepository;
 import com.webgram.stage.services.RecrutementService;
 import lombok.RequiredArgsConstructor;
@@ -29,6 +31,7 @@ public class RecrutementServiceImpl implements RecrutementService {
     private final RecrutementRepository recrutementRepository;
     private final RecrutementMapper recrutementMapper;
     private final CompetenceRepository competenceRepository;
+    private final DomaineRepository domaineRepository;
 
     @Override
     public RecrutementDTO createRecrutement(RecrutementDTO recrutementDTO) {
@@ -60,7 +63,10 @@ public class RecrutementServiceImpl implements RecrutementService {
         existing.setLieu(recrutementDTO.getLieu());
         existing.setTypeContrat(recrutementDTO.getTypeContrat());
         existing.setSalaire(recrutementDTO.getSalaire());
-        existing.setDomaine(recrutementDTO.getDomaine());
+        DomaineEntity domaine = domaineRepository.findById(recrutementDTO.getDomaine().getId())
+                .orElseThrow(() -> new RuntimeException("Domaine non trouvé"));
+        existing.setDomaine(domaine);
+
         existing.setPublier(recrutementDTO.getPublier());
 
         // Mettre à jour les competences associés à la compétence
@@ -113,7 +119,7 @@ public class RecrutementServiceImpl implements RecrutementService {
                 booleanBuilder.and(qEntity.lieu.containsIgnoreCase(searchParams.get("lieu")));
 
             if (searchParams.containsKey("domaine"))
-                booleanBuilder.and(qEntity.domaine.containsIgnoreCase(searchParams.get("domaine")));
+                booleanBuilder.and(qEntity.domaine.nom.containsIgnoreCase(searchParams.get("domaine")));
 
             String typeContrat = searchParams.get("typeContrat");
             if (typeContrat != null && !typeContrat.isEmpty()) {

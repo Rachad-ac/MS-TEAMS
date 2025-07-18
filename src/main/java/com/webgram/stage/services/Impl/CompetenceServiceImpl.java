@@ -82,8 +82,8 @@ public class CompetenceServiceImpl implements CompetenceService {
                 booleanBuilder.and(qEntity.niveau.stringValue().lower().containsIgnoreCase(searchParams.get("niveau")));
             }
 
-            if (searchParams.containsKey("domaine")) {
-                booleanBuilder.and(qEntity.domaine.nom.containsIgnoreCase(searchParams.get("domaine")));
+            if (searchParams.containsKey("domaineId")) {
+                booleanBuilder.and(qEntity.domaine.id.eq(Long.valueOf(searchParams.get("domaineId"))));
             }
         }
 

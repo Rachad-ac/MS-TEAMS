@@ -15,10 +15,12 @@ import java.util.stream.Collectors;
 public interface RecrutementMapper extends EntityMapper<RecrutementDTO, RecrutementEntity> {
     @Override
     @Mapping(target = "idCompetences", source = "competences", qualifiedByName = "competencesToIdSet")
+    @Mapping(source = "domaine.id", target = "domaineId")
     RecrutementDTO asDto(RecrutementEntity entity);
 
     @Override
     @Mapping(target = "competences", ignore = true)
+    @Mapping(source = "domaineId", target = "domaine.id")
     RecrutementEntity asEntity(RecrutementDTO dto);
 
     @Named("competencesToIdSet")

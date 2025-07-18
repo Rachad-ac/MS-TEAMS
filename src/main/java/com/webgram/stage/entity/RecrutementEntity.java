@@ -36,13 +36,14 @@ public class RecrutementEntity implements Serializable {
 	private String lieu;
 
 	@Column(name = "recrutement_type_contrat")
+	@Enumerated(EnumType.STRING)
 	private TypeContrat typeContrat;
 
 	@Column(name = "recrutement_salaire")
 	private Double salaire;
 
-	@Column(name = "recrutement_domaine")
-	private String domaine;
+	@OneToOne
+	private DomaineEntity domaine;
 
 	@Column(name = "recrutement_publier")
 	private Boolean publier;
