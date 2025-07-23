@@ -13,6 +13,8 @@ import { AddCandidatComponent } from './candidat/add-candidat/add-candidat.compo
 import { ListCandidatComponent } from './candidat/list-candidat/list-candidat.component';
 import { EditCandidatComponent } from './candidat/edit-candidat/edit-candidat.component';
 import {InfosCandidatComponent} from "./candidat/infos-candidat/infos-candidat.component";
+import { AddNiveauEtudeComponent } from './niveauEtude/add-niveau-etude/add-niveau-etude.component';
+import { ListNiveauEtudeComponent } from './niveauEtude/list-niveau-etude/list-niveau-etude.component';
 
 const routes: Routes = [
   {path: '', component: ListRecrutementComponent},
@@ -34,6 +36,10 @@ const routes: Routes = [
   { path: 'candidature/edit/:id', component: AddEditCandidatureComponent },
   { path: 'candidature/:id', component: DetaillesCandidatureComponent },
   { path: 'infos-candidat', component: InfosCandidatComponent },
+
+   {path: 'niveau-etude', component: ListNiveauEtudeComponent},
+  {path: 'niveau-etude', component: AddNiveauEtudeComponent},
+ 
 ];
 
 @NgModule({

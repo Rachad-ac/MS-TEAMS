@@ -33,6 +33,8 @@ import {ListCompetenceComponent} from "./competence/list-competence/list-compete
 import {AddCompetenceComponent} from "./competence/add-competence/add-competence.component";
 import { DetaillesCandidatComponent } from './candidat/detailles-candidat/detailles-candidat.component';
 import {InfosCandidatComponent} from "./candidat/infos-candidat/infos-candidat.component";
+import { AddNiveauEtudeComponent } from './niveauEtude/add-niveau-etude/add-niveau-etude.component';
+import { ListNiveauEtudeComponent } from './niveauEtude/list-niveau-etude/list-niveau-etude.component';
 
 @NgModule({
   // Déclaration de tous les composants utilisés dans ce module
@@ -57,7 +59,9 @@ import {InfosCandidatComponent} from "./candidat/infos-candidat/infos-candidat.c
     ListCompetenceComponent,
     AddCompetenceComponent,
     DetaillesCandidatComponent,
-    InfosCandidatComponent
+    InfosCandidatComponent,
+    AddNiveauEtudeComponent,
+    ListNiveauEtudeComponent
   ],
   // Import des modules nécessaires pour ce module
   imports: [
