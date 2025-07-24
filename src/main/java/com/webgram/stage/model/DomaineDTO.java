@@ -15,13 +15,11 @@ import java.io.Serializable;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CompetenceDTO implements Serializable {
+public class DomaineDTO implements Serializable {
 
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     @NotEmpty
     private String nom;
-    private String niveau;
-    private DomaineDTO domaine;
-    private Long domaineId;
+    private String description;
 }
