@@ -1,10 +1,12 @@
 package com.webgram.stage.model;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.webgram.stage.entity.enums.StatutCandidature;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.*;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Set;
@@ -16,21 +18,11 @@ import java.util.Set;
 @ToString
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class CandidatDTO implements Serializable  {
+public class NiveauEtudeDTO implements Serializable  {
     @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private Long id;
     @NotEmpty
     private String nom;
-    private String prenom;
-    private String email;
-    private String telephone ;
-    private LocalDate dateNaissance;
-    private String adresse ;
-    private Long niveauEtudeId;
-    private NiveauEtudeDTO niveauEtude;
-    private Set<CompetenceDTO> competence;
-    private Set<Long> idCompetence;
-    private StatutCandidature statutCandidature;
-    private String recrutementId;
-    private RecrutementDTO recrutement;
+    private String commentaire;
+
 }
