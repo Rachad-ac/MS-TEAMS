@@ -8,7 +8,7 @@ import {competenceService} from "../../../../../services/competence/competence.s
   templateUrl: './list-competence.component.html',
   styleUrls: ['./list-competence.component.scss']
 })
-export class ListCompetenceComponent {
+export class ListCompetenceComponent implements OnInit {
   @ViewChild('SearchCompetenceModal') SearchCompetenceModal: any;
   @ViewChild('addCompetenceModal') addCompetenceModal: any;
   @ViewChild('EditCompetenceModal') EditCompetenceModal: any;
@@ -17,7 +17,7 @@ export class ListCompetenceComponent {
 displayedColumns: string[] = [
     'nom',
     'niveau',
-    'domaine',
+    'domaineId',
     'actions'
   ];
 
@@ -61,16 +61,16 @@ displayedColumns: string[] = [
     this.getAllcompetence();
   }
 
-  openAddCompetence(content: TemplateRef<any>) {
+  openAddCompetence(content: TemplateRef<any>): void {
     this.openModal(content, 'lg');
   }
 
-  openEditCompetence(content: TemplateRef<any>, competence?: any) {
+  openEditCompetence(content: TemplateRef<any>, competence?: any): void {
     this.competenceToUpdate = competence
     this.openModal(content, 'lg');
   }
 
-  openModal(content: TemplateRef<any>, size?: any) {
+  openModal(content: TemplateRef<any>, size?: any): void {
     this.modalService.open(content, {size: size, backdrop: 'static'}).result.then((result) => {
     }).catch((res) => {});
   }
@@ -97,11 +97,14 @@ displayedColumns: string[] = [
     this.modalService.dismissAll();
     this.getAllcompetence();
   }
-  doSearch(data: any) {
-    this.pageOptions = data;
-    this.pageOptions.paze = 0;
-    this.pageOptions.size = 20;
-    console.log("filtres ", this.pageOptions)
+
+  doSearch(data: any): void {
+    this.pageOptions = {
+      ...data,
+      page: 0,
+      size: 20
+    };
+    console.log("Filtres appliqués : ", this.pageOptions);
     this.getAllcompetence();
     this.modalService.dismissAll();
   }

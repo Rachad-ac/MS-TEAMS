@@ -15,21 +15,6 @@
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between mb-2">
               <h2 class="card-title mb-0">{{ presences.sessionFormation.formation.titre }}</h2>
-              <div ngbDropdown>
-                <button class="btn p-0 no-dropdown-toggle-icon" type="button" id="dropdownMenuButton" ngbDropdownToggle>
-                  <i class="feather icon-more-horizontal icon-lg text-muted pb-3px"></i>
-                </button>
-                <div ngbDropdownMenu aria-labelledby="dropdownMenuButton">
-                  <button ngbDropdownItem mat-menu-item>
-                    <mat-icon>edit</mat-icon>
-                    <span>Modifier</span>
-                  </button>
-                  <button ngbDropdownItem mat-menu-item>
-                    <mat-icon>delete</mat-icon>
-                    <span>Supprimer</span>
-                  </button>
-                </div>
-              </div>
             </div>
 
             <div class="mt-3">
@@ -64,28 +49,13 @@
   </li>
 
   <li [ngbNavItem]="2">
-    <a ngbNavLink>Employe</a>
+    <a ngbNavLink>Participant</a>
     <ng-template ngbNavContent>
       <div class="d-md-block left-wrapper" *ngIf="presences.employe">
         <div class="card rounded">
           <div class="card-body">
             <div class="d-flex align-items-center justify-content-between mb-2">
               <h2 class="card-title mb-0">Inforrmations personnelles</h2>
-              <div ngbDropdown>
-                <button class="btn p-0 no-dropdown-toggle-icon" type="button" id="dropdownMenuButton" ngbDropdownToggle>
-                  <i class="feather icon-more-horizontal icon-lg text-muted pb-3px"></i>
-                </button>
-                <div ngbDropdownMenu aria-labelledby="dropdownMenuButton">
-                  <button ngbDropdownItem mat-menu-item>
-                    <mat-icon>edit</mat-icon>
-                    <span>Modifier</span>
-                  </button>
-                  <button ngbDropdownItem mat-menu-item>
-                    <mat-icon>delete</mat-icon>
-                    <span>Supprimer</span>
-                  </button>
-                </div>
-              </div>
             </div>
 
             <div class="mt-3">

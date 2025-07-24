@@ -14,7 +14,6 @@ export class ListEvaluationComponent implements OnInit {
     'type',
     'score',
     'noteGenerale',
-    'commentaire',
     'dateEvaluation',
     'employe',
     'statut',
@@ -23,8 +22,10 @@ export class ListEvaluationComponent implements OnInit {
   ];
 
   evaluationToUpdate: any;
+  evaluationId: any;
   pageOptions: any = { page: 0, size: 10 };
   dataSource: any;
+  evaluation: any;
   loadingIndicator = true;
 
   constructor(
@@ -34,6 +35,7 @@ export class ListEvaluationComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllEvaluations();
+    this.getEvaluationById();
   }
 
   getAllEvaluations(): void {
@@ -53,6 +55,19 @@ export class ListEvaluationComponent implements OnInit {
     });
   }
 
+  getEvaluationById() {
+    this.evaluationId = localStorage.getItem('evaluationId');
+    this.evaluationServices.getEvaluationById(this.evaluationId).subscribe({
+      next:(data) =>{
+        console.log(data);
+        this.evaluation = data.payload;
+      },
+      error:(error)=>{
+        Alertes.alerteAddDanger(error.error.message)
+      }
+    });
+  }
+
   paginate($event: number): void {
     this.loadingIndicator = true;
     this.pageOptions.page = $event - 1;
@@ -68,6 +83,11 @@ export class ListEvaluationComponent implements OnInit {
     this.openModal(content, 'lg');
   }
 
+  openInfoEvaluation(content: TemplateRef<any>, evaluation: any) {
+    this.evaluation = evaluation;
+    this.openModal(content, 'lg');
+  }
+
   openModal(content: TemplateRef<any>, size: 'sm' | 'lg' | 'xl'): void {
     this.modalService.open(content, { size, backdrop: 'static' }).result.then(
       () => {},
@@ -80,7 +100,7 @@ export class ListEvaluationComponent implements OnInit {
       'Voulez-vous supprimer ?',
       'Cet élément sera définitivement supprimé',
       () => {
-        this.evaluationServices.deleteEvaluation(evaluation).subscribe({
+        this.evaluationServices.deleteEvaluation(evaluation.id ).subscribe({
           next: () => {
             Alertes.alerteAddSuccess('Suppression réussie');
           },
@@ -98,6 +118,7 @@ export class ListEvaluationComponent implements OnInit {
   close(): void {
     this.modalService.dismissAll();
     this.getAllEvaluations();
+    this.getEvaluationById();
   }
 
   doSearch(data: any): void {

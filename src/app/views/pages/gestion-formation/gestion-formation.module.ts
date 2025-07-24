@@ -24,7 +24,6 @@ import { ListPresenceComponent } from './presence/list-presence/list-presence.co
 import {SharedModule} from "@progress/kendo-angular-dropdowns";
 import {ListFormateurComponent} from "./formateur/list-formateur/list-formateur.component";
 import {AddFormateurComponent} from "./formateur/add-formateur/add-formateur.component";
-
 import {DetaillesFormationComponent} from "./formation/detailles-formation/detailles-formation.component";
 import {ListEmployeComponent} from "./employe/list-employe/list-employe.component";
 import {AddEmployeComponent} from "./employe/add-employe/add-employe.component";
@@ -37,6 +36,7 @@ import {EditModuleComponent} from "./Module/edit-module/edit-module.component";
 import {AddModuleComponent} from "./Module/add-module/add-module.component";
 import {ReactiveFormsModule} from "@angular/forms";
 import {NgSelectModule} from "@ng-select/ng-select";
+import { DetailsEmployeComponent } from './employe/details-employe/details-employe.component';
 
 @NgModule({
   declarations: [
@@ -54,7 +54,6 @@ import {NgSelectModule} from "@ng-select/ng-select";
     AddSessionFormationComponent,
     ListInscriptionComponent,
     AddEditInscriptionComponent,
-    AddSessionFormationComponent,
     AddResultatComponent,
     ListResultatComponent,
     EditResultatComponent,
@@ -77,6 +76,7 @@ import {NgSelectModule} from "@ng-select/ng-select";
     DetaillesFormationComponent,
     ListFormateurComponent,
     AddFormateurComponent,
+    DetailsEmployeComponent,
   ],
   imports: [
     CommonModule,
@@ -95,5 +95,8 @@ import {NgSelectModule} from "@ng-select/ng-select";
     NgbModule,
 
   ],
+  exports: [
+    EditEmployeComponent
+  ]
 })
 export class GestionFormationModule {}

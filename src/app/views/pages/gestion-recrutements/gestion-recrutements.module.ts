@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 // Import des modules de routing et des composants nécessaires
@@ -10,12 +10,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
+
 import {
   NgbDropdownModule,
   NgbNavModule,
   NgbPaginationModule,
   NgbModule
 } from '@ng-bootstrap/ng-bootstrap';
+
 import { DetaillesRecrutementComponent } from './recrutement/detailles-recrutement/detailles-recrutement.component';
 import { AddRecrutementComponent } from './recrutement/add-recrutement/add-recrutement.component';
 import { AddEvaluationComponent } from './evaluation/add-evaluation/add-evaluation.component';
@@ -35,6 +37,11 @@ import { DetaillesCandidatComponent } from './candidat/detailles-candidat/detail
 import {InfosCandidatComponent} from "./candidat/infos-candidat/infos-candidat.component";
 import { AddNiveauEtudeComponent } from './niveauEtude/add-niveau-etude/add-niveau-etude.component';
 import { ListNiveauEtudeComponent } from './niveauEtude/list-niveau-etude/list-niveau-etude.component';
+import { AddDomaineComponent } from './domaine/add-domaine/add-domaine.component';
+import { ListDomaineComponent } from './domaine/list-domaine/list-domaine.component';
+import { EditDomaineComponent } from './domaine/edit-domaine/edit-domaine.component';
+import {GestionFormationModule} from "../gestion-formation/gestion-formation.module";
+
 
 @NgModule({
   // Déclaration de tous les composants utilisés dans ce module
@@ -52,33 +59,34 @@ import { ListNiveauEtudeComponent } from './niveauEtude/list-niveau-etude/list-n
     AddCandidatComponent,
     ListCandidatComponent,
     EditCandidatComponent,
-    ListCandidatComponent,
-    DetaillesCandidatureComponent,
-    AddEditCandidatureComponent,
-    ListCandidatureComponent,
     ListCompetenceComponent,
     AddCompetenceComponent,
     DetaillesCandidatComponent,
+    AddDomaineComponent,
+    ListDomaineComponent,
     InfosCandidatComponent,
-    AddNiveauEtudeComponent,
-    ListNiveauEtudeComponent
+    EditDomaineComponent,
+    ListNiveauEtudeComponent,
+    AddNiveauEtudeComponent
   ],
   // Import des modules nécessaires pour ce module
-  imports: [
-    CommonModule,
-    GestionRecrutementsRoutingModule,
-    MatButtonModule,
-    MatIconModule,
-    MatMenuModule,
-    MatTableModule,
-    NgbPaginationModule,
-    NgbNavModule,
-    NgbDropdownModule,
-    NgbModule,
-    ReactiveFormsModule,
-    NgSelectModule,
-    RouterModule
-  ],
+    imports: [
+        CommonModule,
+        GestionRecrutementsRoutingModule,
+        MatButtonModule,
+        MatIconModule,
+        MatMenuModule,
+        MatTableModule,
+        NgbPaginationModule,
+        NgbNavModule,
+        NgbDropdownModule,
+        NgbModule,
+        ReactiveFormsModule,
+        NgSelectModule,
+        RouterModule,
+        GestionFormationModule,
+        FormsModule
+    ],
 })
 // Module principal pour la gestion des recrutements et candidatures
 export class GestionRecrutementsModule {}

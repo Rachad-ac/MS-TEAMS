@@ -12,12 +12,10 @@ export const MENU: MenuItem[] = [
     icon: 'package',
     link: '/admin/gestion-recrutement/recrutement',
   },
-
-  // Ajout de l'entrée Candidature pour accéder à la gestion des candidatures
   {
-    label: 'Candidature',
-    icon: 'user-check',
-    link: '/admin/gestion-recrutement/candidature',
+    label: 'competence',
+    icon: 'layers',
+    link: '/admin/gestion-recrutement/competence',
   },
   {
     label: 'Candidat',
@@ -34,7 +32,11 @@ export const MENU: MenuItem[] = [
     icon: 'file-text',
     link: '/admin/gestion-recrutement/niveau-etude'
   },
-  
+  {
+    label: 'domaine',
+    icon: 'target',
+    link: '/admin/gestion-recrutement/domaine'
+  },
 
   // Section gestion formation
   {

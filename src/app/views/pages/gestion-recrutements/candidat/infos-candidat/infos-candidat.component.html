@@ -1,10 +1,10 @@
-<nav class="page-breadcrumb">
+<!--<nav class="page-breadcrumb">
   <ol class="breadcrumb">
     <li class="breadcrumb-item"><a routerLink="/admin/gestion-recrutement/recrutement">Liste Recrutements</a></li>
     <li class="breadcrumb-item"><a routerLink="/admin/gestion-recrutement/detaille-recrutement">Candidats</a></li>
     <li class="breadcrumb-item active" aria-current="page">Information Candidats</li>
   </ol>
-</nav>
+</nav>-->
 
 <div class="row">
   <div class="col-md-12">
@@ -41,8 +41,8 @@
               <tbody>
               <tr *ngFor="let competence of candidat.competence">
                 <td>{{ competence.nom }}</td>
-                <td>{{ competence.niveau }}</td>
-                <td>{{ competence.domaine }}</td>
+                <td>{{ competence.niveau.toLowerCase() }}</td>
+                <td>{{ competence.domaine.nom }}</td>
               </tr>
               </tbody>
             </table>

@@ -9,10 +9,10 @@
 
   <!-- Boutons à droite -->
   <div class="d-flex justify-content-end align-items-center gap-2">
-    <button type="button" class="btn btn-secondary btn-icon me-2" (click)="openModal(SearchCompetenceModal, 'xl')">
+    <button type="button" class="btn btn-secondary btn-icon me-2" (click)="openAddCompetence(SearchcompetenceModal)">
       <i class="feather icon-search"></i>
     </button>
-    <button type="button" class="btn btn-primary btn-icon-text" (click)="openModal(addcompetenceModal,'xl')">
+    <button type="button" class="btn btn-primary btn-icon-text" (click)="openAddCompetence(addcompetenceModal)">
       <i class="feather icon-plus-circle"></i> Nouvel Competence
     </button>
   </div>
@@ -36,9 +36,9 @@
           <td mat-cell *matCellDef="let competence"> {{competence?.niveau}} </td>
         </ng-container>
 
-        <ng-container matColumnDef="domaine">
+        <ng-container matColumnDef="domaineId">
           <th mat-header-cell *matHeaderCellDef class="table-head-text">Domaine</th>
-          <td mat-cell *matCellDef="let competence"> {{competence?.domaine}} </td>
+          <td mat-cell *matCellDef="let competence"> {{competence?.domaine?.nom}} </td>
         </ng-container>
 
         <ng-container matColumnDef="actions" stickyEnd>
@@ -48,11 +48,11 @@
               <mat-icon>more_vert</mat-icon>
             </button>
             <mat-menu #menu="matMenu">
-              <button mat-menu-item (click)="openEditCompetence(EditCompetenceModal, competence)">
+              <button mat-menu-item (click)="openEditCompetence(EditcompetenceModal, competence)">
                 <mat-icon>edit</mat-icon>
                 <span>Modifier</span>
               </button>
-              <button mat-menu-item (click)="deleteCompetence(competence.id)">
+              <button mat-menu-item (click)="deleteCompetence(competence)">
                 <mat-icon>delete</mat-icon>
                 <span>Supprimer</span>
               </button>
@@ -78,17 +78,16 @@
     </section>
   </div>
 </div>
-
 <!-- search competence -->
-<ng-template #SearchCompetenceModal let-modal>
+<ng-template #SearchcompetenceModal let-modal>
   <div class="modal-header">
     <h5 class="modal-title" id="exampleModalLabel">Recherche competence</h5>
     <button type="button" class="btn-close"  (click)="modal.close('by: close icon')" aria-label="Close"></button>
   </div>
   <div class="modal-body">
-      <app-add-competence (search)="doSearch($event)" [isSearch]="true" (submit)="close()"></app-add-competence>
+    <app-add-competence (search)="doSearch($event)" [isSearch]="true" (submit)="close()"></app-add-competence>
   </div>
-</ng-template> 
+</ng-template>
 <!-- search competence -->
 
 <!--Add competence-->
@@ -98,29 +97,19 @@
     <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
   </div>
   <div class="modal-body">
-      <app-add-competence [isSearch]="false" (submit)="close()"></app-add-competence>
-  </div>
-</ng-template>
-
-<ng-template #SearchcompetenceModal let-modal>
-  <div class="modal-header">
-    <h5 class="modal-title" id="addcompetenceModalLabel">Ajout Competence</h5>
-    <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
-  </div>
-  <div class="modal-body">
-      <app-add-competence [isSearch]="true" (submit)="close()"></app-add-competence>
+        <app-add-competence [isSearch]="false" (submit)="close()"></app-add-competence>
   </div>
 </ng-template>
 <!--End Add competence-->
 
 <!--Edit competence-->
-<ng-template #EditCompetenceModal let-modal>
+<ng-template #EditcompetenceModal let-modal>
   <div class="modal-header">
-    <h5 class="modal-title" id="EditCompetenceModalLabel">Modifier Competence</h5>
+    <h5 class="modal-title" id="EditcompetenceModalLabel">Modifier competence</h5>
     <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
   </div>
   <div class="modal-body">
-    <app-add-competence [isSearch]="false"  (submit)="close()" [competenceToUpdate]="competenceToUpdate"></app-add-competence>
+    <app-add-competence  (submit)="close()" [competenceToUpdate]="competenceToUpdate"></app-add-competence>
   </div>
 </ng-template>
 <!--End Edit competence-->

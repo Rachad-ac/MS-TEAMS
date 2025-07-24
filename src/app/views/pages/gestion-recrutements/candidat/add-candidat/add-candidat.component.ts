@@ -26,8 +26,6 @@ form!: FormGroup;
   ];
   competences: any[] =[];
   pageOptions: any = { page: 0, size: 10 };
-
-
   constructor(
     private modalService: NgbModal,
     private candidatService: CandidatService,
@@ -37,10 +35,9 @@ form!: FormGroup;
   ) {}
 
   ngOnInit(): void {
-    this.allCompetences;
     this.initForm();
     this.loadNiveauxEtude();
-    // this.handleValidationAutreNiveau();
+    this.allCompetences();
   }
 
   initForm() {
@@ -54,11 +51,9 @@ form!: FormGroup;
       niveauEtude: new FormControl(null, Validators.required),
       statutCandidature: new FormControl('EN_ATTENTE', Validators.required),
       recrutementId: new FormControl(localStorage.getItem('recrutementId'), Validators.required),
-      idCompetences: new FormControl (null)
+      idCompetence: new FormControl (null)
     });
     }
-  
-
     loadNiveauxEtude(): void {
     this.niveauEtudeService.getAllNiveauEtudes(this.pageOptions).subscribe({
       next: response => {
@@ -69,21 +64,6 @@ form!: FormGroup;
       },
     });
   }
-     
-  //   handleValidationAutreNiveau() {
-  // this.form.get('niveauEtude')?.valueChanges.subscribe(value => {
-  //   const autreCtrl = this.form.get('autreNiveauEtude');
-  //   if (value === 'AUTRE') {
-  //     autreCtrl?.setValidators([Validators.required]);
-  //   } else {
-  //     autreCtrl?.clearValidators();
-  //     autreCtrl?.setValue(''); // reset si pas AUTRE
-  //   }
-  //   autreCtrl?.updateValueAndValidity();
-  // });
-
-  // }
-  
 
   create(): void {
     const candidat = this.form.value;

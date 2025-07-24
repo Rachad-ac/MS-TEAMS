@@ -79,7 +79,7 @@ export class ListPresenceComponent {
       'Voulez-vous supprimer ?',
       'Cet élément sera définitivement supprimé',
       () => {
-        this.presenceService.deletePresence(presence).subscribe({
+        this.presenceService.deletePresence(presence.id).subscribe({
           next: () => {
             Alertes.alerteAddSuccess('Suppression réussie');
           },

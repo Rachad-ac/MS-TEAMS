@@ -39,8 +39,8 @@ export class AddResultatComponent {
         this.evaluations = res.payload.map((evaluation: any) => ({
           ...evaluation,
           typeEvalutation: `${evaluation.type.description}`,
+
           id: evaluation.id,
-          type: evaluation.type,
         }));
       },
       error: (err) => {
