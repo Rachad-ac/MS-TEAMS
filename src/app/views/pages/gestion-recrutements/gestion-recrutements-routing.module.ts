@@ -5,9 +5,18 @@ import { DetaillesRecrutementComponent } from './recrutement/detailles-recruteme
 import { ListEvaluationComponent } from './evaluation/list-evaluation/list-evaluation.component';
 import { DetaillesEvaluationComponent } from './evaluation/detailles-evaluations/detailles-evaluation.component';
 import { ListCandidatComponent } from './candidat/list-candidat/list-candidat.component';
+import { EditCandidatComponent } from './candidat/edit-candidat/edit-candidat.component';
+import { AddCandidatComponent } from './candidat/add-candidat/add-candidat.component';
+import {InfosCandidatComponent} from "./candidat/infos-candidat/infos-candidat.component";
+import { AddNiveauEtudeComponent } from './niveauEtude/add-niveau-etude/add-niveau-etude.component';
+import { ListNiveauEtudeComponent } from './niveauEtude/list-niveau-etude/list-niveau-etude.component';
 import {ListDomaineComponent} from "./domaine/list-domaine/list-domaine.component";
 
 import {ListCompetenceComponent} from "./competence/list-competence/list-competence.component";
+import { ListCandidatureComponent } from './candidature/list-candidature/list-candidature.component';
+import { AddEditCandidatureComponent } from './candidature/add-edit-candidature/add-edit-candidature.component';
+import { DetaillesCandidatureComponent } from './candidature/detailles-candidature/detailles-candidature.component';
+
 const routes: Routes = [
   {path: '', component: ListRecrutementComponent},
   {path: 'recrutement', component: ListRecrutementComponent},
@@ -17,7 +26,19 @@ const routes: Routes = [
   {path: 'evaluation/:id', component: DetaillesEvaluationComponent},
   {path: 'detaille-evaluation', component: DetaillesEvaluationComponent},
   {path: 'candidat', component: ListCandidatComponent},
+  {path: 'candidat', component: AddCandidatComponent},
+  {path: 'candidat', component: EditCandidatComponent},
+
+  { path: 'candidature', component: ListCandidatureComponent },
+  { path: 'candidature/add', component: AddEditCandidatureComponent },
+  { path: 'candidature/edit/:id', component: AddEditCandidatureComponent },
+  { path: 'candidature/:id', component: DetaillesCandidatureComponent },
+  { path: 'infos-candidat', component: InfosCandidatComponent },
+
+   {path: 'niveau-etude', component: ListNiveauEtudeComponent},
+  {path: 'niveau-etude', component: AddNiveauEtudeComponent},
   {path: 'domaine', component: ListDomaineComponent},
+
 ];
 
 @NgModule({
