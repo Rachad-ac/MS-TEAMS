@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 // Import des modules de routing et des composants nécessaires
@@ -10,6 +10,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatTableModule } from '@angular/material/table';
+
 import {
   NgbDropdownModule,
   NgbNavModule,
@@ -34,10 +35,11 @@ import {ListCompetenceComponent} from "./competence/list-competence/list-compete
 import {AddCompetenceComponent} from "./competence/add-competence/add-competence.component";
 import { DetaillesCandidatComponent } from './candidat/detailles-candidat/detailles-candidat.component';
 import {InfosCandidatComponent} from "./candidat/infos-candidat/infos-candidat.component";
+import { AddNiveauEtudeComponent } from './niveauEtude/add-niveau-etude/add-niveau-etude.component';
+import { ListNiveauEtudeComponent } from './niveauEtude/list-niveau-etude/list-niveau-etude.component';
 import { AddDomaineComponent } from './domaine/add-domaine/add-domaine.component';
 import { ListDomaineComponent } from './domaine/list-domaine/list-domaine.component';
 import { EditDomaineComponent } from './domaine/edit-domaine/edit-domaine.component';
-
 import {GestionFormationModule} from "../gestion-formation/gestion-formation.module";
 
 
@@ -60,10 +62,12 @@ import {GestionFormationModule} from "../gestion-formation/gestion-formation.mod
     ListCompetenceComponent,
     AddCompetenceComponent,
     DetaillesCandidatComponent,
-    InfosCandidatComponent,
     AddDomaineComponent,
     ListDomaineComponent,
-    EditDomaineComponent
+    InfosCandidatComponent,
+    EditDomaineComponent,
+    ListNiveauEtudeComponent,
+    AddNiveauEtudeComponent
   ],
   // Import des modules nécessaires pour ce module
     imports: [
@@ -80,7 +84,8 @@ import {GestionFormationModule} from "../gestion-formation/gestion-formation.mod
         ReactiveFormsModule,
         NgSelectModule,
         RouterModule,
-        GestionFormationModule
+        GestionFormationModule,
+        FormsModule
     ],
 })
 // Module principal pour la gestion des recrutements et candidatures

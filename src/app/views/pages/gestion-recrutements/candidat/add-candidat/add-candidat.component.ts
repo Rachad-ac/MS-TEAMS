@@ -5,6 +5,9 @@ import { CandidatService } from 'src/app/services/candidat/candidat.service';
 import { Alertes } from 'src/app/util/alerte';
 import { EventEmitter } from '@angular/core';
 import { competenceService } from 'src/app/services/competence/competence.service';
+import { NiveauEtudeService } from 'src/app/services/niveauEtude/niveau-etude.service';
+import { DomaineService } from 'src/app/services/domaine/domaine.service';
+import { Helper } from 'src/app/util/helper';
 
 @Component({
   selector: 'app-add-candidat',
@@ -12,30 +15,12 @@ import { competenceService } from 'src/app/services/competence/competence.servic
   styleUrls: ['./add-candidat.component.scss']
 })
 export class AddCandidatComponent implements OnInit {
-  niveauEtudeList = [
-  { label: 'Aucun niveau scolaire', value: 'AUCUN' },
-  { label: 'Primaire', value: 'PRIMAIRE' },
-  { label: 'Certificat d\'Études Primaires (CEP)', value: 'CEP' },
-  { label: 'Brevet d\'Études du Premier Cycle (BEPC)', value: 'BEPC' },
-  { label: 'Secondaire', value: 'SECONDAIRE' },
-  { label: 'Baccalauréat', value: 'BAC' },
-  { label: 'BAC +1', value: 'BAC_PLUS_1' },
-  { label: 'BAC +2 (BTS, DUT...)', value: 'BAC_PLUS_2' },
-  { label: 'Licence (BAC +3)', value: 'LICENCE' },
-  { label: 'Licence Professionnelle', value: 'LICENCE_PRO' },
-  { label: 'Maîtrise (BAC +4)', value: 'MAITRISE' },
-  { label: 'Master 1 (BAC +4)', value: 'MASTER_1' },
-  { label: 'Master 2 (BAC +5)', value: 'MASTER_2' },
-  { label: 'Master Professionnel', value: 'MASTER_PRO' },
-  { label: 'Doctorat (BAC +8)', value: 'DOCTORAT' },
-  { label: 'Post-doctorat', value: 'POST_DOCTORAT' },
-  { label: 'Formation Professionnelle', value: 'FORMATION_PROFESSIONNELLE' },
-  { label: 'Autre (à préciser)', value: 'AUTRE' }
-];
+niveauEtudeList: any;
 form!: FormGroup;
 @Output() submit: EventEmitter<boolean> = new EventEmitter();
 @Output() search: EventEmitter<boolean> = new EventEmitter();
 @Input() evaluationToUpdate: any;
+@Input() candidatToUpdate: any;
 @Input() isSearch: any;
   statuts = [
     {name:'EN_ATTENTE',description:'En Attente'},
@@ -43,60 +28,83 @@ form!: FormGroup;
     {name:'REJETEE',description:'Rejetée'},
   ];
   competences: any[] =[];
+  domaines: any[] =[];
+  recutementId:any
   pageOptions: any = { page: 0, size: 10 };
-
-
   constructor(
     private modalService: NgbModal,
     private candidatService: CandidatService,
     private fb: FormBuilder,
-    private competenceService: competenceService
+    private competenceService: competenceService,
+    private niveauEtudeService: NiveauEtudeService,
+    private domaineService : DomaineService
   ) {}
 
   ngOnInit(): void {
+    this.recutementId =localStorage.getItem("recrutementId"),
+    console.log("RecrutementId",this.recutementId);
+    
     this.initForm();
-    this.handleValidationAutreNiveau();
-    this.allCompetences;
+    this.loadFileds();
+    this.loadNiveauxEtude();
+    this.allDomaine();
+   
   }
 
   initForm() {
     this.form = this.fb.group({
-      nom: ['', Validators.required],
-      prenom: new FormControl('', [Validators.required, Validators.min(0)]),
-      email: new FormControl('', [Validators.required, Validators.email]),
-      telephone: new FormControl('', [Validators.required, Validators.minLength(10)]),
-      dateNaissance: new FormControl('', Validators.required),
-      adresse: new FormControl('', Validators.required),
-      niveauEtude: new FormControl('', Validators.required),
-      autreNiveauEtude: [''],
-      statutCandidature: new FormControl('EN_ATTENTE', Validators.required),
-      recrutementId: new FormControl(localStorage.getItem('recrutementId'), Validators.required),
-      idCompetence: new FormControl (null)
+      nom: [''],
+      prenom: new FormControl(''),
+      email: new FormControl(''),
+      telephone: new FormControl(''),
+      dateNaissance: new FormControl(''),
+      adresse: new FormControl(''),
+      niveauEtudeId: new FormControl(null),
+      domaine: [''],
+      idCompetence: [[]],
+      competence: [null],
+      statutCandidature: new FormControl('EN_ATTENTE'),
+     
     });
-    }
-    handleValidationAutreNiveau() {
-  this.form.get('niveauEtude')?.valueChanges.subscribe(value => {
-    const autreCtrl = this.form.get('autreNiveauEtude');
-    if (value === 'AUTRE') {
-      autreCtrl?.setValidators([Validators.required]);
-    } else {
-      autreCtrl?.clearValidators();
-      autreCtrl?.setValue(''); // reset si pas AUTRE
-    }
-    autreCtrl?.updateValueAndValidity();
-  });
-
   }
 
+  loadFileds() {
+      if (this.candidatToUpdate !== undefined) {
+        this.form?.get('nom')?.setValue(this.candidatToUpdate?.nom);
+        this.form?.get('prenom')?.setValue(this.candidatToUpdate?.prenom);
+        this.form?.get('email')?.setValue(this.candidatToUpdate?.email);
+        this.form?.get('adresse')?.setValue(this.candidatToUpdate?.adresse);
+        this.form?.get('telephone')?.setValue(this.candidatToUpdate?.telephone);
+        this.form?.get('dateNaissance')?.setValue(Helper.editDate(this.candidatToUpdate?.dateNaissance));
+        this.form?.get('niveauEtude')?.setValue(this.candidatToUpdate?.niveauEtude);
+        this.form?.get('domaine')?.setValue(this.candidatToUpdate?.competence[0].domaine.id);
+        this.form?.get('recrutementId')?.setValue(this.candidatToUpdate?.recrutementId);
+        this.form?.get('idCompetence')?.setValue(this.candidatToUpdate?.idCompetence);
+        this.form?.get('statutCandidature')?.setValue(this.candidatToUpdate?.statutCandidature?.name);
+      }
+    }
 
 
+  loadNiveauxEtude(): void {
+    this.niveauEtudeService.getAllNiveauEtudes(this.pageOptions).subscribe({
+      next: response => {
+        this.niveauEtudeList = response.payload;
+      },
+      error: err => {
+        console.error('Erreur chargement niveaux d\'étude', err);
+      },
+    });
+  }
 
   create(): void {
-    const candidat = this.form.value;
+    const candidat = this.form.value
+    candidat.recrutementId = this.recutementId
+    console.log("form",candidat)
     this.candidatService.createCandidat(candidat).subscribe({
-      next: () => {
+      next: (data) => {
         Alertes.alerteAddSuccess('Candidat ajoutée avec succès');
         this.emitSubmit();
+        console.log(data)
       },
       error: (err) => {
         Alertes.alerteAddDanger(err.error.message || 'Erreur lors de l’ajout');
@@ -122,8 +130,20 @@ form!: FormGroup;
   openModal(content: TemplateRef<any>) {
       this.competenceService.open(content)
   }
+  
+  
+  allDomaine() {
+    this.domaineService.getAllDomaines(this.pageOptions).subscribe({
+      next: response => {
+        this.domaines = response.payload;
+      }
+    })
+  }
 
-  allCompetences() {
+  allCompetences(domaine: any) {
+    this.pageOptions.domaineId = domaine?.id;
+    this.pageOptions.paze = 0;
+    this.pageOptions.size = 100;
     this.competenceService.getAllCompetence(this.pageOptions).subscribe({
       next: response => {
         console.log('response',response);
@@ -131,10 +151,12 @@ form!: FormGroup;
           ...competence,
           fullName: `${competence.nom} (${competence.niveau})`
         }));
+
       },
       error: err => {
         console.log(err);
       },
     });
   }
+ 
 }

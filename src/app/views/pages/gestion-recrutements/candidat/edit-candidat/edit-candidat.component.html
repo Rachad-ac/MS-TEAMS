@@ -44,7 +44,8 @@
           <label  class="form-label">Niveau Etude <small style="color: red;">*</small></label>
           <ng-select
             [items]="niveauEtudeList"
-            bindValue="value"
+            bindLabel="nom"         
+            bindValue="id" 
             placeholder="Selectionner..."
             formControlName="niveauEtude">
           </ng-select>

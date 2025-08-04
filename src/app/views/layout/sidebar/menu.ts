@@ -27,6 +27,11 @@ export const MENU: MenuItem[] = [
     icon: 'file-text',
     link: '/admin/gestion-recrutement/evaluation'
   },
+   {
+    label: 'Niveau Etude',
+    icon: 'file-text',
+    link: '/admin/gestion-recrutement/niveau-etude'
+  },
   {
     label: 'domaine',
     icon: 'target',

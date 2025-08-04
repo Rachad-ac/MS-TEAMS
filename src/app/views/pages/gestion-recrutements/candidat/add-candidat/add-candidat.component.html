@@ -38,26 +38,48 @@
             <input type="text" class="form-control form-control-lg" id="adresse" placeholder="Adresse" formControlName="adresse">
             </div>
         </div>
-
         <div class="col-sm-6">
         <div class="mb-3">
           <label  class="form-label">Niveau Etude <small style="color: red;">*</small></label>
           <ng-select
-            [items]="niveauEtudeList"
-            bindValue="value"
-            placeholder="Selectionner..."
-            formControlName="niveauEtude">
-          </ng-select>
+          [items]="niveauEtudeList"
+          bindLabel="nom"         
+          bindValue="id"        
+          placeholder="Sélectionner..."
+          formControlName="niveauEtudeId">
+        </ng-select>
         </div>
       </div>
+      
       <!-- Sélection des compétences -->
       <div *ngIf="!isSearch" class="col-md-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
             <h6 class="card-title">Sélectionner les compétences</h6>
             <div class="row">
+              <!-- Domaine -->
+              <div class="col-4">
+                <div class="mb-3">
+                  <label for="domaine" class="form-label">Domaine</label>
+                  <ng-select
+                    id="domaine"
+                    [items]="domaines"
+                    [multiple]="false"
+                    [closeOnSelect]="true"
+                    [searchable]="true"
+                    bindValue="id"
+                    bindLabel="nom"
+                    placeholder="Sélectionnez le domaine"
+                    formControlName="domaine"
+                    (change)="allCompetences($event)"
+                  >
+                  </ng-select>
+                </div>
+              </div>
               <div class="col-8">
+                <label for="idCompetence" class="form-label">Competences</label>
                 <ng-select
+                  id="idCompetence"
                   [items]="competences"
                   [multiple]="true"
                   [closeOnSelect]="false"
@@ -68,30 +90,12 @@
                   formControlName="idCompetence">
                 </ng-select>
               </div>
-              <div class="col-4 d-flex justify-content-end">
-                <button type="button" class="btn btn-primary btn-icon-text" (click)="openModal(addcompetenceModal)">
-                  <i class="feather icon-plus-circle"></i> Nouvel Competence
-                </button>
-              </div>
+
             </div>
           </div>
         </div>
       </div>
 
-    <div class="col-sm-6" *ngIf="form.get('niveauEtude')?.value === 'AUTRE'">
-    <div class="mb-3">
-    <label for="autreNiveauEtude" class="form-label">
-      Précisez votre niveau d'étude <small style="color: red;">*</small>
-    </label>
-    <input
-      type="text"
-      class="form-control form-control-lg"
-      id="autreNiveauEtude"
-      placeholder="Veillez saisir votre niveau d'étude "
-      formControlName="autreNiveauEtude"
-    />
-  </div>
-</div>
       <div class="col-sm-6">
         <div class="mb-3">
           <label  class="form-label">Statut Candidature <small style="color: red;">*</small></label>
@@ -152,13 +156,32 @@
             <label for="adresse" class="form-label">Adresse<small style="color: red;">*</small></label>
             <input type="text" class="form-control form-control-lg" id="adresse" placeholder="Adresse" formControlName="adresse">
         </div>
+
         <div class="col-sm-6">
-            <div class="mb-3">
-            <label for="niveauEtude" class="form-label">Niveau d'Étude<small style="color: red;">*</small></label>
-            <input type="text" class="form-control form-control-lg" id="niveauEtude" placeholder="Niveau d'Étude" formControlName="niveauEtude">
-        </div>
+          <div class="mb-3">
+            <label  class="form-label">Niveau Etude <small style="color: red;">*</small></label>
+             <ng-select
+               [items]="niveauEtudeList"
+                bindLabel="nom"         
+                bindValue="id"        
+                placeholder="Sélectionner..."
+                formControlName="niveauEtude">
+                </ng-select>
+           </div>
         </div>
 
+        <div class="col-sm-6">
+        <div class="mb-3">
+          <label  class="form-label">Statut Candidature <small style="color: red;">*</small></label>
+          <ng-select
+            [items]="statuts"
+            bindLabel="description"
+            bindValue="name"
+            placeholder="Selectionner..."
+            formControlName="statutCandidature">
+          </ng-select>
+        </div>
+        </div>
       </div>
     </div>
   </form>
@@ -170,7 +193,7 @@
 </section>
 
 
-<!--Add competence-->
+<!-- Add competence
 <ng-template #addcompetenceModal let-modal>
   <div class="modal-header">
     <h5 class="modal-title" id="addcompetenceModalLabel">Ajout competence</h5>
@@ -179,4 +202,4 @@
   <div class="modal-body">
     <app-add-competence [isSearch]="false" (submit)="allCompetences()"></app-add-competence>
   </div>
-</ng-template>
+</ng-template> -->
