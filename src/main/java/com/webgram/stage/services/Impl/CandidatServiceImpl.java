@@ -34,11 +34,11 @@ public class CandidatServiceImpl implements CandidatService {
         var entity = candidatMapper.asEntity(candidatDTO);
 
         // Gestion du niveau d'étude
-        if (candidatDTO.getNiveauEtude() != null && candidatDTO.getNiveauEtude().getId() != null) {
+        /*if (candidatDTO.getNiveauEtude() != null && candidatDTO.getNiveauEtude().getId() != null) {
             var niveau = niveauEtudeRepository.findById(candidatDTO.getNiveauEtude().getId())
                     .orElseThrow(() -> new RuntimeException("Niveau d'étude introuvable"));
             entity.setNiveauEtude(niveau);
-        }
+        }*/
 
         // Gestion des compétences
         if (candidatDTO.getIdCompetence() != null && !candidatDTO.getIdCompetence().isEmpty()) {
