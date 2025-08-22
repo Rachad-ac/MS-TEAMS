@@ -31,6 +31,6 @@ public class CandidatDTO implements Serializable  {
     private Set<CompetenceDTO> competence;
     private Set<Long> idCompetence;
     private StatutCandidature statutCandidature;
-    private String recrutementId;
+    private Long recrutementId;
     private RecrutementDTO recrutement;
 }

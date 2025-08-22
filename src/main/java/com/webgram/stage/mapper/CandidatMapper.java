@@ -15,11 +15,13 @@ public interface CandidatMapper extends EntityMapper<CandidatDTO, CandidatEntity
     @Override
     @Mapping(target = "idCompetence", source = "competence", qualifiedByName = "competencesToIdSet")
     @Mapping(source = "recrutement.id", target = "recrutementId")
+    @Mapping(source = "niveauEtude.id", target = "niveauEtudeId")
     CandidatDTO asDto(CandidatEntity entity);
 
     @Override
     @Mapping(target = "competence", ignore = true) // Géré manuellement dans le service
     @Mapping(source = "recrutementId", target = "recrutement.id")
+    @Mapping(source = "niveauEtudeId", target = "niveauEtude.id")
     CandidatEntity asEntity(CandidatDTO dto);
 
     @Named("competencesToIdSet")
