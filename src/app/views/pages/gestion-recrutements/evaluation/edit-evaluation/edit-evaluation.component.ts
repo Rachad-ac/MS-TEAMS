@@ -96,8 +96,8 @@ export class EditEvaluationComponent implements OnInit {
     if (this.evaluationToUpdate !== undefined) {
       this.form?.get('type')?.setValue(this.evaluationToUpdate?.type?.description);
       this.form?.get('score')?.setValue(this.evaluationToUpdate?.score);
-      this.form?.get('noteGenerale')?.setValue(this.evaluationToUpdate.noteGenerale);
-      this.form?.get('commentaire')?.setValue(this.evaluationToUpdate.commentaire);
+      this.form?.get('noteGenerale')?.setValue(this.evaluationToUpdate?.noteGenerale);
+      this.form?.get('commentaire')?.setValue(this.evaluationToUpdate?.commentaire);
       this.form?.get('dateEvaluation')?.setValue(Helper.editDate(this.evaluationToUpdate?.dateEvaluation));
       this.form?.get('statut')?.setValue(this.evaluationToUpdate?.statut?.description);
       this.form?.get('employeId')?.setValue(this.evaluationToUpdate?.employeId);

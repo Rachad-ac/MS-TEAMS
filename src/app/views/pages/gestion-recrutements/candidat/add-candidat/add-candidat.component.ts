@@ -8,6 +8,7 @@ import { competenceService } from 'src/app/services/competence/competence.servic
 import { NiveauEtudeService } from 'src/app/services/niveauEtude/niveau-etude.service';
 import { DomaineService } from 'src/app/services/domaine/domaine.service';
 import { Helper } from 'src/app/util/helper';
+import {RecrutementService} from "../../../../../services/recrutement/recrutement.service";
 
 @Component({
   selector: 'app-add-candidat',
@@ -29,11 +30,13 @@ form!: FormGroup;
   ];
   competences: any[] =[];
   domaines: any[] =[];
-  recutementId:any
+  recutementId:any;
+  recutements:any[] = [];
   pageOptions: any = { page: 0, size: 10 };
   constructor(
     private modalService: NgbModal,
     private candidatService: CandidatService,
+    private recutementService: RecrutementService,
     private fb: FormBuilder,
     private competenceService: competenceService,
     private niveauEtudeService: NiveauEtudeService,
@@ -41,49 +44,44 @@ form!: FormGroup;
   ) {}
 
   ngOnInit(): void {
-    this.recutementId =localStorage.getItem("recrutementId"),
-    console.log("RecrutementId",this.recutementId);
-    
+    this.recutementService.getAllRecrutements().subscribe({
+      next: (res) => {
+        console.log('recutement récupérés :', res);
+
+        this.recutements = res.payload.map((recutement: any) => ({
+          ...recutement,
+          titre: recutement.titre,
+          id: recutement.id,
+        }));
+      },
+      error: (err) => {
+        console.error('Erreur chargement recrutemments :', err);
+      }
+    });
+
     this.initForm();
-    this.loadFileds();
     this.loadNiveauxEtude();
     this.allDomaine();
-   
+
   }
 
   initForm() {
-    this.form = this.fb.group({
-      nom: [''],
-      prenom: new FormControl(''),
-      email: new FormControl(''),
-      telephone: new FormControl(''),
-      dateNaissance: new FormControl(''),
-      adresse: new FormControl(''),
-      niveauEtudeId: new FormControl(null),
-      domaine: [''],
-      idCompetence: [[]],
-      competence: [null],
-      statutCandidature: new FormControl('EN_ATTENTE'),
-     
+    this.form = new FormGroup({
+      nom: new FormControl('', Validators.required),
+      prenom: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.required),
+      telephone: new FormControl('', Validators.required),
+      dateNaissance: new FormControl('', Validators.required),
+      adresse: new FormControl('', Validators.required),
+      niveauEtudeId: new FormControl(null, Validators.required),
+      domaine: new FormControl('', Validators.required),
+      idCompetence: new FormControl([[]]),
+      competence: new FormControl([]),
+      recrutementId: new FormControl('', Validators.required),
+      statutCandidature: new FormControl('EN_ATTENTE', Validators.required),
+
     });
   }
-
-  loadFileds() {
-      if (this.candidatToUpdate !== undefined) {
-        this.form?.get('nom')?.setValue(this.candidatToUpdate?.nom);
-        this.form?.get('prenom')?.setValue(this.candidatToUpdate?.prenom);
-        this.form?.get('email')?.setValue(this.candidatToUpdate?.email);
-        this.form?.get('adresse')?.setValue(this.candidatToUpdate?.adresse);
-        this.form?.get('telephone')?.setValue(this.candidatToUpdate?.telephone);
-        this.form?.get('dateNaissance')?.setValue(Helper.editDate(this.candidatToUpdate?.dateNaissance));
-        this.form?.get('niveauEtude')?.setValue(this.candidatToUpdate?.niveauEtude);
-        this.form?.get('domaine')?.setValue(this.candidatToUpdate?.competence[0].domaine.id);
-        this.form?.get('recrutementId')?.setValue(this.candidatToUpdate?.recrutementId);
-        this.form?.get('idCompetence')?.setValue(this.candidatToUpdate?.idCompetence);
-        this.form?.get('statutCandidature')?.setValue(this.candidatToUpdate?.statutCandidature?.name);
-      }
-    }
-
 
   loadNiveauxEtude(): void {
     this.niveauEtudeService.getAllNiveauEtudes(this.pageOptions).subscribe({
@@ -98,13 +96,11 @@ form!: FormGroup;
 
   create(): void {
     const candidat = this.form.value
-    candidat.recrutementId = this.recutementId
-    console.log("form",candidat)
     this.candidatService.createCandidat(candidat).subscribe({
-      next: (data) => {
+      next: () => {
         Alertes.alerteAddSuccess('Candidat ajoutée avec succès');
         this.emitSubmit();
-        console.log(data)
+        console.log(candidat)
       },
       error: (err) => {
         Alertes.alerteAddDanger(err.error.message || 'Erreur lors de l’ajout');
@@ -130,8 +126,8 @@ form!: FormGroup;
   openModal(content: TemplateRef<any>) {
       this.competenceService.open(content)
   }
-  
-  
+
+
   allDomaine() {
     this.domaineService.getAllDomaines(this.pageOptions).subscribe({
       next: response => {
@@ -158,5 +154,5 @@ form!: FormGroup;
       },
     });
   }
- 
+
 }

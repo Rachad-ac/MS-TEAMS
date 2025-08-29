@@ -43,14 +43,14 @@
           <label  class="form-label">Niveau Etude <small style="color: red;">*</small></label>
           <ng-select
           [items]="niveauEtudeList"
-          bindLabel="nom"         
-          bindValue="id"        
+          bindLabel="nom"
+          bindValue="id"
           placeholder="Sélectionner..."
           formControlName="niveauEtudeId">
         </ng-select>
         </div>
       </div>
-      
+
       <!-- Sélection des compétences -->
       <div *ngIf="!isSearch" class="col-md-12 grid-margin stretch-card">
         <div class="card">
@@ -108,6 +108,19 @@
           </ng-select>
         </div>
       </div>
+
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="candidatureId" class="form-label">Recrutements<small style="color: red;"> *</small></label>
+          <ng-select
+            [items]="recutements"
+            bindLabel="titre"
+            bindValue="id"
+            placeholder="Sélectionner un recrutement..."
+            formControlName="recrutementId">
+          </ng-select>
+        </div>
+      </div>
     </div>
   </form>
 
@@ -162,8 +175,8 @@
             <label  class="form-label">Niveau Etude <small style="color: red;">*</small></label>
              <ng-select
                [items]="niveauEtudeList"
-                bindLabel="nom"         
-                bindValue="id"        
+                bindLabel="nom"
+                bindValue="id"
                 placeholder="Sélectionner..."
                 formControlName="niveauEtude">
                 </ng-select>

@@ -94,7 +94,7 @@ export class AddCompetenceComponent implements OnInit {
   }
 
   close(){
-    this.competenceService.close();
+    this.modalService.dismissAll();
   }
 
   doSearch(){
