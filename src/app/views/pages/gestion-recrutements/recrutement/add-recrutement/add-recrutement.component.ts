@@ -44,7 +44,7 @@ export class AddRecrutementComponent implements OnInit {
       lieu: [''],
       typeContrat: [null, Validators.required],
       salaire: [null],
-      domaine: [''],
+      domaine: [null],
       domaineId: [null],
       publier: [false],
       idCompetences: [[]],
@@ -64,6 +64,7 @@ export class AddRecrutementComponent implements OnInit {
       this.form?.get('typeContrat')?.setValue(this.recrutementToUpdate.typeContrat.name);
       this.form?.get('salaire')?.setValue(this.recrutementToUpdate.salaire);
       this.form?.get('domaine')?.setValue(this.recrutementToUpdate.domaine);
+      this.form?.get('domaineId')?.setValue(this.recrutementToUpdate.domaineId);
       this.form?.get('publier')?.setValue(this.recrutementToUpdate.publier);
       this.form?.get('idCompetences')?.setValue(this.recrutementToUpdate.idCompetences);
     }
@@ -120,7 +121,8 @@ export class AddRecrutementComponent implements OnInit {
         console.log('response',response);
         this.competences = response.payload.map((competence: any) => ({
           ...competence,
-          fullName: `${competence.nom} (${competence.niveau})`
+          fullName: `${competence.nom} (${competence.niveau})`,
+          id: competence.id
         }));
         this.loadFileds();
       },
