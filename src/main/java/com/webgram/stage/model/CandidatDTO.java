@@ -26,11 +26,13 @@ public class CandidatDTO implements Serializable  {
     private String telephone ;
     private LocalDate dateNaissance;
     private String adresse ;
-    private Long niveauEtudeId;
     private NiveauEtudeDTO niveauEtude;
     private Set<CompetenceDTO> competence;
-    private Set<Long> idCompetence;
     private StatutCandidature statutCandidature;
-    private Long recrutementId;
     private RecrutementDTO recrutement;
+
+    private Long niveauEtudeId;
+    private Long recrutementId;
+    private Set<Long> idCompetence;
+
 }
