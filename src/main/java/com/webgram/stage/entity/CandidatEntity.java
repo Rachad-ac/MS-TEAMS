@@ -12,7 +12,7 @@ import java.util.Set;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Table(name = "Candidat")
+@Table(name = "candidats")
 @Entity
 public class CandidatEntity implements Serializable {
 
@@ -26,10 +26,10 @@ public class CandidatEntity implements Serializable {
 	@Column(name = "prenom", columnDefinition = "TEXT")
 	private String prenom;
 
-	@Column(name = "email")
+	@Column(name = "email" , unique = true)
 	private String email;
 
-	@Column (name ="telephone")
+	@Column (name ="telephone" , unique = true)
 	private String telephone;
 
 	@Column (name="date_naissance")
@@ -38,6 +38,10 @@ public class CandidatEntity implements Serializable {
 	@Column (name ="adresse")
 	private String adresse;
 
+	@Column(name = "statut_candidature")
+	@Enumerated(EnumType.STRING)
+	private StatutCandidature statutCandidature;
+
 	@ManyToOne
 	@JoinColumn(name = "niveau_etude_id")
 	private NiveauEtudeEntity niveauEtude;
@@ -45,14 +49,11 @@ public class CandidatEntity implements Serializable {
 	@ManyToMany
 	@JoinTable(
 		name = "competence_candidat",
-			joinColumns = @JoinColumn(name="candidat_id"),
-			inverseJoinColumns = @JoinColumn(name = "competence_id")
+			joinColumns = @JoinColumn(name="competence_id"),
+			inverseJoinColumns = @JoinColumn(name = "candidat_id")
 	)
 
-   private Set<CompetenceEntity> competence;
-	@Column(name = "niveau_statut_candidature")
-	@Enumerated(EnumType.STRING)
-	private StatutCandidature statutCandidature;
+    private Set<CompetenceEntity> competence;
 
 	@ManyToOne
 	@JoinColumn(name = "recrutement_id")
