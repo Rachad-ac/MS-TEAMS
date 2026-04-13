@@ -40,6 +40,17 @@ Parfaite pour les recruteurs évaluant les compétences d'internes/équipes ou l
 | **Build**   | Maven, npm/Angular CLI                |
 | **Autres**  | Feather Icons, Proxy Config (dev)     |
 
+## Interfaces cle
+
+### LoginInterface
+![Texte alternatif](./frontend-ms-teams/src/assets/images/screenshots/login.jpg)
+
+### Recrutementnterface
+![Texte alternatif](./frontend-ms-teams/src/assets/images/screenshots/global.jpg)
+
+### Formulaire
+![Texte alternatif](./frontend-ms-teams/src/assets/images/screenshots/forms.jpg)
+
 ## 🏗️ Architecture
 
 ```
