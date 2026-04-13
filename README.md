@@ -110,7 +110,12 @@ Projet sous licence MIT. Voir [LICENSE](LICENSE) (à ajouter si besoin).
 
 ## 🙌 Remerciements
 
-- Équipe stagiaires agence webgram (Groupe 3) pour la réalisation autonome.
+- Équipe stagiaires agence webgram pour la réalisation autonome.
+  - Groupe 3 :
+    - Ahmed Combo Rachad
+    - Babacar Diop
+    - Emillie
+    - Marie Sar
 - Open-source : Angular, Spring Boot, Feather Icons.
 
 ---
