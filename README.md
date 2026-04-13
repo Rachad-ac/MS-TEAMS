@@ -19,17 +19,16 @@ Cette plateforme optimise les workflows RH et formation : gestion des candidats,
 
 Parfaite pour les recruteurs évaluant les compétences d'internes/équipes ou les développeurs explorant des solutions RH scalables.
 
-## ✨ Fonctionnalités (Inférées du Code)
+## ✨ Fonctionnalités
 
-- **Gestion des Candidats** : Opérations CRUD (`candidat.service`).
-- **Candidatures** : Suivi avec statuts (`candidature.service`, `statut-candidature.enum.ts`).
-- **Compétences & Domaines** : Gestion (`competence.service`, `domaine.service`).
-- **Recrutements** : Workflows (`recrutement.service`).
-- **Formations** : Sessions, inscriptions, présences, résultats (`formation.service`, `sessionFormation`, `inscription`, `presence`, `resultat`).
-- **Évaluations** : Employés et stagiaires (`evaluation.service`).
-- **Utilisateurs & Rôles** : Employés (`employe`), formateurs (`formateur`), guards d'auth (`auth.guard.ts`).
-- **Composants UI** : Layout responsive, navbar/sidebar, spinner, alertes, pipes safe.
-- **Autres** : Modules, niveaux d'études (`niveauEtude`), tests (`test.service`).
+- **Authentification et Autorisation** : Système de connexion sécurisé avec garde d'authentification.
+- **Gestion des Recrutements** : Création, mise à jour, suppression et suivi des processus de recrutement.
+- **Gestion des Candidats** : Gestion complète des profils des candidats, y compris les candidatures, - compétences, et statuts.
+- **Gestion des Formations** : Organisation des sessions de formation, inscriptions, présences, et évaluations.
+- **Évaluations et Résultats** : Système d'évaluation des candidats et employés.
+- **Gestion des Employés et Formateurs** : Profils des employés, formateurs, et leurs rôles.
+- **Modules et Sessions** : Gestion des modules de formation et des sessions associées.
+- **Utilitaires** : Pipes personnalisés, spinner de chargement, alertes, et helpers.
 
 ## 🛠️ Stack Technique
 
@@ -67,9 +66,6 @@ MS-TEAMS (Monorepo)
     └── package.json
 ```
 
-- **Communication** : Frontend proxifie les appels API vers backend via `proxy.conf.json`.
-- **Sécurité** : Guards d'authentification, accès basé sur rôles (`Authority.ts`).
-
 ## 🚀 Prérequis & Installation Locale
 
 ### Prérequis
@@ -88,7 +84,7 @@ mvn spring-boot:run  # Démarre sur http://localhost:8080
 ```bash
 cd frontend-ms-teams
 npm install
-ng serve             # Démarre sur http://localhost:4200 (proxifie backend)
+ng serve             # Démarre sur http://localhost:4200 
 ```
 
 **Stack Complète** : Démarrer backend d'abord, puis frontend. Accès : `http://localhost:4200`.
@@ -99,7 +95,7 @@ ng serve             # Démarre sur http://localhost:4200 (proxifie backend)
 
 ## 👥 Contexte du Projet
 
-Projet réalisé **autonomement par une équipe de stagiaires** durant leur formation. Il démontre :
+Projet réalisé en **autonome par une équipe de stagiaires** durant leur formation. Il démontre :
 - Collaboration d'équipe (monorepo partagé).
 - Cycle complet : conception, implémentation, tests.
 - Patterns d'entreprise : services, modules, enums, utils.
@@ -117,7 +113,7 @@ Signaler bugs via GitHub Issues.
 
 ## 📄 Licence
 
-Projet sous licence MIT. Voir [LICENSE](LICENSE) (à ajouter si besoin).
+Projet sous licence MIT.
 
 ## 🙌 Remerciements
 
