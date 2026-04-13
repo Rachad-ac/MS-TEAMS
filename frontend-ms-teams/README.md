@@ -1,93 +1,114 @@
-# Projet Groupe 3 ANGULAR
-
-
-
-## Getting started
-
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
-
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
-
-## Add your files
-
-- [ ] [Create](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://docs.gitlab.com/topics/git/add_files/#add-files-to-a-git-repository) or push an existing Git repository with the following command:
-
-```
-cd existing_repo
-git remote add origin https://gitlab.com/babacardiop1998/projet-groupe-3-angular.git
-git branch -M main
-git push -uf origin main
-```
-
-## Integrate with your tools
-
-- [ ] [Set up project integrations](https://gitlab.com/babacardiop1998/projet-groupe-3-angular/-/settings/integrations)
-
-## Collaborate with your team
-
-- [ ] [Invite team members and collaborators](https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Enable merge request approvals](https://docs.gitlab.com/ee/user/project/merge_requests/approvals/)
-- [ ] [Set auto-merge](https://docs.gitlab.com/user/project/merge_requests/auto_merge/)
-
-## Test and Deploy
-
-Use the built-in continuous integration in GitLab.
-
-- [ ] [Get started with GitLab CI/CD](https://docs.gitlab.com/ee/ci/quick_start/)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing (SAST)](https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://docs.gitlab.com/ee/user/clusters/agent/)
-- [ ] [Set up protected environments](https://docs.gitlab.com/ee/ci/environments/protected_environments.html)
-
-***
-
-# Editing this README
-
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!). Thanks to [makeareadme.com](https://www.makeareadme.com/) for this template.
-
-## Suggestions for a good README
-
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
-
-## Name
-Choose a self-explaining name for your project.
+# Talent Management System - Frontend
 
 ## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+Ce projet est une application frontend Angular développée pour la gestion des talents dans une entreprise. Elle permet de gérer les processus de recrutement, de formation, d'évaluation des candidats et employés, ainsi que d'autres fonctionnalités liées à la gestion des ressources humaines. L'application utilise le template NobleUI pour une interface utilisateur moderne et responsive.
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
+Le système est conçu pour les administrateurs RH afin de faciliter la gestion des candidats, des recrutements, des formations, des évaluations, et plus encore. Il intègre des services backend pour la persistance des données et utilise Angular Material, PrimeNG, et d'autres bibliothèques pour une expérience utilisateur enrichie.
+
+## Fonctionnalités
+
+- **Authentification et Autorisation** : Système de connexion sécurisé avec garde d'authentification.
+- **Gestion des Recrutements** : Création, mise à jour, suppression et suivi des processus de recrutement.
+- **Gestion des Candidats** : Gestion complète des profils des candidats, y compris les candidatures, compétences, et statuts.
+- **Gestion des Formations** : Organisation des sessions de formation, inscriptions, présences, et évaluations.
+- **Évaluations et Résultats** : Système d'évaluation des candidats et employés, avec génération de rapports.
+- **Gestion des Employés et Formateurs** : Profils des employés, formateurs, et leurs rôles.
+- **Modules et Sessions** : Gestion des modules de formation et des sessions associées.
+- **Rapports et Analyses** : Intégration de graphiques et tableaux pour analyser les données (utilisant ApexCharts, Chart.js).
+- **Interface Utilisateur** : Interface responsive avec support RTL, animations, et composants avancés (calendrier, tableaux, formulaires).
+- **Utilitaires** : Pipes personnalisés, spinner de chargement, alertes, et helpers.
+
+## Technologies Utilisées
+
+- **Framework** : Angular 14
+- **UI Library** : NobleUI, Angular Material, PrimeNG, Bootstrap 5
+- **Graphiques** : ApexCharts, Chart.js, ng2-charts
+- **Calendrier** : FullCalendar
+- **Formulaires** : Reactive Forms, ng-select, ngx-mask
+- **Autres** : Feather Icons, SweetAlert2, ngx-datatable, etc.
+- **Backend Integration** : HttpClient pour les appels API REST
 
 ## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+
+### Prérequis
+
+- Node.js (version 14 ou supérieure)
+- npm ou yarn
+- Angular CLI (`npm install -g @angular/cli`)
+
+### Étapes d'Installation
+
+1. Clonez le repository :
+   ```
+   git clone https://gitlab.com/babacardiop1998/projet-groupe-3-angular.git
+   cd projet-groupe-3-angular
+   ```
+
+2. Installez les dépendances :
+   ```
+   npm install
+   ```
+
+3. Configurez l'environnement :
+   - Modifiez `src/environments/environment.ts` pour pointer vers votre API backend.
+
+4. Lancez l'application en mode développement :
+   ```
+   npm start
+   ```
+   L'application sera accessible sur `http://localhost:4200`.
+
+5. Pour la production :
+   ```
+   npm run build
+   ```
+   Les fichiers de build seront dans le dossier `dist`.
 
 ## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+- Accédez à l'application via le navigateur.
+- Connectez-vous avec vos identifiants administrateur.
+- Naviguez dans les sections "Gestion Recrutement" et "Gestion Formation" pour gérer les entités respectives.
+- Utilisez les formulaires pour ajouter/modifier des données, et les tableaux pour visualiser et filtrer les informations.
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
+## Structure du Projet
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+- `src/app/core/` : Guards, directives, données dummy.
+- `src/app/services/` : Services pour l'interaction avec le backend (candidat, recrutement, formation, etc.).
+- `src/app/views/` : Composants de vues, y compris layout, pages d'auth, gestion.
+- `src/app/util/` : Pipes, spinner, helpers, constantes.
+- `src/assets/` : Images, styles SCSS, polices.
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
+## Scripts Disponibles
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
+- `npm start` : Lance le serveur de développement.
+- `npm run build` : Construit l'application pour la production.
+- `npm test` : Exécute les tests unitaires.
+- `npm run rtl` : Génère les styles RTL.
 
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
+## Contribution
 
-## License
-For open source projects, say how it is licensed.
+Les contributions sont les bienvenues. Veuillez suivre les étapes suivantes :
 
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
+1. Forkez le repository.
+2. Créez une branche pour votre fonctionnalité (`git checkout -b feature/nouvelle-fonction`).
+3. Commitez vos changements (`git commit -am 'Ajoute nouvelle fonctionnalité'`).
+4. Poussez vers la branche (`git push origin feature/nouvelle-fonction`).
+5. Ouvrez une Pull Request.
+
+## Auteurs
+
+- Équipe Groupe 3 : 
+   - Ahmed Combo Rachad
+   - Babacar Diop
+   - Emillie
+   - Marie Sar
+
+## Licence
+
+Ce projet est sous licence [MIT](LICENSE).
+
+## Statut du Projet
+
+En développement actif. Pour toute question ou suggestion, contactez l'équipe via les issues GitLab.
