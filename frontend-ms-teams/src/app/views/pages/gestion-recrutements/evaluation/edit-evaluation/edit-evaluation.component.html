@@ -1,0 +1,101 @@
+<section>
+    <form [formGroup]="form">
+    <div class="row">
+      <!-- type evaluation -->
+       <div class="col-sm-6">
+        <div class="mb-3">
+          <label  class="form-label">Type Evaluation <small style="color: red;">*</small></label>
+          <ng-select
+            [items]="typeList"
+            bindValue="value"
+            placeholder="Selectionner..."
+            formControlName="type">
+          </ng-select>
+        </div>
+      </div>
+
+      <!-- score evaluation -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="score" class="form-label">Score</label>
+          <input type="number" class="form-control form-control-lg" id="score" placeholder="score" formControlName="score">
+        </div>
+      </div>
+
+       <!-- note general -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="noteGenerale" class="form-label">Note Generale</label>
+          <input type="number" class="form-control form-control-lg" id="note generale" placeholder="note generale" formControlName="noteGenerale">
+        </div>
+      </div>
+
+       <!-- commentaire -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="commentaire" class="form-label">Commentaire</label>
+          <input type="text" class="form-control form-control-lg" id="commentaire" placeholder="Commentaire" formControlName="commentaire">
+        </div>
+      </div>
+
+      <!-- Date evaluation -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="dateEvaluation" class="form-label">Date Evaluation</label>
+          <input type="datetime-local" class="form-control form-control-lg" id="DateEvaluation" formControlName="dateEvaluation" />
+        </div>
+      </div>
+
+      <!-- employe -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="employeId" class="form-label">Responsable<small style="color: red;"> *</small></label>
+          <ng-select
+            [items]="employes"
+            bindLabel="fullName"
+            bindValue="id"
+            placeholder="Sélectionner uns session de formation..."
+            formControlName="employeId">
+            <ng-template ng-option-tmp let-item="item">
+              {{ item.nom }} {{item.prenom}}
+            </ng-template>
+          </ng-select>
+        </div>
+      </div>
+
+      <!-- statut evaluation -->
+       <div class="col-sm-6">
+        <div class="mb-3">
+          <label  class="form-label">Statut Evaluation <small style="color: red;">*</small></label>
+          <ng-select
+            [items]="statutList"
+            bindValue="value"
+            placeholder="Selectionner..."
+            formControlName="statut">
+          </ng-select>
+        </div>
+      </div>
+
+      <!-- candidat -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="candidatureId" class="form-label">Candidat<small style="color: red;"> *</small></label>
+          <ng-select
+            [items]="candidat"
+            bindLabel="fullName"
+            bindValue="id"
+            placeholder="Sélectionner un candidat..."
+            formControlName="candidatId">
+          </ng-select>
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+    <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+      <button type="button" class="btn btn-primary" (click)="update()" [disabled]="!form.valid">Enregistrer</button>
+    </div>
+  </section>
+

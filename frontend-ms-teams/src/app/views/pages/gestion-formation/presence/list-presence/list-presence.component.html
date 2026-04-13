@@ -1,0 +1,135 @@
+<!-- EN-TÊTE AVEC BREADCRUMB ET BOUTONS -->
+<div class="d-flex justify-content-between align-items-center flex-wrap grid-margin mb-1">
+
+  <nav class="page-breadcrumb cursor-pointer">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item active"><a>Liste des Presences</a></li>
+    </ol>
+  </nav>
+
+  <div class="d-flex justify-content-end align-items-center gap-2">
+    <button type="button" class="btn btn-secondary btn-icon me-2" (click)="openAddPresence(SearchPresenceModal)">
+      <i class="feather icon-search"></i>
+    </button>
+    <button type="button" class="btn btn-primary btn-icon-text" (click)="openAddPresence(addPresenceModal)">
+      <i class="feather icon-plus-circle"></i> Nouveau Presence
+    </button>
+  </div>
+</div>
+
+<!-- TABLEAU DES RESULTATS -->
+<div class="card mt-4">
+  <div class="card-body p-0">
+    <section class="table-container mat-elevation-z8" tabindex="0">
+
+      <table mat-table [dataSource]="dataSource?.payload">
+
+        <ng-container matColumnDef="statut">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center">Statut</th>
+          <td mat-cell *matCellDef="let presence" class="text-center">{{ presence?.statutPresence.description }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="justification">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Justification</th>
+          <td mat-cell *matCellDef="let presence">{{ presence?.justification }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="employe_id">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center">Participant</th>
+          <td mat-cell *matCellDef="let presence" class="text-center">{{ presence?.employe.nom }} {{ presence?.employe.prenom }}</td>
+        </ng-container>
+
+
+        <ng-container matColumnDef="sessionFormation_id">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center">Session Formation</th>
+          <td mat-cell *matCellDef="let presence" class="text-center">{{ presence?.sessionFormation.formation.titre }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="detailles">
+          <th mat-header-cell *matHeaderCellDef class="table-head-text text-center" style="min-width:50px;">
+            Detailles
+          </th>
+          <td mat-cell *matCellDef="let presence" class="text-center">
+            <button class="btn btn-outline-secondary pb-0 px-3 pt-1" [routerLink]="['/admin/gestion-formation/presence/', presence.id]">
+              <mat-icon class="m-0">assignment</mat-icon>
+            </button>
+          </td>
+        </ng-container>
+
+        <ng-container matColumnDef="actions" stickyEnd>
+          <th mat-header-cell *matHeaderCellDef class="table-head-text">Actions</th>
+          <td mat-cell *matCellDef="let presence">
+            <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Menu d’actions">
+              <mat-icon>more_vert</mat-icon>
+            </button>
+            <mat-menu #menu="matMenu">
+              <button mat-menu-item (click)="openEditPresence(EditPresenceModal, presence)">
+                <mat-icon>edit</mat-icon>
+                <span>Modifier</span>
+              </button>
+              <button mat-menu-item (click)="deletePresence(presence)">
+                <mat-icon>delete</mat-icon>
+                <span>Supprimer</span>
+              </button>
+            </mat-menu>
+          </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true" class="table-head-bg"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+
+      <span *ngIf="dataSource?.payload?.length === 0" class="paginate text-danger mt-4">
+        Les critères de recherche ne correspondent à aucune presence
+      </span>
+
+      <div class="paginate">
+        <ngb-pagination
+          [collectionSize]="dataSource?.metadata?.totalElements"
+          [page]="pageOptions.page + 1"
+          [pageSize]="pageOptions.size"
+          [maxSize]="5"
+          (pageChange)="paginate($event)"
+          size="sm"
+          [rotate]="true"
+          [ellipses]="true"
+          [boundaryLinks]="true">
+        </ngb-pagination>
+      </div>
+    </section>
+  </div>
+</div>
+
+<!-- MODALE : Recherche presence -->
+<ng-template #SearchPresenceModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="SearchpresenceModalModalLabel">Recherche Presence</h5>
+    <button type="button" class="btn-close"  (click)="modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-add-presence (search)="doSearch($event)" [isSearch]="true" (submit)="close()"></app-add-presence>
+  </div>
+</ng-template>
+
+<!-- MODALE : Nouvelle presence -->
+<ng-template #addPresenceModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="addPresenceModalModalLabel">Ajouter Presence</h5>
+    <button type="button" class="btn-close" (click) = "modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-add-presence [isSearch]="false" (submit)="close()"></app-add-presence>
+  </div>
+</ng-template>
+
+<!-- MODALE : Modifier presence -->
+<ng-template #EditPresenceModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="editPresenceModalModalLabel">Modifier Presence</h5>
+    <button type="button" class="btn-close" (click) = "modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-edit-presence (submit)="close()" [presenceToUpdate]="presenceToUpdate"></app-edit-presence>
+  </div>
+</ng-template>
+

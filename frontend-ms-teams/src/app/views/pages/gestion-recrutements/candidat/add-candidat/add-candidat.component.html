@@ -1,0 +1,218 @@
+<section *ngIf="!isSearch">
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom<small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="nom" placeholder="Nom" formControlName="nom">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="prenom" class="form-label">Prénom<small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="prenom" placeholder="Prénom" formControlName="prenom">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email<small style="color: red;">*</small></label>
+          <input type="email" class="form-control form-control-lg" id="email" placeholder="Email" formControlName="email">
+        </div>
+      </div>
+
+        <div class="col-sm-6">
+            <div class="mb-3">
+            <label for="telephone" class="form-label">Téléphone<small style="color: red;">*</small></label>
+            <input type="text" class="form-control form-control-lg" id="telephone" placeholder="Téléphone" formControlName="telephone">
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="mb-3">
+            <label for="dateNaissance" class="form-label">Date de Naissance<small style="color: red;">*</small></label>
+            <input type="date" class="form-control form-control-lg" id="dateNaissance" placeholder="Date de Naissance" formControlName="dateNaissance">
+            </div>
+        </div>
+       <div class="col-sm-6">
+            <div class="mb-3">
+            <label for="adresse" class="form-label">Adresse<small style="color: red;">*</small></label>
+            <input type="text" class="form-control form-control-lg" id="adresse" placeholder="Adresse" formControlName="adresse">
+            </div>
+        </div>
+        <div class="col-sm-6">
+        <div class="mb-3">
+          <label  class="form-label">Niveau Etude <small style="color: red;">*</small></label>
+          <ng-select
+          [items]="niveauEtudeList"
+          bindLabel="nom"
+          bindValue="id"
+          placeholder="Sélectionner..."
+          formControlName="niveauEtudeId">
+        </ng-select>
+        </div>
+      </div>
+
+      <!-- Sélection des compétences -->
+      <div *ngIf="!isSearch" class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-title">Sélectionner les compétences</h6>
+            <div class="row">
+              <!-- Domaine -->
+              <div class="col-4">
+                <div class="mb-3">
+                  <label for="domaine" class="form-label">Domaine</label>
+                  <ng-select
+                    id="domaine"
+                    [items]="domaines"
+                    [multiple]="false"
+                    [closeOnSelect]="true"
+                    [searchable]="true"
+                    bindValue="id"
+                    bindLabel="nom"
+                    placeholder="Sélectionnez le domaine"
+                    formControlName="domaine"
+                    (change)="allCompetences($event)"
+                  >
+                  </ng-select>
+                </div>
+              </div>
+              <div class="col-8">
+                <label for="idCompetence" class="form-label">Competences</label>
+                <ng-select
+                  id="idCompetence"
+                  [items]="competences"
+                  [multiple]="true"
+                  [closeOnSelect]="false"
+                  [searchable]="true"
+                  bindValue="id"
+                  bindLabel="fullName"
+                  placeholder="Sélectionnez les compétences"
+                  formControlName="idCompetence">
+                </ng-select>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label  class="form-label">Statut Candidature <small style="color: red;">*</small></label>
+          <ng-select
+            [items]="statuts"
+            bindLabel="description"
+            bindValue="name"
+            placeholder="Selectionner..."
+            formControlName="statutCandidature">
+          </ng-select>
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="candidatureId" class="form-label">Recrutements<small style="color: red;"> *</small></label>
+          <ng-select
+            [items]="recutements"
+            bindLabel="titre"
+            bindValue="id"
+            placeholder="Sélectionner un recrutement..."
+            formControlName="recrutementId">
+          </ng-select>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-primary" (click)="create()" [disabled]="!form.valid">Enregistrer</button>
+  </div>
+</section>
+
+<section *ngIf="isSearch">
+  <form [formGroup]="form">
+    <div class="row">
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom<small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="nom" placeholder="" formControlName="nom">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="prenom" class="form-label">Prénom<small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="prenom" placeholder="Prénom" formControlName="prenom">
+        </div>
+      </div>
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="email" class="form-label">Email<small style="color: red;">*</small></label>
+          <input type="email" class="form-control form-control-lg" id="email" placeholder="Email" formControlName="email">
+        </div>
+      </div>
+
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="telephone" class="form-label">Téléphone<small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="telephone" placeholder="Téléphone" formControlName="telephone">
+        </div>
+      </div>
+       <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="dateNaissance" class="form-label">Date de Naissance<small style="color: red;">*</small></label>
+          <input type="date" class="form-control form-control-lg" id="dateNaissance" placeholder="Date de Naissance" formControlName="dateNaissance">
+        </div>
+      </div>
+        <div class="col-sm-6">
+            <div class="mb-3">
+            <label for="adresse" class="form-label">Adresse<small style="color: red;">*</small></label>
+            <input type="text" class="form-control form-control-lg" id="adresse" placeholder="Adresse" formControlName="adresse">
+        </div>
+
+        <div class="col-sm-6">
+          <div class="mb-3">
+            <label  class="form-label">Niveau Etude <small style="color: red;">*</small></label>
+             <ng-select
+               [items]="niveauEtudeList"
+                bindLabel="nom"
+                bindValue="id"
+                placeholder="Sélectionner..."
+                formControlName="niveauEtude">
+                </ng-select>
+           </div>
+        </div>
+
+        <div class="col-sm-6">
+        <div class="mb-3">
+          <label  class="form-label">Statut Candidature <small style="color: red;">*</small></label>
+          <ng-select
+            [items]="statuts"
+            bindLabel="description"
+            bindValue="name"
+            placeholder="Selectionner..."
+            formControlName="statutCandidature">
+          </ng-select>
+        </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-primary" (click)="doSearch()">Rechercher</button>
+  </div>
+</section>
+
+
+<!-- Add competence
+<ng-template #addcompetenceModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="addcompetenceModalLabel">Ajout competence</h5>
+    <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-add-competence [isSearch]="false" (submit)="allCompetences()"></app-add-competence>
+  </div>
+</ng-template> -->

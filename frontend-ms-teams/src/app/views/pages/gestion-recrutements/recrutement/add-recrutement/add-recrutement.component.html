@@ -1,0 +1,142 @@
+<section>
+  <form [formGroup]="form">
+    <div class="row">
+      <!-- Titre -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="titre" class="form-label">Titre <small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="titre" placeholder="Titre" formControlName="titre">
+        </div>
+      </div>
+
+      <!-- Date Limite -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="dateLimite" class="form-label">Date limite</label>
+          <input type="date" class="form-control form-control-lg" id="dateLimite" formControlName="dateLimite">
+        </div>
+      </div>
+
+      <!-- Lieu -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="lieu" class="form-label">Lieu</label>
+          <input type="text" class="form-control form-control-lg" id="lieu" placeholder="Lieu" formControlName="lieu">
+        </div>
+      </div>
+
+      <!-- Type de Contrat -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label  class="form-label">Type de contrat <small style="color: red;">*</small></label>
+          <ng-select
+            [items]="typeContrats"
+            bindLabel="description"
+            bindValue="name"
+            placeholder="Selectionner..."
+            formControlName="typeContrat">
+          </ng-select>
+        </div>
+      </div>
+
+      <!-- Salaire -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="salaire" class="form-label">Salaire</label>
+          <input type="number" class="form-control form-control-lg" id="salaire" placeholder="Salaire" formControlName="salaire">
+        </div>
+      </div>
+
+      <!-- Publier -->
+      <div class="col-sm-6 d-flex align-items-center">
+        <div class="form-check mt-4">
+          <input class="form-check-input" type="checkbox" id="publier" formControlName="publier">
+          <label class="form-check-label" for="publier">Publié</label>
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div *ngIf="!isSearch" class="col-sm-12">
+        <div class="mb-3">
+          <label for="description" class="form-label">Description</label>
+          <textarea type="text" class="form-control form-control-lg" id="description" placeholder="Description" formControlName="description"></textarea>
+        </div>
+      </div>
+
+      <!-- Recherche par compétence (si applicable) -->
+      <div *ngIf="isSearch" class="col-sm-6">
+        <div class="mb-3">
+          <label for="competence" class="form-label">Recherche par Nom Compétence</label>
+          <input type="text" class="form-control form-control-lg" id="competence" placeholder="Nom compétence" formControlName="competence">
+        </div>
+      </div>
+
+      <!-- Sélection des compétences -->
+      <div *ngIf="!isSearch" class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-title">Sélectionner les compétences</h6>
+            <div class="row">
+              <!-- Domaine -->
+              <div class="col-4">
+                <div class="mb-3">
+                  <label for="domaineId" class="form-label">Domaine</label>
+                  <ng-select
+                    id="domaineId"
+                    [items]="domaines"
+                    [multiple]="false"
+                    [closeOnSelect]="true"
+                    [searchable]="true"
+                    bindValue="id"
+                    bindLabel="nom"
+                    placeholder="Sélectionnez le domaine"
+                    formControlName="domaineId"
+                    (change)="allCompetences($event)"
+                  >
+                  </ng-select>
+                </div>
+              </div>
+              <div class="col-8">
+                <label for="domaineId" class="form-label">Competences</label>
+                <ng-select
+                  [items]="competences"
+                  [multiple]="true"
+                  [closeOnSelect]="false"
+                  [searchable]="true"
+                  bindValue="id"
+                  bindLabel="fullName"
+                  placeholder="Sélectionnez les compétences"
+                  formControlName="idCompetences">
+                </ng-select>
+              </div>
+              <!--<div class="col-4 d-flex justify-content-end">
+                <button type="button" class="btn btn-primary btn-icon-text" (click)="openModal(addcompetenceModal)">
+                  <i class="feather icon-plus-circle"></i> Nouvelle Competence
+                </button>
+              </div>-->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Boutons -->
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-primary" *ngIf="!isSearch" (click)="create()" [disabled]="!form.valid">Enregistrer</button>
+    <button type="button" class="btn btn-primary" *ngIf="isSearch" (click)="doSearch()">Rechercher</button>
+  </div>
+</section>
+
+
+<!--Add competence-->
+<!--<ng-template #addcompetenceModal let-modal>
+  <div class="modal-header">
+    <h5 class="modal-title" id="addcompetenceModalLabel">Ajout competence</h5>
+    <button type="button" class="btn-close" (click)="modal.close('by: close icon')" aria-label="Close"></button>
+  </div>
+  <div class="modal-body">
+    <app-add-competence [isSearch]="false" (submit)="allCompetences()"></app-add-competence>
+  </div>
+</ng-template>-->

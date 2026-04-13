@@ -1,0 +1,97 @@
+<section *ngIf="isSearch">
+  <form [formGroup]="form">
+    <div class="row">
+      <!-- Lieu -->
+      <div class="col-sm-12">
+        <div class="mb-3">
+          <label for="lieu" class="form-label">Lieu de Formation</label>
+          <input type="text" class="form-control form-control-lg" id="lieu" placeholder="Lieu" formControlName="lieu">
+        </div>
+      </div>
+
+      <!-- Date -->
+      <div class="col-sm-12">
+        <div class="mb-3">
+          <label for="date" class="form-label">Date de la Session</label>
+          <input type="date" class="form-control form-control-lg" id="date" formControlName="date">
+        </div>
+      </div>
+
+      <div class="col-sm-12">
+        <div class="mb-3">
+          <label for="formation" class="form-label">Lieu de Formation</label>
+          <input type="text" class="form-control form-control-lg" id="formation" placeholder="Formation" formControlName="formation">
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Boutons -->
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-primary" (click)="doSearch()">Rechercher</button>
+  </div>
+</section>
+<!--################################ ADD ################################################-->
+<section *ngIf="!isSearch">
+  <form [formGroup]="form">
+    <div class="row">
+      <!-- Lieu -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="lieu" class="form-label">Lieu de Formation <small style="color: red;">*</small></label>
+          <input type="text" class="form-control form-control-lg" id="lieu" placeholder="Lieu" formControlName="lieu">
+        </div>
+      </div>
+
+      <!-- Date -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="date" class="form-label">Date de la Session <small style="color: red;">*</small></label>
+          <input type="date" class="form-control form-control-lg" id="date" formControlName="date">
+        </div>
+      </div>
+
+      <!-- Heure de début -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="heureDebut" class="form-label">Heure de début <small style="color: red;">*</small></label>
+          <input type="time" class="form-control form-control-lg" id="heureDebut" formControlName="heureDebut">
+        </div>
+      </div>
+
+      <!-- Heure de fin -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="heureFin" class="form-label">Heure de fin <small style="color: red;">*</small></label>
+          <input type="time" class="form-control form-control-lg" id="heureFin" formControlName="heureFin">
+        </div>
+      </div>
+
+      <!-- Formation -->
+      <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h6 class="card-title">Sélectionner une formation</h6>
+            <ng-select
+              [items]="formations"
+              [multiple]="false"
+              [closeOnSelect]="true"
+              [searchable]="true"
+              bindValue="id"
+              bindLabel="titre"
+              placeholder="Sélectionnez une formation"
+              formControlName="idFormation">
+            </ng-select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+  <!-- Boutons -->
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-primary" (click)="create()" [disabled]="!form.valid">Enregistrer</button>
+  </div>
+</section>

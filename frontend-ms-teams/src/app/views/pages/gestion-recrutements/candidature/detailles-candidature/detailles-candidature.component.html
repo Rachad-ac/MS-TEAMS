@@ -1,0 +1,79 @@
+<div
+  class="d-flex justify-content-between align-items-center flex-wrap grid-margin mb-1"
+>
+  <!-- Breadcrumb à gauche -->
+  <nav class="page-breadcrumb cursor-pointer">
+    <ol class="breadcrumb mb-0">
+      <li class="breadcrumb-item">
+        <a routerLink="/admin/gestion-recrutement/candidature"
+          >List Candidature</a
+        >
+      </li>
+      <li class="breadcrumb-item active"><a>Détails Candidature</a></li>
+    </ol>
+  </nav>
+</div>
+
+<div class="card mt-4" *ngIf="candidature">
+  <div class="card-header">
+    <h4 class="card-title">Détails de la Candidature</h4>
+  </div>
+  <div class="card-body">
+    <div class="row">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="form-label fw-bold">ID Candidature:</label>
+          <p class="form-control-static">{{ candidature.idCandidature }}</p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="form-label fw-bold">Date de Candidature:</label>
+          <p class="form-control-static">
+            {{ candidature.dateCandidature | date : "dd/MM/yyyy HH:mm" }}
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="form-label fw-bold">Statut:</label>
+          <p class="form-control-static">
+            <span
+              class="badge"
+              [ngClass]="{
+                'bg-warning': candidature.statut === 'EN_ATTENTE',
+                'bg-success': candidature.statut === 'ACCEPTEE',
+                'bg-danger': candidature.statut === 'REJETEE'
+              }"
+              >{{ candidature.statut }}</span
+            >
+          </p>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="form-label fw-bold">ID Recrutement:</label>
+          <p class="form-control-static">{{ candidature.recrutementId }}</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="row mt-3">
+      <div class="col-md-6">
+        <div class="form-group">
+          <label class="form-label fw-bold">ID Candidat:</label>
+          <p class="form-control-static">{{ candidature.candidatId }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="card mt-4" *ngIf="!candidature">
+  <div class="card-body text-center">
+    <p>Chargement des détails de la candidature...</p>
+  </div>
+</div>

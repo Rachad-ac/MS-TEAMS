@@ -1,0 +1,96 @@
+<section>
+  <form [formGroup]="form">
+    <div class="row">
+
+      <!-- nom -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="nom" class="form-label">Nom</label>
+          <input type="text" class="form-control form-control-lg" id="nom" placeholder="Nom" formControlName="nom">
+        </div>
+      </div>
+
+      <!-- prenom -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="prenom" class="form-label">Prenom</label>
+          <input type="text" class="form-control form-control-lg" id="prenom" placeholder="Prenom" formControlName="prenom">
+        </div>
+      </div>
+
+      <!-- email -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="email" class="form-label">E-mail</label>
+          <input type="email" class="form-control form-control-lg" id="email" placeholder="Email" formControlName="email">
+        </div>
+      </div>
+
+      <!-- telephone -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="telephone" class="form-label">telephone</label>
+          <input type="text" class="form-control form-control-lg" id="telephone" placeholder="Telephone" formControlName="telephone">
+        </div>
+      </div>
+
+      <!-- poste -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="poste" class="form-label">Poste</label>
+          <input type="text" class="form-control form-control-lg" id="poste" placeholder="Poste" formControlName="poste">
+        </div>
+      </div>
+
+      <!-- departement -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label  class="form-label">Departement<small style="color: red;"> *</small></label>
+          <ng-select
+            [items]="departement"
+            bindValue="value"
+            placeholder="Selectionner..."
+            formControlName="departement">
+          </ng-select>
+        </div>
+      </div>
+
+      <!-- sexe -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label  class="form-label">Sexe<small style="color: red;">*</small></label>
+          <ng-select
+            [items]="sexe"
+            bindValue="value"
+            placeholder="Selectionner..."
+            formControlName="sexe">
+          </ng-select>
+        </div>
+      </div>
+
+      <!-- role -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="role" class="form-label">Role</label>
+          <input type="text" class="form-control form-control-lg" id="role" placeholder="Role" formControlName="role">
+        </div>
+      </div>
+
+      <!-- Date Embauche -->
+      <div class="col-sm-6">
+        <div class="mb-3">
+          <label for="dateEmbauche" class="form-label">Date Embauche</label>
+          <input type="date" class="form-control form-control-lg" id="dateEmbauche" placeholder="Date Embauche" formControlName="dateEmbauche">
+        </div>
+      </div>
+
+    </div>
+  </form>
+
+  <!-- Boutons -->
+  <div class="modal-footer">
+    <button type="button" class="btn btn-secondary" (click)="close()">Fermer</button>
+    <button type="button" class="btn btn-primary" *ngIf="!isSearch" (click)="update()" [disabled]="!form.valid">Enregistrer</button>
+    <button type="button" class="btn btn-primary" *ngIf="isSearch" (click)="doSearch()">Rechercher</button>
+  </div>
+</section>

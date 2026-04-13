@@ -1,0 +1,8 @@
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/admin/gestion-recrutement/recrutement/']">Liste des recrutements</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Recrutement</li>
+  </ol>
+</nav>
+
+<app-list-candidat [recrutementId]="recrutementId"></app-list-candidat>

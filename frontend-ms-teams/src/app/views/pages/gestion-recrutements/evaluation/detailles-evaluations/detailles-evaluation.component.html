@@ -1,0 +1,134 @@
+<nav class="page-breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a [routerLink]="['/admin/gestion-recrutement/evaluation/']">Liste des evaluations</a></li>
+    <li class="breadcrumb-item active" aria-current="page">Evaluation</li>
+  </ol>
+</nav>
+
+<ul ngbNav #fillJustifyNav="ngbNav" class="nav-tabs nav-fill" >
+
+  <li [ngbNavItem]="1">
+    <a ngbNavLink>Candidat</a>
+    <ng-template ngbNavContent>
+      <div class="d-md-block left-wrapper" *ngIf="evaluation.candidat">
+        <div class="card rounded">
+
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h2 class="card-title mb-0">Inforrmations personnelles</h2>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Nom :</label>
+              <p class="text-muted">{{ evaluation.candidat.nom }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Prenom :</label>
+              <p class="text-muted">{{ evaluation.candidat.prenom }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">E-mail :</label>
+              <p class="text-muted">{{ evaluation.candidat.email }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Telephone :</label>
+              <p class="text-muted">{{ evaluation.candidat.telephone }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Adress :</label>
+              <p class="text-muted">{{ evaluation.candidat.adresse }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Date Naissance :</label>
+              <p class="text-muted">{{ evaluation.candidat.dateNaissance }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Niveau Etude :</label>
+              <p class="text-muted">{{ evaluation.candidat.niveauEtude.description }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Competences :</label>
+              <u class="text-decoration-none"><p class="text-muted" *ngFor="let competence of evaluation.candidat.competence ">
+                <li>{{ competence.nom }} - {{ competence.niveau }}</li>
+              </p></u>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </li>
+
+  <li [ngbNavItem]="2">
+    <a ngbNavLink>Responsable</a>
+    <ng-template ngbNavContent>
+      <div class="d-md-block left-wrapper" *ngIf="evaluation.employe">
+        <div class="card rounded">
+          <div class="card-body">
+            <div class="d-flex align-items-center justify-content-between mb-2">
+              <h2 class="card-title mb-0">Inforrmations personnelles</h2>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Nom :</label>
+              <p class="text-muted">{{ evaluation.employe.nom }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Prenom :</label>
+              <p class="text-muted">{{ evaluation.employe.prenom }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">E-mail :</label>
+              <p class="text-muted">{{ evaluation.employe.email }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Telephone :</label>
+              <p class="text-muted">{{ evaluation.employe.telephone }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Poste :</label>
+              <p class="text-muted">{{ evaluation.employe.poste }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Role :</label>
+              <p class="text-muted">{{ evaluation.employe.role }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Date Embauche :</label>
+              <p class="text-muted">{{ evaluation.employe.dateEmbauche }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Departement :</label>
+              <p class="text-muted">{{ evaluation.employe.departement.description }}</p>
+            </div>
+
+            <div class="mt-3">
+              <label class="tx-11 fw-bolder mb-0 text-uppercase">Sexe :</label>
+              <p class="text-muted">{{ evaluation.employe.sexe.description }}</p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </ng-template>
+  </li>
+
+</ul>
+
+<div [ngbNavOutlet]="fillJustifyNav" class="border border-top-0 p-3"></div>
+
+
