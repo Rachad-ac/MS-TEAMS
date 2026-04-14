@@ -1,4 +1,4 @@
-# MS-TEAMS - Plateforme de Gestion des Talents
+# SmartTalent - Plateforme de Gestion des Talents
 
 [![Java](https://img.shields.io/badge/Java-17+-007396?style=flat&logo=java)](https://www.java.com)
 [![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3.0+-6DB33F?style=flat&logo=spring)](https://spring.io/projects/spring-boot)
@@ -53,12 +53,12 @@ Parfaite pour les recruteurs évaluant les compétences d'internes/équipes ou l
 ## 🏗️ Architecture
 
 ```
-MS-TEAMS (Monorepo)
-├── backend-ms-teams/          # API Spring Boot REST (port 8080)
+SmartTalent (Monorepo)
+├── backend-smart-talent/          # API Spring Boot REST (port 8080)
 │   ├── src/main/java/com/webgram/  # Contrôleurs, Services, Entités
 │   ├── src/main/resources/application.yml
 │   └── pom.xml
-└── frontend-ms-teams/         # SPA Angular (port 4200)
+└── frontend-smart-talent/         # SPA Angular (port 4200)
     ├── src/app/services/      # Services par domaine (ex: candidat.service.ts)
     ├── src/app/views/         # Pages : auth, gestion-formation, gestion-recrutements
     ├── src/app/core/          # Guards, icônes, données dummy
@@ -75,14 +75,14 @@ MS-TEAMS (Monorepo)
 
 ### Backend
 ```bash
-cd backend-ms-teams
+cd backend-smart-talent
 mvn clean install
 mvn spring-boot:run  # Démarre sur http://localhost:8080
 ```
 
 ### Frontend
 ```bash
-cd frontend-ms-teams
+cd frontend-smart-talent
 npm install
 ng serve             # Démarre sur http://localhost:4200 
 ```
