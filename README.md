@@ -7,7 +7,7 @@
 
 ## 📋 Aperçu
 
-**MS-TEAMS** est une application web full-stack dédiée à la **Gestion des Talents et des Processus RH**, développée de manière autonome par une équipe de stagiaires dans le cadre d'un projet d'équipe réel visant à monter en compétences techniques.
+**SmartTalent** est une application web dédiée à la **Gestion des Talents et des Processus RH**, développée de manière autonome par une équipe de stagiaires dans le cadre d'un projet d'équipe réel visant à monter en compétences techniques.
 
 Cette plateforme optimise les workflows RH et formation : gestion des candidats, candidatures, évaluations de compétences, recrutements, sessions de formation, présences, résultats, etc. Construite avec des technologies d'entreprise modernes, elle illustre les meilleures pratiques en développement full-stack.
 

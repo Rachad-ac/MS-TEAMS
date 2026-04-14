@@ -5,7 +5,7 @@ server:
 
 spring:
   datasource:
-    name: ${DB_NAME:ms-teams-db}
+    name: ${DB_NAME:smart-talent-db}
     host: ${DB_HOST:127.0.0.1}
     username: ${DB_USERNAME:root}
     password: ${DB_PASSWORD:}
@@ -19,7 +19,7 @@ spring:
       hibernate:
         dialect: org.hibernate.dialect.MySQL8Dialect
   application:
-    name: projet
+    name: smart-talent
   springdoc:
     api-docs:
       enabled: true
